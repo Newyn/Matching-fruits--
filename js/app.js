@@ -43,9 +43,14 @@ Step
 
 var step = function() {
 	
-	//ctx.clearRect(0, 0, canvas.width, canvas.height);
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	
-	/*for (var i = 0; i < 8; i++) {
+	ctx.fillStyle = "rgb(0,0,0)";
+	ctx.fillRect (0, 0, canvas.width, canvas.height);
+	
+	oGame.initBorders();
+	
+	for (var i = 0; i < 8; i++) {
 		
 		for (var j = 0; j < 8; j++) {
 		
@@ -53,7 +58,7 @@ var step = function() {
 			
 		}
 		
-	}*/
+	}
 }
 
 canvas.addEventListener("mousedown", handleMouseDown, false);

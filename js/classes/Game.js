@@ -25,6 +25,10 @@ function Game() {
 	this.gemHeight = 50;
 	this.posColumn = "";
 	this.posRow = "";
+	
+	this.selectedCase = false;
+	this.posColumnSelectedCase = "";
+	this.posRowSelectedCase = "";
 }
 
 /**************************************************************************************************
@@ -132,16 +136,21 @@ Initialization of the borders of the maps
 
 Game.prototype.initBorders = function() {
 	
-	ctx.strokeStyle = "white";
-	ctx.lineWidth = 2;
-	
 	for (var i=0; i<8; i++) {
    
-      for (var j=0; j<8; j++) {
+		for (var j=0; j<8; j++) {
+		
+			ctx.lineWidth = 2;
+			ctx.strokeStyle = "white";
+			ctx.strokeRect(i*this.gemWidth, j*this.gemWidth, this.gemWidth, this.gemWidth);	
+		}
 	  
-         ctx.strokeRect(i*this.gemWidth, j*this.gemWidth, this.gemWidth, this.gemWidth);
-      }
-	  
+	}
+   
+   if (this.selectedCase == true) {
+		ctx.lineWidth = 2;
+		ctx.strokeStyle = "red";
+		ctx.strokeRect(oGame.map[oGame.posRow][oGame.posColumn].x, oGame.map[oGame.posRow][oGame.posColumn].y, oGame.map[oGame.posRow][oGame.posColumn].img.width, oGame.map[oGame.posRow][oGame.posColumn].img.height);
    }
 }
 
