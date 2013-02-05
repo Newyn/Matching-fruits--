@@ -1,7 +1,14 @@
-/**************************************************************************************************
+	/**************************************************************************************************
 Constructor
 **************************************************************************************************/
 function Game() {
+	
+	// Game music
+	this.music = new Audio("resources/music/GameMusic.ogg");
+	this.music.loop = true;
+	this.music.volume = 0.5;
+	this.music.load();
+	this.music.play();
 	
 	// Array of gems color name
 	this.aListGemsColor = ["blue", "green", "orange", "purple", "red", "white", "yellow"];
