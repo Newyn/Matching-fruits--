@@ -37,9 +37,13 @@ function handleMouseDown(e) {
 			oGame.map[oGame.posRowSelectedCase][oGame.posColumnSelectedCase] = oGem;
 			oGame.map[oGame.posRow][oGame.posColumn] = oGem2;
 			
+			oGame.check();
+			
 			oGame.selectedCase = false;
 			oGame.posColumnSelectedCase = "";
 			oGame.posRowSelectedCase = "";
+			
+			
 		}
 		else {
 			oGame.selectedCase = true;

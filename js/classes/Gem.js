@@ -2,6 +2,7 @@ function Gem(img, x, y) {
 	this.img = img;
 	this.x = x;
 	this.y = y;
+	this.destroy = false;
 }
 
 Gem.prototype.draw = function() {

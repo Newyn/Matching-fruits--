@@ -23,8 +23,8 @@ function Game() {
 	
 	this.gemWidth = 50;
 	this.gemHeight = 50;
-	this.posColumn = "";
-	this.posRow = "";
+	this.posColumn = 0;
+	this.posRow = 0;
 	
 	this.selectedCase = false;
 	this.posColumnSelectedCase = "";
@@ -152,6 +152,123 @@ Game.prototype.initBorders = function() {
 		ctx.strokeStyle = "red";
 		ctx.strokeRect(oGame.map[oGame.posRow][oGame.posColumn].x, oGame.map[oGame.posRow][oGame.posColumn].y, oGame.map[oGame.posRow][oGame.posColumn].img.width, oGame.map[oGame.posRow][oGame.posColumn].img.height);
    }
+}
+
+/**************************************************************************************************
+Checks whether adjacent gems when swapping
+**************************************************************************************************/
+
+Game.prototype.check = function () {
+	
+	// posRow = new
+	// posSelect = old
+	
+	var countLeft = 0;
+	var countRight = 0;
+	var countUp = 0;
+	var countDown = 0;
+	
+	var err = false;
+	
+	if ((this.posRow >= 0) && (this.posColumn >= 0) && (this.posRow < 8) && (this.posColumn < 8)) {
+		
+		for (var i=this.posColumn - 1; i>=0; i--) {
+			if ((this.map[this.posRow][this.posColumn].img.src == this.map[this.posRow][i].img.src) && (err == false)) {
+				countLeft++;
+			}
+			else {
+				
+				err = true;
+				
+				if (countLeft < 1) {
+					countLeft = 0;
+				}
+			}
+		}
+
+		err = false;
+		
+		for (var i=this.posColumn + 1; i<8 ; i++) {
+			if ((this.map[this.posRow][this.posColumn].img.src == this.map[this.posRow][i].img.src) && (err == false)) {
+				countRight++;
+			}
+			else {
+			
+				err = true;
+				
+				if (countRight < 1) {
+					countRight = 0;
+				}
+			}
+		}
+		
+		err = false;
+		
+		for (var i=this.posRow - 1; i>=0 ; i--) {
+			if ((this.map[this.posRow][this.posColumn].img.src == this.map[i][this.posColumn].img.src) && (err == false)) {
+				countUp++;
+			}
+			else {
+				
+				err = true;
+				
+				if (countUp < 1) {
+					countUp = 0;
+				}
+			}
+		}
+		
+		err = false;
+		
+		for (var i=this.posRow + 1; i<8 ; i++) {
+			if ((this.map[this.posRow][this.posColumn].img.src == this.map[i][this.posColumn].img.src) && (err == false)) {
+				countDown++;
+			}
+			else {	
+				
+				err = true;
+				
+				if (countDown < 1) {
+					countDown = 0;
+				}
+			}
+		}
+		
+		if (this.posColumn > 0) {
+			if (this.map[this.posRow][this.posColumn].img.src != this.map[this.posRow][this.posColumn - 1].img.src) {
+				countLeft = 0;
+			}
+		}
+		
+		if (this.posColumn < 7) {
+			if (this.map[this.posRow][this.posColumn].img.src != this.map[this.posRow][this.posColumn + 1].img.src) {
+				countRight = 0;
+			}
+		}
+		
+		if (this.posRow > 0) {
+			if (this.map[this.posRow][this.posColumn].img.src != this.map[this.posRow - 1][this.posColumn].img.src) {
+				countUp = 0;
+			}
+		}
+		
+		if (this.posRow < 7) {
+			if (this.map[this.posRow][this.posColumn].img.src != this.map[this.posRow + 1][this.posColumn].img.src) {
+				countDown = 0;
+			}
+		}	
+	}
+	
+	console.log("countUp="+countUp+"countDown="+countDown+"countLeft="+countLeft+"countRight="+countRight);
+	if ((countUp > 1) || (countDown > 1) || (countLeft > 1) || (countRight > 1)) {
+		console.log("OK");
+	}
+	else if ((countUp > 0) && (countDown > 0)) {
+		console.log("OK");
+	}
+	else if ((countLeft > 0) && (countRight > 0)) {
+		console.log("OK");
+	}
 }
 
 /**************************************************************************************************
