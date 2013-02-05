@@ -260,17 +260,86 @@ Game.prototype.check = function () {
 	}
 	
 	console.log("countUp="+countUp+"countDown="+countDown+"countLeft="+countLeft+"countRight="+countRight);
-	if ((countUp > 1) || (countDown > 1) || (countLeft > 1) || (countRight > 1)) {
+	
+	if ((countUp > 0) && (countDown > 0)) {
+	
 		console.log("OK");
-	}
-	else if ((countUp > 0) && (countDown > 0)) {
-		console.log("OK");
+		
+		for (var i=0; i<=countUp; i++) {
+			this.map[this.posRow - i][this.posColumn].destroy = true;
+		}
+		
+		for (var i=0; i<=countDown; i++) {
+			this.map[this.posRow + i][this.posColumn].destroy = true;
+		}
+		
+		this.destroy();
 	}
 	else if ((countLeft > 0) && (countRight > 0)) {
+	
 		console.log("OK");
+		
+		for (var i=0; i<=countLeft; i++) {
+				this.map[this.posRow][this.posColumn - i].destroy = true;
+		}
+		
+		for (var i=0; i<=countRight; i++) {
+				this.map[this.posRow][this.posColumn + i].destroy = true;
+		}
+		
+		this.destroy();
 	}
+	else if ((countUp > 1) || (countDown > 1) || (countLeft > 1) || (countRight > 1)) {
+		
+		console.log("OK");
+		
+		if (countUp > 1) {
+			for (var i=0; i<=countUp; i++) {
+				this.map[this.posRow - i][this.posColumn].destroy = true;
+			}
+		}
+		else if (countDown > 1) {
+			for (var i=0; i<=countDown; i++) {
+				this.map[this.posRow + i][this.posColumn].destroy = true;
+			}
+		}
+		else if (countLeft > 1) {
+			for (var i=0; i<=countLeft; i++) {
+				this.map[this.posRow][this.posColumn - i].destroy = true;
+			}
+		}
+		else if (countRight > 1) {
+			for (var i=0; i<=countRight; i++) {
+				this.map[this.posRow][this.posColumn + i].destroy = true;
+			}
+		}
+		
+		this.destroy();
+	}	
 }
 
+/**************************************************************************************************
+Destroy adjacent gems
+**************************************************************************************************/
+
+Game.prototype.destroy = function () {
+
+	this.map[this.posRow][this.posColumn].destroy = true;
+	
+	for (var i = 0; i < 8; i++) {
+		
+		for (var j = 0; j < 8; j++) {
+		
+			if (this.map[i][j].destroy == true) {
+				var oGemsImg = new Image();
+				oGemsImg.src = "resources/gems/destroy.png";	
+				var oGem = new Gem(oGemsImg, this.map[i][j].x, this.map[i][j].y);
+				this.map[i][j] = oGem;
+			}
+		}
+		
+	}
+}
 /**************************************************************************************************
 Launch the game
 **************************************************************************************************/
