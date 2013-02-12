@@ -11,8 +11,8 @@ function handleMouseDown(e) {
 		y = e.layerY;
     } 
 	
-	oGame.posColumn = Math.floor(x / oGame.gemWidth); 
-    oGame.posRow = Math.floor(y / oGame.gemHeight); 
+	oGame.posColumn = Math.floor(x / oGame.fruitWidth); 
+    oGame.posRow = Math.floor(y / oGame.fruitHeight); 
 	
 	ctx.lineWidth = 2;
 	ctx.strokeStyle = 'red';
@@ -25,17 +25,17 @@ function handleMouseDown(e) {
 			|| ((oGame.posColumnSelectedCase == oGame.posColumn) && (oGame.posRowSelectedCase == oGame.posRow + 1))
 			|| ((oGame.posColumnSelectedCase == oGame.posColumn) && (oGame.posRowSelectedCase == oGame.posRow - 1))) {
 			
-			var oGemsImg = new Image();
-			oGemsImg.src = oGame.map[oGame.posRow][oGame.posColumn].img.src;	
-			var oGem = new Gem(oGemsImg, oGame.posColumnSelectedCase*oGame.gemWidth, oGame.posRowSelectedCase*oGame.gemWidth);
+			var oFruitsImg = new Image();
+			oFruitsImg.src = oGame.map[oGame.posRow][oGame.posColumn].img.src;	
+			var oFruit = new Fruit(oFruitsImg, oGame.posColumnSelectedCase*oGame.fruitWidth, oGame.posRowSelectedCase*oGame.fruitWidth);
 			
-			var oGemsImg2 = new Image();
-			oGemsImg2.src = oGame.map[oGame.posRowSelectedCase][oGame.posColumnSelectedCase].img.src;	
-			var oGem2 = new Gem(oGemsImg2, oGame.posColumn*oGame.gemWidth, oGame.posRow*oGame.gemWidth);
+			var oFruitsImg2 = new Image();
+			oFruitsImg2.src = oGame.map[oGame.posRowSelectedCase][oGame.posColumnSelectedCase].img.src;	
+			var oFruit2 = new Fruit(oFruitsImg2, oGame.posColumn*oGame.fruitWidth, oGame.posRow*oGame.fruitWidth);
 			
 			
-			oGame.map[oGame.posRowSelectedCase][oGame.posColumnSelectedCase] = oGem;
-			oGame.map[oGame.posRow][oGame.posColumn] = oGem2;
+			oGame.map[oGame.posRowSelectedCase][oGame.posColumnSelectedCase] = oFruit;
+			oGame.map[oGame.posRow][oGame.posColumn] = oFruit2;
 			
 			oGame.check();
 			

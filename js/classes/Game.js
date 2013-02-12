@@ -10,11 +10,11 @@ function Game() {
 	this.music.load();
 	this.music.play();
 	
-	// Array of gems color name
-	this.aListGemsColor = ["blue", "green", "orange", "purple", "red", "white", "yellow"];
+	// Array of fruits color name
+	this.aListFruitsColor = ["blue", "green", "orange", "purple", "red", "white", "yellow"];
 	
-	// Array of gems image object
-	this.aListGemsImg = [];
+	// Array of fruits image object
+	this.aListFruitsImg = [];
 
 	// Map set to 8 rows and 8 columns
 	this.map = [
@@ -28,8 +28,8 @@ function Game() {
 		[0, 0, 0, 0, 0, 0, 0, 0]
 	]; 
 	
-	this.gemWidth = 50;
-	this.gemHeight = 50;
+	this.fruitWidth = 50;
+	this.fruitHeight = 50;
 	this.posColumn = 0;
 	this.posRow = 0;
 	
@@ -39,17 +39,17 @@ function Game() {
 }
 
 /**************************************************************************************************
-Initialization of the the array images gems
+Initialization of the the array images fruits
 **************************************************************************************************/
 
-Game.prototype.initListGemsImg = function() {
+Game.prototype.initListFruitsImg = function() {
 
-	for (var i=0; i<this.aListGemsColor.length;i++) {
+	for (var i=0; i<this.aListFruitsColor.length;i++) {
 
-		var oGemsImg = new Image();
-		oGemsImg.src = "resources/gems/"+this.aListGemsColor[i]+".png";
+		var oFruitsImg = new Image();
+		oFruitsImg.src = "resources/fruits/"+this.aListFruitsColor[i]+".png";
 		
-		this.aListGemsImg.push(oGemsImg);
+		this.aListFruitsImg.push(oFruitsImg);
 	}
 }
 
@@ -73,7 +73,7 @@ Game.prototype.initMap = function() {
 	 
             randomColor = Math.floor(Math.random()*7);
 			
-			this.map[i][j] = new Gem(this.aListGemsImg[randomColor], coordX, coordY);
+			this.map[i][j] = new Fruit(this.aListFruitsImg[randomColor], coordX, coordY);
 			
 			if (i<2) {
 				if (j>1) {
@@ -85,7 +85,7 @@ Game.prototype.initMap = function() {
 							var tmpX = this.map[i][j].x;
 							var tmpY = this.map[i][j].y;
 							randomColor = Math.floor(Math.random()*7);
-							this.map[i][j] = new Gem(this.aListGemsImg[randomColor], tmpX, tmpY);
+							this.map[i][j] = new Fruit(this.aListFruitsImg[randomColor], tmpX, tmpY);
 						}
 
 						this.map[i][j].draw();
@@ -105,7 +105,7 @@ Game.prototype.initMap = function() {
 							var tmpX = this.map[i][j].x;
 							var tmpY = this.map[i][j].y;
 							randomColor = Math.floor(Math.random()*7);
-							this.map[i][j] = new Gem(this.aListGemsImg[randomColor], tmpX, tmpY);
+							this.map[i][j] = new Fruit(this.aListFruitsImg[randomColor], tmpX, tmpY);
 						}
 
 						this.map[i][j].draw();
@@ -120,7 +120,7 @@ Game.prototype.initMap = function() {
 							var tmpX = this.map[i][j].x;
 							var tmpY = this.map[i][j].y;
 							randomColor = Math.floor(Math.random()*7);
-							this.map[i][j] = new Gem(this.aListGemsImg[randomColor], tmpX, tmpY);
+							this.map[i][j] = new Fruit(this.aListFruitsImg[randomColor], tmpX, tmpY);
 						}
 						
 						this.map[i][j].draw();
@@ -149,7 +149,7 @@ Game.prototype.initBorders = function() {
 		
 			ctx.lineWidth = 2;
 			ctx.strokeStyle = "white";
-			ctx.strokeRect(i*this.gemWidth, j*this.gemWidth, this.gemWidth, this.gemWidth);	
+			ctx.strokeRect(i*this.fruitWidth, j*this.fruitWidth, this.fruitWidth, this.fruitWidth);	
 		}
 	  
 	}
@@ -162,7 +162,7 @@ Game.prototype.initBorders = function() {
 }
 
 /**************************************************************************************************
-Checks whether adjacent gems when swapping
+Checks whether adjacent fruits when swapping
 **************************************************************************************************/
 
 Game.prototype.check = function () {
@@ -326,7 +326,7 @@ Game.prototype.check = function () {
 }
 
 /**************************************************************************************************
-Destroy adjacent gems
+Destroy adjacent fruits
 **************************************************************************************************/
 
 Game.prototype.destroy = function () {
@@ -338,10 +338,10 @@ Game.prototype.destroy = function () {
 		for (var j = 0; j < 8; j++) {
 		
 			if (this.map[i][j].destroy == true) {
-				var oGemsImg = new Image();
-				oGemsImg.src = "resources/gems/destroy.png";	
-				var oGem = new Gem(oGemsImg, this.map[i][j].x, this.map[i][j].y);
-				this.map[i][j] = oGem;
+				var oFruitsImg = new Image();
+				oFruitsImg.src = "resources/fruits/destroy.png";	
+				var oFruit = new Fruit(oFruitsImg, this.map[i][j].x, this.map[i][j].y);
+				this.map[i][j] = oFruit;
 			}
 		}
 		
@@ -352,7 +352,7 @@ Launch the game
 **************************************************************************************************/
 
 Game.prototype.start = function() {
-	this.initListGemsImg();
+	this.initListFruitsImg();
 	this.initMap();
 	this.initBorders();
 	mainGame();
