@@ -1,4 +1,21 @@
 /**************************************************************************************************
+Initialization of JavaScript Performance Monitor
+
+FPS Frames rendered in the last second. The higher the number the better.
+MS Milliseconds needed to render a frame. The lower the number the better.
+**************************************************************************************************/
+
+var stats = new Stats();
+stats.setMode(1); // 0: fps, 1: ms
+
+// Align top-left
+stats.domElement.style.position = 'absolute';
+stats.domElement.style.right = '0px';
+stats.domElement.style.top = '0px';
+
+document.body.appendChild(stats.domElement);
+
+/**************************************************************************************************
 Initialization of the requestAnimationFrame
 **************************************************************************************************/
 
@@ -32,9 +49,14 @@ Main game
 **************************************************************************************************/
 
 var mainGame = function() {
-
-	step();
-	requestAnimationFrame(mainGame);
+	
+	setInterval( function () {
+		stats.begin();
+			step();
+		stats.end();
+	}, 1000 / 60 );	
+	//step();
+	//requestAnimationFrame(mainGame);
 }
 
 /**************************************************************************************************
