@@ -9,12 +9,6 @@ function Game() {
 	this.music.volume = 0.5;
 	this.music.load();
 	this.music.play();
-	
-	// Array of fruits color name
-	this.aListFruitsColor = ["blue", "green", "orange", "purple", "red", "white", "yellow"];
-	
-	// Array of fruits image object
-	this.aListFruitsImg = [];
 
 	// Map set to 8 rows and 8 columns
 	this.map = [
@@ -39,21 +33,6 @@ function Game() {
 }
 
 /**************************************************************************************************
-Initialization of the the array images fruits
-**************************************************************************************************/
-
-Game.prototype.initListFruitsImg = function() {
-
-	for (var i=0; i<this.aListFruitsColor.length;i++) {
-
-		var oFruitsImg = new Image();
-		oFruitsImg.src = "resources/fruits/"+this.aListFruitsColor[i]+".png";
-		
-		this.aListFruitsImg.push(oFruitsImg);
-	}
-}
-
-/**************************************************************************************************
 Initializes the map randomly eight rows and eight columns
 **************************************************************************************************/
 
@@ -73,7 +52,7 @@ Game.prototype.initMap = function() {
 	 
             randomColor = Math.floor(Math.random()*7);
 			
-			this.map[i][j] = new Fruit(this.aListFruitsImg[randomColor], coordX, coordY);
+			this.map[i][j] = new Fruit(listFruitImages[randomColor], coordX, coordY);
 			
 			if (i<2) {
 				if (j>1) {
@@ -84,8 +63,8 @@ Game.prototype.initMap = function() {
 						while (this.map[i][j - 2].img.src == this.map[i][j].img.src) {
 							var tmpX = this.map[i][j].x;
 							var tmpY = this.map[i][j].y;
-							randomColor = Math.floor(Math.random()*7);
-							this.map[i][j] = new Fruit(this.aListFruitsImg[randomColor], tmpX, tmpY);
+							randomColor = Math.floor(Math.random()*6);
+							this.map[i][j] = new Fruit(listFruitImages[randomColor], tmpX, tmpY);
 						}
 
 						this.map[i][j].draw();
@@ -105,7 +84,7 @@ Game.prototype.initMap = function() {
 							var tmpX = this.map[i][j].x;
 							var tmpY = this.map[i][j].y;
 							randomColor = Math.floor(Math.random()*7);
-							this.map[i][j] = new Fruit(this.aListFruitsImg[randomColor], tmpX, tmpY);
+							this.map[i][j] = new Fruit(listFruitImages[randomColor], tmpX, tmpY);
 						}
 
 						this.map[i][j].draw();
@@ -120,7 +99,7 @@ Game.prototype.initMap = function() {
 							var tmpX = this.map[i][j].x;
 							var tmpY = this.map[i][j].y;
 							randomColor = Math.floor(Math.random()*7);
-							this.map[i][j] = new Fruit(this.aListFruitsImg[randomColor], tmpX, tmpY);
+							this.map[i][j] = new Fruit(listFruitImages[randomColor], tmpX, tmpY);
 						}
 						
 						this.map[i][j].draw();
@@ -338,9 +317,7 @@ Game.prototype.destroy = function () {
 		for (var j = 0; j < 8; j++) {
 		
 			if (this.map[i][j].destroy == true) {
-				var oFruitsImg = new Image();
-				oFruitsImg.src = "resources/fruits/destroy.png";	
-				var oFruit = new Fruit(oFruitsImg, this.map[i][j].x, this.map[i][j].y);
+				var oFruit = new Fruit(listFruitImages[7], this.map[i][j].x, this.map[i][j].y);
 				this.map[i][j] = oFruit;
 			}
 		}
@@ -352,7 +329,6 @@ Launch the game
 **************************************************************************************************/
 
 Game.prototype.start = function() {
-	this.initListFruitsImg();
 	this.initMap();
 	this.initBorders();
 	mainGame();
