@@ -140,6 +140,17 @@ Game.prototype.initBorders = function() {
    }
 }
 
+/*
+Game.prototype.checkMap = function() {
+	
+	for (var i=0; i<8; i++) {
+   
+		for (var j=0; j<8; j++) {
+		
+		}	
+	}
+}
+*/
 /**************************************************************************************************
 Checks whether adjacent fruits when swapping
 **************************************************************************************************/
