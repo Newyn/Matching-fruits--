@@ -43,7 +43,7 @@ Global variables
 **************************************************************************************************/
 
 var oGame = new Game();
-var listFruitsDestroy = [];
+
 // Load fruit images
 var listFruitImages = [new Image(), new Image(), new Image(), new Image(), new Image(), new Image(), new Image(), new Image()];
 listFruitImages[0].src = "resources/fruits/blue.png";
@@ -54,6 +54,13 @@ listFruitImages[4].src = "resources/fruits/red.png";
 listFruitImages[5].src = "resources/fruits/white.png";
 listFruitImages[6].src = "resources/fruits/yellow.png";
 listFruitImages[7].src = "resources/fruits/destroy.png";
+
+/**************************************************************************************************
+Get DOM Elements
+**************************************************************************************************/
+
+var eltPauseOverlay = document.getElementById("pause");
+var eltPauseResumeButton = document.getElementById("pause-resume-button");
 
 /**************************************************************************************************
 Main game

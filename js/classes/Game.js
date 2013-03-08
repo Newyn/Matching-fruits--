@@ -146,7 +146,7 @@ Checks whether adjacent fruits when swapping
 
 Game.prototype.check = function() {
 
-        listFruitsDestroy = [];
+        var listFruitsDestroy = [];
         var nbAdjacentHorizontal = 0;
 		var nbAdjacentVertical = 0;
         var tmp;
@@ -208,8 +208,6 @@ Destroy adjacent fruits
 **************************************************************************************************/
 
 Game.prototype.destroy = function () {
-
-	//this.map[this.posRow][this.posColumn].destroy = true;
 	
 	for (var i = 0; i < 8; i++) {
 		
@@ -223,11 +221,16 @@ Game.prototype.destroy = function () {
 		
 	}
 }
+
 /**************************************************************************************************
 Launch the game
 **************************************************************************************************/
 
 Game.prototype.start = function() {
+	
+	// In comments for the moment because it's annoying during the development
+	//window.addEventListener("blur", showPauseOverlay);
+	
 	this.initMap();
 	this.initBorders();
 	mainGame();

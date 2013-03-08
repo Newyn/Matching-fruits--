@@ -57,3 +57,12 @@ function handleMouseDown(e) {
 		oGame.posRowSelectedCase = oGame.posRow;
 	}	
 }
+
+function showPauseOverlay() {
+	eltPauseOverlay.style.display = "block";
+	eltPauseResumeButton.addEventListener("click", resume, false);
+}
+
+function resume() {
+	eltPauseOverlay.style.display = "none";
+}
