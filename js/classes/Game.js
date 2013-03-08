@@ -140,179 +140,67 @@ Game.prototype.initBorders = function() {
    }
 }
 
-/*
-Game.prototype.checkMap = function() {
-	
-	for (var i=0; i<8; i++) {
-   
-		for (var j=0; j<8; j++) {
-		
-		}	
-	}
-}
-*/
 /**************************************************************************************************
 Checks whether adjacent fruits when swapping
 **************************************************************************************************/
 
-Game.prototype.check = function () {
-	
-	// posRow = new
-	// posSelect = old
-	
-	var countLeft = 0;
-	var countRight = 0;
-	var countUp = 0;
-	var countDown = 0;
-	
-	var err = false;
-	
-	if ((this.posRow >= 0) && (this.posColumn >= 0) && (this.posRow < 8) && (this.posColumn < 8)) {
-		
-		for (var i=this.posColumn - 1; i>=0; i--) {
-			if ((this.map[this.posRow][this.posColumn].img.src == this.map[this.posRow][i].img.src) && (err == false)) {
-				countLeft++;
-			}
-			else {
-				
-				err = true;
-				
-				if (countLeft < 1) {
-					countLeft = 0;
-				}
-			}
-		}
+Game.prototype.check = function() {
 
-		err = false;
-		
-		for (var i=this.posColumn + 1; i<8 ; i++) {
-			if ((this.map[this.posRow][this.posColumn].img.src == this.map[this.posRow][i].img.src) && (err == false)) {
-				countRight++;
-			}
-			else {
-			
-				err = true;
+        listFruitsDestroy = [];
+        var nbAdjacentHorizontal = 0;
+		var nbAdjacentVertical = 0;
+        var tmp;
+
+        for (var i=0; i<8; i++) {
+
+                for (var j=0; j<7; j++) {
+
+                        if (this.map[i][j].img.src == this.map[i][j + 1].img.src) {
+                                nbAdjacentHorizontal = nbAdjacentHorizontal + 1;
+                        } else {
+                                if (nbAdjacentHorizontal >= 2){
+                                        for (var k=0;k<=nbAdjacentHorizontal;k++) {
+                                            tmp = j - k;
+                                            listFruitsDestroy.push(this.map[i][tmp]);
+                                        }
+                                }
+                                nbAdjacentHorizontal = 0;
+                        }
+						
+						if (this.map[j][i].img.src == this.map[j + 1][i].img.src) {
+                                nbAdjacentVertical = nbAdjacentVertical + 1;
+                        } else {
+                                if (nbAdjacentVertical >= 2){
+                                        for (var k=0;k<=nbAdjacentVertical;k++) {
+                                            tmp = j - k;
+                                            listFruitsDestroy.push(this.map[tmp][i]);
+                                        }
+                                }
+                                nbAdjacentVertical = 0;
+                        }
+                }
+
+                if (nbAdjacentHorizontal >= 2){
+                        for (var k=0;k<=nbAdjacentHorizontal;k++) {
+                                listFruitsDestroy.push(this.map[i][j-k]);
+                        }
+                }
 				
-				if (countRight < 1) {
-					countRight = 0;
-				}
-			}
-		}
-		
-		err = false;
-		
-		for (var i=this.posRow - 1; i>=0 ; i--) {
-			if ((this.map[this.posRow][this.posColumn].img.src == this.map[i][this.posColumn].img.src) && (err == false)) {
-				countUp++;
-			}
-			else {
+				if (nbAdjacentVertical >= 2){
+                        for (var k=0;k<=nbAdjacentVertical;k++) {
+                                listFruitsDestroy.push(this.map[j-k][i]);
+                        }
+                }
 				
-				err = true;
-				
-				if (countUp < 1) {
-					countUp = 0;
-				}
-			}
-		}
-		
-		err = false;
-		
-		for (var i=this.posRow + 1; i<8 ; i++) {
-			if ((this.map[this.posRow][this.posColumn].img.src == this.map[i][this.posColumn].img.src) && (err == false)) {
-				countDown++;
-			}
-			else {	
-				
-				err = true;
-				
-				if (countDown < 1) {
-					countDown = 0;
-				}
-			}
-		}
-		
-		if (this.posColumn > 0) {
-			if (this.map[this.posRow][this.posColumn].img.src != this.map[this.posRow][this.posColumn - 1].img.src) {
-				countLeft = 0;
-			}
-		}
-		
-		if (this.posColumn < 7) {
-			if (this.map[this.posRow][this.posColumn].img.src != this.map[this.posRow][this.posColumn + 1].img.src) {
-				countRight = 0;
-			}
-		}
-		
-		if (this.posRow > 0) {
-			if (this.map[this.posRow][this.posColumn].img.src != this.map[this.posRow - 1][this.posColumn].img.src) {
-				countUp = 0;
-			}
-		}
-		
-		if (this.posRow < 7) {
-			if (this.map[this.posRow][this.posColumn].img.src != this.map[this.posRow + 1][this.posColumn].img.src) {
-				countDown = 0;
-			}
-		}	
-	}
-	
-	console.log("countUp="+countUp+"countDown="+countDown+"countLeft="+countLeft+"countRight="+countRight);
-	
-	if ((countUp > 0) && (countDown > 0)) {
-	
-		console.log("OK");
-		
-		for (var i=0; i<=countUp; i++) {
-			this.map[this.posRow - i][this.posColumn].destroy = true;
-		}
-		
-		for (var i=0; i<=countDown; i++) {
-			this.map[this.posRow + i][this.posColumn].destroy = true;
-		}
+				nbAdjacentVertical = 0;
+                nbAdjacentHorizontal = 0;
+        }
+
+        for (var i=0;i<listFruitsDestroy.length;i++) {
+            this.map[listFruitsDestroy[i].y / 50][listFruitsDestroy[i].x / 50].destroy = true;
+        }
 		
 		this.destroy();
-	}
-	else if ((countLeft > 0) && (countRight > 0)) {
-	
-		console.log("OK");
-		
-		for (var i=0; i<=countLeft; i++) {
-				this.map[this.posRow][this.posColumn - i].destroy = true;
-		}
-		
-		for (var i=0; i<=countRight; i++) {
-				this.map[this.posRow][this.posColumn + i].destroy = true;
-		}
-		
-		this.destroy();
-	}
-	else if ((countUp > 1) || (countDown > 1) || (countLeft > 1) || (countRight > 1)) {
-		
-		console.log("OK");
-		
-		if (countUp > 1) {
-			for (var i=0; i<=countUp; i++) {
-				this.map[this.posRow - i][this.posColumn].destroy = true;
-			}
-		}
-		else if (countDown > 1) {
-			for (var i=0; i<=countDown; i++) {
-				this.map[this.posRow + i][this.posColumn].destroy = true;
-			}
-		}
-		else if (countLeft > 1) {
-			for (var i=0; i<=countLeft; i++) {
-				this.map[this.posRow][this.posColumn - i].destroy = true;
-			}
-		}
-		else if (countRight > 1) {
-			for (var i=0; i<=countRight; i++) {
-				this.map[this.posRow][this.posColumn + i].destroy = true;
-			}
-		}
-		
-		this.destroy();
-	}	
 }
 
 /**************************************************************************************************
@@ -321,7 +209,7 @@ Destroy adjacent fruits
 
 Game.prototype.destroy = function () {
 
-	this.map[this.posRow][this.posColumn].destroy = true;
+	//this.map[this.posRow][this.posColumn].destroy = true;
 	
 	for (var i = 0; i < 8; i++) {
 		

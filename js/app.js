@@ -43,7 +43,7 @@ Global variables
 **************************************************************************************************/
 
 var oGame = new Game();
-
+var listFruitsDestroy = [];
 // Load fruit images
 var listFruitImages = [new Image(), new Image(), new Image(), new Image(), new Image(), new Image(), new Image(), new Image()];
 listFruitImages[0].src = "resources/fruits/blue.png";
