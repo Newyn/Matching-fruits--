@@ -1,8 +1,14 @@
 body {
     padding: 0;
     margin: 0;
-    height: 0px;
-	overflow:hidden;
+	background-color: black;
+}
+
+#map {
+	position: absolute;
+	left: 4%; 
+	right: 4%;
+	bottom: 0;
 }
 
 #pause {

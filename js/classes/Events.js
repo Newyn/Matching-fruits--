@@ -1,61 +1,65 @@
-function handleMouseDown(e) {
+function resize() {
 
-	oGame.initBorders();
+	eltMap.width = document.documentElement.clientWidth;
+	eltMap.height = document.documentElement.clientHeight;
 	
-	if(e.offsetX || e.offsetY) {
-        x = e.offsetX;
-		y = e.offsetY;
-    }
-    else if(e.layerX || e.layerY){
-        x = e.layerX;
-		y = e.layerY;
-    } 
+	var tmp = [];
+	tmp = document.getElementsByClassName("fruit");
 	
-	oGame.posColumn = Math.floor(x / oGame.fruitWidth); 
-    oGame.posRow = Math.floor(y / oGame.fruitHeight); 
+	for (var i=0; i<tmp.length; i++) {
+		tmp[i].style.width = eltMap.width / 12 + "px";
+		tmp[i].style.height = eltMap.height / 12 + "px";
+	}
+}
+
+function handleClick(row, col) {
+
+	if (oGame.selectedCase) {
 	
-	ctx.lineWidth = 2;
-	ctx.strokeStyle = 'red';
-	ctx.strokeRect(oGame.map[oGame.posRow][oGame.posColumn].x, oGame.map[oGame.posRow][oGame.posColumn].y, oGame.map[oGame.posRow][oGame.posColumn].img.width, oGame.map[oGame.posRow][oGame.posColumn].img.height);	
-	
-	if (oGame.selectedCase == true) {
-	
-		if (((oGame.posColumnSelectedCase == oGame.posColumn + 1) && (oGame.posRowSelectedCase == oGame.posRow))
-			|| ((oGame.posColumnSelectedCase == oGame.posColumn - 1) && (oGame.posRowSelectedCase == oGame.posRow))
-			|| ((oGame.posColumnSelectedCase == oGame.posColumn) && (oGame.posRowSelectedCase == oGame.posRow + 1))
-			|| ((oGame.posColumnSelectedCase == oGame.posColumn) && (oGame.posRowSelectedCase == oGame.posRow - 1))) {
+		if (((col == oGame.posCol + 1) && (row == oGame.posRow))
+			|| ((col == oGame.posCol - 1) && (row == oGame.posRow))
+			|| ((col == oGame.posCol) && (row == oGame.posRow + 1))
+			|| ((col == oGame.posCol) && (row == oGame.posRow - 1))) {
+
+			var oldFruit = document.getElementById("fruit"+oGame.posRow+"_"+oGame.posCol);
+			var newFruit = document.getElementById("fruit"+row+"_"+col);
 			
-			var oFruitsImg = new Image();
-			oFruitsImg.src = oGame.map[oGame.posRow][oGame.posColumn].img.src;	
-			var oFruit = new Fruit(oFruitsImg, oGame.posColumnSelectedCase*oGame.fruitWidth, oGame.posRowSelectedCase*oGame.fruitWidth);
+			var oldSrc = oldFruit.src;
+			var newSrc = newFruit.src;
 			
-			var oFruitsImg2 = new Image();
-			oFruitsImg2.src = oGame.map[oGame.posRowSelectedCase][oGame.posColumnSelectedCase].img.src;	
-			var oFruit2 = new Fruit(oFruitsImg2, oGame.posColumn*oGame.fruitWidth, oGame.posRow*oGame.fruitWidth);
-			
-			
-			oGame.map[oGame.posRowSelectedCase][oGame.posColumnSelectedCase] = oFruit;
-			oGame.map[oGame.posRow][oGame.posColumn] = oFruit2;
+			oldFruit.src = newSrc;
+			newFruit.src = oldSrc;		
+
+			document.getElementById("fruit"+oGame.posRow+"_"+oGame.posCol).style.border = "1px solid white";
+		
+			oGame.posRow = "";
+			oGame.posCol = "";
+			oGame.selectedCase = false;
 			
 			oGame.check();
 			
-			oGame.selectedCase = false;
-			oGame.posColumnSelectedCase = "";
-			oGame.posRowSelectedCase = "";
+		} else {
+		
+			document.getElementById("fruit"+oGame.posRow+"_"+oGame.posCol).style.border = "1px solid white";
 			
+			oGame.posRow = row;
+			oGame.posCol = col;
 			
-		}
-		else {
 			oGame.selectedCase = true;
-			oGame.posColumnSelectedCase = oGame.posColumn;
-			oGame.posRowSelectedCase = oGame.posRow;
+
+			document.getElementById("fruit"+row+"_"+col).style.border = "1px solid red";
 		}
-	}
-	else {
+		
+		
+	} else {
+
+		oGame.posRow = row;
+		oGame.posCol = col;
+		
 		oGame.selectedCase = true;
-		oGame.posColumnSelectedCase = oGame.posColumn;
-		oGame.posRowSelectedCase = oGame.posRow;
-	}	
+
+		document.getElementById("fruit"+row+"_"+col).style.border = "1px solid red";
+	}
 }
 
 function showPauseOverlay() {
