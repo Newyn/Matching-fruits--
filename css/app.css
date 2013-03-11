@@ -11,6 +11,12 @@ body {
 	bottom: 0;
 }
 
+.fruit {
+	border: 1px solid white;
+	margin-right: 1px;
+	cursor: pointer;
+}
+
 #pause {
 	display: none;
 }

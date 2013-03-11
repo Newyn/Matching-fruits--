@@ -45,9 +45,6 @@ Game.prototype.initialize = function() {
 			eltFruit.id = "fruit"+i+"_"+j;
 			eltFruit.style.width = eltMap.width / 12 + "px";
 			eltFruit.style.height = eltMap.height / 12 + "px";
-			eltFruit.style.border = "1px solid white";
-			eltFruit.style.marginRight = "1px";
-			eltFruit.style.cursor = "pointer";
 			eltFruit.src = listFruitImages[this.fruits[i][j]];
 			eltFruit.setAttribute('OnClick', 'handleClick('+i+','+j+')');
 			eltMap.appendChild(eltFruit);
