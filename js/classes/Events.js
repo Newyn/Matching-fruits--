@@ -40,8 +40,8 @@ function handleClick(row, col) {
 
 			if (oGame.listFruitsDestroy.length > 0) {
 				for (var i=0;i<oGame.listFruitsDestroy.length;i++) {
-					document.getElementById(oGame.listFruitsDestroy[i].id).src = listFruitImages[7];
-				}	
+					fadeOut(document.getElementById(oGame.listFruitsDestroy[i].id), 500);
+				}				
 			} else {
 				oldFruit.src = oldSrc;
 				newFruit.src = newSrc;
@@ -57,9 +57,7 @@ function handleClick(row, col) {
 			oGame.selectedCase = true;
 
 			document.getElementById("fruit"+row+"_"+col).style.border = "1px solid red";
-		}
-		
-		
+		}	
 	} else {
 
 		oGame.posRow = row;

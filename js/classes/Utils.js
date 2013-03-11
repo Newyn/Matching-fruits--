@@ -23,6 +23,20 @@ function dump(arr,level) {
 	return dumped_text;
 }
 
+function fadeOut(elem, speed){
+
+	if(!elem.style.opacity){
+		elem.style.opacity = 1;
+	}
+	var fade = setInterval(function(){
+		elem.style.opacity -= .02;
+		if(elem.style.opacity < 0){
+			clearInterval(fade);
+			elem.src = listFruitImages[7];
+		}
+	}, speed / 50);
+}
+
 /**************************************************************************************************
 Get all elements with the className property set to "cl"
 **************************************************************************************************/

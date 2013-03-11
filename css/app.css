@@ -10,7 +10,14 @@ body {
 	right: 4%;
 	bottom: 0;
 }
-
+/*#map {
+    left: 50%;
+    margin: -225px 0 0 -467px;
+    overflow: hidden;
+    position: absolute;
+    top: 50%;
+    width: 935px;
+}*/
 .fruit {
 	border: 1px solid white;
 	margin-right: 1px;
