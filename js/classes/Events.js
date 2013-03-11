@@ -37,6 +37,15 @@ function handleClick(row, col) {
 			oGame.selectedCase = false;
 			
 			oGame.check();
+
+			if (oGame.listFruitsDestroy.length > 0) {
+				for (var i=0;i<oGame.listFruitsDestroy.length;i++) {
+					document.getElementById(oGame.listFruitsDestroy[i].id).src = listFruitImages[7];
+				}	
+			} else {
+				oldFruit.src = oldSrc;
+				newFruit.src = newSrc;
+			}
 			
 		} else {
 		
