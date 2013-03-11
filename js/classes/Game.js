@@ -38,7 +38,11 @@ Game.prototype.initialize = function() {
 		for(j=0;j<8;j++) {
 	
 			do	{
-                this.fruits[i][j] = Math.floor(Math.random()*7);
+                this.fruits[i][j] = Math.floor(Math.random()*8);
+				while (this.fruits[i][j] == 0) {
+					console.log(this.fruits[i][j]);
+					this.fruits[i][j] = Math.floor(Math.random()*8);
+				}
             }	while(this.isStreak(i,j));
 			
 			var eltFruit = document.createElement("img");

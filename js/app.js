@@ -30,14 +30,15 @@ var oGame = new Game();
 
 // Load fruit images
 var listFruitImages = [];
-listFruitImages[0] = "resources/fruits/blue.png";
-listFruitImages[1] = "resources/fruits/green.png";
-listFruitImages[2] = "resources/fruits/orange.png";
-listFruitImages[3] = "resources/fruits/purple.png";
-listFruitImages[4] = "resources/fruits/red.png";
-listFruitImages[5] = "resources/fruits/white.png";
-listFruitImages[6] = "resources/fruits/yellow.png";
-listFruitImages[7] = "resources/fruits/destroy.png";
+listFruitImages[0] = "";
+listFruitImages[1] = "resources/fruits/blue.png";
+listFruitImages[2] = "resources/fruits/green.png";
+listFruitImages[3] = "resources/fruits/orange.png";
+listFruitImages[4] = "resources/fruits/purple.png";
+listFruitImages[5] = "resources/fruits/red.png";
+listFruitImages[6] = "resources/fruits/white.png";
+listFruitImages[7] = "resources/fruits/yellow.png";
+listFruitImages[8] = "resources/fruits/destroy.png";
 
 /**************************************************************************************************
 Get DOM Elements
