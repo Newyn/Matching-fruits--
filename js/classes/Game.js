@@ -136,33 +136,28 @@ Game.prototype.check = function() {
         var nbAdjacentHorizontal = 0;
 		var nbAdjacentVertical = 0;
         var tmp;
-		var tmp2;
 		
         for (var i=0; i<8; i++) {
 
                 for (var j=0; j<7; j++) {
 						
-						tmp2 = j + 1;
-						
-                        if ((document.getElementById("fruit"+i+"_"+j).src == document.getElementById("fruit"+i+"_"+tmp2).src) && (document.getElementById("fruit"+i+"_"+j).src.indexOf("destroy.png") == -1)) {
+                        if ((document.getElementById("fruit"+i+"_"+j).src == document.getElementById("fruit"+i+"_"+(j+1)).src) && (document.getElementById("fruit"+i+"_"+j).src.indexOf("destroy.png") == -1)) {
                                 nbAdjacentHorizontal = nbAdjacentHorizontal + 1;
                         } else {
                                 if (nbAdjacentHorizontal >= 2){
                                         for (var k=0;k<=nbAdjacentHorizontal;k++) {
-                                            tmp = j - k;
-                                            this.listFruitsDestroy.push(document.getElementById("fruit"+i+"_"+tmp));
+                                            this.listFruitsDestroy.push(document.getElementById("fruit"+i+"_"+(j-k)));
                                         }
                                 }
                                 nbAdjacentHorizontal = 0;
                         }
 						
-						if ((document.getElementById("fruit"+j+"_"+i).src == document.getElementById("fruit"+tmp2+"_"+i).src) && (document.getElementById("fruit"+j+"_"+i).src.indexOf("destroy.png") == -1)) {
+						if ((document.getElementById("fruit"+j+"_"+i).src == document.getElementById("fruit"+(j+1)+"_"+i).src) && (document.getElementById("fruit"+j+"_"+i).src.indexOf("destroy.png") == -1)) {
                                 nbAdjacentVertical = nbAdjacentVertical + 1;
                         } else {
                                 if (nbAdjacentVertical >= 2){
                                         for (var k=0;k<=nbAdjacentVertical;k++) {
-                                            tmp = j - k;
-                                            this.listFruitsDestroy.push(document.getElementById("fruit"+tmp+"_"+i));
+                                            this.listFruitsDestroy.push(document.getElementById("fruit"+(j-k)+"_"+i));
                                         }
                                 }
                                 nbAdjacentVertical = 0;
@@ -171,15 +166,13 @@ Game.prototype.check = function() {
 
                 if (nbAdjacentHorizontal >= 2){
                         for (var k=0;k<=nbAdjacentHorizontal;k++) {
-							tmp = j - k;
-							this.listFruitsDestroy.push(document.getElementById("fruit"+i+"_"+tmp));
+							this.listFruitsDestroy.push(document.getElementById("fruit"+i+"_"+(j-k)));
                         }
                 }
 				
 				if (nbAdjacentVertical >= 2){
                         for (var k=0;k<=nbAdjacentVertical;k++) {
-                            tmp = j - k;
-                            this.listFruitsDestroy.push(document.getElementById("fruit"+tmp+"_"+i));
+                            this.listFruitsDestroy.push(document.getElementById("fruit"+(j-k)+"_"+i));
                         }
                 }
 				

@@ -16,13 +16,6 @@ stats.domElement.style.top = '0px';
 document.body.appendChild(stats.domElement);*/
 
 /**************************************************************************************************
-Initialization of the requestAnimationFrame
-**************************************************************************************************/
-
-var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
-							window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
-
-/**************************************************************************************************
 Global variables
 **************************************************************************************************/
 
