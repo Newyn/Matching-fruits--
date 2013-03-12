@@ -22,6 +22,7 @@ body {
 	border: 1px solid white;
 	margin-right: 1px;
 	cursor: pointer;
+	transition: transform 0.5s ease-in-out; 
 }
 
 #pause {

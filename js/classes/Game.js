@@ -49,8 +49,13 @@ Game.prototype.initialize = function() {
 			eltFruit.id = "fruit"+i+"_"+j;
 			eltFruit.style.width = eltMap.width / 12 + "px";
 			eltFruit.style.height = eltMap.height / 12 + "px";
+			eltFruit.style.opacity = 1;
 			eltFruit.src = listFruitImages[this.fruits[i][j]];
 			eltFruit.setAttribute('OnClick', 'handleClick('+i+','+j+')');
+			eltFruit.addEventListener( 'webkitTransitionEnd', updateTransform, false );
+			eltFruit.addEventListener( 'transitionend', updateTransform, false );
+			eltFruit.addEventListener( 'oTransitionEnd', updateTransform, false );
+			
 			eltMap.appendChild(eltFruit);
 		}
 		
