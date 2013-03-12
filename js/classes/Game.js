@@ -40,7 +40,6 @@ Game.prototype.initialize = function() {
 			do	{
                 this.fruits[i][j] = Math.floor(Math.random()*8);
 				while (this.fruits[i][j] == 0) {
-					console.log(this.fruits[i][j]);
 					this.fruits[i][j] = Math.floor(Math.random()*8);
 				}
             }	while(this.isStreak(i,j));
@@ -133,7 +132,7 @@ Checks whether adjacent fruits when swapping
 **************************************************************************************************/
 Game.prototype.check = function() {
 
-        this.listFruitsDestroy = [];
+        this.listFruitsDestroy = new Array();
         var nbAdjacentHorizontal = 0;
 		var nbAdjacentVertical = 0;
         var tmp;

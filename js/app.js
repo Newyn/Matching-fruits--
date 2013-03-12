@@ -47,6 +47,7 @@ Get DOM Elements
 var eltMap = document.getElementById("map");
 var eltPauseOverlay = document.getElementById("pause");
 var eltPauseResumeButton = document.getElementById("pause-resume-button");
+var tmpHeight = (document.documentElement.clientHeight / 2) - (document.documentElement.clientHeight);
 
 eltMap.width = document.documentElement.clientWidth;
 eltMap.height = document.documentElement.clientHeight;

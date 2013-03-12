@@ -32,7 +32,7 @@ function fadeOut(elem, speed){
 		elem.style.opacity -= .02;
 		if(elem.style.opacity < 0){
 			clearInterval(fade);
-			elem.src = listFruitImages[7];
+			elem.src = listFruitImages[8];
 		}
 	}, speed / 50);
 }

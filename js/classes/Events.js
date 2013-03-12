@@ -1,5 +1,7 @@
 function resize() {
 
+	console.log(eltMap.marginTop);
+	
 	eltMap.width = document.documentElement.clientWidth;
 	eltMap.height = document.documentElement.clientHeight;
 	
@@ -37,11 +39,11 @@ function handleClick(row, col) {
 			oGame.selectedCase = false;
 			
 			oGame.check();
-
+			
 			if (oGame.listFruitsDestroy.length > 0) {
 				for (var i=0;i<oGame.listFruitsDestroy.length;i++) {
 					fadeOut(document.getElementById(oGame.listFruitsDestroy[i].id), 500);
-				}				
+				}			
 			} else {
 				oldFruit.src = oldSrc;
 				newFruit.src = newSrc;
