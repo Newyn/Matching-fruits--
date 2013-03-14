@@ -57,6 +57,10 @@ if (document.documentElement.clientWidth > document.documentElement.clientHeight
 eltMap.width = side;
 eltMap.height = side;
 
+eltMap.style.position = "absolute";
+eltMap.style.top = "calc(55% - "+side/2+"px)";
+eltMap.style.left = "calc(55% - "+side/2+"px)";
+
 window.addEventListener("resize", resize, false);
 
 // Disable for the moment because it's annoying when we develop

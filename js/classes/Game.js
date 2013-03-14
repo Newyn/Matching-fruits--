@@ -141,54 +141,61 @@ Checks whether adjacent fruits when swapping
 **************************************************************************************************/
 Game.prototype.check = function() {
 
-        this.listFruitsDestroy = new Array();
-        var nbAdjacentHorizontal = 0;
-		var nbAdjacentVertical = 0;
-        var tmp;
+    this.listFruitsDestroy = new Array();
+    var nbAdjacentHorizontal = 0;
+	var nbAdjacentVertical = 0;
+	var tmp;
 		
-        for (var i=0; i<8; i++) {
+	for (var i=0; i<8; i++) {
 
-                for (var j=0; j<7; j++) {
-						
-                        if ((document.getElementById("fruit"+i+"_"+j).src == document.getElementById("fruit"+i+"_"+(j+1)).src) && (document.getElementById("fruit"+i+"_"+j).src.indexOf("destroy.png") == -1)) {
-                                nbAdjacentHorizontal = nbAdjacentHorizontal + 1;
-                        } else {
-                                if (nbAdjacentHorizontal >= 2){
-                                        for (var k=0;k<=nbAdjacentHorizontal;k++) {
-                                            this.listFruitsDestroy.push(document.getElementById("fruit"+i+"_"+(j-k)));
-                                        }
-                                }
-                                nbAdjacentHorizontal = 0;
-                        }
-						
-						if ((document.getElementById("fruit"+j+"_"+i).src == document.getElementById("fruit"+(j+1)+"_"+i).src) && (document.getElementById("fruit"+j+"_"+i).src.indexOf("destroy.png") == -1)) {
-                                nbAdjacentVertical = nbAdjacentVertical + 1;
-                        } else {
-                                if (nbAdjacentVertical >= 2){
-                                        for (var k=0;k<=nbAdjacentVertical;k++) {
-                                            this.listFruitsDestroy.push(document.getElementById("fruit"+(j-k)+"_"+i));
-                                        }
-                                }
-                                nbAdjacentVertical = 0;
-                        }
-                }
+		for (var j=0; j<7; j++) {
+					
+			if ((document.getElementById("fruit"+i+"_"+j).src == document.getElementById("fruit"+i+"_"+(j+1)).src) && (document.getElementById("fruit"+i+"_"+j).src.indexOf("destroy.png") == -1)) {
+					nbAdjacentHorizontal = nbAdjacentHorizontal + 1;
+			} else {
+					if (nbAdjacentHorizontal >= 2){
+							for (var k=0;k<=nbAdjacentHorizontal;k++) {
+								this.listFruitsDestroy.push(document.getElementById("fruit"+i+"_"+(j-k)));
+							}
+					}
+					nbAdjacentHorizontal = 0;
+			}
+			
+			if ((document.getElementById("fruit"+j+"_"+i).src == document.getElementById("fruit"+(j+1)+"_"+i).src) && (document.getElementById("fruit"+j+"_"+i).src.indexOf("destroy.png") == -1)) {
+					nbAdjacentVertical = nbAdjacentVertical + 1;
+			} else {
+					if (nbAdjacentVertical >= 2){
+							for (var k=0;k<=nbAdjacentVertical;k++) {
+								this.listFruitsDestroy.push(document.getElementById("fruit"+(j-k)+"_"+i));
+							}
+					}
+					nbAdjacentVertical = 0;
+			}
+		}
 
-                if (nbAdjacentHorizontal >= 2){
-                        for (var k=0;k<=nbAdjacentHorizontal;k++) {
-							this.listFruitsDestroy.push(document.getElementById("fruit"+i+"_"+(j-k)));
-                        }
-                }
-				
-				if (nbAdjacentVertical >= 2){
-                        for (var k=0;k<=nbAdjacentVertical;k++) {
-                            this.listFruitsDestroy.push(document.getElementById("fruit"+(j-k)+"_"+i));
-                        }
-                }
-				
-				nbAdjacentVertical = 0;
-                nbAdjacentHorizontal = 0;
-				
-				
-        }
+		if (nbAdjacentHorizontal >= 2){
+				for (var k=0;k<=nbAdjacentHorizontal;k++) {
+					this.listFruitsDestroy.push(document.getElementById("fruit"+i+"_"+(j-k)));
+				}
+		}
+		
+		if (nbAdjacentVertical >= 2){
+				for (var k=0;k<=nbAdjacentVertical;k++) {
+					this.listFruitsDestroy.push(document.getElementById("fruit"+(j-k)+"_"+i));
+				}
+		}
+		
+		nbAdjacentVertical = 0;
+		nbAdjacentHorizontal = 0;	
+	}
 }
 
+Game.prototype.fall = function() {
+	
+	console.log(this.listFruitsDestroy.length);
+	
+	for (var i=0;i<oGame.listFruitsDestroy.length;i++) {
+	
+	}
+	
+}
