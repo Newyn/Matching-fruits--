@@ -1,15 +1,18 @@
 body {
-    padding: 0;
-    margin: 0;
 	background-color: black;
 }
 
-#map {
-	position: absolute;
-	left: 4%; 
-	right: 4%;
-	bottom: 0;
+div#pause {
+	display: none;
 }
+
+div#map {
+	/position: relative;
+	margin-left: auto;
+	margin-right: auto;
+
+}
+
 /*#map {
     left: 50%;
     margin: -225px 0 0 -467px;
@@ -18,15 +21,10 @@ body {
     top: 50%;
     width: 935px;
 }*/
-.fruit {
-	border: 1px solid white;
-	margin-right: 1px;
+img.fruit {
+	position: absolute;
 	cursor: pointer;
-	transition: transform 0.5s ease-in-out; 
-}
-
-#pause {
-	display: none;
+	transition: transform 0.5s ease-in-out;
 }
 
 .overlay {

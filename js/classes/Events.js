@@ -2,15 +2,34 @@ function resize() {
 
 	console.log(eltMap.marginTop);
 	
-	eltMap.width = document.documentElement.clientWidth;
-	eltMap.height = document.documentElement.clientHeight;
+	if (document.documentElement.clientWidth > document.documentElement.clientHeight) {
+		side = document.documentElement.clientHeight;
+	} else {
+		side = document.documentElement.clientWidth;
+	}
+
+	eltMap.width = side;
+	eltMap.height = side;
 	
 	var tmp = [];
 	tmp = document.getElementsByClassName("fruit");
 	
+	var nbCol = 0;
+	var nbRow = 0;
+	
 	for (var i=0; i<tmp.length; i++) {
-		tmp[i].style.width = eltMap.width / 12 + "px";
-		tmp[i].style.height = eltMap.height / 12 + "px";
+		
+		if (nbCol == 8) {
+			nbRow++;
+			nbCol = 0;
+		}
+		
+		tmp[i].style.width = eltMap.width / 9 + "px";
+		tmp[i].style.height = eltMap.height / 9 + "px";
+		tmp[i].style.top = nbRow*(eltMap.height / 9) +"px";
+		tmp[i].style.left = nbCol*(eltMap.width / 9) +"px";
+		
+		nbCol++;
 	}
 }
 
@@ -52,6 +71,9 @@ function handleClick(row, col) {
 			
 			oldFruit.id = newId;
 			newFruit.id = oldId;
+			
+			oGame.oldId = oldId;
+			oGame.newId = newId;
 			
 			oldFruit.setAttribute('OnClick', 'handleClick('+newId.substring(5,6)+','+newId.substring(7,8)+')');
 			newFruit.setAttribute('OnClick', 'handleClick('+oldId.substring(5,6)+','+oldId.substring(7,8)+')');
@@ -104,33 +126,24 @@ function updateTransform(e) {
 		this.style.transform = "translateX(0px)";
 		this.style.transform = "translateY(0px)";
 	} else {
-/*		if (this.style.opacity == 1) {
-		
-			var nbPix = 0;
-			var typeTransform = "";
+		if (document.getElementById(oGame.oldId).style.transform != "translateY(0px)") {
+
+			document.getElementById(oGame.oldId).style.transform  = "translateX(0px)";
+			document.getElementById(oGame.oldId).style.transform  = "translateY(0px)";
 			
-			if (this.style.transform.length == 17) {
-				nbPix = this.style.transform.substring(11, 14);
-			} else if (this.style.transform.length == 16) {
-				nbPix = this.style.transform.substring(11, 13);
-			}
-		
-			if (this.style.transform.indexOf("Y") == -1) {
-				typeTransform = "X";
-			} else {
-				typeTransform = "Y";
-			}
-			//this.style.transform = "translateX(-60px)";
-			//this.style.transform = "translateY(0px)";
-
-			if (typeTransform == "X") {
-				document.getElementById(this.id).x = document.getElementById(this.id).x + nbPix;
-			} else {
-				document.getElementById(this.id).y = document.getElementById(this.id).y + nbPix;
-			}
-
+			document.getElementById(oGame.newId).style.transform  = "translateX(0px)";
+			document.getElementById(oGame.newId).style.transform  = "translateY(0px)";
+			
+			var old_src = document.getElementById(oGame.oldId).src;
+			
+			document.getElementById(oGame.oldId).src = document.getElementById(oGame.newId).src;
+			document.getElementById(oGame.oldId).style.opacity = 0;
+			
+			document.getElementById(oGame.newId).src = old_src;
+			document.getElementById(oGame.newId).style.opacity = 1;
+		} else {
+			
 		}
-*/
 	}	
 }
 

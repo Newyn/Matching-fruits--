@@ -42,8 +42,16 @@ var eltPauseOverlay = document.getElementById("pause");
 var eltPauseResumeButton = document.getElementById("pause-resume-button");
 var tmpHeight = (document.documentElement.clientHeight / 2) - (document.documentElement.clientHeight);
 
-eltMap.width = document.documentElement.clientWidth;
-eltMap.height = document.documentElement.clientHeight;
+var side = 0;
+
+if (document.documentElement.clientWidth > document.documentElement.clientHeight) {
+	side = document.documentElement.clientHeight;
+} else {
+	side = document.documentElement.clientWidth;
+}
+
+eltMap.width = side;
+eltMap.height = side;
 
 window.addEventListener("resize", resize, false);
 
