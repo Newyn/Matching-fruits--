@@ -64,6 +64,8 @@ Game.prototype.initialize = function() {
 			eltMap.appendChild(eltFruit);
 		}
 	}
+	
+	oTimer.start();
 }
 
 /**************************************************************************************************

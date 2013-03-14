@@ -148,10 +148,12 @@ function updateTransform(e) {
 }
 
 function showPauseOverlay() {
+	oTimer.pause();
 	eltPauseOverlay.style.display = "block";
 	eltPauseResumeButton.addEventListener("click", resume, false);
 }
 
 function resume() {
+	oTimer.start();
 	eltPauseOverlay.style.display = "none";
 }

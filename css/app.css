@@ -2,15 +2,24 @@ body {
 	background-color: black;
 }
 
+div#map {
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+
+}
+
 div#pause {
 	display: none;
 }
 
-div#map {
-	/position: relative;
-	margin-left: auto;
-	margin-right: auto;
-
+div#timer {
+	position: absolute;
+	top: 0;
+	right: 0;
+	color: white;
+	font-weight: bold;
+	cursor: default;
 }
 
 /*#map {

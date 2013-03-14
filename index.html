@@ -10,13 +10,19 @@
 		<script type="text/javascript" src="js/classes/Game.js" defer="defer"></script>
 		<script type="text/javascript" src="js/classes/Utils.js" defer="defer"></script>
 		<script type="text/javascript" src="js/classes/IndexedDB.js" defer="defer"></script>
+		<script type="text/javascript" src="js/classes/Timer.js" defer="defer"></script>
 		<script type="text/javascript" src="js/app.js" defer="defer"></script>
 	</head>
 
 	<body>
 
 		<div id="map"></div>
-			
+		
+		<div id="timer">
+			<span id="timer-minutes">00</span>
+			: <span id="timer-seconds">00</span>
+		</div>
+		
 		<div id="pause" class="overlay">
 			<div class="title">Pause</div>
 			<div class="item" id="pause-resume-button">Reprendre</div>	
