@@ -80,9 +80,6 @@ function handleClick(row, col) {
 			
 			oldFruit.setAttribute('OnClick', 'handleClick('+newId.substring(5,6)+','+newId.substring(7,8)+')');
 			newFruit.setAttribute('OnClick', 'handleClick('+oldId.substring(5,6)+','+oldId.substring(7,8)+')');
-	
-			document.getElementById(oldId).style.border = "1px solid white";
-			document.getElementById(newId).style.border = "1px solid white";
 		
 			oGame.check();
 			
@@ -99,6 +96,8 @@ function handleClick(row, col) {
 				
 				oldFruit.setAttribute('OnClick', 'handleClick('+oldId.substring(5,6)+','+oldId.substring(7,8)+')');
 				newFruit.setAttribute('OnClick', 'handleClick('+newId.substring(5,6)+','+newId.substring(7,8)+')');
+				
+				document.getElementById(oldId).style.MozAnimation = "";
 			}
 			
 			oGame.posRow = "";
@@ -106,24 +105,17 @@ function handleClick(row, col) {
 			oGame.selectedCase = false;
 			
 		} else {
-		
-			document.getElementById("fruit"+oGame.posRow+"_"+oGame.posCol).style.border = "1px solid white";
-			
 			oGame.posRow = row;
 			oGame.posCol = col;
 			
 			oGame.selectedCase = true;
-
-			document.getElementById("fruit"+row+"_"+col).style.border = "1px solid red";
 		}	
 	} else {
-
 		oGame.posRow = row;
 		oGame.posCol = col;
 		
 		oGame.selectedCase = true;
-
-		document.getElementById("fruit"+row+"_"+col).style.border = "1px solid red";
+		document.getElementById("fruit"+row+"_"+col).style.MozAnimation = "spin .8s infinite linear";
 	}
 }
 
