@@ -26,4 +26,3 @@ The objective of this project is to :
 - make it usable on a touchscreen.
 
 For testing the game, you can go to the page <a href="http://vtriquet.github.com/Matching-fruits--/">http://vtriquet.github.com/Matching-fruits--/</a>
-<hr /><hr /><hr />
