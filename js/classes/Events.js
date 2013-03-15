@@ -107,12 +107,22 @@ function handleClick(row, col) {
 			oGame.selectedCase = false;
 			
 		} else {
+			
+			console.log("a");
+			if ((oGame.posRow != "") && (oGame.posCol != "")) {
+				console.log("b");
+				document.getElementById("fruit"+oGame.posRow+"_"+oGame.posCol).style.MozAnimation = "";
+			}
+		
 			oGame.posRow = row;
 			oGame.posCol = col;
 			
 			oGame.selectedCase = true;
+			
+			document.getElementById("fruit"+row+"_"+col).style.MozAnimation = "spin .8s infinite linear";
 		}	
 	} else {
+		
 		oGame.posRow = row;
 		oGame.posCol = col;
 		
