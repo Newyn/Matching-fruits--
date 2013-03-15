@@ -26,6 +26,7 @@ function Game() {
 	this.posCol = "";
 	this.selectedCase = false;
 	this.listFruitsDestroy = [];
+	this.countTransitionEnd = 0;
 	
 	this.oldId = "";
 	this.newId = "";
@@ -52,8 +53,8 @@ Game.prototype.initialize = function() {
 			eltFruit.id = "fruit"+i+"_"+j;
 			eltFruit.style.width = eltMap.width / 9 + "px";
 			eltFruit.style.height = eltMap.height / 9 + "px";
-			eltFruit.style.top = i*(eltMap.height / 9) +"px";
-			eltFruit.style.left = j*(eltMap.width / 9) +"px";
+			eltFruit.style.top = i * (eltMap.height / 9) +"px";
+			eltFruit.style.left = j * (eltMap.width / 9) +"px";
 			eltFruit.style.opacity = 1;
 			eltFruit.src = listFruitImages[this.fruits[i][j]];
 			eltFruit.setAttribute('OnClick', 'handleClick('+i+','+j+')');
@@ -191,8 +192,6 @@ Game.prototype.check = function() {
 }
 
 Game.prototype.fall = function() {
-	
-	console.log(this.listFruitsDestroy.length);
 	
 	for (var i=0;i<oGame.listFruitsDestroy.length;i++) {
 	
