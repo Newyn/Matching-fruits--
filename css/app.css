@@ -1,68 +1,68 @@
 body {
-	background-color: black;
+  background-color: black;
 }
 
 div#map {
-	position: absolute;
+  position: absolute;
 }
 
 div#pause {
-	display: none;
+  display: none;
 }
 
 div#timer {
-	position: absolute;
-	top: 0;
-	right: 0;
-	color: white;
-	font-weight: bold;
-	cursor: default;
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: white;
+  font-weight: bold;
+  cursor: default;
 }
 
 img.fruit {
-	position: absolute;
-	cursor: pointer;
-	transition: transform 0.5s ease-in-out;
+  position: absolute;
+  cursor: pointer;
+  transition: transform 0.5s ease-in-out;
 }
 
 .overlay {
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	z-index: 1;
-	color: white;
-	background: rgba(0, 0, 0, 0.9);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 1;
+  color: white;
+  background: rgba(0, 0, 0, 0.9);
 }
 
 .overlay .title {
-	font-size: 60px;
-	font-variant: small-caps;
-	color: white;
-	margin: 0;
-	padding: 0;
-	text-align: center;
-	top: 15%;
-	position: relative;
-	text-decoration: underline;
+  font-size: 60px;
+  font-variant: small-caps;
+  color: white;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  top: 15%;
+  position: relative;
+  text-decoration: underline;
 }
 
 .overlay .item {
-	font-size: 32px;
-	font-weight: bold;
-	font-variant: small-caps;
-	color: #D8D8D8;
-	cursor: pointer;
-	margin: 1%;
-	text-align: center;
-	top: 25%;
-	position: relative;
+  font-size: 32px;
+  font-weight: bold;
+  font-variant: small-caps;
+  color: #D8D8D8;
+  cursor: pointer;
+  margin: 1%;
+  text-align: center;
+  top: 25%;
+  position: relative;
 }
 
 @-moz-keyframes spin {
-	0% { -moz-transform:rotate(0deg); }
-	100% { -moz-transform:rotate(360deg); }
+  0% { -moz-transform:rotate(0deg); }
+  100% { -moz-transform:rotate(360deg); }
 }
 @-moz-keyframes spinoff {
-	0% { -moz-transform:rotate(0deg); }
-	100% { -moz-transform:rotate(-360deg); }
+  0% { -moz-transform:rotate(0deg); }
+  100% { -moz-transform:rotate(-360deg); }
 }
