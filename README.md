@@ -10,7 +10,7 @@ L'objectif de ce projet est de :
 - le rendre utilisable sur un petit éran;
 - le rendre utilisable sur un écran tactile.
 
-Pour avoir tester le jeu, vous pouvez vous rendre sur la page <a href="http://vtriquet.github.com/Matching-fruits--/">http://vtriquet.github.com/Matching-fruits--/</a>
+Pour pouvoir tester le jeu, vous pouvez vous rendre sur la page <a href="http://vtriquet.github.com/Matching-fruits--/">http://vtriquet.github.com/Matching-fruits--/</a>
 <hr /><hr /><hr />
 
 ##Matching Fruits ! (EN)
