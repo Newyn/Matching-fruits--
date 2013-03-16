@@ -106,11 +106,13 @@ function handleClick(row, col) {
 			oGame.posCol = "";
 			oGame.selectedCase = false;
 			
-		} else {
-			
-			console.log("a");
+		} else if ((col == oGame.posCol) && (row == oGame.posRow)) {
+			oGame.posRow = row;
+			oGame.posCol = col;
+			oGame.selectedCase = true;
+		}
+		else {
 			if ((oGame.posRow != "") && (oGame.posCol != "")) {
-				console.log("b");
 				document.getElementById("fruit"+oGame.posRow+"_"+oGame.posCol).style.MozAnimation = "";
 			}
 		
@@ -135,14 +137,10 @@ function updateTransform(e) {
 	if (oGame.listFruitsDestroy.length == 0) {
 		this.style.transform = "translateX(0px)";
 		this.style.transform = "translateY(0px)";
-	} else {
-		
-		//if (document.getElementById(oGame.newId).style.transform != "") {
+	} else {	
 		if (oGame.countTransitionEnd == 0) {
 			console.log(e.target);
-			//if ((document.getElementById(oGame.newId).src.indexOf("destroy.png") == -1) || (document.getElementById(oGame.oldId).src.indexOf("destroy.png") == -1)) {
 			if (e.target.src.indexOf("destroy.png") == -1) {		
-				console.log("a");
 				var oldTop = document.getElementById(oGame.oldId).style.top;
 				var oldLeft = document.getElementById(oGame.oldId).style.left;
 				var oldSrc = document.getElementById(oGame.oldId).src;
