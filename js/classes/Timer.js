@@ -4,7 +4,7 @@ Constructor the Timer class
 function Timer() {
 	this.tSecondsElapsed = 0; // Tenths of seconds elapsed since the timer starts
 	this.secondsElapsed = 0; // Seconds elapsed since the timer starts
-	this.minutesElapsed = 0;
+	this.minutesElapsed = 0; // Minutes elapsed since the timer starts
 	this.interval = null; // Interval
 }
 
@@ -21,7 +21,6 @@ Timer.prototype.start = function() {
 Pauses the timer
 **************************************************************************************************/
 Timer.prototype.pause = function() {
-
 	// Stop the execution of the interval
 	clearInterval(this.interval);
 	this.interval = null;
@@ -40,7 +39,6 @@ Timer.prototype.reset = function() {
 Updates the timer
 **************************************************************************************************/
 Timer.prototype.update = function() {
-
 	this.tSecondsElapsed++;
 	
 	if (this.tSecondsElapsed > 9) {

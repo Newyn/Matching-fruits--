@@ -1,56 +1,55 @@
+/**************************************************************************************************
+Call on the onResize() event for resizing the map
+**************************************************************************************************/
 function resize() {
+  if (document.documentElement.clientWidth > document.documentElement.clientHeight) {
+    eltMap.width = document.documentElement.clientHeight;
+    eltMap.height = document.documentElement.clientHeight;
+  } else {
+    eltMap.width = document.documentElement.clientWidth;
+    eltMap.height = document.documentElement.clientWidth;
+  }
 
-	console.log(eltMap.marginTop);
+  eltMap.style.top = "calc(55% - "+eltMap.width / 2+"px)";
+  eltMap.style.left = "calc(55% - "+eltMap.width / 2+"px)";
 	
-	if (document.documentElement.clientWidth > document.documentElement.clientHeight) {
-		side = document.documentElement.clientHeight;
-	} else {
-		side = document.documentElement.clientWidth;
-	}
+  var tmp = [];
+  var nbCol = 0;
+  var nbRow = 0;
+  tmp = document.getElementsByClassName("fruit");
 
-	eltMap.width = side;
-	eltMap.height = side;
-	
-	eltMap.style.top = "calc(55% - "+side/2+"px)";
-	eltMap.style.left = "calc(55% - "+side/2+"px)";
-	
-	var tmp = [];
-	tmp = document.getElementsByClassName("fruit");
-	
-	var nbCol = 0;
-	var nbRow = 0;
-	
-	for (var i=0; i<tmp.length; i++) {
+  for (var i=0; i<tmp.length; i++) {
 		
-		if (nbCol == 8) {
-			nbRow++;
-			nbCol = 0;
-		}
+    if (nbCol == 8) {
+      nbRow++;
+      nbCol = 0;
+    }
 		
-		tmp[i].style.width = eltMap.width / 9 + "px";
-		tmp[i].style.height = eltMap.height / 9 + "px";
-		tmp[i].style.top = nbRow * (eltMap.height / 9) +"px";
-		tmp[i].style.left = nbCol * (eltMap.width / 9) +"px";
+    tmp[i].style.width = eltMap.width / 9 + "px";
+    tmp[i].style.height = eltMap.height / 9 + "px";
+    tmp[i].style.top = nbRow * (eltMap.height / 9) +"px";
+    tmp[i].style.left = nbCol * (eltMap.width / 9) +"px";
 		
-		nbCol++;
-	}
+    nbCol++;
+  }
 }
 
+/**************************************************************************************************
+Call when the user click on a fruit
+This function enables the user to perform the movement of fruit
+**************************************************************************************************/
 function handleClick(row, col) {
+  if (oGame.selectedCase) {
+    oGame.countTransitionEnd = 0;
 	
-	if (oGame.selectedCase) {
-	
-		oGame.countTransitionEnd = 0;
-		
-		if (((col == oGame.posCol + 1) && (row == oGame.posRow))
-			|| ((col == oGame.posCol - 1) && (row == oGame.posRow))
-			|| ((col == oGame.posCol) && (row == oGame.posRow + 1))
-			|| ((col == oGame.posCol) && (row == oGame.posRow - 1))) {
+    if (((col == oGame.posCol + 1) && (row == oGame.posRow))
+        || ((col == oGame.posCol - 1) && (row == oGame.posRow))
+        || ((col == oGame.posCol) && (row == oGame.posRow + 1))
+        || ((col == oGame.posCol) && (row == oGame.posRow - 1))) {
 			
-			var oldFruit = document.getElementById("fruit"+oGame.posRow+"_"+oGame.posCol);
-			var newFruit = document.getElementById("fruit"+row+"_"+col);
-			
-			var tmp;
+      var oldFruit = document.getElementById("fruit"+oGame.posRow+"_"+oGame.posCol);
+      var newFruit = document.getElementById("fruit"+row+"_"+col);
+      var tmp;
 			 
 			if ((col == oGame.posCol + 1) && (row == oGame.posRow)) {
 				tmp = newFruit.x - oldFruit.x + 1
@@ -92,6 +91,7 @@ function handleClick(row, col) {
 				}
 				
 				oGame.fall();
+        
 			} else {
 				oldFruit.id = oldId;
 				newFruit.id = newId;
@@ -110,11 +110,10 @@ function handleClick(row, col) {
 			oGame.posRow = row;
 			oGame.posCol = col;
 			oGame.selectedCase = true;
-		}
-		else {
+		} else {
 			if ((oGame.posRow != "") && (oGame.posCol != "")) {
 				document.getElementById("fruit"+oGame.posRow+"_"+oGame.posCol).style.MozAnimation = "";
-			}
+		}
 		
 			oGame.posRow = row;
 			oGame.posCol = col;
@@ -124,7 +123,6 @@ function handleClick(row, col) {
 			document.getElementById("fruit"+row+"_"+col).style.MozAnimation = "spin .8s infinite linear";
 		}	
 	} else {
-		
 		oGame.posRow = row;
 		oGame.posCol = col;
 		
@@ -133,13 +131,16 @@ function handleClick(row, col) {
 	}
 }
 
+/**************************************************************************************************
+Call when a transition ends
+Manages the replacement of the old by the new fruit fruit. (Position, Id, Img, ...)
+**************************************************************************************************/
 function updateTransform(e) {
 	if (oGame.listFruitsDestroy.length == 0) {
 		this.style.transform = "translateX(0px)";
 		this.style.transform = "translateY(0px)";
 	} else {	
 		if (oGame.countTransitionEnd == 0) {
-			console.log(e.target);
 			if (e.target.src.indexOf("destroy.png") == -1) {		
 				var oldTop = document.getElementById(oGame.oldId).style.top;
 				var oldLeft = document.getElementById(oGame.oldId).style.left;
@@ -182,8 +183,7 @@ function updateTransform(e) {
 				
 				eltMap.appendChild(eltFruit);
 				eltMap.appendChild(eltFruit2);
-			} 
-			else {
+			} else {
 				var oldTop = document.getElementById(oGame.newId).style.top;
 				var oldLeft = document.getElementById(oGame.newId).style.left;
 				var oldSrc = document.getElementById(oGame.oldId).src;
@@ -226,18 +226,23 @@ function updateTransform(e) {
 				eltMap.appendChild(eltFruit);
 				eltMap.appendChild(eltFruit2);
 			}
-
 			oGame.countTransitionEnd++;
 		}
 	}	
 }
 
+/**************************************************************************************************
+Shows the pause screen
+**************************************************************************************************/
 function showPauseOverlay() {
 	oTimer.pause();
 	eltPauseOverlay.style.display = "block";
 	eltPauseResumeButton.addEventListener("click", resume, false);
 }
 
+/**************************************************************************************************
+Resumes the game
+**************************************************************************************************/
 function resume() {
 	oTimer.start();
 	eltPauseOverlay.style.display = "none";

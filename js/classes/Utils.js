@@ -9,7 +9,7 @@ function dump(arr,level) {
 	if(typeof(arr) == 'object') { //Array/Hashes/Objects 
 		for(var item in arr) {
 			var value = arr[item];
-			
+		
 			if(typeof(value) == 'object') { //If it is an array,
 				dumped_text += level_padding + "'" + item + "' ...\n";
 				dumped_text += dump(value,level+1);
@@ -24,7 +24,6 @@ function dump(arr,level) {
 }
 
 function fadeOut(elem, speed){
-
 	if(!elem.style.opacity){
 		elem.style.opacity = 1;
 	}
@@ -40,16 +39,15 @@ function fadeOut(elem, speed){
 /**************************************************************************************************
 Get all elements with the className property set to "cl"
 **************************************************************************************************/
-document.getElementsByClassName = function(cl)
-{
-    var retnode = [];
-    var myclass = new RegExp('\\b'+cl+'\\b');
-    var elem = this.getElementsByTagName('*');
-    for (var i = 0; i < elem.length; i++)
-    {
-        var classes = elem[i].className;
-        if (myclass.test(classes))
-            retnode.push(elem[i]);
-    }
-    return retnode;
+document.getElementsByClassName = function(cl) {
+  var retnode = [];
+  var myclass = new RegExp('\\b'+cl+'\\b');
+  var elem = this.getElementsByTagName('*');
+  for (var i = 0; i < elem.length; i++) {
+    var classes = elem[i].className;
+    if (myclass.test(classes)) {
+      retnode.push(elem[i]);
+      }
+  }
+  return retnode;
 };

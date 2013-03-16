@@ -4,7 +4,6 @@ Initialization of JavaScript Performance Monitor
 FPS Frames rendered in the last second. The higher the number the better.
 MS Milliseconds needed to render a frame. The lower the number the better.
 **************************************************************************************************/
-
 /*var stats = new Stats();
 stats.setMode(1); // 0: fps, 1: ms
 
@@ -18,7 +17,6 @@ document.body.appendChild(stats.domElement);*/
 /**************************************************************************************************
 Global variables
 **************************************************************************************************/
-
 var oGame = new Game();
 var oTimer = new Timer();
 
@@ -37,7 +35,6 @@ listFruitImages[8] = "resources/fruits/destroy.png";
 /**************************************************************************************************
 Get DOM Elements
 **************************************************************************************************/
-
 var eltMap = document.getElementById("map");
 var eltPauseOverlay = document.getElementById("pause");
 var eltPauseResumeButton = document.getElementById("pause-resume-button");
@@ -46,20 +43,19 @@ var eltTimerSeconds = document.getElementById("timer-seconds");
 
 var tmpHeight = (document.documentElement.clientHeight / 2) - (document.documentElement.clientHeight);
 
-var side = 0;
-
+/**************************************************************************************************
+Set the map properties
+**************************************************************************************************/
 if (document.documentElement.clientWidth > document.documentElement.clientHeight) {
-	side = document.documentElement.clientHeight;
+  eltMap.width = document.documentElement.clientHeight;
+  eltMap.height = document.documentElement.clientHeight;
 } else {
-	side = document.documentElement.clientWidth;
+  eltMap.width = document.documentElement.clientWidth;
+  eltMap.height = document.documentElement.clientWidth;
 }
 
-eltMap.width = side;
-eltMap.height = side;
-
-eltMap.style.position = "absolute";
-eltMap.style.top = "calc(55% - "+side/2+"px)";
-eltMap.style.left = "calc(55% - "+side/2+"px)";
+eltMap.style.top = "calc(55% - "+eltMap.width / 2+"px)";
+eltMap.style.left = "calc(55% - "+eltMap.width / 2+"px)";
 
 window.addEventListener("resize", resize, false);
 

@@ -36,17 +36,14 @@ function Game() {
 Initialize the game
 **************************************************************************************************/
 Game.prototype.initialize = function() {
-
-	for (i=0;i<8;i++) {
-	
+	for (i=0;i<8;i++) {	
 		for(j=0;j<8;j++) {
-	
 			do	{
-                this.fruits[i][j] = Math.floor(Math.random()*8);
+        this.fruits[i][j] = Math.floor(Math.random()*8);
 				while (this.fruits[i][j] == 0) {
 					this.fruits[i][j] = Math.floor(Math.random()*8);
 				}
-            }	while(this.isStreak(i,j));
+      }	while(this.isStreak(i,j));
 			
 			var eltFruit = document.createElement("img");
 			eltFruit.className = "fruit";
@@ -61,11 +58,9 @@ Game.prototype.initialize = function() {
 			eltFruit.addEventListener( 'webkitTransitionEnd', updateTransform, false );
 			eltFruit.addEventListener( 'transitionend', updateTransform, false );
 			eltFruit.addEventListener( 'oTransitionEnd', updateTransform, false );
-			
 			eltMap.appendChild(eltFruit);
 		}
 	}
-	
 	oTimer.start();
 }
 
@@ -74,22 +69,21 @@ Use for initialization of the game.
 Check for vertical streak.
 **************************************************************************************************/
 Game.prototype.isVerticalStreak = function(row,col) {
-
 	var fruitValue = this.fruits[row][col];
 	var streak = 0;
-    var tmp = row;
+  var tmp = row;
 	
 	while(tmp > 0 && this.fruits[tmp-1][col] == fruitValue) {
-        streak++;
-        tmp--;
-     }
+    streak++;
+    tmp--;
+  }
 	 
-    tmp = row;
+  tmp = row;
 	
-    while(tmp < 7 && this.fruits[tmp+1][col] == fruitValue) {
-		streak++;
-		tmp++;
-    }
+  while(tmp < 7 && this.fruits[tmp+1][col] == fruitValue) {
+    streak++;
+	  tmp++;
+  }
 	
 	if (streak > 1) {
 		return true;
@@ -103,24 +97,23 @@ Use for initialization of the game.
 Check for horizontal streak.
 **************************************************************************************************/
 Game.prototype.isHorizontalStreak = function(row,col) {
-
 	var fruitValue = this.fruits[row][col];
-    var streak = 0;
-    var tmp = col
+  var streak = 0;
+  var tmp = col
 	
 	while (tmp > 0 && this.fruits[row][tmp-1] == fruitValue) {
-        streak++;
-        tmp--;
-    }
+    streak++;
+    tmp--;
+  }
 	
-    tmp = col;
+  tmp = col;
 	
-    while(tmp < 7 && this.fruits[row][tmp+1] == fruitValue){
-        streak++;
-        tmp++;
+  while(tmp < 7 && this.fruits[row][tmp+1] == fruitValue){
+    streak++;
+    tmp++;
 	}
 	
-    if (streak > 1) {
+  if (streak > 1) {
 		return true;
 	} else {
 		return false;
@@ -132,58 +125,54 @@ Use for initialization of the game.
 Check if there is a vertical or an horizontal streak
 **************************************************************************************************/
 Game.prototype.isStreak = function(row,col) {
-
 	return this.isVerticalStreak(row,col) || this.isHorizontalStreak(row,col);
-	
 }    
 
 /**************************************************************************************************
 Checks whether adjacent fruits when swapping
 **************************************************************************************************/
 Game.prototype.check = function() {
-
-    this.listFruitsDestroy = new Array();
-    var nbAdjacentHorizontal = 0;
+  this.listFruitsDestroy = new Array();
+  var nbAdjacentHorizontal = 0;
 	var nbAdjacentVertical = 0;
 	var tmp;
 		
 	for (var i=0; i<8; i++) {
-
 		for (var j=0; j<7; j++) {
 					
 			if ((document.getElementById("fruit"+i+"_"+j).src == document.getElementById("fruit"+i+"_"+(j+1)).src) && (document.getElementById("fruit"+i+"_"+j).src.indexOf("destroy.png") == -1)) {
-					nbAdjacentHorizontal = nbAdjacentHorizontal + 1;
+			  nbAdjacentHorizontal = nbAdjacentHorizontal + 1;
 			} else {
-					if (nbAdjacentHorizontal >= 2){
-							for (var k=0;k<=nbAdjacentHorizontal;k++) {
-								this.listFruitsDestroy.push(document.getElementById("fruit"+i+"_"+(j-k)));
-							}
+			  if (nbAdjacentHorizontal >= 2) {
+				  for (var k=0;k<=nbAdjacentHorizontal;k++) {
+					  this.listFruitsDestroy.push(document.getElementById("fruit"+i+"_"+(j-k)));
 					}
-					nbAdjacentHorizontal = 0;
+				}
+        nbAdjacentHorizontal = 0;
 			}
 			
 			if ((document.getElementById("fruit"+j+"_"+i).src == document.getElementById("fruit"+(j+1)+"_"+i).src) && (document.getElementById("fruit"+j+"_"+i).src.indexOf("destroy.png") == -1)) {
-					nbAdjacentVertical = nbAdjacentVertical + 1;
+			  nbAdjacentVertical = nbAdjacentVertical + 1;
 			} else {
-					if (nbAdjacentVertical >= 2){
-							for (var k=0;k<=nbAdjacentVertical;k++) {
-								this.listFruitsDestroy.push(document.getElementById("fruit"+(j-k)+"_"+i));
-							}
+			  if (nbAdjacentVertical >= 2) {
+					for (var k=0;k<=nbAdjacentVertical;k++) {
+					  this.listFruitsDestroy.push(document.getElementById("fruit"+(j-k)+"_"+i));
 					}
-					nbAdjacentVertical = 0;
+				}
+				nbAdjacentVertical = 0;
 			}
 		}
 
 		if (nbAdjacentHorizontal >= 2){
-				for (var k=0;k<=nbAdjacentHorizontal;k++) {
-					this.listFruitsDestroy.push(document.getElementById("fruit"+i+"_"+(j-k)));
-				}
+			for (var k=0;k<=nbAdjacentHorizontal;k++) {
+				this.listFruitsDestroy.push(document.getElementById("fruit"+i+"_"+(j-k)));
+			}
 		}
 		
 		if (nbAdjacentVertical >= 2){
-				for (var k=0;k<=nbAdjacentVertical;k++) {
-					this.listFruitsDestroy.push(document.getElementById("fruit"+(j-k)+"_"+i));
-				}
+			for (var k=0;k<=nbAdjacentVertical;k++) {
+				this.listFruitsDestroy.push(document.getElementById("fruit"+(j-k)+"_"+i));
+			}
 		}
 		
 		nbAdjacentVertical = 0;
@@ -192,9 +181,6 @@ Game.prototype.check = function() {
 }
 
 Game.prototype.fall = function() {
-	
 	for (var i=0;i<oGame.listFruitsDestroy.length;i++) {
-	
 	}
-	
 }

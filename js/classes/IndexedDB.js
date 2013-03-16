@@ -9,5 +9,5 @@ window.IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange || window.ms
 
 // test indexedDB
 if (!window.indexedDB) {
-    alert("Your browser doesn't support a stable version of IndexedDB. Such and such feature will not be available.");
+  alert("Your browser doesn't support a stable version of IndexedDB. Such and such feature will not be available.");
 }
