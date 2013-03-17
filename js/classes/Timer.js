@@ -40,23 +40,23 @@ Updates the timer
 **************************************************************************************************/
 Timer.prototype.update = function() {
   this.tSecondsElapsed++;
-  
+
   if (this.tSecondsElapsed > 9) {
     this.tSecondsElapsed = 0;
     this.secondsElapsed++;
   }
-  
+
   if (this.secondsElapsed > 59) {
     this.secondsElapsed = 0;
     this.minutesElapsed++;
   }
-  
+
   if(this.minutesElapsed < 10) {
     eltTimerMinutes.innerHTML = "0"+this.minutesElapsed;
   } else {
     eltTimerMinutes.innerHTML = this.minutesElapsed;
   }
-  
+
   if(this.secondsElapsed < 10) {
     eltTimerSeconds.innerHTML = "0"+this.secondsElapsed;
   } else {
