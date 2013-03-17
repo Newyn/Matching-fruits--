@@ -42,31 +42,19 @@ function handleClick(row, col) {
   if (oGame.selectedCase) {
     oGame.countTransitionEnd = 0;
 
-    if (((col == oGame.posCol + 1) && (row == oGame.posRow))
-        || ((col == oGame.posCol - 1) && (row == oGame.posRow))
-        || ((col == oGame.posCol) && (row == oGame.posRow + 1))
-        || ((col == oGame.posCol) && (row == oGame.posRow - 1))) {
-
+    var distance = Math.abs(col - oGame.posCol) + Math.abs(row - oGame.posRow);
+    if (distance == 1) { // oldFruit and newFruit are adjacent
       var oldFruit = document.getElementById("fruit"+oGame.posRow+"_"+oGame.posCol);
       var newFruit = document.getElementById("fruit"+row+"_"+col);
-      var tmp;
 
-      if ((col == oGame.posCol + 1) && (row == oGame.posRow)) {
-        tmp = newFruit.x - oldFruit.x + 1;
-        oldFruit.style.transform = "translateX("+tmp+"px)";
-        newFruit.style.transform = "translateX(-"+tmp+"px)";
-      } else if ((col == oGame.posCol - 1) && (row == oGame.posRow)) {
-        tmp = oldFruit.x - newFruit.x - 1;
-        oldFruit.style.transform = "translateX(-"+tmp+"px)";
-        newFruit.style.transform = "translateX("+tmp+"px)";
-      } else if ((col == oGame.posCol) && (row == oGame.posRow + 1)) {
-        tmp = newFruit.y - oldFruit.y + 1;
-        oldFruit.style.transform = "translateY("+tmp+"px)";
-        newFruit.style.transform = "translateY(-"+tmp+"px)";
-      } else if ((col == oGame.posCol) && (row == oGame.posRow - 1)) {
-        tmp = oldFruit.y - newFruit.y - 1;
-        oldFruit.style.transform = "translateY(-"+tmp+"px)";
-        newFruit.style.transform = "translateY("+tmp+"px)";
+      if (row == oGame.posRow) {
+        var tx = (col - oGame.posCol) * eltMap.width / 9;
+        oldFruit.style.transform = "translateX(" + tx + "px)";
+        newFruit.style.transform = "translateX(" + (-tx) + "px)";
+      } else {
+        var ty = (row - oGame.posRow) * eltMap.height / 9;
+        oldFruit.style.transform = "translateY(" + ty + "px)";
+        newFruit.style.transform = "translateY(" + (-ty) + "px)";
       }
 
       var oldId = oldFruit.id;
@@ -78,8 +66,8 @@ function handleClick(row, col) {
       oGame.oldId = oldId;
       oGame.newId = newId;
 
-      oldFruit.setAttribute('OnClick', 'handleClick('+newId.substring(5,6)+','+newId.substring(7,8)+')');
-      newFruit.setAttribute('OnClick', 'handleClick('+oldId.substring(5,6)+','+oldId.substring(7,8)+')');
+      oldFruit.setAttribute('onclick', 'handleClick('+newId.substring(5,6)+','+newId.substring(7,8)+')');
+      newFruit.setAttribute('onclick', 'handleClick('+oldId.substring(5,6)+','+oldId.substring(7,8)+')');
 
       oGame.check();
 
@@ -92,8 +80,8 @@ function handleClick(row, col) {
         oldFruit.id = oldId;
         newFruit.id = newId;
 
-        oldFruit.setAttribute('OnClick', 'handleClick('+oldId.substring(5,6)+','+oldId.substring(7,8)+')');
-        newFruit.setAttribute('OnClick', 'handleClick('+newId.substring(5,6)+','+newId.substring(7,8)+')');
+        oldFruit.setAttribute('onclick', 'handleClick('+oldId.substring(5,6)+','+oldId.substring(7,8)+')');
+        newFruit.setAttribute('onclick', 'handleClick('+newId.substring(5,6)+','+newId.substring(7,8)+')');
 
         document.getElementById(oldId).style.animation = "";
       }
@@ -101,27 +89,22 @@ function handleClick(row, col) {
       oGame.posRow = "";
       oGame.posCol = "";
       oGame.selectedCase = false;
-
-    } else if ((col == oGame.posCol) && (row == oGame.posRow)) {
+    } else if (distance == 0) { // oldFruit and newFruit are the same
       oGame.posRow = row;
       oGame.posCol = col;
       oGame.selectedCase = true;
     } else {
       if ((oGame.posRow != "") && (oGame.posCol != "")) {
         document.getElementById("fruit"+oGame.posRow+"_"+oGame.posCol).style.animation = "";
-    }
-
+      }
       oGame.posRow = row;
       oGame.posCol = col;
-
       oGame.selectedCase = true;
-
       document.getElementById("fruit"+row+"_"+col).style.animation = "spin .8s infinite linear";
     }
   } else {
     oGame.posRow = row;
     oGame.posCol = col;
-
     oGame.selectedCase = true;
     document.getElementById("fruit"+row+"_"+col).style.animation = "spin .8s infinite linear";
   }
@@ -158,7 +141,7 @@ function updateTransform(e) {
         eltFruit.style.left = newLeft;
         eltFruit.style.opacity = 1;
         eltFruit.src = oldSrc;
-        eltFruit.setAttribute('OnClick', 'handleClick('+eltFruit.id.substring(5,6)+','+eltFruit.id.substring(7,8)+')');
+        eltFruit.setAttribute('onclick', 'handleClick('+eltFruit.id.substring(5,6)+','+eltFruit.id.substring(7,8)+')');
         eltFruit.addEventListener( 'webkitTransitionEnd', updateTransform, false );
         eltFruit.addEventListener( 'transitionend', updateTransform, false );
         eltFruit.addEventListener( 'oTransitionEnd', updateTransform, false );
@@ -172,7 +155,7 @@ function updateTransform(e) {
         eltFruit2.style.left = oldLeft;
         eltFruit2.style.opacity = 1;
         eltFruit2.src = listFruitImages[8];
-        eltFruit2.setAttribute('OnClick', 'handleClick('+eltFruit2.id.substring(5,6)+','+eltFruit2.id.substring(7,8)+')');
+        eltFruit2.setAttribute('onclick', 'handleClick('+eltFruit2.id.substring(5,6)+','+eltFruit2.id.substring(7,8)+')');
         eltFruit2.addEventListener( 'webkitTransitionEnd', updateTransform, false );
         eltFruit2.addEventListener( 'transitionend', updateTransform, false );
         eltFruit2.addEventListener( 'oTransitionEnd', updateTransform, false );
@@ -200,7 +183,7 @@ function updateTransform(e) {
         eltFruit.style.left = oldLeft;
         eltFruit.style.opacity = 1;
         eltFruit.src = listFruitImages[8];
-        eltFruit.setAttribute('OnClick', 'handleClick('+eltFruit.id.substring(5,6)+','+eltFruit.id.substring(7,8)+')');
+        eltFruit.setAttribute('onclick', 'handleClick('+eltFruit.id.substring(5,6)+','+eltFruit.id.substring(7,8)+')');
         eltFruit.addEventListener( 'webkitTransitionEnd', updateTransform, false );
         eltFruit.addEventListener( 'transitionend', updateTransform, false );
         eltFruit.addEventListener( 'oTransitionEnd', updateTransform, false );
@@ -214,7 +197,7 @@ function updateTransform(e) {
         eltFruit2.style.left = newLeft;
         eltFruit2.style.opacity = 1;
         eltFruit2.src = newSrc;
-        eltFruit2.setAttribute('OnClick', 'handleClick('+eltFruit2.id.substring(5,6)+','+eltFruit2.id.substring(7,8)+')');
+        eltFruit2.setAttribute('onclick', 'handleClick('+eltFruit2.id.substring(5,6)+','+eltFruit2.id.substring(7,8)+')');
         eltFruit2.addEventListener( 'webkitTransitionEnd', updateTransform, false );
         eltFruit2.addEventListener( 'transitionend', updateTransform, false );
         eltFruit2.addEventListener( 'oTransitionEnd', updateTransform, false );
