@@ -30,6 +30,8 @@ function Game() {
   
   this.oldId = "";
   this.newId = "";
+  
+  this.state = "";
 }
 
 /**************************************************************************************************
@@ -129,9 +131,31 @@ Game.prototype.isStreak = function(row,col) {
 }    
 
 /**************************************************************************************************
+Check if a column is empty
+**************************************************************************************************/
+Game.prototype.isEmptyCol = function(row,col) {
+  var empty = 0;
+  var tmp = row;
+  
+  while((tmp >= 0) && (empty == 0)) {
+    if (document.getElementById("fruit"+tmp+"_"+col).src.indexOf("destroy.png") == -1) {
+      empty++;
+    }
+    tmp--;
+  }
+  
+  if (empty > 0) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+/**************************************************************************************************
 Checks whether adjacent fruits when swapping
 **************************************************************************************************/
 Game.prototype.check = function() {
+  this.state = "";
   this.listFruitsDestroy = new Array();
   var nbAdjacentHorizontal = 0;
   var nbAdjacentVertical = 0;
@@ -181,6 +205,19 @@ Game.prototype.check = function() {
 }
 
 Game.prototype.fall = function() {
-  for (var i=0;i<oGame.listFruitsDestroy.length;i++) {
+  this.state = "fall";
+  var tmp = document.getElementsByClassName("fruit");
+  tmp.reverse();
+
+  for (var i=0; i < tmp.length; i++) {
+    if (tmp[i].src.indexOf("destroy.png") !== -1) {
+      if (this.isEmptyCol(tmp[i].id.substring(5,6),tmp[i].id.substring(7,8))) {
+        var row = parseInt(tmp[i].id.substring(5,6)) - 1;
+        console.log(row);
+        var ty = (row - tmp[i].id.substring(5,6)) * eltMap.height / 9;
+        document.getElementById("fruit"+row+"_"+tmp[i].id.substring(7,8)).style.transform = "translateY(" + (-ty) + "px)";
+        console.log(tmp[i].id);
+      }
+    }
   }
 }

@@ -22,7 +22,7 @@ div#timer {
 img.fruit {
   position: absolute;
   cursor: pointer;
-  transition: transform 0.5s ease-in-out;
+  transition: transform 0.4s ease-in-out;
 }
 
 .overlay {

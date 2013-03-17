@@ -75,7 +75,6 @@ function handleClick(row, col) {
         for (var i=0;i<oGame.listFruitsDestroy.length;i++) {
           fadeOut(document.getElementById(oGame.listFruitsDestroy[i].id),50);
         }
-        oGame.fall();
       } else {
         oldFruit.id = oldId;
         newFruit.id = newId;
@@ -116,8 +115,11 @@ Manages the replacement of the old by the new fruit fruit. (Position, Id, Img, .
 **************************************************************************************************/
 function updateTransform(e) {
   if (oGame.listFruitsDestroy.length == 0) {
-    this.style.transform = "translateX(0px)";
-    this.style.transform = "translateY(0px)";
+    if (this.style.transform.indexOf("translateX") == -1) {
+      this.style.transform = "translateY(0px)";
+    } else {
+      this.style.transform = "translateX(0px)";
+    }
   } else {
     if (oGame.countTransitionEnd == 0) {
       if (e.target.src.indexOf("destroy.png") == -1) {
@@ -206,6 +208,53 @@ function updateTransform(e) {
         eltMap.appendChild(eltFruit2);
       }
       oGame.countTransitionEnd++;
+    } else if (oGame.state == "fall") {    
+      var oldId = this.id;      
+      var row = parseInt(oldId.substring(5,6)) + 1;
+      var col = oldId.substring(7,8);
+      var newId = "fruit"+row+"_"+col;
+
+      var oldTop = this.style.top;
+      var oldLeft = this.style.left;
+      var oldSrc = this.src;
+
+      var newTop = document.getElementById(newId).style.top;
+      var newLeft = document.getElementById(newId).style.left;
+      var newSrc = document.getElementById(newId).src;
+      
+      eltMap.removeChild(document.getElementById(this.id));
+      eltMap.removeChild(document.getElementById(newId));
+      
+      var eltFruit = document.createElement("img");
+      eltFruit.className = "fruit";
+      eltFruit.id = newId;
+      eltFruit.style.width = eltMap.width / 9 + "px";
+      eltFruit.style.height = eltMap.height / 9 + "px";
+      eltFruit.style.top = newTop;
+      eltFruit.style.left = newLeft;
+      eltFruit.style.opacity = 1;
+      eltFruit.src = oldSrc;
+      eltFruit.setAttribute('onclick', 'handleClick('+eltFruit.id.substring(5,6)+','+eltFruit.id.substring(7,8)+')');
+      eltFruit.addEventListener( 'webkitTransitionEnd', updateTransform, false );
+      eltFruit.addEventListener( 'transitionend', updateTransform, false );
+      eltFruit.addEventListener( 'oTransitionEnd', updateTransform, false );
+
+      var eltFruit2 = document.createElement("img");
+      eltFruit2.className = "fruit";
+      eltFruit2.id = oldId;
+      eltFruit2.style.width = eltMap.width / 9 + "px";
+      eltFruit2.style.height = eltMap.height / 9 + "px";
+      eltFruit2.style.top = oldTop;
+      eltFruit2.style.left = oldLeft;
+      eltFruit2.style.opacity = 1;
+      eltFruit2.src = newSrc;
+      eltFruit2.setAttribute('onclick', 'handleClick('+eltFruit2.id.substring(5,6)+','+eltFruit2.id.substring(7,8)+')');
+      eltFruit2.addEventListener( 'webkitTransitionEnd', updateTransform, false );
+      eltFruit2.addEventListener( 'transitionend', updateTransform, false );
+      eltFruit2.addEventListener( 'oTransitionEnd', updateTransform, false );
+
+      eltMap.appendChild(eltFruit);
+      eltMap.appendChild(eltFruit2);
     }
   }
 }
