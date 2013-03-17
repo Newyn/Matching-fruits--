@@ -59,7 +59,6 @@ function handleClick(row, col) {
         tmp = oldFruit.x - newFruit.x - 1;
         oldFruit.style.transform = "translateX(-"+tmp+"px)";
         newFruit.style.transform = "translateX("+tmp+"px)";
-
       } else if ((col == oGame.posCol) && (row == oGame.posRow + 1)) {
         tmp = newFruit.y - oldFruit.y + 1;
         oldFruit.style.transform = "translateY("+tmp+"px)";
@@ -96,7 +95,7 @@ function handleClick(row, col) {
         oldFruit.setAttribute('OnClick', 'handleClick('+oldId.substring(5,6)+','+oldId.substring(7,8)+')');
         newFruit.setAttribute('OnClick', 'handleClick('+newId.substring(5,6)+','+newId.substring(7,8)+')');
 
-        document.getElementById(oldId).style.MozAnimation = "";
+        document.getElementById(oldId).style.animation = "";
       }
 
       oGame.posRow = "";
@@ -109,7 +108,7 @@ function handleClick(row, col) {
       oGame.selectedCase = true;
     } else {
       if ((oGame.posRow != "") && (oGame.posCol != "")) {
-        document.getElementById("fruit"+oGame.posRow+"_"+oGame.posCol).style.MozAnimation = "";
+        document.getElementById("fruit"+oGame.posRow+"_"+oGame.posCol).style.animation = "";
     }
 
       oGame.posRow = row;
@@ -117,14 +116,14 @@ function handleClick(row, col) {
 
       oGame.selectedCase = true;
 
-      document.getElementById("fruit"+row+"_"+col).style.MozAnimation = "spin .8s infinite linear";
+      document.getElementById("fruit"+row+"_"+col).style.animation = "spin .8s infinite linear";
     }
   } else {
     oGame.posRow = row;
     oGame.posCol = col;
 
     oGame.selectedCase = true;
-    document.getElementById("fruit"+row+"_"+col).style.MozAnimation = "spin .8s infinite linear";
+    document.getElementById("fruit"+row+"_"+col).style.animation = "spin .8s infinite linear";
   }
 }
 
