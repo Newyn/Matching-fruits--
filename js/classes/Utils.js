@@ -31,7 +31,11 @@ function fadeOut(elem, speed){
     elem.style.opacity -= .02;
     if(elem.style.opacity < 0){
       clearInterval(fade);
-      elem.src = listFruitImages[8];
+      if (elem.id == "launch-screen") {
+        elem.style.display = "none";
+      } else {
+        elem.src = listFruitImages[8];
+      }
     }
   }, speed / 50);
 }

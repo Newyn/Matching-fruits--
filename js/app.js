@@ -17,8 +17,9 @@ document.body.appendChild(stats.domElement);*/
 /**************************************************************************************************
 Global variables
 **************************************************************************************************/
-var oGame = new Game();
 var oTimer = new Timer();
+var oMenu = new Menu();
+var oGame = new Game();
 
 // Load fruit images
 var listFruitImages = [];
@@ -36,12 +37,11 @@ listFruitImages[8] = "resources/fruits/destroy.png";
 Get DOM Elements
 **************************************************************************************************/
 var eltMap = document.getElementById("map");
+var eltLaunchScreen = document.getElementById("launch-screen");
 var eltPauseOverlay = document.getElementById("pause");
 var eltPauseResumeButton = document.getElementById("pause-resume-button");
 var eltTimerMinutes = document.getElementById("timer-minutes");
 var eltTimerSeconds = document.getElementById("timer-seconds");
-
-var tmpHeight = (document.documentElement.clientHeight / 2) - (document.documentElement.clientHeight);
 
 /**************************************************************************************************
 Set the map properties
@@ -56,4 +56,4 @@ window.addEventListener("resize", resize, false);
 // Disable for the moment because it's annoying when we develop
 //window.addEventListener("blur", showPauseOverlay);
 
-oGame.initialize();
+setTimeout("oMenu.startGame()", 1000);
