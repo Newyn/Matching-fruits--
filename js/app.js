@@ -46,14 +46,8 @@ var tmpHeight = (document.documentElement.clientHeight / 2) - (document.document
 /**************************************************************************************************
 Set the map properties
 **************************************************************************************************/
-if (document.documentElement.clientWidth > document.documentElement.clientHeight) {
-  eltMap.width = document.documentElement.clientHeight;
-  eltMap.height = document.documentElement.clientHeight;
-} else {
-  eltMap.width = document.documentElement.clientWidth;
-  eltMap.height = document.documentElement.clientWidth;
-}
-
+eltMap.width = Math.min(document.documentElement.clientWidth, document.documentElement.clientHeight);
+eltMap.height = Math.min(document.documentElement.clientWidth, document.documentElement.clientHeight);
 eltMap.style.top = "calc(55% - "+eltMap.width / 2+"px)";
 eltMap.style.left = "calc(55% - "+eltMap.width / 2+"px)";
 
