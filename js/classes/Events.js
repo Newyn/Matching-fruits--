@@ -2,6 +2,10 @@
 Call on the onResize() event for resizing the map
 **************************************************************************************************/
 function resize() {
+  eltBtnPlay.style.top = "40%";
+  eltBtnScores.style.top = "45%";
+  eltBtnOptions.style.top = "50%";
+
   eltMap.width = Math.min(document.documentElement.clientWidth, document.documentElement.clientHeight);
   eltMap.height = Math.min(document.documentElement.clientWidth, document.documentElement.clientHeight);
   eltMap.style.top = "calc(55% - "+eltMap.width / 2+"px)";

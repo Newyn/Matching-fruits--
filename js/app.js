@@ -38,22 +38,20 @@ Get DOM Elements
 **************************************************************************************************/
 var eltMap = document.getElementById("map");
 var eltLaunchScreen = document.getElementById("launch-screen");
+var eltMenu = document.getElementById("menu");
+var eltBtnPlay = document.getElementById("btn-play");
+var eltBtnScores = document.getElementById("btn-scores");
+var eltBtnOptions = document.getElementById("btn-options");
+var eltBtnPause = document.getElementById("btn-pause");
 var eltPauseOverlay = document.getElementById("pause");
 var eltPauseResumeButton = document.getElementById("pause-resume-button");
+var eltTimer = document.getElementById("timer");
 var eltTimerMinutes = document.getElementById("timer-minutes");
 var eltTimerSeconds = document.getElementById("timer-seconds");
-
-/**************************************************************************************************
-Set the map properties
-**************************************************************************************************/
-eltMap.width = Math.min(document.documentElement.clientWidth, document.documentElement.clientHeight);
-eltMap.height = Math.min(document.documentElement.clientWidth, document.documentElement.clientHeight);
-eltMap.style.top = "calc(55% - "+eltMap.width / 2+"px)";
-eltMap.style.left = "calc(55% - "+eltMap.width / 2+"px)";
 
 window.addEventListener("resize", resize, false);
 
 // Disable for the moment because it's annoying when we develop
-//window.addEventListener("blur", showPauseOverlay);
+//setTimeout("oMenu.initialize()", 2000);
 
-setTimeout("oMenu.startGame()", 1000);
+oMenu.initialize();

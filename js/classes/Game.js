@@ -38,6 +38,14 @@ function Game() {
 Initializes the game
 **************************************************************************************************/
 Game.prototype.initialize = function() {
+  eltMap.width = Math.min(document.documentElement.clientWidth, document.documentElement.clientHeight);
+  eltMap.height = Math.min(document.documentElement.clientWidth, document.documentElement.clientHeight);
+  eltMap.style.top = "calc(55% - "+eltMap.width / 2+"px)";
+  eltMap.style.left = "calc(55% - "+eltMap.width / 2+"px)";
+  
+  // Disable for the moment because it's annoying when we develop
+  //window.addEventListener("blur", showPauseOverlay);
+
   for (i=0;i<8;i++) {  
     for(j=0;j<8;j++) {
       do  {
@@ -63,6 +71,12 @@ Game.prototype.initialize = function() {
       eltMap.appendChild(eltFruit);
     }
   }
+  
+  eltMenu.style.display = "none";
+  eltMap.style.display = "block";
+  eltBtnPause.style.display = "block";
+  eltTimer.style.display = "block";
+  document.body.style.backgroundColor = "black";
   oTimer.start();
 }
 

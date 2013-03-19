@@ -1,5 +1,4 @@
 body {
-  background-color: black;
   margin: 0;
 }
 
@@ -11,6 +10,7 @@ img.fruit {
 
 div#map {
   position: absolute;
+  display: none;
 }
 
 div#pause {
@@ -24,6 +24,7 @@ div#timer {
   color: white;
   font-weight: bold;
   cursor: default;
+  display: none;
 }
 
 div#pause {
@@ -32,13 +33,32 @@ div#pause {
 }
 
 div#launch-screen {
-  background-image: url("../resources/backgrounds/launch-screen.jpg");
+  background-image: url("../resources/backgrounds/launcher.jpg");
 	-webkit-background-size: 100% 100%;
 	-moz-background-size: 100% 100%;
 	-o-background-size: 100% 100%;
   background-size: 100% 100%;
 }
 
+div#menu {
+  background-image: url("../resources/backgrounds/menu.jpg");
+	-webkit-background-size: 100% 100%;
+	-moz-background-size: 100% 100%;
+	-o-background-size: 100% 100%;
+  background-size: 100% 100%;
+  display: none;
+  position: absolute;
+}
+
+div#menu div{
+  font-size: 32px;
+  font-weight: bold;
+  font-variant: small-caps;
+  color: #D8D8D8;
+  cursor: pointer;
+  text-align: center;
+  position: relative;
+}
 .overlay {
   width: 100%;
   height: 100%;

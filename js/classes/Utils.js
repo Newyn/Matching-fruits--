@@ -33,9 +33,23 @@ function fadeOut(elem, speed){
       clearInterval(fade);
       if (elem.id == "launch-screen") {
         elem.style.display = "none";
+        oMenu.initialize();
       } else {
         elem.src = listFruitImages[8];
       }
+    }
+  }, speed / 50);
+}
+
+function fadeIn(elem, speed){
+  if(!elem.style.opacity){
+    elem.style.opacity = 0.01;
+    elem.style.display = "block";
+  }
+  var fade = setInterval(function(){
+    elem.style.opacity = elem.style.opacity * 1.10;
+    if(elem.style.opacity > 1){
+      clearInterval(fade);
     }
   }, speed / 50);
 }

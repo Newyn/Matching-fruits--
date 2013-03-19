@@ -1,8 +1,8 @@
-##Matching Fruits !(FR)
+##Matching Fruits (FR)
 
 ###Présentation
 
-Matching Fruits! est une application web Bejeweled-like pour FirefoxOS sur le thème des fruits
+Matching Fruits est une application web Bejeweled-like pour FirefoxOS sur le thème des fruits
 
 L'objectif de ce projet est de :
 
@@ -15,11 +15,11 @@ Vous pouvez consulter l'avancée du projet en allant sur le wiki via l'URL suiva
 Pour pouvoir tester le jeu, vous pouvez vous rendre sur la page <a href="http://vtriquet.github.com/Matching-fruits--/">http://vtriquet.github.com/Matching-fruits--/</a>
 <hr /><hr /><hr />
 
-##Matching Fruits ! (EN)
+##Matching Fruits (EN)
 
 ###Presentation
 
-Matching Fruits! is a web app Bejeweled-like for FirefoxOS on the theme on fruits.
+Matching Fruits is a web app Bejeweled-like for FirefoxOS on the theme on fruits.
 
 The objective of this project is to :
 

@@ -21,6 +21,12 @@
     
     <div id="launch-screen" class="overlay"></div>
     
+    <div id="menu" class="overlay">
+      <div id="btn-play">Jouer</div>
+      <div id="btn-scores">Scores</div>
+      <div id="btn-options">Options</div>
+    </div>
+    
     <div id="timer">
       <span id="timer-minutes">00</span>
       : <span id="timer-seconds">00</span>
@@ -31,7 +37,7 @@
       <div class="item" id="pause-resume-button">Reprendre</div>
     </div>
 
-    <input type="button" onclick="showPauseOverlay();" value="Pause" style="position:absolute; bottom:0;"/>
+    <input id="btn-pause" type="button" onclick="showPauseOverlay();" value="Pause" style="position:absolute; bottom:0; display:none;"/>
 
   </body>
 </html>
