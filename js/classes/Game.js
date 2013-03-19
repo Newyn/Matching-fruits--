@@ -43,6 +43,9 @@ Game.prototype.initialize = function() {
   eltMap.style.top = "calc(55% - "+eltMap.width / 2+"px)";
   eltMap.style.left = "calc(55% - "+eltMap.width / 2+"px)";
   
+  eltBtnPause.style.width = eltMap.width / 10 + "px";
+  eltBtnPause.style.height = eltMap.height / 10 + "px";
+  
   // Disable for the moment because it's annoying when we develop
   //window.addEventListener("blur", showPauseOverlay);
 
@@ -76,7 +79,7 @@ Game.prototype.initialize = function() {
   eltMap.style.display = "block";
   eltBtnPause.style.display = "block";
   eltTimer.style.display = "block";
-  document.body.style.backgroundColor = "black";
+  document.body.style.backgroundColor = "#80D5FE";
   oTimer.start();
 }
 

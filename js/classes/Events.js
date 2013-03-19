@@ -11,6 +11,9 @@ function resize() {
   eltMap.style.top = "calc(55% - "+eltMap.width / 2+"px)";
   eltMap.style.left = "calc(55% - "+eltMap.width / 2+"px)";
 
+  eltBtnPause.style.width = eltMap.width / 10 + "px";
+  eltBtnPause.style.height = eltMap.height / 10 + "px";
+  
   var tmp = [];
   var nbCol = 0;
   var nbRow = 0;
@@ -72,7 +75,7 @@ function handleClick(row, col) {
 
       if (oGame.listFruitsDestroy.length > 0) {
         for (var i=0;i<oGame.listFruitsDestroy.length;i++) {
-          fadeOut(document.getElementById(oGame.listFruitsDestroy[i].id),50);
+          fadeOut(document.getElementById(oGame.listFruitsDestroy[i].id),50);        
         }
       } else {
         oldFruit.id = oldId;
@@ -254,6 +257,8 @@ function updateTransform(e) {
 
       eltMap.appendChild(eltFruit);
       eltMap.appendChild(eltFruit2);
+      
+      //oGame.fall();
     }
   }
 }
