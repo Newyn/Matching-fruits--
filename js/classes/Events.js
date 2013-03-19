@@ -41,6 +41,7 @@ function handleClick(row, col) {
     oGame.countTransitionEnd = 0;
 
     var distance = Math.abs(col - oGame.posCol) + Math.abs(row - oGame.posRow);
+
     if (distance == 1) { // oldFruit and newFruit are adjacent
       var oldFruit = document.getElementById("fruit"+oGame.posRow+"_"+oGame.posCol);
       var newFruit = document.getElementById("fruit"+row+"_"+col);
@@ -91,7 +92,7 @@ function handleClick(row, col) {
       oGame.posCol = col;
       oGame.selectedCase = true;
     } else {
-      if ((oGame.posRow != "") && (oGame.posCol != "")) {
+      if ((oGame.posRow !== "") && (oGame.posCol !== "")) {
         document.getElementById("fruit"+oGame.posRow+"_"+oGame.posCol).style.animation = "";
       }
       oGame.posRow = row;
