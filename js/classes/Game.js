@@ -226,13 +226,26 @@ Game.prototype.fall = function() {
   var tmp = document.getElementsByClassName("fruit");
   tmp.reverse();
 
-  for (var i=0; i < tmp.length; i++) {
+  /*for (var i=0; i < tmp.length; i++) {
     if (tmp[i].src.indexOf("destroy.png") !== -1) {
       if (this.isEmptyCol(tmp[i].id.substring(5,6),tmp[i].id.substring(7,8))) {
         var row = parseInt(tmp[i].id.substring(5,6)) - 1;
         console.log(row);
         var ty = (row - tmp[i].id.substring(5,6)) * eltMap.height / 9;
         document.getElementById("fruit"+row+"_"+tmp[i].id.substring(7,8)).style.transform = "translateY(" + (-ty) + "px)";
+        console.log(tmp[i].id);
+      }
+    }
+  }*/
+  
+  for (var i=0; i < tmp.length; i++) {
+    if (tmp[i].src.indexOf("destroy.png") !== -1) {
+      if (this.isEmptyCol(tmp[i].id.substring(5,6),tmp[i].id.substring(7,8))) {
+        var row = parseInt(tmp[i].id.substring(5,6)) - 1;
+        console.log(row);
+        var ty = (row - tmp[i].id.substring(5,6)) * eltMap.height / 9;
+        translate(document.getElementById("fruit"+row+"_"+tmp[i].id.substring(7,8)), 5, document.getElementById("fruit"+tmp[i].id.substring(5,6)+"_"+tmp[i].id.substring(7,8)).style.top, 1000);
+        //document.getElementById("fruit"+row+"_"+tmp[i].id.substring(7,8)).style.transform = "translateY(" + (-ty) + "px)";
         console.log(tmp[i].id);
       }
     }

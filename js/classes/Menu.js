@@ -15,10 +15,10 @@ Initializes the menu
 **************************************************************************************************/
 Menu.prototype.initialize = function() {
   // Disable for the moment because it's annoying when we develop
-  //fadeOut(eltLaunchScreen, 1000);
-  //fadeIn(eltMenu, 1000);
-  fadeOut(eltLaunchScreen, 1);
-  fadeIn(eltMenu, 1);
+  fadeOut(eltLaunchScreen, 1000);
+  fadeIn(eltMenu, 1000);
+  //fadeOut(eltLaunchScreen, 1);
+  //fadeIn(eltMenu, 1);
   
   // Set the menu properties
   eltBtnPlay.style.top = "40%";

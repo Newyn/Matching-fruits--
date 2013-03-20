@@ -54,6 +54,16 @@ function fadeIn(elem, speed){
   }, speed / 50);
 }
 
+function translate(elem, shift, max, speed) {
+  console.log(parseInt(elem.style.top.substring(0,3)), max);
+  var fade = setInterval(function(){
+    elem.style.top = parseInt(elem.style.top.substring(0,3)) + shift +"px";
+    if(parseInt(elem.style.top.substring(0,3)) > parseInt(max.substring(0,3))){
+      clearInterval(fade);
+    }
+   
+  }, speed / 50);
+}
 /**************************************************************************************************
 Get all elements with the className property set to "cl"
 **************************************************************************************************/
