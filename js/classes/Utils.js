@@ -1,3 +1,14 @@
+/**************************************************************************************************
+Function : dump()
+ * Arguments: The data - array,hash(associative array),object
+ *    The level - OPTIONAL
+ * Returns  : The textual representation of the array.
+ * This function was inspired by the print_r function of PHP.
+ * This will accept some data as the argument and return a
+ * text that will be a more readable version of the
+ * array/hash/object that is given.
+ * Docs: http://www.openjs.com/scripts/others/dump_function_php_print_r.php
+**************************************************************************************************/
 function dump(arr,level) {
   var dumped_text = "";
   if(!level) level = 0;
@@ -23,6 +34,9 @@ function dump(arr,level) {
   return dumped_text;
 }
 
+/**************************************************************************************************
+Fade out effect
+**************************************************************************************************/
 function fadeOut(elem, speed){
   if(!elem.style.opacity){
     elem.style.opacity = 1;
@@ -41,6 +55,9 @@ function fadeOut(elem, speed){
   }, speed / 50);
 }
 
+/**************************************************************************************************
+Fade in effect
+**************************************************************************************************/
 function fadeIn(elem, speed){
   if(!elem.style.opacity){
     elem.style.opacity = 0.01;
@@ -54,6 +71,9 @@ function fadeIn(elem, speed){
   }, speed / 50);
 }
 
+/**************************************************************************************************
+Translate elem
+**************************************************************************************************/
 function translate(elem, shift, speed) {
   oGame.state = "fall";
 

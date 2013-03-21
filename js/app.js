@@ -48,6 +48,7 @@ var eltPauseResumeButton = document.getElementById("pause-resume-button");
 var eltTimer = document.getElementById("timer");
 var eltTimerMinutes = document.getElementById("timer-minutes");
 var eltTimerSeconds = document.getElementById("timer-seconds");
+var eltScore = document.getElementById("score");
 
 window.addEventListener("resize", resize, false);
 

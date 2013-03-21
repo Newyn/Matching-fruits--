@@ -32,6 +32,8 @@ function Game() {
   this.newId = "";
   
   this.state = "";
+  
+  this.currentScore = 0;
 }
 
 /**************************************************************************************************
@@ -79,6 +81,7 @@ Game.prototype.initialize = function() {
   eltMap.style.display = "block";
   eltBtnPause.style.display = "block";
   eltTimer.style.display = "block";
+  eltScore.style.display = "block";
   document.body.style.backgroundColor = "#80D5FE";
   oTimer.start();
 }
@@ -221,6 +224,9 @@ Game.prototype.check = function() {
   }
 }
 
+/**************************************************************************************************
+Sends down the fruit if there are empty once there was destruction
+**************************************************************************************************/
 Game.prototype.fall = function() {
 
   var j = 7;
@@ -256,6 +262,9 @@ Game.prototype.fall = function() {
   }
 }
 
+/**************************************************************************************************
+Add new fruits to the map once it has been destroyed
+**************************************************************************************************/
 Game.prototype.regenerate = function() {
   
   var tmp = document.getElementsByClassName("fruit");
@@ -278,4 +287,25 @@ Game.prototype.regenerate = function() {
       translate(document.getElementById(tmp[i].id), 10, 400);
     }
   }
+}
+
+/**************************************************************************************************
+Updates the score
+**************************************************************************************************/
+Game.prototype.updateScore = function(update) {
+  this.currentScore += update;
+	
+	if (this.currentScore > 0) {
+		var tmpScore = ""+this.currentScore+"";
+		
+		while (tmpScore.length != 8) {
+			tmpScore = "0"+tmpScore;
+		}
+		
+		document.getElementById("score").innerHTML = tmpScore;
+	}
+	else {
+		this.currentScore = 0;
+		document.getElementById("score").innerHTML = "00000000";
+	}
 }
