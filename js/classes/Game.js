@@ -231,6 +231,7 @@ Game.prototype.fall = function() {
     }
 
     document.getElementById("fruit"+j+"_"+i).id = "fruit0_"+i;
+    document.getElementById("fruit0_"+i).setAttribute('onclick', 'handleClick(0,'+i+')');
     
     j--;
     
@@ -250,6 +251,7 @@ Game.prototype.fall = function() {
   tmp.reverse();
   
   for (var i=0; i < tmp.length; i++) {
+    tmp[i].setAttribute('onclick', 'handleClick('+tmp[i].id.substring(5,6)+','+tmp[i].id.substring(7,8)+')');
     translate(document.getElementById("fruit"+tmp[i].id.substring(5,6)+"_"+tmp[i].id.substring(7,8)), 15, 100);
   }
 }
