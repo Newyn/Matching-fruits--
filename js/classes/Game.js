@@ -222,6 +222,7 @@ Game.prototype.check = function() {
 }
 
 Game.prototype.fall = function() {
+
   var j = 7;
   
   for (var i=0; i < 8; i++) {
@@ -249,10 +250,30 @@ Game.prototype.fall = function() {
   tmp.reverse();
   
   for (var i=0; i < tmp.length; i++) {
-    //console.log(tmp[i].id+"===="+parseInt(tmp[i].id.substring(5,6)) * tmp[i].height);
-    //if (this.state != "fall") {
-      translate(document.getElementById("fruit"+tmp[i].id.substring(5,6)+"_"+tmp[i].id.substring(7,8)), 15, 100);
-    //}
+    translate(document.getElementById("fruit"+tmp[i].id.substring(5,6)+"_"+tmp[i].id.substring(7,8)), 15, 100);
   }
 }
 
+Game.prototype.regenerate = function() {
+  
+  var tmp = document.getElementsByClassName("fruit");
+  tmp.reverse();
+  
+  for (var i=0; i < tmp.length; i++) {
+    if (document.getElementById(tmp[i].id).src.indexOf("destroy.png") !== -1) {
+      console.log(document.getElementById(tmp[i].id));
+      document.getElementById(tmp[i].id).style.top = "-200px";
+      document.getElementById(tmp[i].id).style.opacity = "1";
+      
+      var rand = 0;
+      
+      while (rand == 0) {
+        rand = Math.floor(Math.random()*8);
+      }
+      
+      document.getElementById(tmp[i].id).src = listFruitImages[rand];
+      
+      translate(document.getElementById(tmp[i].id), 10, 400);
+    }
+  }
+}
