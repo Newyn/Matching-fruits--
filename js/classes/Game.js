@@ -222,32 +222,37 @@ Game.prototype.check = function() {
 }
 
 Game.prototype.fall = function() {
-  this.state = "fall";
+  var j = 7;
+  
+  for (var i=0; i < 8; i++) {
+    while ((j > 0) &&  (document.getElementById("fruit"+j+"_"+i).src.indexOf("destroy.png") == -1)) {
+      j--;
+    }
+
+    document.getElementById("fruit"+j+"_"+i).id = "fruit0_"+i;
+    
+    j--;
+    
+    if (j != 0) {
+      while (j >= 0) {
+        var tmp = j + 1;
+        document.getElementById("fruit"+j+"_"+i).id = "fruit"+tmp+"_"+i;
+        document.getElementById("fruit"+tmp+"_"+i).setAttribute('onclick', 'handleClick('+tmp+','+i+')');
+        j--;
+      }
+    }
+    
+    j = 7;
+  }
+
   var tmp = document.getElementsByClassName("fruit");
   tmp.reverse();
-
-  /*for (var i=0; i < tmp.length; i++) {
-    if (tmp[i].src.indexOf("destroy.png") !== -1) {
-      if (this.isEmptyCol(tmp[i].id.substring(5,6),tmp[i].id.substring(7,8))) {
-        var row = parseInt(tmp[i].id.substring(5,6)) - 1;
-        console.log(row);
-        var ty = (row - tmp[i].id.substring(5,6)) * eltMap.height / 9;
-        document.getElementById("fruit"+row+"_"+tmp[i].id.substring(7,8)).style.transform = "translateY(" + (-ty) + "px)";
-        console.log(tmp[i].id);
-      }
-    }
-  }*/
   
   for (var i=0; i < tmp.length; i++) {
-    if (tmp[i].src.indexOf("destroy.png") !== -1) {
-      if (this.isEmptyCol(tmp[i].id.substring(5,6),tmp[i].id.substring(7,8))) {
-        var row = parseInt(tmp[i].id.substring(5,6)) - 1;
-        console.log(row);
-        var ty = (row - tmp[i].id.substring(5,6)) * eltMap.height / 9;
-        translate(document.getElementById("fruit"+row+"_"+tmp[i].id.substring(7,8)), 5, document.getElementById("fruit"+tmp[i].id.substring(5,6)+"_"+tmp[i].id.substring(7,8)).style.top, 1000);
-        //document.getElementById("fruit"+row+"_"+tmp[i].id.substring(7,8)).style.transform = "translateY(" + (-ty) + "px)";
-        console.log(tmp[i].id);
-      }
-    }
+    //console.log(tmp[i].id+"===="+parseInt(tmp[i].id.substring(5,6)) * tmp[i].height);
+    //if (this.state != "fall") {
+      translate(document.getElementById("fruit"+tmp[i].id.substring(5,6)+"_"+tmp[i].id.substring(7,8)), 15, 100);
+    //}
   }
 }
+

@@ -54,15 +54,43 @@ function fadeIn(elem, speed){
   }, speed / 50);
 }
 
-function translate(elem, shift, max, speed) {
-  console.log(parseInt(elem.style.top.substring(0,3)), max);
-  var fade = setInterval(function(){
-    elem.style.top = parseInt(elem.style.top.substring(0,3)) + shift +"px";
-    if(parseInt(elem.style.top.substring(0,3)) > parseInt(max.substring(0,3))){
-      clearInterval(fade);
+function translate(elem, shift, speed) {
+  oGame.state = "fall";
+
+  var row = parseInt(elem.id.substring(5,6));
+  var height = document.getElementById("fruit"+elem.id.substring(5,6)+"_"+elem.id.substring(7,8)).height;
+  var top = parseInt(elem.style.top.replace("px", ""));
+  var max = row * parseInt(height);
+  
+  if (top != max) {
+    console.log("------------ TRANSLATE ------------");
+    console.log(" ID => "+elem.id);
+    console.log(" TOP => "+ top);
+    console.log(" MAX => "+ max);
+    if (top < max) {
+      console.log(" TOP < MAX ");
+      var fade = setInterval(function(){
+        elem.style.top = top + shift +"px";
+        top = parseInt(elem.style.top.replace("px", ""));
+        if(top > max) {
+          elem.style.top = max +"px";
+          clearInterval(fade);  
+          oGame.state = "";
+        }
+      }, speed / 50);
+    } else {
+      console.log(" TOP > MAX ");
+      var fade = setInterval(function(){
+        elem.style.top = top - shift +"px";
+        top = parseInt(elem.style.top.replace("px", ""));
+        if (top < max) {
+          elem.style.top = max +"px";
+          clearInterval(fade);  
+          oGame.state = "";
+        }
+      }, speed / 50);
     }
-   
-  }, speed / 50);
+  }
 }
 /**************************************************************************************************
 Get all elements with the className property set to "cl"

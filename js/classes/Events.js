@@ -258,7 +258,7 @@ function updateTransform(e) {
       eltMap.appendChild(eltFruit);
       eltMap.appendChild(eltFruit2);
       
-      //oGame.fall();
+      oGame.fall();
     }
   }
 }

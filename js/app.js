@@ -52,7 +52,7 @@ var eltTimerSeconds = document.getElementById("timer-seconds");
 window.addEventListener("resize", resize, false);
 
 // Disable for the moment because it's annoying when we develop
-setTimeout("oMenu.initialize()", 2000);
-oMenu.initialize();
+//setTimeout("oMenu.initialize()", 2000);
+//oMenu.initialize();
 
-//oGame.initialize();
+oGame.initialize();
