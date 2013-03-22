@@ -83,12 +83,7 @@ function translate(elem, shift, speed) {
   var max = row * parseInt(height);
   
   if (top != max) {
-    console.log("------------ TRANSLATE ------------");
-    console.log(" ID => "+elem.id);
-    console.log(" TOP => "+ top);
-    console.log(" MAX => "+ max);
     if (top < max) {
-      console.log(" TOP < MAX ");
       var fade = setInterval(function(){
         elem.style.top = top + shift +"px";
         top = parseInt(elem.style.top.replace("px", ""));
@@ -99,7 +94,6 @@ function translate(elem, shift, speed) {
         }
       }, speed / 50);
     } else {
-      console.log(" TOP > MAX ");
       var fade = setInterval(function(){
         elem.style.top = top - shift +"px";
         top = parseInt(elem.style.top.replace("px", ""));

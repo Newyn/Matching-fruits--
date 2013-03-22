@@ -222,6 +222,118 @@ Game.prototype.check = function() {
     nbAdjacentVertical = 0;
     nbAdjacentHorizontal = 0;  
   }
+  
+  if (this.listFruitsDestroy.length > 0) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+/**************************************************************************************************
+Checks the horizontal & vertical alignment of the map
+**************************************************************************************************/
+Game.prototype.checkAlignment = function(arr) {
+  var succeed = false;
+  var verticalMap = [];
+  var horizontalMap = [];
+
+  for (var i = 0; i < 8; i++) {
+    verticalMap[i] = [];
+    horizontalMap[i] = [];
+    for (var j = 0; j < 8; j++) {
+      verticalMap[i][j] = 0;
+      horizontalMap[i][j] = 0;
+    }
+  }
+
+  for (var i = 0; i < 8; i++) {
+    for (var j = 0; j < 8; j++) {
+      if (i < 7 && arr[i][j] == arr[i+1][j]) {
+          horizontalMap[i][j]++;
+          horizontalMap[i+1][j]++;
+      }
+      if (j < 7 && arr[i][j] == arr[i][j+1]) {
+          verticalMap[i][j]++; 
+          verticalMap[i][j+1]++; 
+      }
+
+      if (horizontalMap[i][j] >= 2 || verticalMap[i][j] >= 2) {
+          succeed = true;
+      }
+    }
+  }
+
+  return succeed;
+}
+
+/**************************************************************************************************
+Checks for possible movement
+**************************************************************************************************/
+Game.prototype.checkMovement = function() {
+  var tmp;
+  var tmap = [];
+
+  for (var i = 0; i < 8; i++) {
+    tmap[i] = [];
+    for (var j = 0; j < 8; j++) {
+       tmap[i][j] = document.getElementById("fruit"+i+"_"+j).src;
+    }
+  }
+
+  for (var j = 0; j < 8; j++) {
+    for (var i = 0; i < 8; i++) {
+      if (i > 0) {
+        tmp = tmap[i - 1][j];
+        tmap[i - 1][j] = tmap[i][j];
+        tmap[i][j] = tmp;
+        if (this.checkAlignment(tmap)) {
+            return true;
+        } else {
+            tmp = tmap[i - 1][j];
+            tmap[i - 1][j] = tmap[i][j];
+            tmap[i][j] = tmp;
+        }
+      }
+      if (i < 7) {
+        tmp = tmap[i + 1][j];
+        tmap[i + 1][j] = tmap[i][j];
+        tmap[i][j] = tmp;
+        if (this.checkAlignment(tmap)) {
+            return true;
+        } else {
+            tmp = tmap[i + 1][j];
+            tmap[i + 1][j] = tmap[i][j];
+            tmap[i][j] = tmp;
+        }
+      }
+      if (j > 0) {
+        tmp = tmap[i][j - 1];
+        tmap[i][j - 1] = tmap[i][j];
+        tmap[i][j] = tmp;
+        if (this.checkAlignment(tmap)) {
+            return true;
+        } else {
+            tmp = tmap[i][j - 1];
+            tmap[i][j - 1] = tmap[i][j];
+            tmap[i][j] = tmp;
+        }
+      }
+      if (j < 7) {
+        tmp = tmap[i][j + 1];
+        tmap[i][j + 1] = tmap[i][j];
+        tmap[i][j] = tmp;
+        if (this.checkAlignment(tmap)) {
+            return true;
+        } else {
+            tmp = tmap[i][j + 1];
+            tmap[i][j + 1] = tmap[i][j];
+            tmap[i][j] = tmp;
+        }
+      }
+    }
+  }
+  return false;
 }
 
 /**************************************************************************************************
@@ -258,8 +370,10 @@ Game.prototype.fall = function() {
   
   for (var i=0; i < tmp.length; i++) {
     tmp[i].setAttribute('onclick', 'handleClick('+tmp[i].id.substring(5,6)+','+tmp[i].id.substring(7,8)+')');
-    translate(document.getElementById("fruit"+tmp[i].id.substring(5,6)+"_"+tmp[i].id.substring(7,8)), 15, 100);
+    translate(document.getElementById("fruit"+tmp[i].id.substring(5,6)+"_"+tmp[i].id.substring(7,8)), 10, 400);
   }
+  
+  setTimeout("oGame.regenerate()",350);
 }
 
 /**************************************************************************************************
@@ -284,9 +398,22 @@ Game.prototype.regenerate = function() {
       
       document.getElementById(tmp[i].id).src = listFruitImages[rand];
       
+      while (this.checkMovement() == false) {
+        rand = 0;
+      
+        while (rand == 0) {
+          rand = Math.floor(Math.random()*8);
+        }
+      
+        document.getElementById(tmp[i].id).src = listFruitImages[rand];
+        this.checkMovement();
+      }
+      
       translate(document.getElementById(tmp[i].id), 10, 400);
     }
   }
+  
+  console.log(this.checkMovement());
 }
 
 /**************************************************************************************************
