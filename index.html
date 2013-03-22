@@ -14,6 +14,7 @@
     <script type="text/javascript" defer src="js/classes/Timer.js"></script>
     <script type="text/javascript" defer src="js/classes/Menu.js"></script>
     <script type="text/javascript" defer src="js/app.js"></script>
+    <link rel="resource" type="application/l10n" href="l10n/data.ini" />
   </head>
 
   <body>
@@ -24,9 +25,9 @@
     <!--<div id="launch-screen" class="overlay"></div>-->
     
     <div id="menu" class="overlay">
-      <div id="btn-play">Jouer</div>
-      <div id="btn-scores">Scores</div>
-      <div id="btn-options">Options</div>
+      <div id="btn-play" data-l10n-id="btn-play-l10n">Jouer</div>
+      <div id="btn-scores" data-l10n-id="btn-scores-l10n">Scores</div>
+      <div id="btn-options" data-l10n-id="btn-options-l10n">Options</div>
     </div>
     
     <div id="score">00000000</div>
@@ -37,8 +38,9 @@
     </div>
 
     <div id="pause" class="overlay">
-      <div class="title">Pause</div>
-      <div class="item" id="pause-resume-button">Reprendre</div>
+      <div class="title" data-l10n-id="pause-title-l10n">Pause</div>
+      <div class="item" id="pause-resume-button" data-l10n-id="pause-btn-resume-l10n">Reprendre</div>
+      <div class="item" id="pause-back-button" data-l10n-id="pause-btn-back-l10n">Revenir au menu principal</div>
     </div>
 
     <img id="btn-pause" onclick="showPauseOverlay();" value="Pause" src="resources/images/btn-pause.png"/>

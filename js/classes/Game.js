@@ -436,3 +436,10 @@ Game.prototype.updateScore = function(update) {
 		document.getElementById("score").innerHTML = "00000000";
 	}
 }
+
+/**************************************************************************************************
+Changes the language
+**************************************************************************************************/
+Game.prototype.setLanguage = function(lang) {
+  document.webL10n.setLanguage(lang);
+}
