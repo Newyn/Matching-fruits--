@@ -1,11 +1,11 @@
 ###data (FR)
 
-Les ressources i18n / l10n (internationalisation / localisation) sont stockées dans le fichier data.ini
+Les ressources i18n / l10n (internationalisation / localisation) sont stockÃ©es dans le fichier data.ini. <br/>
 Pour plus d'informations, https://github.com/fabi1cazenave/webL10n/blob/master/README.md
 
-<hr /><hr /><hr />
+<hr />
 
 ###data (EN)
 
-i18n / l10n (internationalization / localization) resources are stored in the data.ini file
+i18n / l10n (internationalization / localization) resources are stored in the data.ini file. <br />
 For more information, https://github.com/fabi1cazenave/webL10n/blob/master/README.md
