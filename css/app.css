@@ -15,6 +15,9 @@ div#map {
 
 div#pause {
   display: none;
+  color: orange;
+  background-color: #80D5FE;
+  font-family: Courgette;
 }
 
 div#timer {
@@ -33,11 +36,6 @@ img#btn-pause {
   left: 2%;
   display: none;
   cursor: pointer;
-}
-
-div#pause {
-  color: white;
-  background: rgba(0, 0, 0, 0.9);
 }
 
 div#launch-screen {
@@ -112,7 +110,7 @@ div#score {
 .overlay .title {
   font-size: 60px;
   font-variant: small-caps;
-  color: white;
+  color: #F07814;
   margin: 0;
   padding: 0;
   text-align: center;
@@ -125,7 +123,7 @@ div#score {
   font-size: 32px;
   font-weight: bold;
   font-variant: small-caps;
-  color: #D8D8D8;
+  color: orange;
   cursor: pointer;
   margin: 1%;
   text-align: center;

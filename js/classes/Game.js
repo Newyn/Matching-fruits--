@@ -443,5 +443,8 @@ Game.prototype.leave = function() {
   eltOptions.style.display = "none";
   eltPauseOverlay.style.display = "none";
   
+  while (eltMap.firstChild) {
+    eltMap.removeChild(eltMap.firstChild);
+  }
   // TODO scores etc...
 }
