@@ -14,7 +14,7 @@
     <script type="text/javascript" defer src="js/classes/Timer.js"></script>
     <script type="text/javascript" defer src="js/classes/Menu.js"></script>
     <script type="text/javascript" defer src="js/app.js"></script>
-    <link rel="resource" type="application/l10n" href="l10n/data.ini" />
+    <link rel="resource" type="application/l10n" href="data/data.ini" />
   </head>
 
   <body>
@@ -22,13 +22,18 @@
     <div id="map"></div>
     
     <!-- Disable for the moment because it's annoying when we develop -->
-    <!--<div id="launch-screen" class="overlay"></div>-->
+    <div id="launch-screen" class="overlay"></div>
     
     <div id="menu" class="overlay">
       <div id="btn-play" data-l10n-id="btn-play-l10n">Jouer</div>
       <div id="btn-scores" data-l10n-id="btn-scores-l10n">Scores</div>
       <div id="btn-options" data-l10n-id="btn-options-l10n">Options</div>
     </div>
+    
+    <div id="options" class="overlay">
+      <img id="arrow-previous"  src="resources/images/arrow-previous.png"></img>
+      <img id="btn-lang" src="resources/images/btn-lang-fr.png"></img>
+    </div> 
     
     <div id="score">00000000</div>
     

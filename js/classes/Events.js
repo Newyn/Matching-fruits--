@@ -276,6 +276,7 @@ function showPauseOverlay() {
   oTimer.pause();
   eltPauseOverlay.style.display = "block";
   eltPauseResumeButton.addEventListener("click", resume, false);
+  eltPauseBackButton.addEventListener("click", oGame.leave, false);
 }
 
 /**************************************************************************************************

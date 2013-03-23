@@ -83,6 +83,7 @@ Game.prototype.initialize = function() {
   eltTimer.style.display = "block";
   eltScore.style.display = "block";
   document.body.style.backgroundColor = "#80D5FE";
+  
   oTimer.start();
 }
 
@@ -437,9 +438,10 @@ Game.prototype.updateScore = function(update) {
 	}
 }
 
-/**************************************************************************************************
-Changes the language
-**************************************************************************************************/
-Game.prototype.setLanguage = function(lang) {
-  document.webL10n.setLanguage(lang);
+Game.prototype.leave = function() {
+  eltMenu.style.display = "block";
+  eltOptions.style.display = "none";
+  eltPauseOverlay.style.display = "none";
+  
+  // TODO scores etc...
 }

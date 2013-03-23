@@ -58,6 +58,30 @@ div#menu {
   position: absolute;
 }
 
+div#options {
+  background-image: url("../resources/backgrounds/options.jpg");
+	-webkit-background-size: 100% 100%;
+	-moz-background-size: 100% 100%;
+	-o-background-size: 100% 100%;
+  background-size: 100% 100%;
+  display: none;
+  position: absolute;
+}
+
+div#options img#btn-lang {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  cursor: pointer;
+}
+
+div#options img#arrow-previous {
+  position: absolute;
+  bottom: 2%;
+  left: 0;
+  cursor: pointer;
+}
+
 div#menu div{
   font-size: 32px;
   font-weight: bold;
