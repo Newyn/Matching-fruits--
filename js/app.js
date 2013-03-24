@@ -39,11 +39,11 @@ Get DOM Elements
 var eltMap = document.getElementById("map");
 var eltLaunchScreen = document.getElementById("launch-screen");
 var eltMenu = document.getElementById("menu");
+var eltOptions = document.getElementById("options");
+var eltScores = document.getElementById("scores");
 var eltBtnPlay = document.getElementById("btn-play");
 var eltBtnScores = document.getElementById("btn-scores");
 var eltBtnOptions = document.getElementById("btn-options");
-var eltOptions = document.getElementById("options");
-var eltArrowPrevious = document.getElementById("arrow-previous");
 var eltBtnLang = document.getElementById("btn-lang");
 var eltBtnPause = document.getElementById("btn-pause");
 var eltPauseOverlay = document.getElementById("pause");
@@ -57,7 +57,6 @@ var eltScore = document.getElementById("score");
 window.addEventListener("resize", resize, false);
 
 // Disable for the moment because it's annoying when we develop
-setTimeout("oMenu.initialize()", 2000);
+//setTimeout("oMenu.initialize()", 1000);
 oMenu.initialize();
-
 //oGame.initialize();

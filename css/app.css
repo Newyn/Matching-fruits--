@@ -56,8 +56,18 @@ div#menu {
   position: absolute;
 }
 
+div#scores {
+  background-image: url("../resources/backgrounds/scores.jpg");
+	-webkit-background-size: 100% 100%;
+	-moz-background-size: 100% 100%;
+	-o-background-size: 100% 100%;
+  background-size: 100% 100%;
+  display: none;
+  position: absolute;
+}
+
 div#options {
-  background-image: url("../resources/backgrounds/options.jpg");
+  background-image: url("../resources/backgrounds/options-fr.jpg");
 	-webkit-background-size: 100% 100%;
 	-moz-background-size: 100% 100%;
 	-o-background-size: 100% 100%;
@@ -70,13 +80,6 @@ div#options img#btn-lang {
   position: absolute;
   bottom: 0;
   right: 0;
-  cursor: pointer;
-}
-
-div#options img#arrow-previous {
-  position: absolute;
-  bottom: 2%;
-  left: 0;
   cursor: pointer;
 }
 
@@ -98,6 +101,13 @@ div#score {
   font-weight: bold;
   cursor: default;
   display: none;
+}
+
+img.arrow-previous {
+  position: absolute;
+  bottom: 2%;
+  left: 0;
+  cursor: pointer;
 }
 
 .overlay {
