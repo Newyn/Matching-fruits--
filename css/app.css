@@ -56,6 +56,27 @@ div#menu {
   position: absolute;
 }
 
+div#menu div#btn-play {
+  background-image: url("../resources/images/bg-btn-play.png");
+  background-repeat:repeat-x;
+  width: 40%;
+  border-radius: 20%;
+}
+
+div#menu div#btn-scores {
+  background-image: url("../resources/images/bg-btn-scores.png");
+  background-repeat:repeat-x;
+  width: 40%;
+  border-radius: 20%;
+}
+
+div#menu div#btn-options {
+  background-image: url("../resources/images/bg-btn-options.png");
+  background-repeat:repeat-x;
+  width: 40%;
+  border-radius: 20%;
+}
+
 div#scores {
   background-image: url("../resources/backgrounds/scores.jpg");
 	-webkit-background-size: 100% 100%;
@@ -85,12 +106,12 @@ div#options img#btn-lang {
 
 div#menu div{
   font-size: 32px;
-  font-weight: bold;
-  font-variant: small-caps;
-  color: #D8D8D8;
+  color: gray;
   cursor: pointer;
   text-align: center;
   position: relative;
+  font-family: Courgette;
+  left: 30%;
 }
 
 div#score {
