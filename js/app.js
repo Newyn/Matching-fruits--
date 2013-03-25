@@ -53,6 +53,7 @@ var eltBtnReload = document.getElementById("btn-reload");
 var eltPauseOverlay = document.getElementById("pause");
 var eltPauseResumeButton = document.getElementById("pause-resume-button");
 var eltPauseBackButton = document.getElementById("pause-back-button");
+var eltEndOverlay = document.getElementById("end");
 var eltTimer = document.getElementById("timer");
 var eltTimerMinutes = document.getElementById("timer-minutes");
 var eltTimerSeconds = document.getElementById("timer-seconds");

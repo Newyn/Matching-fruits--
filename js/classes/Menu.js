@@ -75,6 +75,7 @@ Menu.prototype = {
   // Handles click on the tab "Contre-la-montre" / "Time Trial"
   clickTabTimeTrial: function clickTabTimeTrial() {
     oGame.initialize();
+    oGame.setTimeTrial();
   },
   // Handles click on the tab "Scores"
   clickTabScores: function clickTabScores() {

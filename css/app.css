@@ -19,6 +19,12 @@ div#pause {
   background-color: #80D5FE;
 }
 
+div#end {
+  display: none;
+  color: orange;
+  background-color: #80D5FE;
+}
+
 div#timer {
   position: absolute;
   top: 1%;

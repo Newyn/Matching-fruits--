@@ -34,6 +34,8 @@ function Game() {
   this.state = "";
   
   this.currentScore = 0;
+  
+  this.mode = "";
 }
 
 /**************************************************************************************************
@@ -483,6 +485,9 @@ Game.prototype.updateScore = function(update) {
 	}
 }
 
+/**************************************************************************************************
+Leaves the game
+**************************************************************************************************/
 Game.prototype.leave = function() {
   eltMenu.style.display = "block";
   eltGame.style.display = "none";
@@ -493,4 +498,25 @@ Game.prototype.leave = function() {
     eltMap.removeChild(eltMap.firstChild);
   }
   // TODO scores etc...
+}
+
+/**************************************************************************************************
+Sets mode to time trial
+**************************************************************************************************/
+Game.prototype.setTimeTrial = function() {
+  this.mode = "time-trial";
+  oTimer.pause();
+  oTimer.reset();
+  oTimer.state = "neg";
+  oTimer.tSecondsElapsed = 0;
+  oTimer.secondsElapsed = 10;
+  oTimer.minutesElapsed = 0;
+  oTimer.start();
+}
+
+/**************************************************************************************************
+End of the game
+**************************************************************************************************/
+Game.prototype.end = function() {
+  eltEndOverlay.style.display = "block";
 }
