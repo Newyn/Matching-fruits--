@@ -39,8 +39,11 @@ Get DOM Elements
 var eltMap = document.getElementById("map");
 var eltLaunchScreen = document.getElementById("launch-screen");
 var eltMenu = document.getElementById("menu");
+var eltGame = document.getElementById("game");
 var eltOptions = document.getElementById("options");
 var eltScores = document.getElementById("scores");
+var eltBtnLevel = document.getElementById("btn-level");
+var eltBtnTimeTrial = document.getElementById("btn-time-trial");
 var eltBtnPlay = document.getElementById("btn-play");
 var eltBtnScores = document.getElementById("btn-scores");
 var eltBtnOptions = document.getElementById("btn-options");

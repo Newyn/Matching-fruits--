@@ -84,6 +84,33 @@ div#menu div#btn-options {
   border-radius: 20%;
 }
 
+div#game {
+  background-image: url("../resources/backgrounds/game-fr.jpg");
+	-webkit-background-size: 100% 100%;
+	-moz-background-size: 100% 100%;
+	-o-background-size: 100% 100%;
+  background-size: 100% 100%;
+  display: none;
+  position: absolute;
+}
+
+div#game div#btn-level {
+  background-image: url("../resources/images/bg-btn-scores.png");
+  background-repeat:repeat-x;
+  width: 40%;
+  border-radius: 20%;
+  font-size: 25px;
+}
+
+div#game div#btn-time-trial {
+  background-image: url("../resources/images/bg-btn-options.png");
+  background-repeat:repeat-x;
+  width: 60%;
+  border-radius: 20%;
+  left: 20%;
+  font-size: 25px;
+}
+
 div#scores {
   background-image: url("../resources/backgrounds/scores.jpg");
 	-webkit-background-size: 100% 100%;
@@ -111,7 +138,7 @@ div#options img#btn-lang {
   cursor: pointer;
 }
 
-div#menu div{
+div#menu div, div#game div {
   font-size: 32px;
   color: gray;
   cursor: pointer;

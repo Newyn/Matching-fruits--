@@ -58,7 +58,7 @@ Game.prototype.initialize = function() {
 
   this.buildMap();
   
-  eltMenu.style.display = "none";
+  eltGame.style.display = "none";
   eltMap.style.display = "block";
   eltBtnPause.style.display = "block";
   eltBtnReload.style.display = "block";
@@ -485,9 +485,10 @@ Game.prototype.updateScore = function(update) {
 
 Game.prototype.leave = function() {
   eltMenu.style.display = "block";
+  eltGame.style.display = "none";
   eltOptions.style.display = "none";
   eltPauseOverlay.style.display = "none";
-  
+  oTimer.reset();
   while (eltMap.firstChild) {
     eltMap.removeChild(eltMap.firstChild);
   }
