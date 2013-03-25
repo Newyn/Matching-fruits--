@@ -17,7 +17,6 @@ div#pause {
   display: none;
   color: orange;
   background-color: #80D5FE;
-  font-family: Courgette;
 }
 
 div#timer {
@@ -34,6 +33,14 @@ img#btn-pause {
   position: absolute; 
   top: 1%;
   left: 2%;
+  display: none;
+  cursor: pointer;
+}
+
+img#btn-reload {
+  position: absolute; 
+  top: 1%;
+  left: 15%;
   display: none;
   cursor: pointer;
 }
@@ -110,7 +117,8 @@ div#menu div{
   cursor: pointer;
   text-align: center;
   position: relative;
-  font-family: Courgette;
+  font-family: Calibri;
+  font-variant: small-caps;
   left: 30%;
 }
 

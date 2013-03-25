@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
     <title>Matching fruits</title>
     <link rel="stylesheet" type="text/css" href="css/app.css">
-    <link href='http://fonts.googleapis.com/css?family=Courgette' rel='stylesheet' type='text/css'>
     <script type="text/javascript" defer src="js/lib/stats.js"></script>
     <script type="text/javascript" defer src="js/lib/l10n.js"></script>
     <script type="text/javascript" defer src="js/classes/Events.js"></script>
@@ -48,12 +47,13 @@
     </div>
 
     <div id="pause" class="overlay">
-      <div class="title" data-l10n-id="pause-title-l10n">Pause</div>
+      <div class="title">Pause</div>
       <div class="item" id="pause-resume-button" data-l10n-id="pause-btn-resume-l10n">Reprendre</div>
       <div class="item" id="pause-back-button" data-l10n-id="pause-btn-back-l10n">Revenir au menu principal</div>
     </div>
 
-    <img id="btn-pause" onclick="showPauseOverlay();" value="Pause" src="resources/images/btn-pause.png"/>
-
+    <img id="btn-pause" value="Pause" src="resources/images/btn-pause.png"/>
+    <img id="btn-reload" value="Reload" src="resources/images/btn-reload.png"/>
+    
   </body>
 </html>

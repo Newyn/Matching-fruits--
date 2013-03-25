@@ -46,11 +46,33 @@ Game.prototype.initialize = function() {
   eltMap.style.left = "calc(55% - "+eltMap.width / 2+"px)";
   
   eltBtnPause.style.width = eltMap.width / 10 + "px";
-  eltBtnPause.style.height = eltMap.height / 10 + "px";
+  eltBtnPause.style.height = eltMap.height / 9 + "px";
+  eltBtnPause.addEventListener("click", showPauseOverlay, false);
+  
+  eltBtnReload.style.width = eltMap.width / 10 + "px";
+  eltBtnReload.style.height = eltMap.height / 9 + "px";
+  eltBtnReload.addEventListener("click", this.reload, false);
   
   // Disable for the moment because it's annoying when we develop
   //window.addEventListener("blur", showPauseOverlay);
 
+  this.buildMap();
+  
+  eltMenu.style.display = "none";
+  eltMap.style.display = "block";
+  eltBtnPause.style.display = "block";
+  eltBtnReload.style.display = "block";
+  eltTimer.style.display = "block";
+  eltScore.style.display = "block";
+  document.body.style.backgroundColor = "#80D5FE";
+  
+  oTimer.start();
+}
+
+/**************************************************************************************************
+Builds the map
+**************************************************************************************************/
+Game.prototype.buildMap = function() {
   for (i=0;i<8;i++) {  
     for(j=0;j<8;j++) {
       do  {
@@ -76,15 +98,30 @@ Game.prototype.initialize = function() {
       eltMap.appendChild(eltFruit);
     }
   }
+}
+
+/**************************************************************************************************
+Reloads the game
+**************************************************************************************************/
+Game.prototype.reload = function() {
   
-  eltMenu.style.display = "none";
-  eltMap.style.display = "block";
-  eltBtnPause.style.display = "block";
-  eltTimer.style.display = "block";
-  eltScore.style.display = "block";
-  document.body.style.backgroundColor = "#80D5FE";
+  oGame.posRow = "";
+  oGame.posCol = "";
+  oGame.selectedCase = false;
+  oGame.listFruitsDestroy = [];
+  oGame.countTransitionEnd = 0;
+  oGame.oldId = "";
+  oGame.newId = ""; 
+  oGame.state = ""; 
+  oGame.currentScore = 0;
+  oGame.updateScore(0);
+  oTimer.reset();
   
-  oTimer.start();
+  while (eltMap.firstChild) {
+    eltMap.removeChild(eltMap.firstChild);
+  }
+  
+  oGame.buildMap();
 }
 
 /**************************************************************************************************
@@ -368,10 +405,21 @@ Game.prototype.fall = function() {
 
   var tmp = document.getElementsByClassName("fruit");
   tmp.reverse();
-  
+ 
   for (var i=0; i < tmp.length; i++) {
     tmp[i].setAttribute('onclick', 'handleClick('+tmp[i].id.substring(5,6)+','+tmp[i].id.substring(7,8)+')');
     translate(document.getElementById("fruit"+tmp[i].id.substring(5,6)+"_"+tmp[i].id.substring(7,8)), 10, 400);
+  }
+  
+  for (var i = 1; i < 8; i++) {
+    for (var j = 0; j < 8; j++) {
+      if (document.getElementById("fruit"+i+"_"+j).src.indexOf("destroy.png") !== -1) {
+        var tmp = i - 1;
+        if (document.getElementById("fruit"+tmp+"_"+j).src.indexOf("destroy.png") == -1) {
+          this.fall();
+        }
+      }
+    }
   }
   
   setTimeout("oGame.regenerate()",350);
@@ -387,7 +435,6 @@ Game.prototype.regenerate = function() {
   
   for (var i=0; i < tmp.length; i++) {
     if (document.getElementById(tmp[i].id).src.indexOf("destroy.png") !== -1) {
-      console.log(document.getElementById(tmp[i].id));
       document.getElementById(tmp[i].id).style.top = "-200px";
       document.getElementById(tmp[i].id).style.opacity = "1";
       
@@ -413,8 +460,6 @@ Game.prototype.regenerate = function() {
       translate(document.getElementById(tmp[i].id), 10, 400);
     }
   }
-  
-  console.log(this.checkMovement());
 }
 
 /**************************************************************************************************

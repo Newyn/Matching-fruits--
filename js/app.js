@@ -46,6 +46,7 @@ var eltBtnScores = document.getElementById("btn-scores");
 var eltBtnOptions = document.getElementById("btn-options");
 var eltBtnLang = document.getElementById("btn-lang");
 var eltBtnPause = document.getElementById("btn-pause");
+var eltBtnReload = document.getElementById("btn-reload");
 var eltPauseOverlay = document.getElementById("pause");
 var eltPauseResumeButton = document.getElementById("pause-resume-button");
 var eltPauseBackButton = document.getElementById("pause-back-button");
