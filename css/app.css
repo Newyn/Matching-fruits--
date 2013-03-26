@@ -94,25 +94,34 @@ div#menu {
   position: absolute;
 }
 
+div#menu div, div#game div, div#scores div {
+  font-size: 32px;
+  color: gray;
+  cursor: pointer;
+  text-align: center;
+  position: relative;
+  font-family: Calibri;
+  font-variant: small-caps;
+  background-repeat:repeat-x;
+  width: 55%;
+  border-radius: 20%;
+  margin: auto;
+}
+
 div#menu div#btn-play {
   background-image: url("../resources/images/bg-btn-play.png");
-  background-repeat:repeat-x;
-  width: 40%;
-  border-radius: 20%;
 }
 
 div#menu div#btn-scores {
   background-image: url("../resources/images/bg-btn-scores.png");
-  background-repeat:repeat-x;
-  width: 40%;
-  border-radius: 20%;
+}
+
+div#menu div#btn-achievements {
+  background-image: url("../resources/images/bg-btn-achievements.png");
 }
 
 div#menu div#btn-options {
   background-image: url("../resources/images/bg-btn-options.png");
-  background-repeat:repeat-x;
-  width: 40%;
-  border-radius: 20%;
 }
 
 div#game {
@@ -131,6 +140,7 @@ div#game div#btn-level {
   width: 40%;
   border-radius: 20%;
   font-size: 25px;
+  margin: auto;
 }
 
 div#game div#btn-time-trial {
@@ -138,8 +148,8 @@ div#game div#btn-time-trial {
   background-repeat:repeat-x;
   width: 60%;
   border-radius: 20%;
-  left: 20%;
   font-size: 25px;
+  margin: auto;
 }
 
 div#scores {
@@ -152,14 +162,34 @@ div#scores {
   position: absolute;
 }
 
+div#scores div#btn-level-scores {
+  background-image: url("../resources/images/bg-btn-scores.png");
+  background-repeat:repeat-x;
+  width: 40%;
+  border-radius: 20%;
+  font-size: 25px;
+  margin: auto;
+}
+
+div#scores div#btn-time-trial-scores {
+  background-image: url("../resources/images/bg-btn-options.png");
+  background-repeat:repeat-x;
+  width: 60%;
+  border-radius: 20%;
+  font-size: 25px;
+  margin: auto;
+}
+
 div#scores div#scores-list {
   position: relative;
-  top: 60%;
+  top: 55%;
   width: 40%;
   margin: auto;
   text-align: center;
   font-weight: bold;
   color: orange;
+  font-size: 20px;
+  cursor: default;
 }
 div#options {
   background-image: url("../resources/backgrounds/options-fr.jpg");
@@ -176,17 +206,6 @@ div#options img#btn-lang {
   bottom: 0;
   right: 0;
   cursor: pointer;
-}
-
-div#menu div, div#game div {
-  font-size: 32px;
-  color: gray;
-  cursor: pointer;
-  text-align: center;
-  position: relative;
-  font-family: Calibri;
-  font-variant: small-caps;
-  left: 30%;
 }
 
 img.arrow-previous, img.arrow-previous-play {

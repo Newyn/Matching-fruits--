@@ -21,11 +21,14 @@ Menu.prototype = {
     fadeIn(eltMenu, 1);
     
     // Set the menu properties
-    eltBtnPlay.style.top = "40%";
-    eltBtnScores.style.top = "45%";
-    eltBtnOptions.style.top = "50%";
+    eltBtnPlay.style.top = "34%";
+    eltBtnScores.style.top = "39%";
+    eltBtnAchievements.style.top = "44%";
+    eltBtnOptions.style.top = "49%";
     eltBtnLevel.style.top = "55%";
     eltBtnTimeTrial.style.top = "60%";
+    eltBtnLevelScores.style.top = "55%";
+    eltBtnTimeTrialScores.style.top = "60%";
     
     // Set event listener
     eltBtnPlay.addEventListener("click", oMenu.clickTabPlay, false);
@@ -34,6 +37,7 @@ Menu.prototype = {
     eltBtnLang.addEventListener("click", oMenu.setLanguage, false);
     eltBtnLevel.addEventListener("click", oMenu.clickTabLevel, false);
     eltBtnTimeTrial.addEventListener("click", oMenu.clickTabTimeTrial, false);
+    eltBtnTimeTrialScores.addEventListener("click", oMenu.clickTabTimeTrialScores, false);
     
     var listArrowPrevious = document.getElementsByClassName("arrow-previous");
     
@@ -47,6 +51,10 @@ Menu.prototype = {
     eltGame.style.display = "none";
     eltOptions.style.display = "none";
     eltScores.style.display = "none";
+    eltScoresList.style.display = "none";
+    eltScores.style.backgroundImage = "url(resources/backgrounds/scores.jpg)";
+    eltBtnLevelScores.style.display = "block";
+    eltBtnTimeTrialScores.style.display = "block";
   },
   // Changes the language of the application. FR and EN only available for the moment
   setLanguage: function setLanguage() {
@@ -79,11 +87,21 @@ Menu.prototype = {
     oGame.initialize();
     oGame.setTimeTrial();
   },
+  clickTabTimeTrialScores: function clickTabTimeTrialScores() {
+    if (eltBtnLang.src.indexOf("btn-lang-fr") !== -1) {
+      eltScores.style.backgroundImage = "url(resources/backgrounds/scores-time-trial-fr.jpg)";
+    } else if (eltBtnLang.src.indexOf("btn-lang-en") !== -1) {
+      eltScores.style.backgroundImage = "url(resources/backgrounds/scores-time-trial-en.jpg)";
+    }
+    eltBtnLevelScores.style.display = "none";
+    eltBtnTimeTrialScores.style.display = "none";
+    eltScoresList.style.display = "block";
+    readAllScores();
+  },
   // Handles click on the tab "Scores"
   clickTabScores: function clickTabScores() {
     eltMenu.style.display = "none";
     eltScores.style.display = "block";
-    readAllScores();
   },
   // Handles click on the tab "Options"
   clickTabOptions: function clickTabOptions() {

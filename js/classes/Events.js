@@ -2,9 +2,10 @@
 Call on the onResize() event for resizing the map
 **************************************************************************************************/
 function resize() {
-  eltBtnPlay.style.top = "40%";
-  eltBtnScores.style.top = "45%";
-  eltBtnOptions.style.top = "50%";
+  eltBtnPlay.style.top = "34%";
+  eltBtnScores.style.top = "39%";
+  eltBtnAchievements.style.top = "44%";
+  eltBtnOptions.style.top = "49%";
 
   eltMap.width = Math.min(document.documentElement.clientWidth, document.documentElement.clientHeight);
   eltMap.height = Math.min(document.documentElement.clientWidth, document.documentElement.clientHeight);
