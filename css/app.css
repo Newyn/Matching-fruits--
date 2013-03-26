@@ -73,6 +73,7 @@ img#btn-reload {
   right: 2%;
   display: none;
   cursor: pointer;
+  z-index: 1;
 }
 
 div#launch-screen {
@@ -188,7 +189,7 @@ div#menu div, div#game div {
   left: 30%;
 }
 
-img.arrow-previous {
+img.arrow-previous, img.arrow-previous-play {
   position: absolute;
   bottom: 2%;
   left: 0;

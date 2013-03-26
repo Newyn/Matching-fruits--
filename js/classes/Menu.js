@@ -35,10 +35,10 @@ Menu.prototype = {
     eltBtnLevel.addEventListener("click", oMenu.clickTabLevel, false);
     eltBtnTimeTrial.addEventListener("click", oMenu.clickTabTimeTrial, false);
     
-    var tmp = document.getElementsByClassName("arrow-previous");
+    var listArrowPrevious = document.getElementsByClassName("arrow-previous");
     
-    for (var i = 0; i < tmp.length; i++) {
-      tmp[i].addEventListener("click", oMenu.previous, false);
+    for (var i = 0; i < listArrowPrevious.length; i++) {
+      listArrowPrevious[i].addEventListener("click", oMenu.previous, false);
     }
   },
   // Previous function

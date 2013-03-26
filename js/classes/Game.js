@@ -55,9 +55,17 @@ Game.prototype.initialize = function() {
   eltBtnReload.style.height = eltMap.height / 9 + "px";
   eltBtnReload.addEventListener("click", this.reload, false);
   
+  eltPauseResumeButton.addEventListener("click", oGame.resume, false);
+  
+  var listArrowPreviousPlay = document.getElementsByClassName("arrow-previous-play");
+  
+  for (var i = 0; i < listArrowPreviousPlay.length; i++) {
+    listArrowPreviousPlay[i].addEventListener("click", this.previous, false);
+  }
+  
   // Disable for the moment because it's annoying when we develop
   //window.addEventListener("blur", showPauseOverlay);
-
+  
   this.buildMap();
   
   eltGame.style.display = "none";
@@ -100,37 +108,6 @@ Game.prototype.buildMap = function() {
       eltMap.appendChild(eltFruit);
     }
   }
-}
-
-/**************************************************************************************************
-Reloads the game
-**************************************************************************************************/
-Game.prototype.reload = function() {
-  
-  oGame.posRow = "";
-  oGame.posCol = "";
-  oGame.selectedCase = false;
-  oGame.listFruitsDestroy = [];
-  oGame.countTransitionEnd = 0;
-  oGame.oldId = "";
-  oGame.newId = ""; 
-  oGame.state = "";
-  oGame.currentScore = 0;
-  oGame.updateScore(0);
-  if (oGame.mode == "time-trial") {
-    oTimer.tSecondsElapsed = 0;
-    oTimer.secondsElapsed = 11;
-    oTimer.minutesElapsed = 0;
-  } else {
-    oTimer.reset();
-  }
-  
-  
-  while (eltMap.firstChild) {
-    eltMap.removeChild(eltMap.firstChild);
-  }
-  
-  oGame.buildMap();
 }
 
 /**************************************************************************************************
@@ -496,11 +473,15 @@ Game.prototype.updateScore = function(update) {
 Leaves the game
 **************************************************************************************************/
 Game.prototype.leave = function() {
-  eltMenu.style.display = "block";
+  eltMenu.style.display = "none";
+  eltBtnReload.style.display = "none";
   eltGame.style.display = "none";
   eltOptions.style.display = "none";
   eltPauseOverlay.style.display = "none";
+  eltEndOverlay.style.display = "none";
+  eltScore.innerHTML = "00000000";
   oTimer.reset();
+  oTimer.pause();
   while (eltMap.firstChild) {
     eltMap.removeChild(eltMap.firstChild);
   }
@@ -541,8 +522,6 @@ Game.prototype.pause = function() {
   eltScore.style.display = "none";
   eltTimer.style.display = "none";
   eltPauseOverlay.style.display = "block";
-  eltPauseResumeButton.addEventListener("click", oGame.resume, false);
-  eltPauseBackButton.addEventListener("click", oGame.leave, false);
 }
 
 /**************************************************************************************************
@@ -553,4 +532,45 @@ Game.prototype.resume = function() {
   eltPauseOverlay.style.display = "none";
   eltScore.style.display = "block";
   eltTimer.style.display = "block";
+}
+
+
+/**************************************************************************************************
+Reloads the game
+**************************************************************************************************/
+Game.prototype.reload = function() {
+  eltPauseOverlay.style.display = "none";
+  eltEndOverlay.style.display = "none";
+  eltScore.style.display = "block";
+  eltTimer.style.display = "block"; 
+  oGame.posRow = "";
+  oGame.posCol = "";
+  oGame.selectedCase = false;
+  oGame.listFruitsDestroy = [];
+  oGame.countTransitionEnd = 0;
+  oGame.oldId = "";
+  oGame.newId = ""; 
+  oGame.state = "";
+  oGame.currentScore = 0;
+  oGame.updateScore(0);
+  
+  if (oGame.mode == "time-trial") {
+    oTimer.tSecondsElapsed = 0;
+    oTimer.secondsElapsed = 11;
+    oTimer.minutesElapsed = 0;
+    oTimer.start();
+  } else {
+    oTimer.reset();
+  }
+  
+  while (eltMap.firstChild) {
+    eltMap.removeChild(eltMap.firstChild);
+  }
+  
+  oGame.buildMap();
+}
+
+Game.prototype.previous = function() {
+  oGame.leave();
+  eltGame.style.display = "block";
 }
