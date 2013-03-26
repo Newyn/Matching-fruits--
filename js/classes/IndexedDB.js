@@ -83,7 +83,9 @@ function readAllScores(){
         scores.reverse();
         
         for (var i = 0; i < scores.length; i++) {
-          eltScoresList.innerHTML += scores[i]+"<br />";
+          if (i < 5) {
+            eltScoresList.innerHTML += i + 1 +" - <span class=\"scores-list-item\">"+ scores[i] + "</span><br />";
+          }
         }
       }
 		}

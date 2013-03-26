@@ -191,6 +191,11 @@ div#scores div#scores-list {
   font-size: 20px;
   cursor: default;
 }
+
+div#scores div#scores-list span.scores-list-item {
+  color: orange;
+}
+
 div#options {
   background-image: url("../resources/backgrounds/options-fr.jpg");
 	-webkit-background-size: 100% 100%;
