@@ -67,6 +67,8 @@ function readAllScores(){
 		var db = event.target.result; 
 		var store = db.transaction(["save"], "readonly").objectStore("save");
 
+    eltScoresList.innerHTML = "";
+    
 		store.openCursor().onsuccess = function (event) {
       var cursor = event.target.result;
 
