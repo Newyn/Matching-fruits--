@@ -20,19 +20,43 @@ div#pause {
 }
 
 div#end {
+  background-image: url("../resources/backgrounds/end-fr.jpg");
+	-webkit-background-size: 100% 100%;
+	-moz-background-size: 100% 100%;
+	-o-background-size: 100% 100%;
+  background-size: 100% 100%;
   display: none;
   color: orange;
   background-color: #80D5FE;
 }
 
+div#end div#end-score {
+  display: none;
+  position: relative;
+  top: 60%;
+  width: 40%;
+  margin: auto;
+  text-align: center;
+  font-weight: bold;
+}
+
 div#timer {
-  position: absolute;
-  top: 1%;
-  right: 2%;
+  position: relative;
   color: orange;
   font-weight: bold;
   cursor: default;
   display: none;
+  text-align: center;
+  margin-top: 5%;
+}
+
+div#score {
+  position: relative;
+  color: orange;
+  font-weight: bold;
+  cursor: default;
+  display: none;
+  text-align: center;
 }
 
 img#btn-pause {
@@ -46,7 +70,7 @@ img#btn-pause {
 img#btn-reload {
   position: absolute; 
   top: 1%;
-  left: 15%;
+  right: 2%;
   display: none;
   cursor: pointer;
 }
@@ -127,6 +151,15 @@ div#scores {
   position: absolute;
 }
 
+div#scores div#scores-list {
+  position: relative;
+  top: 60%;
+  width: 40%;
+  margin: auto;
+  text-align: center;
+  font-weight: bold;
+  color: orange;
+}
 div#options {
   background-image: url("../resources/backgrounds/options-fr.jpg");
 	-webkit-background-size: 100% 100%;
@@ -153,16 +186,6 @@ div#menu div, div#game div {
   font-family: Calibri;
   font-variant: small-caps;
   left: 30%;
-}
-
-div#score {
-  position: absolute;
-  top: 8%;
-  right: 2%;
-  color: orange;
-  font-weight: bold;
-  cursor: default;
-  display: none;
 }
 
 img.arrow-previous {

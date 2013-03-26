@@ -12,7 +12,9 @@ function resize() {
   eltMap.style.left = "calc(55% - "+eltMap.width / 2+"px)";
   
   eltBtnPause.style.width = eltMap.width / 10 + "px";
-  eltBtnPause.style.height = eltMap.height / 10 + "px";
+  eltBtnPause.style.height = eltMap.height / 9 + "px";
+  eltBtnPause.style.width = eltMap.width / 10 + "px";
+  eltBtnPause.style.height = eltMap.height / 9 + "px";
   
   var tmp = [];
   var nbCol = 0;
@@ -267,22 +269,4 @@ function updateTransform(e) {
       oGame.fall();
     }
   }
-}
-
-/**************************************************************************************************
-Shows the pause screen
-**************************************************************************************************/
-function showPauseOverlay() {
-  oTimer.pause();
-  eltPauseOverlay.style.display = "block";
-  eltPauseResumeButton.addEventListener("click", resume, false);
-  eltPauseBackButton.addEventListener("click", oGame.leave, false);
-}
-
-/**************************************************************************************************
-Resumes the game
-**************************************************************************************************/
-function resume() {
-  oTimer.start();
-  eltPauseOverlay.style.display = "none";
 }

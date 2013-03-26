@@ -49,7 +49,7 @@ Game.prototype.initialize = function() {
   
   eltBtnPause.style.width = eltMap.width / 10 + "px";
   eltBtnPause.style.height = eltMap.height / 9 + "px";
-  eltBtnPause.addEventListener("click", showPauseOverlay, false);
+  eltBtnPause.addEventListener("click", this.pause, false);
   
   eltBtnReload.style.width = eltMap.width / 10 + "px";
   eltBtnReload.style.height = eltMap.height / 9 + "px";
@@ -114,10 +114,17 @@ Game.prototype.reload = function() {
   oGame.countTransitionEnd = 0;
   oGame.oldId = "";
   oGame.newId = ""; 
-  oGame.state = ""; 
+  oGame.state = "";
   oGame.currentScore = 0;
   oGame.updateScore(0);
-  oTimer.reset();
+  if (oGame.mode == "time-trial") {
+    oTimer.tSecondsElapsed = 0;
+    oTimer.secondsElapsed = 11;
+    oTimer.minutesElapsed = 0;
+  } else {
+    oTimer.reset();
+  }
+  
   
   while (eltMap.firstChild) {
     eltMap.removeChild(eltMap.firstChild);
@@ -509,7 +516,7 @@ Game.prototype.setTimeTrial = function() {
   oTimer.reset();
   oTimer.state = "neg";
   oTimer.tSecondsElapsed = 0;
-  oTimer.secondsElapsed = 10;
+  oTimer.secondsElapsed = 11;
   oTimer.minutesElapsed = 0;
   oTimer.start();
 }
@@ -518,5 +525,32 @@ Game.prototype.setTimeTrial = function() {
 End of the game
 **************************************************************************************************/
 Game.prototype.end = function() {
+  eltScore.style.display = "none";
+  eltTimer.style.display = "none";
   eltEndOverlay.style.display = "block";
+  eltEndScore.style.display = "block";
+  eltEndScore.innerHTML = eltScore.innerHTML;
+  saveScore(eltEndScore.innerHTML, "time-trial");
+}
+
+/**************************************************************************************************
+Pauses of the game
+**************************************************************************************************/
+Game.prototype.pause = function() {
+  oTimer.pause();
+  eltScore.style.display = "none";
+  eltTimer.style.display = "none";
+  eltPauseOverlay.style.display = "block";
+  eltPauseResumeButton.addEventListener("click", oGame.resume, false);
+  eltPauseBackButton.addEventListener("click", oGame.leave, false);
+}
+
+/**************************************************************************************************
+Resumes of the game
+**************************************************************************************************/
+Game.prototype.resume = function() {
+  oTimer.start();
+  eltPauseOverlay.style.display = "none";
+  eltScore.style.display = "block";
+  eltTimer.style.display = "block";
 }

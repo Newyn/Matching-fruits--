@@ -55,11 +55,13 @@ Menu.prototype = {
       eltBtnLang.src = "resources/images/btn-lang-en.png";
       eltGame.style.backgroundImage = "url(resources/backgrounds/game-en.jpg)";
       eltOptions.style.backgroundImage = "url(resources/backgrounds/options-en.jpg)";
+      eltEndOverlay.style.backgroundImage = "url(resources/backgrounds/end-en.jpg)";
     } else if (eltBtnLang.src.indexOf("btn-lang-en") !== -1) {
       document.webL10n.setLanguage("fr");
       eltBtnLang.src ="resources/images/btn-lang-fr.png";
       eltGame.style.backgroundImage = "url(resources/backgrounds/game-fr.jpg)";
       eltOptions.style.backgroundImage = "url(resources/backgrounds/options-fr.jpg)";
+      eltEndOverlay.style.backgroundImage = "url(resources/backgrounds/end-fr.jpg)";
     }
   },
   // Handles click on the tab "Jouer" / "Play"
@@ -81,6 +83,7 @@ Menu.prototype = {
   clickTabScores: function clickTabScores() {
     eltMenu.style.display = "none";
     eltScores.style.display = "block";
+    readAllScores();
   },
   // Handles click on the tab "Options"
   clickTabOptions: function clickTabOptions() {
