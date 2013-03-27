@@ -118,8 +118,8 @@ function translateX(elem, shift, speed) {
   var left = parseInt(elem.style.left.replace("px", ""));
   var max = col * parseInt(width);
   
-  if (lef != max) {
-    if (lef < max) {
+  if (left != max) {
+    if (left < max) {
       var fade = setInterval(function(){
         elem.style.left = left + shift +"px";
         left = parseInt(elem.style.left.replace("px", ""));
