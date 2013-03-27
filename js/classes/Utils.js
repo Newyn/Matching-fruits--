@@ -72,9 +72,9 @@ function fadeIn(elem, speed){
 }
 
 /**************************************************************************************************
-Translate elem
+Translate bottom or top an element
 **************************************************************************************************/
-function translate(elem, shift, speed) {
+function translateY(elem, shift, speed) {
   oGame.state = "fall";
 
   var row = parseInt(elem.id.substring(5,6));
@@ -99,6 +99,42 @@ function translate(elem, shift, speed) {
         top = parseInt(elem.style.top.replace("px", ""));
         if (top < max) {
           elem.style.top = max +"px";
+          clearInterval(fade);  
+          oGame.state = "";
+        }
+      }, speed / 50);
+    }
+  }
+}
+
+/**************************************************************************************************
+Translate left or right an element
+**************************************************************************************************/
+function translateX(elem, shift, speed) {
+  oGame.state = "fall";
+
+  var col = parseInt(elem.id.substring(7,8));
+  var width = document.getElementById("fruit"+elem.id.substring(5,6)+"_"+elem.id.substring(7,8)).width;
+  var left = parseInt(elem.style.left.replace("px", ""));
+  var max = col * parseInt(width);
+  
+  if (lef != max) {
+    if (lef < max) {
+      var fade = setInterval(function(){
+        elem.style.left = left + shift +"px";
+        left = parseInt(elem.style.left.replace("px", ""));
+        if(left > max) {
+          elem.style.left = max +"px";
+          clearInterval(fade);  
+          oGame.state = "";
+        }
+      }, speed / 50);
+    } else {
+      var fade = setInterval(function(){
+        elem.style.left = left - shift +"px";
+        left = parseInt(elem.style.left.replace("px", ""));
+        if (left < max) {
+          elem.style.left = max +"px";
           clearInterval(fade);  
           oGame.state = "";
         }

@@ -394,7 +394,7 @@ Game.prototype.fall = function() {
  
   for (var i=0; i < tmp.length; i++) {
     tmp[i].setAttribute('onclick', 'handleClick('+tmp[i].id.substring(5,6)+','+tmp[i].id.substring(7,8)+')');
-    translate(document.getElementById("fruit"+tmp[i].id.substring(5,6)+"_"+tmp[i].id.substring(7,8)), 10, 400);
+    translateY(document.getElementById("fruit"+tmp[i].id.substring(5,6)+"_"+tmp[i].id.substring(7,8)), 10, 400);
   }
   
   for (var i = 1; i < 8; i++) {
@@ -443,7 +443,7 @@ Game.prototype.regenerate = function() {
         this.checkMovement();
       }
       
-      translate(document.getElementById(tmp[i].id), 10, 400);
+      translateY(document.getElementById(tmp[i].id), 10, 400);
     }
   }
 }
