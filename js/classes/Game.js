@@ -373,14 +373,16 @@ Game.prototype.destroy = function() {
 Sends down the fruit if there are empty once there was destruction
 **************************************************************************************************/
 Game.prototype.fall = function() {
-
   var j = 7;
+  
+  console.log("NEW");
   
   for (var i=0; i < 8; i++) {
     while ((j > 0) &&  (document.getElementById("fruit"+j+"_"+i).src.indexOf("destroy.png") == -1)) {
       j--;
     }
 
+    console.log("fruit"+j+"_"+i+"==========>"+"fruit0_"+i);
     document.getElementById("fruit"+j+"_"+i).id = "fruit0_"+i;
     document.getElementById("fruit0_"+i).style.opacity = 1;
     document.getElementById("fruit0_"+i).setAttribute('onclick', 'handleClick(0,'+i+')');
@@ -390,6 +392,7 @@ Game.prototype.fall = function() {
     if (j != 0) {
       while (j >= 0) {
         var tmp = j + 1;
+        console.log("fruit"+j+"_"+i+"==========>"+"fruit"+tmp+"_"+i);
         document.getElementById("fruit"+j+"_"+i).id = "fruit"+tmp+"_"+i;
         document.getElementById("fruit"+tmp+"_"+i).style.opacity = 1;
         document.getElementById("fruit"+tmp+"_"+i).setAttribute('onclick', 'handleClick('+tmp+','+i+')');
@@ -401,7 +404,7 @@ Game.prototype.fall = function() {
   }
   
   var tmp = document.getElementsByClassName("fruit");
-  tmp.reverse();
+  //tmp.reverse();
  
   for (var i=0; i < tmp.length; i++) {
     tmp[i].setAttribute('onclick', 'handleClick('+tmp[i].id.substring(5,6)+','+tmp[i].id.substring(7,8)+')');
@@ -410,6 +413,9 @@ Game.prototype.fall = function() {
   
   for (var i = 1; i < 8; i++) {
     for (var j = 0; j < 8; j++) {
+      
+      if(document.getElementById("fruit"+i+"_"+j) == null){alert("i = "+i+" / j = "+j);}
+      
       if (document.getElementById("fruit"+i+"_"+j).src.indexOf("destroy.png") !== -1) {
         var tmp = i - 1;
         if (document.getElementById("fruit"+tmp+"_"+j).src.indexOf("destroy.png") == -1) {
@@ -428,7 +434,7 @@ Add new fruits to the map once it has been destroyed
 Game.prototype.regenerate = function() {
   
   var tmp = document.getElementsByClassName("fruit");
-  tmp.reverse();
+  //tmp.reverse();
   
   for (var i=0; i < tmp.length; i++) {
     if (document.getElementById(tmp[i].id).src.indexOf("destroy.png") !== -1) {

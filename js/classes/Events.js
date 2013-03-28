@@ -174,8 +174,8 @@ function updateTransform(e) {
         eltMap.appendChild(eltFruit);
         eltMap.appendChild(eltFruit2);
         
-         oGame.listFruitsDestroy = [];
-        oGame.fall();
+        oGame.listFruitsDestroy = [];
+        //oGame.fall();
        
       } else {
         var oldTop = document.getElementById(oGame.newId).style.top;
@@ -221,7 +221,7 @@ function updateTransform(e) {
         eltMap.appendChild(eltFruit2);
         
         oGame.listFruitsDestroy = [];
-        oGame.fall();
+        //oGame.fall();
       }
       oGame.countTransitionEnd++;
     } else if (oGame.state == "fall") {    
@@ -273,7 +273,7 @@ function updateTransform(e) {
       eltMap.appendChild(eltFruit2);*/
       
       oGame.listFruitsDestroy = [];
-      oGame.fall();
+      //oGame.fall();
     }
   }
 }
