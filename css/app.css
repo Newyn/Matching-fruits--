@@ -21,9 +21,9 @@ div#pause {
 
 div#end {
   background-image: url("../resources/backgrounds/end-fr.jpg");
-	-webkit-background-size: 100% 100%;
-	-moz-background-size: 100% 100%;
-	-o-background-size: 100% 100%;
+  -webkit-background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
+  -o-background-size: 100% 100%;
   background-size: 100% 100%;
   display: none;
   color: orange;
@@ -60,6 +60,7 @@ div#timer {
   display: none;
   text-align: center;
   margin-top: 5%;
+  pointer-events: none;
 }
 
 div#score {
@@ -69,10 +70,11 @@ div#score {
   cursor: default;
   display: none;
   text-align: center;
+  pointer-events: none;
 }
 
 img#btn-pause {
-  position: absolute; 
+  position: absolute;
   top: 1%;
   left: 2%;
   display: none;
@@ -80,7 +82,7 @@ img#btn-pause {
 }
 
 img#btn-reload {
-  position: absolute; 
+  position: absolute;
   top: 1%;
   right: 2%;
   display: none;
@@ -90,17 +92,17 @@ img#btn-reload {
 
 div#launch-screen {
   background-image: url("../resources/backgrounds/launcher.jpg");
-	-webkit-background-size: 100% 100%;
-	-moz-background-size: 100% 100%;
-	-o-background-size: 100% 100%;
+  -webkit-background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
+  -o-background-size: 100% 100%;
   background-size: 100% 100%;
 }
 
 div#menu {
   background-image: url("../resources/backgrounds/menu.jpg");
-	-webkit-background-size: 100% 100%;
-	-moz-background-size: 100% 100%;
-	-o-background-size: 100% 100%;
+  -webkit-background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
+  -o-background-size: 100% 100%;
   background-size: 100% 100%;
   display: none;
   position: absolute;
@@ -138,9 +140,9 @@ div#menu div#btn-options {
 
 div#game {
   background-image: url("../resources/backgrounds/game-fr.jpg");
-	-webkit-background-size: 100% 100%;
-	-moz-background-size: 100% 100%;
-	-o-background-size: 100% 100%;
+  -webkit-background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
+  -o-background-size: 100% 100%;
   background-size: 100% 100%;
   display: none;
   position: absolute;
@@ -166,9 +168,9 @@ div#game div#btn-time-trial {
 
 div#scores {
   background-image: url("../resources/backgrounds/scores.jpg");
-	-webkit-background-size: 100% 100%;
-	-moz-background-size: 100% 100%;
-	-o-background-size: 100% 100%;
+  -webkit-background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
+  -o-background-size: 100% 100%;
   background-size: 100% 100%;
   display: none;
   position: absolute;
@@ -210,9 +212,9 @@ div#scores div#scores-list span.scores-list-item {
 
 div#options {
   background-image: url("../resources/backgrounds/options-fr.jpg");
-	-webkit-background-size: 100% 100%;
-	-moz-background-size: 100% 100%;
-	-o-background-size: 100% 100%;
+  -webkit-background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
+  -o-background-size: 100% 100%;
   background-size: 100% 100%;
   display: none;
   position: absolute;

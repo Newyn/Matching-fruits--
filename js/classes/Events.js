@@ -11,12 +11,12 @@ function resize() {
   eltMap.height = Math.min(document.documentElement.clientWidth, document.documentElement.clientHeight);
   eltMap.style.top = "calc(55% - "+eltMap.width / 2+"px)";
   eltMap.style.left = "calc(55% - "+eltMap.width / 2+"px)";
-  
+
   eltBtnPause.style.width = eltMap.width / 10 + "px";
   eltBtnPause.style.height = eltMap.height / 9 + "px";
   eltBtnPause.style.width = eltMap.width / 10 + "px";
   eltBtnPause.style.height = eltMap.height / 9 + "px";
-  
+
   var tmp = [];
   var nbCol = 0;
   var nbRow = 0;
@@ -72,22 +72,22 @@ function handleClick(row, col) {
 
       oldFruit.setAttribute('onclick', 'handleClick('+newId.substring(5,6)+','+newId.substring(7,8)+')');
       newFruit.setAttribute('onclick', 'handleClick('+oldId.substring(5,6)+','+oldId.substring(7,8)+')');
-      
+
       oGame.check();
 
       if (oGame.listFruitsDestroy.length > 0) {
         for (var i=0;i<oGame.listFruitsDestroy.length;i++) {
-          fadeOut(document.getElementById(oGame.listFruitsDestroy[i].id),50);    
+          fadeOut(document.getElementById(oGame.listFruitsDestroy[i].id),50);
           oGame.updateScore(1000);
         }
       } else {
         console.log("Fruits destroy == 0");
         oldFruit.id = oldId;
-        newFruit.id = newId; 
-        
+        newFruit.id = newId;
+
         oldFruit.setAttribute('onclick', 'handleClick('+oldId.substring(5,6)+','+oldId.substring(7,8)+')');
         newFruit.setAttribute('onclick', 'handleClick('+newId.substring(5,6)+','+newId.substring(7,8)+')');
-      
+
         document.getElementById(oldId).style.animation = "";
       }
 
@@ -173,10 +173,10 @@ function updateTransform(e) {
 
         eltMap.appendChild(eltFruit);
         eltMap.appendChild(eltFruit2);
-        
+
         oGame.listFruitsDestroy = [];
-        //oGame.fall();
-       
+        oGame.fall();
+
       } else {
         var oldTop = document.getElementById(oGame.newId).style.top;
         var oldLeft = document.getElementById(oGame.newId).style.left;
@@ -219,13 +219,13 @@ function updateTransform(e) {
 
         eltMap.appendChild(eltFruit);
         eltMap.appendChild(eltFruit2);
-        
+
         oGame.listFruitsDestroy = [];
-        //oGame.fall();
+        oGame.fall();
       }
       oGame.countTransitionEnd++;
-    } else if (oGame.state == "fall") {    
-      /*var oldId = this.id;      
+    } else if (oGame.state == "fall") {
+      /*var oldId = this.id;
       var row = parseInt(oldId.substring(5,6)) + 1;
       var col = oldId.substring(7,8);
       var newId = "fruit"+row+"_"+col;
@@ -237,10 +237,10 @@ function updateTransform(e) {
       var newTop = document.getElementById(newId).style.top;
       var newLeft = document.getElementById(newId).style.left;
       var newSrc = document.getElementById(newId).src;
-      
+
       eltMap.removeChild(document.getElementById(this.id));
       eltMap.removeChild(document.getElementById(newId));
-      
+
       var eltFruit = document.createElement("img");
       eltFruit.className = "fruit";
       eltFruit.id = newId;
@@ -271,9 +271,9 @@ function updateTransform(e) {
 
       eltMap.appendChild(eltFruit);
       eltMap.appendChild(eltFruit2);*/
-      
+
       oGame.listFruitsDestroy = [];
-      //oGame.fall();
+      oGame.fall();
     }
   }
 }
