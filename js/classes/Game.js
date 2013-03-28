@@ -360,6 +360,15 @@ Game.prototype.checkMovement = function() {
   return false;
 }
 
+Game.prototype.destroy = function() {
+  for (var i=0;i<this.listFruitsDestroy.length;i++) {
+    fadeOut(document.getElementById(this.listFruitsDestroy[i].id),50);    
+    this.updateScore(1000);
+  }
+  
+  oGame.listFruitsDestroy = [];
+}
+
 /**************************************************************************************************
 Sends down the fruit if there are empty once there was destruction
 **************************************************************************************************/
@@ -433,21 +442,17 @@ Game.prototype.regenerate = function() {
       }
       
       document.getElementById(tmp[i].id).src = listFruitImages[rand];
-      
-      while (this.checkMovement() == false) {
-        rand = 0;
-      
-        while (rand == 0) {
-          rand = Math.floor(Math.random()*8);
-        }
-      
-        document.getElementById(tmp[i].id).src = listFruitImages[rand];
-        this.checkMovement();
-      }
-      
+
       translate(document.getElementById(tmp[i].id), 10, 400);
     }
   }
+  
+  /*this.check();
+  
+  if (this.listFruitsDestroy.length > 0) {
+    this.destroy();
+    this.fall();
+  }*/
 }
 
 /**************************************************************************************************
@@ -500,8 +505,8 @@ Game.prototype.setTimeTrial = function() {
   oTimer.reset();
   oTimer.state = "neg";
   oTimer.tSecondsElapsed = 0;
-  oTimer.secondsElapsed = 11;
-  oTimer.minutesElapsed = 0;
+  oTimer.secondsElapsed = 0;
+  oTimer.minutesElapsed = 5;
   oTimer.start();
 }
 

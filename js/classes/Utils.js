@@ -38,7 +38,7 @@ function dump(arr,level) {
 Fade out effect
 **************************************************************************************************/
 function fadeOut(elem, speed){
-  if(!elem.style.opacity){
+  /*if(!elem.style.opacity){
     elem.style.opacity = 1;
   }
   var fade = setInterval(function(){
@@ -52,7 +52,8 @@ function fadeOut(elem, speed){
         elem.src = listFruitImages[8];
       }
     }
-  }, speed / 50);
+  }, speed / 50);*/
+  elem.src = listFruitImages[8];
 }
 
 /**************************************************************************************************

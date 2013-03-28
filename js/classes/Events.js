@@ -174,6 +174,7 @@ function updateTransform(e) {
         eltMap.appendChild(eltFruit);
         eltMap.appendChild(eltFruit2);
         
+         oGame.listFruitsDestroy = [];
         oGame.fall();
        
       } else {
@@ -219,6 +220,7 @@ function updateTransform(e) {
         eltMap.appendChild(eltFruit);
         eltMap.appendChild(eltFruit2);
         
+        oGame.listFruitsDestroy = [];
         oGame.fall();
       }
       oGame.countTransitionEnd++;
@@ -270,6 +272,7 @@ function updateTransform(e) {
       eltMap.appendChild(eltFruit);
       eltMap.appendChild(eltFruit2);*/
       
+      oGame.listFruitsDestroy = [];
       oGame.fall();
     }
   }
