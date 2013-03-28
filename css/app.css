@@ -40,6 +40,18 @@ div#end div#end-score {
   font-weight: bold;
 }
 
+div#end div#end-score-msg {
+  display: none;
+  position: relative;
+  top: 63%;
+  width: 60%;
+  margin: auto;
+  text-align: center;
+  font-weight: bold;
+  text-decoration: underline;
+  font-variant: small-caps;
+  cursor: default;
+}
 div#timer {
   position: relative;
   color: orange;

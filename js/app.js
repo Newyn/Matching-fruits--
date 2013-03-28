@@ -58,6 +58,7 @@ var eltPauseOverlay = document.getElementById("pause");
 var eltPauseResumeButton = document.getElementById("pause-resume-button");
 var eltEndOverlay = document.getElementById("end");
 var eltEndScore = document.getElementById("end-score");
+var eltEndScoreMsg = document.getElementById("end-score-msg");
 var eltTimer = document.getElementById("timer");
 var eltTimerMinutes = document.getElementById("timer-minutes");
 var eltTimerSeconds = document.getElementById("timer-seconds");

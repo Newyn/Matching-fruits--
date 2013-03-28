@@ -51,38 +51,28 @@ function handleClick(row, col) {
     if (distance == 1) { // oldFruit and newFruit are adjacent
       var oldFruit = document.getElementById("fruit"+oGame.posRow+"_"+oGame.posCol);
       var newFruit = document.getElementById("fruit"+row+"_"+col);
-      var oldId = "fruit"+oGame.posRow+"_"+oGame.posCol;
-      var newId = "fruit"+row+"_"+col;
       if (row == oGame.posRow) {
-        if (oGame.posCol > col) {
-          oldFruit.id = "fruit"+oGame.posRow+"_"+parseInt(oGame.posCol-1);
-          oldFruit.setAttribute('onclick', 'handleClick('+oGame.posRow+','+parseInt(oGame.posCol-1)+')');
-          newFruit.id = "fruit"+row+"_"+parseInt(col+1);
-          newFruit.setAttribute('onclick', 'handleClick('+row+','+parseInt(col+1)+')');
-        } else {
-          oldFruit.id = "fruit"+oGame.posRow+"_"+parseInt(oGame.posCol+1);
-          oldFruit.setAttribute('onclick', 'handleClick('+oGame.posRow+','+parseInt(oGame.posCol+1)+')');
-          newFruit.id = "fruit"+row+"_"+parseInt(col-1);
-          newFruit.setAttribute('onclick', 'handleClick('+row+','+parseInt(col-1)+')');
-        }
-        translateX(oldFruit, 1, 1);
-        translateX(newFruit, 1, 1);
+        var tx = (col - oGame.posCol) * eltMap.width / 9;
+        oldFruit.style.transform = "translateX(" + tx + "px)";
+        newFruit.style.transform = "translateX(" + (-tx) + "px)";
       } else {
-        if (oGame.posRow > row) {
-          oldFruit.id = "fruit"+parseInt(oGame.posRow-1)+"_"+oGame.posCol;
-          oldFruit.setAttribute('onclick', 'handleClick('+parseInt(oGame.posRow-1)+','+oGame.posCol+')');
-          newFruit.id = "fruit"+parseInt(row+1)+"_"+col;
-          newFruit.setAttribute('onclick', 'handleClick('+parseInt(row+1)+','+col+')');
-        } else {
-          oldFruit.id = "fruit"+parseInt(oGame.posRow+1)+"_"+oGame.posCol;
-          oldFruit.setAttribute('onclick', 'handleClick('+parseInt(oGame.posRow+1)+','+oGame.posCol+')');
-          newFruit.id = "fruit"+parseInt(row-1)+"_"+col;
-          newFruit.setAttribute('onclick', 'handleClick('+parseInt(row-1)+','+col+')');
-        }
-        translateY(oldFruit, 1, 1);
-        translateY(newFruit, 1, 1);
+        var ty = (row - oGame.posRow) * eltMap.height / 9;
+        oldFruit.style.transform = "translateY(" + ty + "px)";
+        newFruit.style.transform = "translateY(" + (-ty) + "px)";
       }
 
+      var oldId = oldFruit.id;
+      var newId = newFruit.id;
+
+      oldFruit.id = newId;
+      newFruit.id = oldId;
+
+      oGame.oldId = oldId;
+      oGame.newId = newId;
+
+      oldFruit.setAttribute('onclick', 'handleClick('+newId.substring(5,6)+','+newId.substring(7,8)+')');
+      newFruit.setAttribute('onclick', 'handleClick('+oldId.substring(5,6)+','+oldId.substring(7,8)+')');
+      
       oGame.check();
 
       if (oGame.listFruitsDestroy.length > 0) {
@@ -94,11 +84,6 @@ function handleClick(row, col) {
         console.log("Fruits destroy == 0");
         oldFruit.id = oldId;
         newFruit.id = newId; 
-        
-        translateX(document.getElementById(oldFruit.id), 1, 1);
-        translateX(document.getElementById(newFruit.id), 1, 1);
-        translateY(document.getElementById(oldFruit.id), 1, 1);
-        translateY(document.getElementById(newFruit.id), 1, 1);
         
         oldFruit.setAttribute('onclick', 'handleClick('+oldId.substring(5,6)+','+oldId.substring(7,8)+')');
         newFruit.setAttribute('onclick', 'handleClick('+newId.substring(5,6)+','+newId.substring(7,8)+')');
@@ -139,11 +124,11 @@ Manages the replacement of the old by the new fruit fruit. (Position, Id, Img, .
 **************************************************************************************************/
 function updateTransform(e) {
   if (oGame.listFruitsDestroy.length == 0) {
-    /*if (this.style.transform.indexOf("translateX") == -1) {
+    if (this.style.transform.indexOf("translateX") == -1) {
       this.style.transform = "translateY(0px)";
     } else {
       this.style.transform = "translateX(0px)";
-    }*/
+    }
   } else {
     if (oGame.countTransitionEnd == 0) {
       if (e.target.src.indexOf("destroy.png") == -1) {

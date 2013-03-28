@@ -373,6 +373,7 @@ Game.prototype.fall = function() {
     }
 
     document.getElementById("fruit"+j+"_"+i).id = "fruit0_"+i;
+    document.getElementById("fruit0_"+i).style.opacity = 1;
     document.getElementById("fruit0_"+i).setAttribute('onclick', 'handleClick(0,'+i+')');
     
     j--;
@@ -381,6 +382,7 @@ Game.prototype.fall = function() {
       while (j >= 0) {
         var tmp = j + 1;
         document.getElementById("fruit"+j+"_"+i).id = "fruit"+tmp+"_"+i;
+        document.getElementById("fruit"+tmp+"_"+i).style.opacity = 1;
         document.getElementById("fruit"+tmp+"_"+i).setAttribute('onclick', 'handleClick('+tmp+','+i+')');
         j--;
       }
@@ -388,13 +390,13 @@ Game.prototype.fall = function() {
     
     j = 7;
   }
-
+  
   var tmp = document.getElementsByClassName("fruit");
   tmp.reverse();
  
   for (var i=0; i < tmp.length; i++) {
     tmp[i].setAttribute('onclick', 'handleClick('+tmp[i].id.substring(5,6)+','+tmp[i].id.substring(7,8)+')');
-    translateY(document.getElementById("fruit"+tmp[i].id.substring(5,6)+"_"+tmp[i].id.substring(7,8)), 10, 400);
+    translate(document.getElementById("fruit"+tmp[i].id.substring(5,6)+"_"+tmp[i].id.substring(7,8)), 10, 400);
   }
   
   for (var i = 1; i < 8; i++) {
@@ -443,7 +445,7 @@ Game.prototype.regenerate = function() {
         this.checkMovement();
       }
       
-      translateY(document.getElementById(tmp[i].id), 10, 400);
+      translate(document.getElementById(tmp[i].id), 10, 400);
     }
   }
 }
@@ -479,6 +481,7 @@ Game.prototype.leave = function() {
   eltOptions.style.display = "none";
   eltPauseOverlay.style.display = "none";
   eltEndOverlay.style.display = "none";
+  eltEndScoreMsg.style.display = "none";
   eltScore.innerHTML = "00000000";
   oTimer.reset();
   oTimer.pause();
@@ -511,6 +514,7 @@ Game.prototype.end = function() {
   eltEndOverlay.style.display = "block";
   eltEndScore.style.display = "block";
   eltEndScore.innerHTML = eltScore.innerHTML;
+  checkBestScore(eltEndScore.innerHTML);
   saveScore(eltEndScore.innerHTML, "time-trial");
 }
 

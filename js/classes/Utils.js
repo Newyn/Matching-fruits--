@@ -74,7 +74,7 @@ function fadeIn(elem, speed){
 /**************************************************************************************************
 Translate bottom or top an element
 **************************************************************************************************/
-function translateY(elem, shift, speed) {
+function translate(elem, shift, speed) {
   oGame.state = "fall";
 
   var row = parseInt(elem.id.substring(5,6));
