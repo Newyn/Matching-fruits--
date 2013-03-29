@@ -183,7 +183,7 @@ Game.prototype.isEmptyCol = function(row,col) {
   var tmp = row;
 
   while((tmp >= 0) && (empty == 0)) {
-    if (document.getElementById("fruit"+tmp+"_"+col).src.indexOf("destroy.png") == -1) {
+    if (!isDestroyed(getFruit(tmp, col))) {
       empty++;
     }
     tmp--;
@@ -204,43 +204,45 @@ Game.prototype.check = function() {
   this.listFruitsDestroy = new Array();
   var nbAdjacentHorizontal = 0;
   var nbAdjacentVertical = 0;
-  var tmp;
+  var tmp, k, fruit;
 
   for (var i=0; i<8; i++) {
     for (var j=0; j<7; j++) {
 
-      if ((document.getElementById("fruit"+i+"_"+j).src == document.getElementById("fruit"+i+"_"+(j+1)).src) && (document.getElementById("fruit"+i+"_"+j).src.indexOf("destroy.png") == -1)) {
+      fruit = getFruit(i, j);
+      if ((fruit.src == getFruit(i, j+1).src) && !isDestroyed(fruit)) {
         nbAdjacentHorizontal = nbAdjacentHorizontal + 1;
       } else {
         if (nbAdjacentHorizontal >= 2) {
-          for (var k=0;k<=nbAdjacentHorizontal;k++) {
-            this.listFruitsDestroy.push(document.getElementById("fruit"+i+"_"+(j-k)));
+          for (k = 0; k <= nbAdjacentHorizontal; k++) {
+            this.listFruitsDestroy.push(getFruit(i, j-k));
           }
         }
         nbAdjacentHorizontal = 0;
       }
 
-      if ((document.getElementById("fruit"+j+"_"+i).src == document.getElementById("fruit"+(j+1)+"_"+i).src) && (document.getElementById("fruit"+j+"_"+i).src.indexOf("destroy.png") == -1)) {
+      fruit = getFruit(j, i);
+      if ((fruit.src == getFruit(j+1, i).src) && !isDestroyed(fruit)) {
         nbAdjacentVertical = nbAdjacentVertical + 1;
       } else {
         if (nbAdjacentVertical >= 2) {
-          for (var k=0;k<=nbAdjacentVertical;k++) {
-            this.listFruitsDestroy.push(document.getElementById("fruit"+(j-k)+"_"+i));
+          for (k = 0; k <= nbAdjacentVertical; k++) {
+            this.listFruitsDestroy.push(getFruit(j-k, i));
           }
         }
         nbAdjacentVertical = 0;
       }
     }
 
-    if (nbAdjacentHorizontal >= 2){
-      for (var k=0;k<=nbAdjacentHorizontal;k++) {
-        this.listFruitsDestroy.push(document.getElementById("fruit"+i+"_"+(j-k)));
+    if (nbAdjacentHorizontal >= 2) {
+      for (k = 0; k <= nbAdjacentHorizontal; k++) {
+        this.listFruitsDestroy.push(getFruit(i, j-k));
       }
     }
 
-    if (nbAdjacentVertical >= 2){
-      for (var k=0;k<=nbAdjacentVertical;k++) {
-        this.listFruitsDestroy.push(document.getElementById("fruit"+(j-k)+"_"+i));
+    if (nbAdjacentVertical >= 2) {
+      for (k = 0; k <= nbAdjacentVertical; k++) {
+        this.listFruitsDestroy.push(getFruit(j-k, i));
       }
     }
 
@@ -302,7 +304,7 @@ Game.prototype.checkMovement = function() {
   for (var i = 0; i < 8; i++) {
     tmap[i] = [];
     for (var j = 0; j < 8; j++) {
-       tmap[i][j] = document.getElementById("fruit"+i+"_"+j).src;
+       tmap[i][j] = getFruit(i, j).src;
     }
   }
 
@@ -366,8 +368,8 @@ Game.prototype.checkMovement = function() {
 }
 
 Game.prototype.destroy = function() {
-  for (var i=0;i<this.listFruitsDestroy.length;i++) {
-    fadeOut(document.getElementById(this.listFruitsDestroy[i].id),50);
+  for (var i = 0; i < this.listFruitsDestroy.length; i++) {
+    fadeOut(document.getElementById(this.listFruitsDestroy[i].id), 50);
     this.updateScore(1000);
   }
 
@@ -427,20 +429,20 @@ Game.prototype.regenerate = function() {
   var tmp = document.getElementsByClassName("fruit");
   //tmp.reverse();
 
-  for (var i=0; i < tmp.length; i++) {
-    if (document.getElementById(tmp[i].id).src.indexOf("destroy.png") !== -1) {
-      document.getElementById(tmp[i].id).style.top = "-200px";
-      document.getElementById(tmp[i].id).style.opacity = "1";
+  for (var i = 0; i < tmp.length; i++) {
+    var fruit = document.getElementById(tmp[i].id);
+
+    if (isDestroyed(fruit)) {
+      fruit.style.top = "-200px";
+      fruit.style.opacity = "1";
 
       var rand = 0;
-
       while (rand == 0) {
         rand = Math.floor(Math.random()*8);
       }
 
-      document.getElementById(tmp[i].id).src = listFruitImages[rand];
-
-      translate(document.getElementById(tmp[i].id), 10, 400);
+      fruit.src = listFruitImages[rand];
+      translate(fruit, 10, 400);
     }
   }
 }
@@ -451,19 +453,16 @@ Updates the score
 Game.prototype.updateScore = function(update) {
   this.currentScore += update;
 
-	if (this.currentScore > 0) {
-		var tmpScore = ""+this.currentScore+"";
-
-		while (tmpScore.length != 8) {
-			tmpScore = "0"+tmpScore;
-		}
-
-		document.getElementById("score").innerHTML = tmpScore;
-	}
-	else {
-		this.currentScore = 0;
-		document.getElementById("score").innerHTML = "00000000";
-	}
+  if (this.currentScore > 0) {
+    var tmpScore = "" + this.currentScore + "";
+    while (tmpScore.length != 8) {
+      tmpScore = "0" + tmpScore;
+    }
+    document.getElementById("score").innerHTML = tmpScore;
+  } else {
+    this.currentScore = 0;
+    document.getElementById("score").innerHTML = "00000000";
+  }
 }
 
 /**************************************************************************************************

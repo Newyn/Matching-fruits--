@@ -49,8 +49,8 @@ function handleClick(row, col) {
     var distance = Math.abs(col - oGame.posCol) + Math.abs(row - oGame.posRow);
 
     if (distance == 1) { // oldFruit and newFruit are adjacent
-      var oldFruit = document.getElementById("fruit"+oGame.posRow+"_"+oGame.posCol);
-      var newFruit = document.getElementById("fruit"+row+"_"+col);
+      var oldFruit = getFruit(oGame.posRow, oGame.posCol);
+      var newFruit = getFruit(row, col);
       if (row == oGame.posRow) {
         var tx = (col - oGame.posCol) * eltMap.width / 9;
         oldFruit.style.transform = "translateX(" + tx + "px)";
@@ -77,7 +77,7 @@ function handleClick(row, col) {
 
       if (oGame.listFruitsDestroy.length > 0) {
         for (var i=0;i<oGame.listFruitsDestroy.length;i++) {
-          fadeOut(document.getElementById(oGame.listFruitsDestroy[i].id),50);
+          fadeOut(document.getElementById(oGame.listFruitsDestroy[i].id), 50);
           oGame.updateScore(1000);
         }
       } else {
@@ -102,19 +102,19 @@ function handleClick(row, col) {
     } else {
       console.log("Distance > 1");
       if ((oGame.posRow !== "") && (oGame.posCol !== "")) {
-        document.getElementById("fruit"+oGame.posRow+"_"+oGame.posCol).style.animation = "";
+        getFruit(oGame.posRow, oGame.posCol).style.animation = "";
       }
       oGame.posRow = row;
       oGame.posCol = col;
       oGame.selectedCase = true;
-      document.getElementById("fruit"+row+"_"+col).style.animation = "spin .8s infinite linear";
+      getFruit(row, col).style.animation = "spin .8s infinite linear";
     }
   } else {
     console.log("Select case");
     oGame.posRow = row;
     oGame.posCol = col;
     oGame.selectedCase = true;
-    document.getElementById("fruit"+row+"_"+col).style.animation = "spin .8s infinite linear";
+    getFruit(row, col).style.animation = "spin .8s infinite linear";
   }
 }
 
@@ -176,7 +176,7 @@ function updateTransform(e) {
 
         oGame.listFruitsDestroy = [];
         oGame.fall();
-        
+
         for (var i =1; i < 8; i++) {
           for (var j = 0; j < 8; j++) {
             if (isDestroyed(getFruit(i, j))) {
@@ -187,8 +187,8 @@ function updateTransform(e) {
             }
           }
         }
-        
-        setTimeout("oGame.regenerate()",400);
+
+        setTimeout(oGame.regenerate, 400);
 
       } else {
         var oldTop = document.getElementById(oGame.newId).style.top;
@@ -235,7 +235,7 @@ function updateTransform(e) {
 
         oGame.listFruitsDestroy = [];
         oGame.fall();
-        
+
         for (var i =1; i < 8; i++) {
           for (var j = 0; j < 8; j++) {
             if (isDestroyed(getFruit(i, j))) {
@@ -247,14 +247,13 @@ function updateTransform(e) {
           }
         }
 
-        setTimeout("oGame.regenerate()",400); 
-        
+        setTimeout(oGame.regenerate, 400);
       }
       oGame.countTransitionEnd++;
     } else if (oGame.state == "fall") {
       oGame.listFruitsDestroy = [];
       oGame.fall();
-      
+
       for (var i =1; i < 8; i++) {
          for (var j = 0; j < 8; j++) {
            if (isDestroyed(getFruit(i, j))) {
@@ -265,8 +264,8 @@ function updateTransform(e) {
            }
          }
        }
-       
-       setTimeout("oGame.regenerate()",400);
+
+       setTimeout(oGame.regenerate, 400);
     }
   }
 }
