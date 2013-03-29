@@ -380,23 +380,23 @@ Game.prototype.fall = function() {
   var j = 7;
 
   console.log("NEW");
-  
+
   for (var i = 0; i < 8; i++) {
     while ((j > 0) && !isDestroyed(getFruit(j, i))) {
       j--;
     }
 
-    console.log("fruit" + j + "_" + i + "==========>" + "fruit0_" +  i);
+    // console.log("fruit" + j + "_" + i + "==========>" + "fruit0_" +  i);
     getFruit(j, i).id = "fruit0_" + i;
     getFruit(0, i).style.opacity = 1;
     getFruit(0, i).setAttribute('onclick', 'handleClick(0,' + i + ')');
 
     j--;
-    
+
     while (j >= 0) {
       var tmp = j + 1;
-      
-      console.log("fruit" + j + "_" + i + "==========>" + "fruit" + tmp + "_" + i);
+
+      // console.log("fruit" + j + "_" + i + "==========>" + "fruit" + tmp + "_" + i);
       getFruit(j, i).id = "fruit" + tmp + "_" + i;
       getFruit(tmp, i).style.opacity = 1;
       getFruit(tmp, i).setAttribute('onclick', 'handleClick(' + tmp + ',' + i + ')');

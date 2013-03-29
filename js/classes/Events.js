@@ -131,141 +131,87 @@ function updateTransform(e) {
     }
   } else {
     if (oGame.countTransitionEnd == 0) {
-      if (e.target.src.indexOf("destroy.png") == -1) {
-        var oldTop = document.getElementById(oGame.oldId).style.top;
-        var oldLeft = document.getElementById(oGame.oldId).style.left;
-        var oldSrc = document.getElementById(oGame.oldId).src;
 
-        var newTop = document.getElementById(oGame.newId).style.top;
-        var newLeft = document.getElementById(oGame.newId).style.left;
-        var newSrc = document.getElementById(oGame.newId).src;
-
-        eltMap.removeChild(document.getElementById(oGame.oldId));
-        eltMap.removeChild(document.getElementById(oGame.newId));
-
-        var eltFruit = document.createElement("img");
-        eltFruit.className = "fruit";
-        eltFruit.id = oGame.oldId;
-        eltFruit.style.width = eltMap.width / 9 + "px";
-        eltFruit.style.height = eltMap.height / 9 + "px";
-        eltFruit.style.top = newTop;
-        eltFruit.style.left = newLeft;
+      var createFruit = function(id, sTop, sLeft, src) {
+        var eltFruit = document.createElement('img');
+        eltFruit.className = 'fruit';
+        eltFruit.id = id;
+        eltFruit.src = src;
+        eltFruit.style.top = sTop;
+        eltFruit.style.left = sLeft;
+        eltFruit.style.width = eltMap.width / 9 + 'px';
+        eltFruit.style.height = eltMap.height / 9 + 'px';
         eltFruit.style.opacity = 1;
-        eltFruit.src = oldSrc;
-        eltFruit.setAttribute('onclick', 'handleClick('+eltFruit.id.substring(5,6)+','+eltFruit.id.substring(7,8)+')');
-        eltFruit.addEventListener( 'webkitTransitionEnd', updateTransform, false );
-        eltFruit.addEventListener( 'transitionend', updateTransform, false );
-        eltFruit.addEventListener( 'oTransitionEnd', updateTransform, false );
 
-        var eltFruit2 = document.createElement("img");
-        eltFruit2.className = "fruit";
-        eltFruit2.id = oGame.newId;
-        eltFruit2.style.width = eltMap.width / 9 + "px";
-        eltFruit2.style.height = eltMap.height / 9 + "px";
-        eltFruit2.style.top = oldTop;
-        eltFruit2.style.left = oldLeft;
-        eltFruit2.style.opacity = 1;
-        eltFruit2.src = listFruitImages[8];
-        eltFruit2.setAttribute('onclick', 'handleClick('+eltFruit2.id.substring(5,6)+','+eltFruit2.id.substring(7,8)+')');
-        eltFruit2.addEventListener( 'webkitTransitionEnd', updateTransform, false );
-        eltFruit2.addEventListener( 'transitionend', updateTransform, false );
-        eltFruit2.addEventListener( 'oTransitionEnd', updateTransform, false );
+        var row = id.substring(5, 6);
+        var col = id.substring(7, 8);
+        eltFruit.setAttribute('onclick', 'handleClick(' + row + ',' + col + ')');
+        eltFruit.addEventListener('webkitTransitionEnd', updateTransform, false);
+        eltFruit.addEventListener(     'oTransitionEnd', updateTransform, false);
+        eltFruit.addEventListener(      'transitionend', updateTransform, false);
 
-        eltMap.appendChild(eltFruit);
-        eltMap.appendChild(eltFruit2);
+        return eltFruit;
+      };
 
-        oGame.listFruitsDestroy = [];
-        oGame.fall();
+      var oldFruit = document.getElementById(oGame.oldId);
+      var newFruit = document.getElementById(oGame.newId);
 
-        for (var i =1; i < 8; i++) {
-          for (var j = 0; j < 8; j++) {
-            if (isDestroyed(getFruit(i, j))) {
-              var tmp = i - 1;
-              if (!isDestroyed(getFruit(tmp, j))) {
-                oGame.fall();
-              }
-            }
-          }
-        }
+      var oldTop  = oldFruit.style.top;
+      var oldLeft = oldFruit.style.left;
+      var oldSrc  = oldFruit.src;
 
-        setTimeout(oGame.regenerate, 400);
+      var newTop  = newFruit.style.top;
+      var newLeft = newFruit.style.left;
+      var newSrc  = newFruit.src;
 
+      eltMap.removeChild(oldFruit);
+      eltMap.removeChild(newFruit);
+
+      var fruit1, fruit2;
+      if (!isDestroyed(e.target)) {
+        fruit1 = createFruit(oGame.oldId, newTop, newLeft, oldSrc);
+        fruit2 = createFruit(oGame.newId, oldTop, oldLeft, listFruitImages[8]);
       } else {
-        var oldTop = document.getElementById(oGame.newId).style.top;
-        var oldLeft = document.getElementById(oGame.newId).style.left;
-        var oldSrc = document.getElementById(oGame.oldId).src;
+        fruit1 = createFruit(oGame.oldId, newTop, newLeft, listFruitImages[8]);
+        fruit2 = createFruit(oGame.newId, oldTop, oldLeft, newSrc);
+      }
 
-        var newTop = document.getElementById(oGame.oldId).style.top;
-        var newLeft = document.getElementById(oGame.oldId).style.left;
-        var newSrc = document.getElementById(oGame.newId).src;
+      eltMap.appendChild(fruit1);
+      eltMap.appendChild(fruit2);
 
-        eltMap.removeChild(document.getElementById(oGame.oldId));
-        eltMap.removeChild(document.getElementById(oGame.newId));
+      oGame.listFruitsDestroy = [];
+      oGame.fall();
 
-        var eltFruit = document.createElement("img");
-        eltFruit.className = "fruit";
-        eltFruit.id = oGame.oldId;
-        eltFruit.style.width = eltMap.width / 9 + "px";
-        eltFruit.style.height = eltMap.height / 9 + "px";
-        eltFruit.style.top = oldTop;
-        eltFruit.style.left = oldLeft;
-        eltFruit.style.opacity = 1;
-        eltFruit.src = listFruitImages[8];
-        eltFruit.setAttribute('onclick', 'handleClick('+eltFruit.id.substring(5,6)+','+eltFruit.id.substring(7,8)+')');
-        eltFruit.addEventListener( 'webkitTransitionEnd', updateTransform, false );
-        eltFruit.addEventListener( 'transitionend', updateTransform, false );
-        eltFruit.addEventListener( 'oTransitionEnd', updateTransform, false );
-
-        var eltFruit2 = document.createElement("img");
-        eltFruit2.className = "fruit";
-        eltFruit2.id = oGame.newId;
-        eltFruit2.style.width = eltMap.width / 9 + "px";
-        eltFruit2.style.height = eltMap.height / 9 + "px";
-        eltFruit2.style.top = newTop;
-        eltFruit2.style.left = newLeft;
-        eltFruit2.style.opacity = 1;
-        eltFruit2.src = newSrc;
-        eltFruit2.setAttribute('onclick', 'handleClick('+eltFruit2.id.substring(5,6)+','+eltFruit2.id.substring(7,8)+')');
-        eltFruit2.addEventListener( 'webkitTransitionEnd', updateTransform, false );
-        eltFruit2.addEventListener( 'transitionend', updateTransform, false );
-        eltFruit2.addEventListener( 'oTransitionEnd', updateTransform, false );
-
-        eltMap.appendChild(eltFruit);
-        eltMap.appendChild(eltFruit2);
-
-        oGame.listFruitsDestroy = [];
-        oGame.fall();
-
-        for (var i =1; i < 8; i++) {
-          for (var j = 0; j < 8; j++) {
-            if (isDestroyed(getFruit(i, j))) {
-              var tmp = i - 1;
-              if (!isDestroyed(getFruit(tmp, j))) {
-                oGame.fall();
-              }
+      for (var i =1; i < 8; i++) {
+        for (var j = 0; j < 8; j++) {
+          if (isDestroyed(getFruit(i, j))) {
+            var tmp = i - 1;
+            if (!isDestroyed(getFruit(tmp, j))) {
+              oGame.fall();
             }
           }
         }
-
-        setTimeout(oGame.regenerate, 400);
       }
+
+      setTimeout(oGame.regenerate, 400);
       oGame.countTransitionEnd++;
+
     } else if (oGame.state == "fall") {
       oGame.listFruitsDestroy = [];
       oGame.fall();
 
       for (var i =1; i < 8; i++) {
-         for (var j = 0; j < 8; j++) {
-           if (isDestroyed(getFruit(i, j))) {
-             var tmp = i - 1;
-             if (!isDestroyed(getFruit(tmp, j))) {
-               oGame.fall();
-             }
-           }
-         }
-       }
+        for (var j = 0; j < 8; j++) {
+          if (isDestroyed(getFruit(i, j))) {
+            var tmp = i - 1;
+            if (!isDestroyed(getFruit(tmp, j))) {
+              oGame.fall();
+            }
+          }
+        }
+      }
 
-       setTimeout(oGame.regenerate, 400);
+      setTimeout(oGame.regenerate, 400);
     }
   }
 }
