@@ -377,37 +377,27 @@ Game.prototype.fall = function() {
   var j = 7;
 
   console.log("NEW");
-
-  var fruit = function(row, col) {
-    return document.getElementById('fruit' + row + '_' + col);
-  };
-
-  var isDestroyed = function(row, col) {
-    var elt = fruit(row, col);
-    return (elt && elt.src.indexOf("destroy.png") != -1);
-  };
-
+  
   for (var i = 0; i < 8; i++) {
-    while ((j > 0) && !isDestroyed(j, i)) {
+    while ((j > 0) && !isDestroyed(getFruit(j, i))) {
       j--;
     }
 
     console.log("fruit" + j + "_" + i + "==========>" + "fruit0_" +  i);
-    fruit(j, i).id = "fruit0_" + i;
-    fruit(0, i).style.opacity = 1;
-    fruit(0, i).setAttribute('onclick', 'handleClick(0,' + i + ')');
+    getFruit(j, i).id = "fruit0_" + i;
+    getFruit(0, i).style.opacity = 1;
+    getFruit(0, i).setAttribute('onclick', 'handleClick(0,' + i + ')');
 
     j--;
-
-    if (j != 0) {
-      while (j >= 0) {
-        var tmp = j + 1;
-        console.log("fruit" + j + "_" + i + "==========>" + "fruit" + tmp + "_" + i);
-        fruit(j, i).id = "fruit" + tmp + "_" + i;
-        fruit(tmp, i).style.opacity = 1;
-        fruit(tmp, i).setAttribute('onclick', 'handleClick(' + tmp + ',' + i + ')');
-        j--;
-      }
+    
+    while (j >= 0) {
+      var tmp = j + 1;
+      
+      console.log("fruit" + j + "_" + i + "==========>" + "fruit" + tmp + "_" + i);
+      getFruit(j, i).id = "fruit" + tmp + "_" + i;
+      getFruit(tmp, i).style.opacity = 1;
+      getFruit(tmp, i).setAttribute('onclick', 'handleClick(' + tmp + ',' + i + ')');
+      j--;
     }
 
     j = 7;
@@ -420,26 +410,8 @@ Game.prototype.fall = function() {
     var row = tmp[i].id.substring(5,6);
     var col = tmp[i].id.substring(7,8);
     tmp[i].setAttribute('onclick', 'handleClick(' + row + ',' + col + ')');
-    translate(fruit(row, col), 10, 400);
+    translate(getFruit(row, col), 10, 400);
   }
-
-  for (var i = 1; i < 8; i++) {
-    for (var j = 0; j < 8; j++) {
-
-      if (!fruit(i, j)) {
-        alert("i = "+i+" / j = "+j);
-      }
-
-      if (isDestroyed(i, j)) {
-        var tmp = i - 1;
-        if (!isDestroyed(tmp, j)) {
-          this.fall();
-        }
-      }
-    }
-  }
-
-  setTimeout(oGame.regenerate, 350);
 }
 
 /**************************************************************************************************
@@ -466,13 +438,6 @@ Game.prototype.regenerate = function() {
       translate(document.getElementById(tmp[i].id), 10, 400);
     }
   }
-
-  /*this.check();
-
-  if (this.listFruitsDestroy.length > 0) {
-    this.destroy();
-    this.fall();
-  }*/
 }
 
 /**************************************************************************************************

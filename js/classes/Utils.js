@@ -38,7 +38,7 @@ function dump(arr,level) {
 Fade out effect
 **************************************************************************************************/
 function fadeOut(elem, speed){
-  /*if(!elem.style.opacity){
+  if(!elem.style.opacity){
     elem.style.opacity = 1;
   }
   var fade = setInterval(function(){
@@ -52,8 +52,7 @@ function fadeOut(elem, speed){
         elem.src = listFruitImages[8];
       }
     }
-  }, speed / 50);*/
-  elem.src = listFruitImages[8];
+  }, speed / 50);
 }
 
 /**************************************************************************************************
@@ -144,25 +143,10 @@ function translateX(elem, shift, speed) {
   }
 }
 
-/**************************************************************************************************
-Get all elements with the className property set to "cl"
-**************************************************************************************************/
-document.getElementsByClassName = function(cl) {
-  var retnode = [];
-  var myclass = new RegExp('\\b'+cl+'\\b');
-  var elem = this.getElementsByTagName('*');
-  for (var i = 0; i < elem.length; i++) {
-    var classes = elem[i].className;
-    if (myclass.test(classes)) {
-      retnode.push(elem[i]);
-      }
-  }
-  return retnode;
+function getFruit(row, col) {
+  return document.getElementById('fruit' + row + '_' + col);
 };
 
-Array.prototype.contains = function ( needle ) {
-       for (i in this) {
-           if (this[i] == needle) return true;
-       }
-       return false;
-    }
+function isDestroyed(fruit) {
+  return (fruit && fruit.src.indexOf("destroy.png") != -1);
+};
