@@ -37,13 +37,13 @@ function dump(arr,level) {
 /**************************************************************************************************
 Fade out effect
 **************************************************************************************************/
-function fadeOut(elem, speed){
-  if(!elem.style.opacity){
+function fadeOut(elem, speed) {
+  if (!elem.style.opacity) {
     elem.style.opacity = 1;
   }
-  var fade = setInterval(function(){
+  var fade = setInterval(function() {
     elem.style.opacity -= .02;
-    if(elem.style.opacity < 0){
+    if (elem.style.opacity < 0) {
       clearInterval(fade);
       if (elem.id == "launch-screen") {
         elem.style.display = "none";
@@ -58,14 +58,14 @@ function fadeOut(elem, speed){
 /**************************************************************************************************
 Fade in effect
 **************************************************************************************************/
-function fadeIn(elem, speed){
-  if(!elem.style.opacity){
+function fadeIn(elem, speed) {
+  if (!elem.style.opacity) {
     elem.style.opacity = 0.01;
     elem.style.display = "block";
   }
-  var fade = setInterval(function(){
+  var fade = setInterval(function() {
     elem.style.opacity = elem.style.opacity * 1.10;
-    if(elem.style.opacity > 1){
+    if (elem.style.opacity > 1) {
       clearInterval(fade);
     }
   }, speed / 50);
@@ -77,29 +77,30 @@ Translate bottom or top an element
 function translate(elem, shift, speed) {
   oGame.state = "fall";
 
-  var row = parseInt(elem.id.substring(5,6));
-  var height = document.getElementById("fruit"+elem.id.substring(5,6)+"_"+elem.id.substring(7,8)).height;
+  var row = elem.id.substring(5, 6);
+  var col = elem.id.substring(7, 8);
+  var height = getFruit(row, col).height;
   var top = parseInt(elem.style.top.replace("px", ""));
-  var max = row * parseInt(height);
-  
+  var max = parseInt(row) * parseInt(height);
+
   if (top != max) {
     if (top < max) {
-      var fade = setInterval(function(){
-        elem.style.top = top + shift +"px";
+      var fade = setInterval(function() {
+        elem.style.top = top + shift + "px";
         top = parseInt(elem.style.top.replace("px", ""));
-        if(top > max) {
-          elem.style.top = max +"px";
-          clearInterval(fade);  
+        if (top > max) {
+          elem.style.top = max + "px";
+          clearInterval(fade);
           oGame.state = "";
         }
       }, speed / 50);
     } else {
-      var fade = setInterval(function(){
-        elem.style.top = top - shift +"px";
+      var fade = setInterval(function() {
+        elem.style.top = top - shift + "px";
         top = parseInt(elem.style.top.replace("px", ""));
         if (top < max) {
-          elem.style.top = max +"px";
-          clearInterval(fade);  
+          elem.style.top = max + "px";
+          clearInterval(fade);
           oGame.state = "";
         }
       }, speed / 50);
@@ -113,29 +114,30 @@ Translate left or right an element
 function translateX(elem, shift, speed) {
   oGame.state = "fall";
 
-  var col = parseInt(elem.id.substring(7,8));
-  var width = document.getElementById("fruit"+elem.id.substring(5,6)+"_"+elem.id.substring(7,8)).width;
+  var row = elem.id.substring(5, 6);
+  var col = elem.id.substring(7, 8);
+  var width = getFruit(row, col).width;
   var left = parseInt(elem.style.left.replace("px", ""));
-  var max = col * parseInt(width);
-  
+  var max = parseInt(col) * parseInt(width);
+
   if (left != max) {
     if (left < max) {
-      var fade = setInterval(function(){
-        elem.style.left = left + shift +"px";
+      var fade = setInterval(function() {
+        elem.style.left = left + shift + "px";
         left = parseInt(elem.style.left.replace("px", ""));
-        if(left > max) {
-          elem.style.left = max +"px";
-          clearInterval(fade);  
+        if (left > max) {
+          elem.style.left = max + "px";
+          clearInterval(fade);
           oGame.state = "";
         }
       }, speed / 50);
     } else {
-      var fade = setInterval(function(){
-        elem.style.left = left - shift +"px";
+      var fade = setInterval(function() {
+        elem.style.left = left - shift + "px";
         left = parseInt(elem.style.left.replace("px", ""));
         if (left < max) {
-          elem.style.left = max +"px";
-          clearInterval(fade);  
+          elem.style.left = max + "px";
+          clearInterval(fade);
           oGame.state = "";
         }
       }, speed / 50);
@@ -150,3 +152,4 @@ function getFruit(row, col) {
 function isDestroyed(fruit) {
   return (fruit && fruit.src.indexOf("destroy.png") != -1);
 };
+
