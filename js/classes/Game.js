@@ -74,7 +74,7 @@ Game.prototype.initialize = function() {
   eltTimer.style.display = "block";
   eltScore.style.display = "block";
   document.body.style.backgroundColor = "#80D5FE";
-
+  
   oMenu.music.pause();
   this.music.play();
   oTimer.start();
@@ -313,11 +313,12 @@ Game.prototype.checkMovement = function() {
         tmap[i - 1][j] = tmap[i][j];
         tmap[i][j] = tmp;
         if (this.checkAlignment(tmap)) {
-            return true;
+          this.setFruitActive(i, j);
+          return true;
         } else {
-            tmp = tmap[i - 1][j];
-            tmap[i - 1][j] = tmap[i][j];
-            tmap[i][j] = tmp;
+          tmp = tmap[i - 1][j];
+          tmap[i - 1][j] = tmap[i][j];
+          tmap[i][j] = tmp;
         }
       }
       if (i < 7) {
@@ -325,11 +326,12 @@ Game.prototype.checkMovement = function() {
         tmap[i + 1][j] = tmap[i][j];
         tmap[i][j] = tmp;
         if (this.checkAlignment(tmap)) {
-            return true;
+          this.setFruitActive(i, j);
+          return true;
         } else {
-            tmp = tmap[i + 1][j];
-            tmap[i + 1][j] = tmap[i][j];
-            tmap[i][j] = tmp;
+          tmp = tmap[i + 1][j];
+          tmap[i + 1][j] = tmap[i][j];
+          tmap[i][j] = tmp;
         }
       }
       if (j > 0) {
@@ -337,11 +339,12 @@ Game.prototype.checkMovement = function() {
         tmap[i][j - 1] = tmap[i][j];
         tmap[i][j] = tmp;
         if (this.checkAlignment(tmap)) {
-            return true;
+          this.setFruitActive(i, j);
+          return true;
         } else {
-            tmp = tmap[i][j - 1];
-            tmap[i][j - 1] = tmap[i][j];
-            tmap[i][j] = tmp;
+          tmp = tmap[i][j - 1];
+          tmap[i][j - 1] = tmap[i][j];
+          tmap[i][j] = tmp;
         }
       }
       if (j < 7) {
@@ -349,11 +352,12 @@ Game.prototype.checkMovement = function() {
         tmap[i][j + 1] = tmap[i][j];
         tmap[i][j] = tmp;
         if (this.checkAlignment(tmap)) {
-            return true;
+          this.setFruitActive(i, j);
+          return true;
         } else {
-            tmp = tmap[i][j + 1];
-            tmap[i][j + 1] = tmap[i][j];
-            tmap[i][j] = tmp;
+          tmp = tmap[i][j + 1];
+          tmap[i][j + 1] = tmap[i][j];
+          tmap[i][j] = tmp;
         }
       }
     }
@@ -570,4 +574,11 @@ Game.prototype.reload = function() {
 Game.prototype.previous = function() {
   oGame.leave();
   eltGame.style.display = "block";
+}
+
+Game.prototype.setFruitActive = function(row, col) {
+  oGame.posRow = row;
+  oGame.posCol = col;
+  oGame.selectedCase = true;
+  getFruit(row,col).style.animation = "spin .8s infinite linear";
 }
