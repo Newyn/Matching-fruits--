@@ -4,11 +4,10 @@ Constructor
 function Game() {
 
   // Game music
-  this.music = new Audio("resources/music/GameMusic.ogg");
+  this.music = new Audio("resources/music/game.ogg");
   this.music.loop = true;
   this.music.volume = 0.5;
   this.music.load();
-  this.music.play();
 
   // Map set to 8 rows and 8 columns
   this.fruits = [
@@ -76,6 +75,8 @@ Game.prototype.initialize = function() {
   eltScore.style.display = "block";
   document.body.style.backgroundColor = "#80D5FE";
 
+  oMenu.music.pause();
+  this.music.play();
   oTimer.start();
 }
 
@@ -477,6 +478,8 @@ Game.prototype.leave = function() {
   while (eltMap.firstChild) {
     eltMap.removeChild(eltMap.firstChild);
   }
+  oMenu.music.play();
+  this.music.pause();
   // TODO scores etc...
 }
 
