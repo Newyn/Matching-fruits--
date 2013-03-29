@@ -80,7 +80,7 @@ Menu.prototype = {
   },
   // Handles click on the tab "Niveaux" / "Levels"
   clickTabLevel: function clickTabLevel() {
-    alert("Levels");
+    alert(levelsList[0].id);
   },
   // Handles click on the tab "Contre-la-montre" / "Time Trial"
   clickTabTimeTrial: function clickTabTimeTrial() {

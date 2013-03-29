@@ -69,7 +69,7 @@ function fadeIn(elem, speed) {
       clearInterval(fade);
     }
   }, speed / 50);
-}
+} 
 
 /**************************************************************************************************
 Translate bottom or top an element
