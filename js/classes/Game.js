@@ -20,21 +20,21 @@ function Game() {
     [0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0]
-  ]; 
-   
+  ];
+
   this.posRow = "";
   this.posCol = "";
   this.selectedCase = false;
   this.listFruitsDestroy = [];
   this.countTransitionEnd = 0;
-  
+
   this.oldId = "";
   this.newId = "";
-  
+
   this.state = "";
-  
+
   this.currentScore = 0;
-  
+
   this.mode = "";
 }
 
@@ -46,28 +46,28 @@ Game.prototype.initialize = function() {
   eltMap.height = Math.min(document.documentElement.clientWidth, document.documentElement.clientHeight);
   eltMap.style.top = "calc(55% - "+eltMap.width / 2+"px)";
   eltMap.style.left = "calc(55% - "+eltMap.width / 2+"px)";
-  
+
   eltBtnPause.style.width = eltMap.width / 10 + "px";
   eltBtnPause.style.height = eltMap.height / 9 + "px";
   eltBtnPause.addEventListener("click", this.pause, false);
-  
+
   eltBtnReload.style.width = eltMap.width / 10 + "px";
   eltBtnReload.style.height = eltMap.height / 9 + "px";
   eltBtnReload.addEventListener("click", this.reload, false);
-  
+
   eltPauseResumeButton.addEventListener("click", oGame.resume, false);
-  
+
   var listArrowPreviousPlay = document.getElementsByClassName("arrow-previous-play");
-  
+
   for (var i = 0; i < listArrowPreviousPlay.length; i++) {
     listArrowPreviousPlay[i].addEventListener("click", this.previous, false);
   }
-  
+
   // Disable for the moment because it's annoying when we develop
   //window.addEventListener("blur", showPauseOverlay);
-  
+
   this.buildMap();
-  
+
   eltGame.style.display = "none";
   eltMap.style.display = "block";
   eltBtnPause.style.display = "block";
@@ -75,7 +75,7 @@ Game.prototype.initialize = function() {
   eltTimer.style.display = "block";
   eltScore.style.display = "block";
   document.body.style.backgroundColor = "#80D5FE";
-  
+
   oTimer.start();
 }
 
@@ -83,7 +83,7 @@ Game.prototype.initialize = function() {
 Builds the map
 **************************************************************************************************/
 Game.prototype.buildMap = function() {
-  for (i=0;i<8;i++) {  
+  for (i=0;i<8;i++) {
     for(j=0;j<8;j++) {
       do  {
         this.fruits[i][j] = Math.floor(Math.random()*8);
@@ -91,7 +91,7 @@ Game.prototype.buildMap = function() {
           this.fruits[i][j] = Math.floor(Math.random()*8);
         }
       }  while(this.isStreak(i,j));
-      
+
       var eltFruit = document.createElement("img");
       eltFruit.className = "fruit";
       eltFruit.id = "fruit"+i+"_"+j;
@@ -118,19 +118,19 @@ Game.prototype.isVerticalStreak = function(row,col) {
   var fruitValue = this.fruits[row][col];
   var streak = 0;
   var tmp = row;
-  
+
   while(tmp > 0 && this.fruits[tmp-1][col] == fruitValue) {
     streak++;
     tmp--;
   }
-   
+
   tmp = row;
-  
+
   while(tmp < 7 && this.fruits[tmp+1][col] == fruitValue) {
     streak++;
     tmp++;
   }
-  
+
   if (streak > 1) {
     return true;
   } else {
@@ -146,19 +146,19 @@ Game.prototype.isHorizontalStreak = function(row,col) {
   var fruitValue = this.fruits[row][col];
   var streak = 0;
   var tmp = col
-  
+
   while (tmp > 0 && this.fruits[row][tmp-1] == fruitValue) {
     streak++;
     tmp--;
   }
-  
+
   tmp = col;
-  
+
   while(tmp < 7 && this.fruits[row][tmp+1] == fruitValue){
     streak++;
     tmp++;
   }
-  
+
   if (streak > 1) {
     return true;
   } else {
@@ -172,7 +172,7 @@ Check if there is a vertical or an horizontal streak
 **************************************************************************************************/
 Game.prototype.isStreak = function(row,col) {
   return this.isVerticalStreak(row,col) || this.isHorizontalStreak(row,col);
-}    
+}
 
 /**************************************************************************************************
 Check if a column is empty
@@ -180,14 +180,14 @@ Check if a column is empty
 Game.prototype.isEmptyCol = function(row,col) {
   var empty = 0;
   var tmp = row;
-  
+
   while((tmp >= 0) && (empty == 0)) {
     if (document.getElementById("fruit"+tmp+"_"+col).src.indexOf("destroy.png") == -1) {
       empty++;
     }
     tmp--;
   }
-  
+
   if (empty > 0) {
     return true;
   } else {
@@ -204,10 +204,10 @@ Game.prototype.check = function() {
   var nbAdjacentHorizontal = 0;
   var nbAdjacentVertical = 0;
   var tmp;
-    
+
   for (var i=0; i<8; i++) {
     for (var j=0; j<7; j++) {
-          
+
       if ((document.getElementById("fruit"+i+"_"+j).src == document.getElementById("fruit"+i+"_"+(j+1)).src) && (document.getElementById("fruit"+i+"_"+j).src.indexOf("destroy.png") == -1)) {
         nbAdjacentHorizontal = nbAdjacentHorizontal + 1;
       } else {
@@ -218,7 +218,7 @@ Game.prototype.check = function() {
         }
         nbAdjacentHorizontal = 0;
       }
-      
+
       if ((document.getElementById("fruit"+j+"_"+i).src == document.getElementById("fruit"+(j+1)+"_"+i).src) && (document.getElementById("fruit"+j+"_"+i).src.indexOf("destroy.png") == -1)) {
         nbAdjacentVertical = nbAdjacentVertical + 1;
       } else {
@@ -236,17 +236,17 @@ Game.prototype.check = function() {
         this.listFruitsDestroy.push(document.getElementById("fruit"+i+"_"+(j-k)));
       }
     }
-    
+
     if (nbAdjacentVertical >= 2){
       for (var k=0;k<=nbAdjacentVertical;k++) {
         this.listFruitsDestroy.push(document.getElementById("fruit"+(j-k)+"_"+i));
       }
     }
-    
+
     nbAdjacentVertical = 0;
-    nbAdjacentHorizontal = 0;  
+    nbAdjacentHorizontal = 0;
   }
-  
+
   if (this.listFruitsDestroy.length > 0) {
     return true;
   } else {
@@ -278,8 +278,8 @@ Game.prototype.checkAlignment = function(arr) {
           horizontalMap[i+1][j]++;
       }
       if (j < 7 && arr[i][j] == arr[i][j+1]) {
-          verticalMap[i][j]++; 
-          verticalMap[i][j+1]++; 
+          verticalMap[i][j]++;
+          verticalMap[i][j+1]++;
       }
 
       if (horizontalMap[i][j] >= 2 || verticalMap[i][j] >= 2) {
@@ -362,10 +362,10 @@ Game.prototype.checkMovement = function() {
 
 Game.prototype.destroy = function() {
   for (var i=0;i<this.listFruitsDestroy.length;i++) {
-    fadeOut(document.getElementById(this.listFruitsDestroy[i].id),50);    
+    fadeOut(document.getElementById(this.listFruitsDestroy[i].id),50);
     this.updateScore(1000);
   }
-  
+
   oGame.listFruitsDestroy = [];
 }
 
@@ -373,88 +373,102 @@ Game.prototype.destroy = function() {
 Sends down the fruit if there are empty once there was destruction
 **************************************************************************************************/
 Game.prototype.fall = function() {
+  // return;
   var j = 7;
-  
+
   console.log("NEW");
-  
-  for (var i=0; i < 8; i++) {
-    while ((j > 0) &&  (document.getElementById("fruit"+j+"_"+i).src.indexOf("destroy.png") == -1)) {
+
+  var fruit = function(row, col) {
+    return document.getElementById('fruit' + row + '_' + col);
+  };
+
+  var isDestroyed = function(row, col) {
+    var elt = fruit(row, col);
+    return (elt && elt.src.indexOf("destroy.png") != -1);
+  };
+
+  for (var i = 0; i < 8; i++) {
+    while ((j > 0) && !isDestroyed(j, i)) {
       j--;
     }
 
-    console.log("fruit"+j+"_"+i+"==========>"+"fruit0_"+i);
-    document.getElementById("fruit"+j+"_"+i).id = "fruit0_"+i;
-    document.getElementById("fruit0_"+i).style.opacity = 1;
-    document.getElementById("fruit0_"+i).setAttribute('onclick', 'handleClick(0,'+i+')');
-    
+    console.log("fruit" + j + "_" + i + "==========>" + "fruit0_" +  i);
+    fruit(j, i).id = "fruit0_" + i;
+    fruit(0, i).style.opacity = 1;
+    fruit(0, i).setAttribute('onclick', 'handleClick(0,' + i + ')');
+
     j--;
-    
+
     if (j != 0) {
       while (j >= 0) {
         var tmp = j + 1;
-        console.log("fruit"+j+"_"+i+"==========>"+"fruit"+tmp+"_"+i);
-        document.getElementById("fruit"+j+"_"+i).id = "fruit"+tmp+"_"+i;
-        document.getElementById("fruit"+tmp+"_"+i).style.opacity = 1;
-        document.getElementById("fruit"+tmp+"_"+i).setAttribute('onclick', 'handleClick('+tmp+','+i+')');
+        console.log("fruit" + j + "_" + i + "==========>" + "fruit" + tmp + "_" + i);
+        fruit(j, i).id = "fruit" + tmp + "_" + i;
+        fruit(tmp, i).style.opacity = 1;
+        fruit(tmp, i).setAttribute('onclick', 'handleClick(' + tmp + ',' + i + ')');
         j--;
       }
     }
-    
+
     j = 7;
   }
-  
+
   var tmp = document.getElementsByClassName("fruit");
   //tmp.reverse();
- 
-  for (var i=0; i < tmp.length; i++) {
-    tmp[i].setAttribute('onclick', 'handleClick('+tmp[i].id.substring(5,6)+','+tmp[i].id.substring(7,8)+')');
-    translate(document.getElementById("fruit"+tmp[i].id.substring(5,6)+"_"+tmp[i].id.substring(7,8)), 10, 400);
+
+  for (var i = 0; i < tmp.length; i++) {
+    var row = tmp[i].id.substring(5,6);
+    var col = tmp[i].id.substring(7,8);
+    tmp[i].setAttribute('onclick', 'handleClick(' + row + ',' + col + ')');
+    translate(fruit(row, col), 10, 400);
   }
-  
+
   for (var i = 1; i < 8; i++) {
     for (var j = 0; j < 8; j++) {
-      
-      if(document.getElementById("fruit"+i+"_"+j) == null){alert("i = "+i+" / j = "+j);}
-      
-      if (document.getElementById("fruit"+i+"_"+j).src.indexOf("destroy.png") !== -1) {
+
+      if (!fruit(i, j)) {
+        alert("i = "+i+" / j = "+j);
+      }
+
+      if (isDestroyed(i, j)) {
         var tmp = i - 1;
-        if (document.getElementById("fruit"+tmp+"_"+j).src.indexOf("destroy.png") == -1) {
+        if (!isDestroyed(tmp, j)) {
           this.fall();
         }
       }
     }
   }
-  
-  setTimeout("oGame.regenerate()",350);
+
+  setTimeout(oGame.regenerate, 350);
 }
 
 /**************************************************************************************************
 Add new fruits to the map once it has been destroyed
 **************************************************************************************************/
 Game.prototype.regenerate = function() {
-  
+
   var tmp = document.getElementsByClassName("fruit");
   //tmp.reverse();
-  
+
   for (var i=0; i < tmp.length; i++) {
     if (document.getElementById(tmp[i].id).src.indexOf("destroy.png") !== -1) {
       document.getElementById(tmp[i].id).style.top = "-200px";
       document.getElementById(tmp[i].id).style.opacity = "1";
-      
+
       var rand = 0;
-      
+
       while (rand == 0) {
         rand = Math.floor(Math.random()*8);
       }
-      
+
       document.getElementById(tmp[i].id).src = listFruitImages[rand];
 
       translate(document.getElementById(tmp[i].id), 10, 400);
     }
   }
-  
+
   /*this.check();
-  
+
   if (this.listFruitsDestroy.length > 0) {
     this.destroy();
     this.fall();
@@ -466,14 +480,14 @@ Updates the score
 **************************************************************************************************/
 Game.prototype.updateScore = function(update) {
   this.currentScore += update;
-	
+
 	if (this.currentScore > 0) {
 		var tmpScore = ""+this.currentScore+"";
-		
+
 		while (tmpScore.length != 8) {
 			tmpScore = "0"+tmpScore;
 		}
-		
+
 		document.getElementById("score").innerHTML = tmpScore;
 	}
 	else {
@@ -557,18 +571,18 @@ Game.prototype.reload = function() {
   eltPauseOverlay.style.display = "none";
   eltEndOverlay.style.display = "none";
   eltScore.style.display = "block";
-  eltTimer.style.display = "block"; 
+  eltTimer.style.display = "block";
   oGame.posRow = "";
   oGame.posCol = "";
   oGame.selectedCase = false;
   oGame.listFruitsDestroy = [];
   oGame.countTransitionEnd = 0;
   oGame.oldId = "";
-  oGame.newId = ""; 
+  oGame.newId = "";
   oGame.state = "";
   oGame.currentScore = 0;
   oGame.updateScore(0);
-  
+
   if (oGame.mode == "time-trial") {
     oTimer.tSecondsElapsed = 0;
     oTimer.secondsElapsed = 11;
@@ -577,11 +591,11 @@ Game.prototype.reload = function() {
   } else {
     oTimer.reset();
   }
-  
+
   while (eltMap.firstChild) {
     eltMap.removeChild(eltMap.firstChild);
   }
-  
+
   oGame.buildMap();
 }
 
