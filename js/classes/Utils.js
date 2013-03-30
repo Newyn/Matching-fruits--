@@ -69,7 +69,7 @@ function fadeIn(elem, speed) {
       clearInterval(fade);
     }
   }, speed / 50);
-} 
+}
 
 /**************************************************************************************************
 Translate bottom or top an element
@@ -109,43 +109,6 @@ function translate(elem, shift, speed) {
 }
 
 /**************************************************************************************************
-Translate left or right an element
-**************************************************************************************************/
-function translateX(elem, shift, speed) {
-  oGame.state = "fall";
-
-  var row = elem.id.substring(5, 6);
-  var col = elem.id.substring(7, 8);
-  var width = getFruit(row, col).width;
-  var left = parseInt(elem.style.left.replace("px", ""));
-  var max = parseInt(col) * parseInt(width);
-
-  if (left != max) {
-    if (left < max) {
-      var fade = setInterval(function() {
-        elem.style.left = left + shift + "px";
-        left = parseInt(elem.style.left.replace("px", ""));
-        if (left > max) {
-          elem.style.left = max + "px";
-          clearInterval(fade);
-          oGame.state = "";
-        }
-      }, speed / 50);
-    } else {
-      var fade = setInterval(function() {
-        elem.style.left = left - shift + "px";
-        left = parseInt(elem.style.left.replace("px", ""));
-        if (left < max) {
-          elem.style.left = max + "px";
-          clearInterval(fade);
-          oGame.state = "";
-        }
-      }, speed / 50);
-    }
-  }
-}
-
-/**************************************************************************************************
 Getter for fruits elements
 **************************************************************************************************/
 function getFruit(row, col) {
@@ -156,13 +119,13 @@ function getFruit(row, col) {
 Checks if a fruit is destroyed
 **************************************************************************************************/
 function isDestroyed(fruit) {
-  return (fruit && fruit.src.indexOf("destroy.png") != -1);
+  return (fruit && fruit.src.indexOf('destroy.png') != -1);
 };
 
 /**************************************************************************************************
 Creates a new fruit element
 **************************************************************************************************/
-function createFruit (id, sTop, sLeft, src) {
+function createFruit(id, sTop, sLeft, src) {
   var eltFruit = document.createElement('img');
   eltFruit.className = 'fruit';
   eltFruit.id = id;
@@ -173,12 +136,11 @@ function createFruit (id, sTop, sLeft, src) {
   eltFruit.style.height = eltMap.height / 9 + 'px';
   eltFruit.style.opacity = 1;
 
-  var row = id.substring(5, 6);
-  var col = id.substring(7, 8);
-  eltFruit.setAttribute('onclick', 'handleClick(' + row + ',' + col + ')');
   eltFruit.addEventListener('webkitTransitionEnd', updateTransform, false);
   eltFruit.addEventListener(     'oTransitionEnd', updateTransform, false);
   eltFruit.addEventListener(      'transitionend', updateTransform, false);
 
+  attachClickEvent(eltFruit);
   return eltFruit;
 };
+
