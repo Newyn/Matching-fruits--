@@ -42,6 +42,12 @@ function resize() {
 Call when the user click on a fruit
 This function enables the user to perform the movement of fruit
 **************************************************************************************************/
+function attachClickEvent(fruit) {
+  var row = fruit.id.substring(5, 6);
+  var col = fruit.id.substring(7, 8);
+  fruit.setAttribute('onclick', 'handleClick(' + row + ',' + col + ')');
+}
+
 function handleClick(row, col) {
   if (oGame.selectedCase) {
     oGame.countTransitionEnd = 0;
@@ -55,10 +61,14 @@ function handleClick(row, col) {
         var tx = (col - oGame.posCol) * eltMap.width / 9;
         oldFruit.style.transform = "translateX(" + tx + "px)";
         newFruit.style.transform = "translateX(" + (-tx) + "px)";
+        oldFruit.style.webkitTransform = "translateX(" + tx + "px)";
+        newFruit.style.webkitTransform = "translateX(" + (-tx) + "px)";
       } else {
         var ty = (row - oGame.posRow) * eltMap.height / 9;
         oldFruit.style.transform = "translateY(" + ty + "px)";
         newFruit.style.transform = "translateY(" + (-ty) + "px)";
+        oldFruit.style.webkitTransform = "translateY(" + ty + "px)";
+        newFruit.style.webkitTransform = "translateY(" + (-ty) + "px)";
       }
 
       var oldId = oldFruit.id;
@@ -70,8 +80,8 @@ function handleClick(row, col) {
       oGame.oldId = oldId;
       oGame.newId = newId;
 
-      oldFruit.setAttribute('onclick', 'handleClick('+newId.substring(5,6)+','+newId.substring(7,8)+')');
-      newFruit.setAttribute('onclick', 'handleClick('+oldId.substring(5,6)+','+oldId.substring(7,8)+')');
+      attachClickEvent(oldFruit);
+      attachClickEvent(newFruit);
 
       oGame.check();
 
@@ -85,10 +95,10 @@ function handleClick(row, col) {
         oldFruit.id = oldId;
         newFruit.id = newId;
 
-        oldFruit.setAttribute('onclick', 'handleClick('+oldId.substring(5,6)+','+oldId.substring(7,8)+')');
-        newFruit.setAttribute('onclick', 'handleClick('+newId.substring(5,6)+','+newId.substring(7,8)+')');
+        attachClickEvent(oldFruit);
+        attachClickEvent(newFruit);
 
-        document.getElementById(oldId).style.animation = "";
+        document.getElementById(oldId).classList.remove('spinning');
       }
 
       oGame.posRow = "";
@@ -102,19 +112,19 @@ function handleClick(row, col) {
     } else {
       console.log("Distance > 1");
       if ((oGame.posRow !== "") && (oGame.posCol !== "")) {
-        getFruit(oGame.posRow, oGame.posCol).style.animation = "";
+        getFruit(oGame.posRow, oGame.posCol).classList.remove('spinning');
       }
       oGame.posRow = row;
       oGame.posCol = col;
       oGame.selectedCase = true;
-      getFruit(row, col).style.animation = "spin .8s infinite linear";
+      getFruit(row, col).classList.add('spinning');
     }
   } else {
     console.log("Select case");
     oGame.posRow = row;
     oGame.posCol = col;
     oGame.selectedCase = true;
-    getFruit(row, col).style.animation = "spin .8s infinite linear";
+    getFruit(row, col).classList.add('spinning');
   }
 }
 
@@ -124,11 +134,8 @@ Manages the replacement of the old by the new fruit fruit. (Position, Id, Img, .
 **************************************************************************************************/
 function updateTransform(e) {
   if (oGame.listFruitsDestroy.length == 0) {
-    if (this.style.transform.indexOf("translateX") == -1) {
-      this.style.transform = "translateY(0px)";
-    } else {
-      this.style.transform = "translateX(0px)";
-    }
+    this.style.transform = "translate(0,0)";
+    this.style.webkitTransform = "translate(0,0)";
   } else {
     if (oGame.countTransitionEnd == 0) {
       var oldFruit = document.getElementById(oGame.oldId);
@@ -159,12 +166,12 @@ function updateTransform(e) {
 
       oGame.listFruitsDestroy = [];
       oGame.fall();
-      oGame.checkRelapse();  
+      oGame.checkRelapse();
       oGame.countTransitionEnd++;
     } else if (oGame.state == "fall") {
       oGame.listFruitsDestroy = [];
       oGame.fall();
-      oGame.checkRelapse();  
+      oGame.checkRelapse();
     }
   }
 }

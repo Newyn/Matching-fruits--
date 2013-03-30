@@ -71,7 +71,7 @@ Game.prototype = {
     eltTimer.style.display = "block";
     eltScore.style.display = "block";
     document.body.style.backgroundColor = "#80D5FE";
-    
+
     oMenu.music.pause();
     this.music.play();
     oTimer.start();
@@ -337,7 +337,7 @@ Game.prototype = {
     var j = 7;
 
     console.log("NEW");
-    
+
     for (var i = 0; i < 8; i++) {
       while ((j > 0) && !isDestroyed(getFruit(j, i))) {
         j--;
@@ -349,10 +349,10 @@ Game.prototype = {
       getFruit(0, i).setAttribute('onclick', 'handleClick(0,' + i + ')');
 
       j--;
-      
+
       while (j >= 0) {
         var tmp = j + 1;
-        
+
         console.log("fruit" + j + "_" + i + "==========>" + "fruit" + tmp + "_" + i);
         getFruit(j, i).id = "fruit" + tmp + "_" + i;
         getFruit(tmp, i).style.opacity = 1;
@@ -395,7 +395,7 @@ Game.prototype = {
   },
   // Checks if the fruit can relapse and fall them where applicable
   checkRelapse: function checkRelapse() {
-    for (var i =1; i < 8; i++) {
+    for (var i = 1; i < 8; i++) {
       for (var j = 0; j < 8; j++) {
         if (isDestroyed(getFruit(i, j))) {
           var tmp = i - 1;
@@ -405,7 +405,7 @@ Game.prototype = {
         }
       }
     }
-    
+
     setTimeout(oGame.regenerate, 400);
   },
   // Updates the score

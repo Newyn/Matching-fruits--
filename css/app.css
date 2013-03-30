@@ -5,6 +5,7 @@ body {
 img.fruit {
   position: absolute;
   cursor: pointer;
+  -webkit-transition: -webkit-transform 0.4s ease-in-out;
   transition: transform 0.4s ease-in-out;
 }
 
@@ -273,3 +274,18 @@ img.arrow-previous, img.arrow-previous-play {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(-360deg); }
 }
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+@-webkit-keyframes spinoff {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(-360deg); }
+}
+
+.spinning {
+  -webkit-animation: spin .8s linear infinite;
+  animation: spin .8s infinite linear;
+}
+
