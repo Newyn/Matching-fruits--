@@ -131,28 +131,6 @@ function updateTransform(e) {
     }
   } else {
     if (oGame.countTransitionEnd == 0) {
-
-      var createFruit = function(id, sTop, sLeft, src) {
-        var eltFruit = document.createElement('img');
-        eltFruit.className = 'fruit';
-        eltFruit.id = id;
-        eltFruit.src = src;
-        eltFruit.style.top = sTop;
-        eltFruit.style.left = sLeft;
-        eltFruit.style.width = eltMap.width / 9 + 'px';
-        eltFruit.style.height = eltMap.height / 9 + 'px';
-        eltFruit.style.opacity = 1;
-
-        var row = id.substring(5, 6);
-        var col = id.substring(7, 8);
-        eltFruit.setAttribute('onclick', 'handleClick(' + row + ',' + col + ')');
-        eltFruit.addEventListener('webkitTransitionEnd', updateTransform, false);
-        eltFruit.addEventListener(     'oTransitionEnd', updateTransform, false);
-        eltFruit.addEventListener(      'transitionend', updateTransform, false);
-
-        return eltFruit;
-      };
-
       var oldFruit = document.getElementById(oGame.oldId);
       var newFruit = document.getElementById(oGame.newId);
 
@@ -181,37 +159,12 @@ function updateTransform(e) {
 
       oGame.listFruitsDestroy = [];
       oGame.fall();
-
-      for (var i =1; i < 8; i++) {
-        for (var j = 0; j < 8; j++) {
-          if (isDestroyed(getFruit(i, j))) {
-            var tmp = i - 1;
-            if (!isDestroyed(getFruit(tmp, j))) {
-              oGame.fall();
-            }
-          }
-        }
-      }
-
-      setTimeout(oGame.regenerate, 400);
+      oGame.checkRelapse();  
       oGame.countTransitionEnd++;
-
     } else if (oGame.state == "fall") {
       oGame.listFruitsDestroy = [];
       oGame.fall();
-
-      for (var i =1; i < 8; i++) {
-        for (var j = 0; j < 8; j++) {
-          if (isDestroyed(getFruit(i, j))) {
-            var tmp = i - 1;
-            if (!isDestroyed(getFruit(tmp, j))) {
-              oGame.fall();
-            }
-          }
-        }
-      }
-
-      setTimeout(oGame.regenerate, 400);
+      oGame.checkRelapse();  
     }
   }
 }

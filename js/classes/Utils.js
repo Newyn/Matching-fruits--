@@ -145,11 +145,40 @@ function translateX(elem, shift, speed) {
   }
 }
 
+/**************************************************************************************************
+Getter for fruits elements
+**************************************************************************************************/
 function getFruit(row, col) {
   return document.getElementById('fruit' + row + '_' + col);
 };
 
+/**************************************************************************************************
+Checks if a fruit is destroyed
+**************************************************************************************************/
 function isDestroyed(fruit) {
   return (fruit && fruit.src.indexOf("destroy.png") != -1);
 };
 
+/**************************************************************************************************
+Creates a new fruit element
+**************************************************************************************************/
+function createFruit (id, sTop, sLeft, src) {
+  var eltFruit = document.createElement('img');
+  eltFruit.className = 'fruit';
+  eltFruit.id = id;
+  eltFruit.src = src;
+  eltFruit.style.top = sTop;
+  eltFruit.style.left = sLeft;
+  eltFruit.style.width = eltMap.width / 9 + 'px';
+  eltFruit.style.height = eltMap.height / 9 + 'px';
+  eltFruit.style.opacity = 1;
+
+  var row = id.substring(5, 6);
+  var col = id.substring(7, 8);
+  eltFruit.setAttribute('onclick', 'handleClick(' + row + ',' + col + ')');
+  eltFruit.addEventListener('webkitTransitionEnd', updateTransform, false);
+  eltFruit.addEventListener(     'oTransitionEnd', updateTransform, false);
+  eltFruit.addEventListener(      'transitionend', updateTransform, false);
+
+  return eltFruit;
+};

@@ -393,6 +393,21 @@ Game.prototype = {
       }
     }
   },
+  // Checks if the fruit can relapse and fall them where applicable
+  checkRelapse: function checkRelapse() {
+    for (var i =1; i < 8; i++) {
+      for (var j = 0; j < 8; j++) {
+        if (isDestroyed(getFruit(i, j))) {
+          var tmp = i - 1;
+          if (!isDestroyed(getFruit(tmp, j))) {
+            oGame.fall();
+          }
+        }
+      }
+    }
+    
+    setTimeout(oGame.regenerate, 400);
+  },
   // Updates the score
   updateScore: function updateScore(update) {
     this.currentScore += update;
