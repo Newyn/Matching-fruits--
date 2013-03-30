@@ -220,13 +220,26 @@ div#options {
   position: absolute;
 }
 
-div#options img#btn-lang {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  cursor: pointer;
+div#options div#btn-options-first-level {
+  position: relative;
+  top: 53%;
+  width: 100%;
+  margin: auto;
+  text-align: center;
 }
 
+div#options div#btn-options-second-level {
+  position: relative;
+  top: 54%;
+  width: 100%;
+  margin: auto;
+  text-align: center;
+}
+
+div#options div#btn-options-first-level img, div#options div#btn-options-second-level img {
+  cursor: pointer;
+}
+ 
 img.arrow-previous, img.arrow-previous-play {
   position: absolute;
   bottom: 2%;
