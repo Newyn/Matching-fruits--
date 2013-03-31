@@ -20,7 +20,7 @@ Global variables
 var oTimer = new Timer();
 var oMenu = new Menu();
 var oGame = new Game();
-var levelsList = levels.list;
+var oSettings = new Settings();
 
 // Load fruit images
 var listFruitImages = [];

@@ -143,4 +143,3 @@ function createFruit(id, sTop, sLeft, src) {
   attachClickEvent(eltFruit);
   return eltFruit;
 };
-
