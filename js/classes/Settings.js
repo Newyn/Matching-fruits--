@@ -38,6 +38,9 @@ Settings.prototype = {
       if (xhr.readyState === 4) {
         if (xhr.status === 0 || xhr.status === 200) {
           oSettings.settings = xhr.response;
+          saveSettings("language", oSettings.settings.language);
+          saveSettings("sounds", oSettings.settings.sounds);
+          saveSettings("music", oSettings.settings.music);
         } else {
           console.error('Failed to fetch settings.json: ', xhr.statusText);
         }

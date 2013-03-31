@@ -13,6 +13,39 @@ if (!window.indexedDB) {
 }
 
 /**************************************************************************************************
+Saves settings
+**************************************************************************************************/
+function saveSettings(type, val) {
+  var request = indexedDB.open("Matching Fruits", 2);
+
+  request.onerror = function(event) {
+	  alert("The web app isn't allow to use IndexedDB.");
+	};
+
+	request.onupgradeneeded = function(event) { 
+	   var db = event.target.result;
+	   var store = db.createObjectStore("settings", {keyPath: "type"});
+	};
+
+  request.onsuccess = function(event) {
+    var db = event.target.result;
+		var store = db.transaction(["settings"], "readwrite").objectStore("settings");
+		var data = {type:type, val:val};
+
+		console.log("Attempting to write", data);
+
+		var req = store.put(data);
+
+    req.onerror = function onerror(event) {
+      console.log("Writing failed", event);
+    };
+    req.onsuccess = function onsuccess() {
+      console.log("Write succeeded");
+    };
+	};
+}
+
+/**************************************************************************************************
 Saves the score
 **************************************************************************************************/
 function saveScore(score, mode) {
