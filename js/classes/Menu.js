@@ -64,46 +64,38 @@ Menu.prototype = {
   // Changes the language of the application. FR and EN only available for the moment
   setLanguage: function setLanguage() {
     if (oMenu.language == "fr") {
-      document.webL10n.setLanguage("en");
       oMenu.language = "en";
-      eltBtnLang.src = "resources/images/btn-lang-en.png";
-      eltGame.style.backgroundImage = "url(resources/backgrounds/game-en.jpg)";
-      eltOptions.style.backgroundImage = "url(resources/backgrounds/options-en.jpg)";
-      eltEndOverlay.style.backgroundImage = "url(resources/backgrounds/end-en.jpg)";
       addSetting("language", "en");
     } else if (oMenu.language == "en") {
-      document.webL10n.setLanguage("fr");
       oMenu.language = "fr";
-      eltBtnLang.src ="resources/images/btn-lang-fr.png";
-      eltGame.style.backgroundImage = "url(resources/backgrounds/game-fr.jpg)";
-      eltOptions.style.backgroundImage = "url(resources/backgrounds/options-fr.jpg)";
-      eltEndOverlay.style.backgroundImage = "url(resources/backgrounds/end-fr.jpg)";
       addSetting("language", "fr");
     }
+    
+    oMenu.updateUI();
   },
   // Switch music state => activate / desactivate music
   switchMusicState: function switchMusicState() {
     if (oMenu.musicState == "on") {
       oMenu.musicState = "off";
-      eltBtnMusic.src = "resources/images/btn-music-off.png";
       addSetting("music", "off");
-    } else {
+    } else if (oMenu.musicState == "off") {
       oMenu.musicState = "on";
-      eltBtnMusic.src = "resources/images/btn-music-on.png";
       addSetting("music", "on");
     }
+    
+    oMenu.updateUI();
   },
   // Switch sound state => activate / desactivate sound
   switchSoundState: function switchSoundState() {
     if (oMenu.soundState == "on") {
       oMenu.soundState = "off";
-      eltBtnSound.src = "resources/images/btn-sound-off.png";
       addSetting("sounds", "off");
     } else {
       oMenu.soundState = "on";
-      eltBtnSound.src = "resources/images/btn-sound-on.png";
       addSetting("sounds", "on");
     }
+    
+    oMenu.updateUI();
   },
   // Update the UI
   updateUI: function updateUI() {
@@ -113,29 +105,29 @@ Menu.prototype = {
     console.log(oMenu.musicState);
     
     if (oMenu.language == "fr") {
-      document.webL10n.setLanguage("en");
-      eltBtnLang.src = "resources/images/btn-lang-en.png";
-      eltGame.style.backgroundImage = "url(resources/backgrounds/game-en.jpg)";
-      eltOptions.style.backgroundImage = "url(resources/backgrounds/options-en.jpg)";
-      eltEndOverlay.style.backgroundImage = "url(resources/backgrounds/end-en.jpg)";
-    } else if (oMenu.language == "en") {
       document.webL10n.setLanguage("fr");
-      eltBtnLang.src ="resources/images/btn-lang-fr.png";
+      eltBtnLang.src = "resources/images/btn-lang-fr.png";
       eltGame.style.backgroundImage = "url(resources/backgrounds/game-fr.jpg)";
       eltOptions.style.backgroundImage = "url(resources/backgrounds/options-fr.jpg)";
       eltEndOverlay.style.backgroundImage = "url(resources/backgrounds/end-fr.jpg)";
+    } else if (oMenu.language == "en") {
+      document.webL10n.setLanguage("en");
+      eltBtnLang.src ="resources/images/btn-lang-en.png";
+      eltGame.style.backgroundImage = "url(resources/backgrounds/game-en.jpg)";
+      eltOptions.style.backgroundImage = "url(resources/backgrounds/options-en.jpg)";
+      eltEndOverlay.style.backgroundImage = "url(resources/backgrounds/end-en.jpg)";
     }
 
     if (oMenu.soundState == "on") {
-      eltBtnSound.src = "resources/images/btn-sound-off.png";
-    } else {
       eltBtnSound.src = "resources/images/btn-sound-on.png";
+    } else {
+      eltBtnSound.src = "resources/images/btn-sound-off.png";
     }
     
     if (oMenu.musicState == "on") {
-      eltBtnMusic.src = "resources/images/btn-music-off.png";
-    } else {
       eltBtnMusic.src = "resources/images/btn-music-on.png";
+    } else {
+      eltBtnMusic.src = "resources/images/btn-music-off.png";
     }
   },
   // Handles click on the tab "Jouer" / "Play"
