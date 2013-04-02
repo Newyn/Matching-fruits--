@@ -1,0 +1,16 @@
+{
+  "name": "Matching Fruits !",
+  "description": "A video game Bejeweled-like based on the theme of fruits",
+  "launch_path": "/Matching-fruits--/index.html",
+  "icons": {
+    "32": "/Matching-fruits--/resources/icons/icon_32.png", // TODO
+    "48": "/Matching-fruits--/resources/icons/icon_48.png", // TODO
+    "128": "/Matching-fruits--/resources/icons/icon_128.png", // TODO
+    "256": "/Matching-fruits--/resources/icons/icon_256.png" // TODO
+  },
+  "developer": {
+    "name": "Virgil Triquet - Sylvain Ribous - Lucas Pinto - Yassir Barchi",
+	"url": "https://github.com/vtriquet/Matching-fruits--"
+  },
+  "orientation": ["portrait","landscape-secondary"]
+}
