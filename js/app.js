@@ -41,6 +41,7 @@ var eltMap = document.getElementById("map");
 var eltLaunchScreen = document.getElementById("launch-screen");
 var eltMenu = document.getElementById("menu");
 var eltGame = document.getElementById("game");
+var eltLevels = document.getElementById("levels");
 var eltOptions = document.getElementById("options");
 var eltScores = document.getElementById("scores");
 var eltBtnLevelScores = document.getElementById("btn-level-scores");

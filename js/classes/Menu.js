@@ -9,7 +9,7 @@ var Menu = function Menu() {
   this.music.play();
   this.musicState = "on"; // Music activate
   this.soundState = "on"; // Sounds activate
-  this.language = "fr";
+  this.language = "fr"; // Language FR
 }
 
 /**************************************************************************************************
@@ -99,22 +99,19 @@ Menu.prototype = {
   },
   // Update the UI
   updateUI: function updateUI() {
-    console.log("update");
-    console.log(oMenu.language);
-    console.log(oMenu.soundState);
-    console.log(oMenu.musicState);
-    
     if (oMenu.language == "fr") {
       document.webL10n.setLanguage("fr");
       eltBtnLang.src = "resources/images/btn-lang-fr.png";
       eltGame.style.backgroundImage = "url(resources/backgrounds/game-fr.jpg)";
       eltOptions.style.backgroundImage = "url(resources/backgrounds/options-fr.jpg)";
+      eltLevels.style.backgroundImage = "url(resources/backgrounds/levels-fr.jpg)";
       eltEndOverlay.style.backgroundImage = "url(resources/backgrounds/end-fr.jpg)";
     } else if (oMenu.language == "en") {
       document.webL10n.setLanguage("en");
       eltBtnLang.src ="resources/images/btn-lang-en.png";
       eltGame.style.backgroundImage = "url(resources/backgrounds/game-en.jpg)";
       eltOptions.style.backgroundImage = "url(resources/backgrounds/options-en.jpg)";
+      eltLevels.style.backgroundImage = "url(resources/backgrounds/levels-en.jpg)";
       eltEndOverlay.style.backgroundImage = "url(resources/backgrounds/end-en.jpg)";
     }
 
@@ -138,7 +135,8 @@ Menu.prototype = {
   },
   // Handles click on the tab "Niveaux" / "Levels"
   clickTabLevel: function clickTabLevel() {
-    alert(levelsList[0].id);
+    eltMenu.style.display = "none";
+    eltLevels.style.display = "block";
   },
   // Handles click on the tab "Contre-la-montre" / "Time Trial"
   clickTabTimeTrial: function clickTabTimeTrial() {

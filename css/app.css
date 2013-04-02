@@ -240,7 +240,43 @@ div#options div#btn-options-second-level {
 div#options div#btn-options-first-level img, div#options div#btn-options-second-level img {
   cursor: pointer;
 }
- 
+
+div#levels {
+  background-image: url("../resources/backgrounds/levels-fr.jpg");
+  -webkit-background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
+  -o-background-size: 100% 100%;
+  background-size: 100% 100%;
+  display: none;
+  position: absolute;
+}
+
+div#levels div.page {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+div#levels div.levels-first-level {
+  position: relative;
+  top: 53%;
+  width: 100%;
+  margin: auto;
+  text-align: center;
+}
+
+div#levels div.levels-second-level {
+  position: relative;
+  top: 62%;
+  width: 100%;
+  margin: auto;
+  text-align: center;
+}
+
+div#levels div.levels-first-level img, div#levels div.levels-second-level img {
+  cursor: pointer;
+}
+
 img.arrow-previous, img.arrow-previous-play {
   position: absolute;
   bottom: 2%;
