@@ -460,7 +460,7 @@ Game.prototype = {
     eltEndScore.style.display = "block";
     eltEndScore.innerHTML = eltScore.innerHTML;
     checkBestScore(eltEndScore.innerHTML);
-    saveScore(eltEndScore.innerHTML, "time-trial");
+    addScore(eltEndScore.innerHTML);
   },
   // Pauses of the game
   pause: function pause() {

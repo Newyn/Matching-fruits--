@@ -38,9 +38,6 @@ Settings.prototype = {
       if (xhr.readyState === 4) {
         if (xhr.status === 0 || xhr.status === 200) {
           oSettings.settings = xhr.response;
-          saveSettings("language", oSettings.settings.language);
-          saveSettings("sounds", oSettings.settings.sounds);
-          saveSettings("music", oSettings.settings.music);
         } else {
           console.error('Failed to fetch settings.json: ', xhr.statusText);
         }
@@ -50,5 +47,17 @@ Settings.prototype = {
     xhr.open('GET', this.settingsJSONFilePath, true);
     xhr.responseType = 'json';
     xhr.send();
+  },
+  // Set the language setting (fr / en)
+  setLanguage: function setLanguage(val) {
+    addSetting("language", val);
+  },
+  // Set the music setting (on / off)
+  setMusic: function setMusic(val) {
+    addSetting("music", val);
+  },
+  // Set the sound settings (on / off)
+  setSound: function setSound(val) {
+    addSetting("sounds", val);
   }
 };

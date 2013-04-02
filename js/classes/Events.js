@@ -37,7 +37,6 @@ function resize() {
     nbCol++;
   }
 }
-
 /**************************************************************************************************
 Call when the user click on a fruit
 This function enables the user to perform the movement of fruit
