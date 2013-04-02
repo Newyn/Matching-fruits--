@@ -1,4 +1,4 @@
-var DB_NAME = "Matching-fruits-indexedDB";
+var DB_NAME = "Matching-fruits-indexedDB2";
 var DB_RELEASE = 1;
 var db;
 var store;
@@ -40,6 +40,8 @@ window.onload = function() {
     for (var i = 0; i < oSettings.levels.list.length; i++) {
       selectLevel(oSettings.levels.list[i].id, oSettings.levels.list[i].score, oSettings.levels.list[i].move, oSettings.levels.list[i].time);
     }
+    
+    selectAllLevels();
   }
 }
 
@@ -81,7 +83,7 @@ function selectSetting(type) {
   }
   
   cursor.onerror = function(event) {
-    console.log("Read settings failed", event);
+    console.log("Select setting failed", event);
   };
 }
 
@@ -92,16 +94,16 @@ function addSetting(type, val) {
   store = db.transaction("settings", "readwrite").objectStore("settings");
 	var data = {type:type, val:val};
 
-	console.log("Attempting to write", data);
+	console.log("Attempting to write setting ", data);
 
 	var request = store.put(data);
 
   request.onsuccess = function onsuccess() {
-    console.log("Write succeeded");
+    console.log("Write setting succeeded");
   };
   
   request.onerror = function onerror(event) {
-    console.log("Write failed", event);
+    console.log("Write setting failed", event);
   };
 };
 
@@ -111,15 +113,15 @@ Delete a setting
 function deleteSetting(type) {
   store = db.transaction("settings", "readwrite").objectStore("settings");
   
-  console.log("Attempting to delete");
+  console.log("Attempting to delete setting");
   
   var request = store.delete(type);
   
   request.onsuccess = function(event) {
-    console.log("Delete succeeded");
+    console.log("Delete setting succeeded");
   }
   request.onerror = function(event) {
-    console.log("Delete failed", event);
+    console.log("Delete setting failed", event);
   };
 }
 
@@ -139,7 +141,6 @@ function selectAllScores() {
       var tmp = store.get(cursor.key);
       tmp.onsuccess = function (e) {
         scores.push(tmp.result.score);
-        //console.log(tmp.result.score);
         cursor.continue();
       }
     }
@@ -166,16 +167,16 @@ function addScore(score) {
   store = db.transaction("scores", "readwrite").objectStore("scores");
   var data = {score:score};
   
-  console.log("Attempting to write", data);
+  console.log("Attempting to write score", data);
   
   var request = store.put(data);
   
   request.onsuccess = function(event) {
-      console.log("Write succeeded");
+      console.log("Write score succeeded");
 	};
   
   request.onerror = function(event) {
-      console.log("Write failed");
+      console.log("Write score failed");
 	};
 }
 
@@ -185,15 +186,15 @@ Deletes a score
 function deleteScore(score) {
   store = db.transaction("scores", "readwrite").objectStore("scores");
   
-  console.log("Attempting to delete");
+  console.log("Attempting to delete score");
   
   var request = store.delete(score);
   
   request.onsuccess = function(event) {
-    console.log("Delete succeeded");
+    console.log("Delete score succeeded");
   }
   request.onerror = function(event) {
-    console.log("Delete failed", event);
+    console.log("Delete score failed", event);
   };
 }
 
@@ -270,7 +271,7 @@ function selectAllLevels() {
   var levels = [];
   store = db.transaction("levels", "readwrite").objectStore("levels");
 
-  eltScoresList.innerHTML = "";
+  eltLevels.innerHTML = "";
   
   store.openCursor().onsuccess = function (event) {
     var cursor = event.target.result; 
@@ -285,14 +286,32 @@ function selectAllLevels() {
       levels.sort();
       
       var count = 0;
+      var page = 1;
       
       for (var i = 0; i < levels.length; i++) {     
         count++;
         
         if (count == 1) {
           var eltPage = document.createElement("div");
+          eltPage.id = "page"+page;
           eltPage.className = "page";
           eltLevels.appendChild(eltPage);
+          
+          if (page != 1) {
+            eltPage.style.display = "none";
+            
+            var eltArrowNext = document.createElement("img");
+            eltArrowNext.className = "arrow-next";
+            eltArrowNext.src = "resources/images/arrow-next.png";
+            eltArrowNext.setAttribute('onclick', 'handleClickArrowNextPage('+parseInt(page)+')');
+            getPage(parseInt(page-1)).appendChild(eltArrowNext);
+            
+            var eltArrowPrevious = document.createElement("img");
+            eltArrowPrevious.className = "arrow-previous";
+            eltArrowPrevious.src = "resources/images/arrow-previous.png";
+            eltArrowPrevious.setAttribute('onclick', 'handleClickArrowPreviousPage('+parseInt(page - 1)+')');
+            getPage(page).appendChild(eltArrowPrevious);
+          }
           
           var eltFirstLevel = document.createElement("div");
           eltFirstLevel.className = "levels-first-level";
@@ -300,12 +319,14 @@ function selectAllLevels() {
           
           var eltLevel = document.createElement("img");
           eltLevel.src = "resources/images/levels/"+parseInt(i+1)+".png";
+          eltLevel.setAttribute('onclick', 'handleClickLevel('+parseInt(i+1)+')');
           eltFirstLevel.appendChild(eltLevel);
         }
         
         if ((count == 2) || (count == 3)) {
           var eltLevel = document.createElement("img");
           eltLevel.src = "resources/images/levels/"+parseInt(i+1)+".png";
+          eltLevel.setAttribute('onclick', 'handleClickLevel('+parseInt(i+1)+')');
           eltFirstLevel.appendChild(eltLevel);
         }
         
@@ -316,15 +337,18 @@ function selectAllLevels() {
           
           var eltLevel = document.createElement("img");
           eltLevel.src = "resources/images/levels/"+parseInt(i+1)+".png";
+          eltLevel.setAttribute('onclick', 'handleClickLevel('+parseInt(i+1)+')');
           eltSecondLevel.appendChild(eltLevel);
         }
         
         if (count == 5) {
           var eltLevel = document.createElement("img");
           eltLevel.src = "resources/images/levels/"+parseInt(i+1)+".png";
+          eltLevel.setAttribute('onclick', 'handleClickLevel('+parseInt(i+1)+')');
           eltSecondLevel.appendChild(eltLevel);
           
           count = 0;
+          page++;
         }
       }
     }
@@ -336,18 +360,18 @@ Adds a level
 **************************************************************************************************/
 function addLevel(id, score, move, time) {
   store = db.transaction("levels", "readwrite").objectStore("levels");
-	var data = {id: id, score: score, move: move, time: time};
+	var data = {id: id, score: score, move: move, time: time, score:0};
 
-	console.log("Attempting to write", data);
+	console.log("Attempting to write level", data);
 
 	var request = store.put(data);
 
   request.onsuccess = function onsuccess() {
-    console.log("Write succeeded");
+    console.log("Write level succeeded");
   };
   
   request.onerror = function onerror(event) {
-    console.log("Write failed", event);
+    console.log("Write level failed", event);
   };
 };
 
@@ -357,14 +381,14 @@ Deletes a level
 function deleteLevel(id) {
   store = db.transaction("levels", "readwrite").objectStore("levels");
   
-  console.log("Attempting to delete");
+  console.log("Attempting to delete level");
   
   var request = store.delete(id);
   
   request.onsuccess = function(event) {
-    console.log("Delete succeeded");
+    console.log("Delete level succeeded");
   }
   request.onerror = function(event) {
-    console.log("Delete failed", event);
+    console.log("Delete level failed", event);
   };
 }

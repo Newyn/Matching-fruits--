@@ -277,6 +277,13 @@ div#levels div.levels-first-level img, div#levels div.levels-second-level img {
   cursor: pointer;
 }
 
+img.arrow-next{
+  position: absolute;
+  bottom: 2%;
+  right: 0;
+  cursor: pointer;
+}
+
 img.arrow-previous, img.arrow-previous-play {
   position: absolute;
   bottom: 2%;

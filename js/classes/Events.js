@@ -174,3 +174,18 @@ function updateTransform(e) {
     }
   }
 }
+
+function handleClickLevel(id) {
+  console.log(id);
+  // TO DO
+}
+
+function handleClickArrowPreviousPage(page) {
+  getPage(parseInt(page + 1)).style.display = "none";
+  getPage(page).style.display = "block";
+}
+
+function handleClickArrowNextPage(page) {
+  getPage(parseInt(page - 1)).style.display = "none";
+  getPage(page).style.display = "block";
+}
