@@ -334,33 +334,33 @@ Game.prototype = {
   // Sends down the fruit if there are empty once there was destruction
   fall: function fall() {
     // return;
-    var j = 7;
+    var i = 7;
 
     console.log("NEW");
 
-    for (var i = 0; i < 8; i++) {
-      while ((j > 0) && !isDestroyed(getFruit(j, i))) {
-        j--;
+    for (var j = 0; j < 8; j++) {
+      while ((i > 0) && !isDestroyed(getFruit(i, j))) {
+        i--;
       }
 
-      console.log("fruit" + j + "_" + i + "==========>" + "fruit0_" +  i);
-      getFruit(j, i).id = "fruit0_" + i;
-      getFruit(0, i).style.opacity = 1;
-      getFruit(0, i).setAttribute('onclick', 'handleClick(0,' + i + ')');
+      console.log("fruit" + i + "_" + j + "==========>" + "fruit0_" +  j);
+      getFruit(i, j).id = "fruit0_" + j;
+      getFruit(0, j).style.opacity = 1;
+      getFruit(0, j).setAttribute('onclick', 'handleClick(0,' + j + ')');
 
-      j--;
+      i--;
 
-      while (j >= 0) {
-        var tmp = j + 1;
+      while (i >= 0) {
+        var tmp = i + 1;
 
-        console.log("fruit" + j + "_" + i + "==========>" + "fruit" + tmp + "_" + i);
-        getFruit(j, i).id = "fruit" + tmp + "_" + i;
-        getFruit(tmp, i).style.opacity = 1;
-        getFruit(tmp, i).setAttribute('onclick', 'handleClick(' + tmp + ',' + i + ')');
-        j--;
+        console.log("fruit" + i + "_" + j + "==========>" + "fruit" + tmp + "_" + j);
+        getFruit(i, j).id = "fruit" + tmp + "_" + j;
+        getFruit(tmp, j).style.opacity = 1;
+        getFruit(tmp, j).setAttribute('onclick', 'handleClick(' + tmp + ',' + j + ')');
+        i--;
       }
 
-      j = 7;
+      i = 7;
     }
 
     var tmp = document.getElementsByClassName("fruit");

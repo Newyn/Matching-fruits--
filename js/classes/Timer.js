@@ -34,10 +34,10 @@ Timer.prototype = {
   },
   // Updates the timer
   update: function update() {
-    if (this.secondsElapsedForHint > 9) {
+    /*if (this.secondsElapsedForHint > 9) {
       oGame.checkMovement();
       this.secondsElapsedForHint = 0;
-    }
+    }*/
     
     if (this.state == "pos") {
       this.tSecondsElapsed = this.tSecondsElapsed + 1;
@@ -46,9 +46,9 @@ Timer.prototype = {
         this.tSecondsElapsed = 0;
         this.secondsElapsed = this.secondsElapsed + 1;
         if (oGame.selectedCase == false) {
-          this.secondsElapsedForHint = this.secondsElapsedForHint + 1;
+          //this.secondsElapsedForHint = this.secondsElapsedForHint + 1;
         } else {
-          this.secondsElapsedForHint = 0;
+          //this.secondsElapsedForHint = 0;
         }
       }
 
@@ -75,9 +75,9 @@ Timer.prototype = {
         this.tSecondsElapsed = 10;
         this.secondsElapsed = this.secondsElapsed - 1;
         if (oGame.selectedCase == false) {
-          this.secondsElapsedForHint = this.secondsElapsedForHint + 1;
+          //this.secondsElapsedForHint = this.secondsElapsedForHint + 1;
         } else {
-          this.secondsElapsedForHint = 0;
+          //this.secondsElapsedForHint = 0;
         }
       }
 
