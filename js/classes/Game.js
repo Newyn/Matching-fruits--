@@ -324,19 +324,19 @@ Game.prototype = {
   },
   // Destroys all the fruits contains by listFruitsDestroy and reset it
   destroy: function destroy() {
-    for (var i = 0; i < this.listFruitsDestroy.length; i++) {
-      fadeOut(document.getElementById(this.listFruitsDestroy[i].id), 50);
-      this.updateScore(1000);
+    for (var i = 0; i < oGame.listFruitsDestroy.length; i++) {
+      fadeOut(document.getElementById(oGame.listFruitsDestroy[i].id), 50);
+      oGame.updateScore(1000);
     }
 
+    setTimeout(oGame.checkRelapse, 600);
+    
     oGame.listFruitsDestroy = [];
   },
   // Sends down the fruit if there are empty once there was destruction
   fall: function fall() {
     // return;
     var i = 7;
-
-    //console.log("NEW");
 
     for (var j = 0; j < 8; j++) {
       while ((i > 0) && !isDestroyed(getFruit(i, j))) {
@@ -350,7 +350,6 @@ Game.prototype = {
       while (i >= 0) {
         var tmp = i + 1;
 
-        //console.log("fruit" + i + "_" + j + "==========>" + "fruit" + tmp + "_" + j);
         getFruit(i, j).id = "fruit" + tmp + "_" + j;
         getFruit(tmp, j).style.opacity = 1;
         getFruit(tmp, j).setAttribute('onclick', 'handleClick(' + tmp + ',' + j + ')');
@@ -396,6 +395,11 @@ Game.prototype = {
         translate(fruit, 10, 400);
       }
     }
+    
+    // Checks if there are possible destructions after falling
+    if (oGame.check() == true) {
+      setTimeout(oGame.destroy, 800);
+    }
   },
   // Checks if the fruit can relapse and fall them where applicable
   checkRelapse: function checkRelapse() {
@@ -404,9 +408,6 @@ Game.prototype = {
         if (isDestroyed(getFruit(i, j))) {
           var tmp = i - 1;
           if (!isDestroyed(getFruit(tmp, j))) {
-            console.log("relapse");
-            console.log(getFruit(i, j));
-            console.log(getFruit(tmp, j));
             oGame.fall();
           }
         }
@@ -502,8 +503,8 @@ Game.prototype = {
 
     if (oGame.mode == "time-trial") {
       oTimer.tSecondsElapsed = 0;
-      oTimer.secondsElapsed = 11;
-      oTimer.minutesElapsed = 0;
+      oTimer.secondsElapsed = 0;
+      oTimer.minutesElapsed = 5;
       oTimer.start();
     } else {
       oTimer.reset();
