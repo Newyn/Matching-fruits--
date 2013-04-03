@@ -336,30 +336,33 @@ Game.prototype = {
     // return;
     var i = 7;
 
-    console.log("NEW");
+    //console.log("NEW");
 
     for (var j = 0; j < 8; j++) {
       while ((i > 0) && !isDestroyed(getFruit(i, j))) {
         i--;
       }
 
-      console.log("fruit" + i + "_" + j + "==========>" + "fruit0_" +  j);
-      getFruit(i, j).id = "fruit0_" + j;
-      getFruit(0, j).style.opacity = 1;
-      getFruit(0, j).setAttribute('onclick', 'handleClick(0,' + j + ')');
+      var oldFruit = getFruit(i, j);
 
       i--;
 
       while (i >= 0) {
         var tmp = i + 1;
 
-        console.log("fruit" + i + "_" + j + "==========>" + "fruit" + tmp + "_" + j);
+        //console.log("fruit" + i + "_" + j + "==========>" + "fruit" + tmp + "_" + j);
         getFruit(i, j).id = "fruit" + tmp + "_" + j;
         getFruit(tmp, j).style.opacity = 1;
         getFruit(tmp, j).setAttribute('onclick', 'handleClick(' + tmp + ',' + j + ')');
+        getFruit(tmp, j).setAttribute('mousedown', 'handleClick(' + tmp + ',' + j + ')');
         i--;
       }
-
+      
+      oldFruit.id = "fruit0_" + j;
+      getFruit(0, j).style.opacity = 1;
+      getFruit(0, j).setAttribute('onclick', 'handleClick(0,' + j + ')');
+      getFruit(0, j).setAttribute('mousedown', 'handleClick(0,' + j + ')');
+      
       i = 7;
     }
 
@@ -369,6 +372,7 @@ Game.prototype = {
       var row = tmp[i].id.substring(5,6);
       var col = tmp[i].id.substring(7,8);
       tmp[i].setAttribute('onclick', 'handleClick(' + row + ',' + col + ')');
+      tmp[i].setAttribute('mousedown', 'handleClick(' + row + ',' + col + ')');
       translate(getFruit(row, col), 10, 400);
     }
   },
@@ -380,7 +384,7 @@ Game.prototype = {
       var fruit = document.getElementById(tmp[i].id);
 
       if (isDestroyed(fruit)) {
-        fruit.style.top = "-200px";
+        fruit.style.top = "-400px";
         fruit.style.opacity = "1";
 
         var rand = 0;
@@ -400,6 +404,9 @@ Game.prototype = {
         if (isDestroyed(getFruit(i, j))) {
           var tmp = i - 1;
           if (!isDestroyed(getFruit(tmp, j))) {
+            console.log("relapse");
+            console.log(getFruit(i, j));
+            console.log(getFruit(tmp, j));
             oGame.fall();
           }
         }
