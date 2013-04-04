@@ -40,8 +40,8 @@ Game.prototype = {
   initialize: function initialize() {
     eltMap.width = Math.min(document.documentElement.clientWidth, document.documentElement.clientHeight);
     eltMap.height = Math.min(document.documentElement.clientWidth, document.documentElement.clientHeight);
-    eltMap.style.top = "calc(55% - " + eltMap.width / 2 + "px)";
-    eltMap.style.left = "calc(55% - " + eltMap.width / 2 + "px)";
+    eltMap.style.top = "calc(60% - " + eltMap.width / 2 + "px)";
+    eltMap.style.left = "calc(56% - " + eltMap.width / 2 + "px)";
 
     eltBtnPause.style.width = eltMap.width / 10 + "px";
     eltBtnPause.style.height = eltMap.height / 9 + "px";
@@ -70,8 +70,8 @@ Game.prototype = {
     eltBtnReload.style.display = "block";
     eltTimer.style.display = "block";
     eltScore.style.display = "block";
-    document.body.style.backgroundColor = "#80D5FE";
-
+    eltBgGame.style.display = "block";
+    
     oMenu.music.pause();
     this.music.play();
     oTimer.start();

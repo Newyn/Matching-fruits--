@@ -33,6 +33,13 @@ Menu.prototype = {
     eltBtnLevelScores.style.top = "55%";
     eltBtnTimeTrialScores.style.top = "60%";
     
+    
+    eltTimer.style.left = "calc(92% - " + document.documentElement.clientWidth / 2 + "px)";
+    eltTimer.style.top = "calc(53% - " + document.documentElement.clientHeight / 2 + "px)";
+    eltScore.style.left = "calc(89% - " + document.documentElement.clientWidth / 2 + "px)";
+    eltScore.style.top = "calc(57% - " + document.documentElement.clientHeight / 2 + "px)";
+    
+    
     // Set event listener
     eltBtnPlay.addEventListener("click", oMenu.clickTabPlay, false);
     eltBtnScores.addEventListener("click", oMenu.clickTabScores, false);

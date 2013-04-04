@@ -54,29 +54,30 @@ div#end div#end-score-msg {
   cursor: default;
 }
 div#timer {
-  position: relative;
+  position: absolute;
   color: orange;
   font-weight: bold;
   cursor: default;
   display: none;
   text-align: center;
-  margin-top: 5%;
   pointer-events: none;
+  margin: auto;
 }
 
 div#score {
-  position: relative;
+  position: absolute;
   color: orange;
   font-weight: bold;
   cursor: default;
   display: none;
   text-align: center;
   pointer-events: none;
+  margin: auto;
 }
 
 img#btn-pause {
   position: absolute;
-  top: 1%;
+  top: 3%;
   left: 2%;
   display: none;
   cursor: pointer;
@@ -84,7 +85,7 @@ img#btn-pause {
 
 img#btn-reload {
   position: absolute;
-  top: 1%;
+  top: 3%;
   right: 2%;
   display: none;
   cursor: pointer;
@@ -139,6 +140,17 @@ div#menu div#btn-options {
   background-image: url("../resources/images/bg-btn-options.png");
 }
 
+div#bg-game {
+  background-image: url("../resources/backgrounds/bg-game.jpg");
+  -webkit-background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
+  -o-background-size: 100% 100%;
+  background-size: 100% 100%;
+  display: none;
+  position: absolute;
+  z-index: 0;
+}
+
 div#game {
   background-image: url("../resources/backgrounds/game-fr.jpg");
   -webkit-background-size: 100% 100%;
@@ -150,7 +162,7 @@ div#game {
 }
 
 div#game div#btn-level {
-  background-image: url("../resources/images/bg-btn-scores.png");
+  background-image: url("../resources/images/bg-btn-play.png");
   background-repeat:repeat-x;
   width: 40%;
   border-radius: 20%;
@@ -159,7 +171,7 @@ div#game div#btn-level {
 }
 
 div#game div#btn-time-trial {
-  background-image: url("../resources/images/bg-btn-options.png");
+  background-image: url("../resources/images/bg-btn-play.png");
   background-repeat:repeat-x;
   width: 60%;
   border-radius: 20%;
@@ -187,7 +199,7 @@ div#scores div#btn-level-scores {
 }
 
 div#scores div#btn-time-trial-scores {
-  background-image: url("../resources/images/bg-btn-options.png");
+  background-image: url("../resources/images/bg-btn-scores.png");
   background-repeat:repeat-x;
   width: 60%;
   border-radius: 20%;

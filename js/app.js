@@ -37,6 +37,7 @@ listFruitImages[8] = "resources/fruits/destroy.png";
 /**************************************************************************************************
 Get DOM Elements
 **************************************************************************************************/
+var eltBgGame = document.getElementById("bg-game");
 var eltMap = document.getElementById("map");
 var eltLaunchScreen = document.getElementById("launch-screen");
 var eltMenu = document.getElementById("menu");
