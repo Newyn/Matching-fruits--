@@ -150,3 +150,4 @@ Getter for pages elements (levels menu)
 function getPage(page) {
   return document.getElementById('page'+page);
 };
+

@@ -38,7 +38,7 @@ window.onload = function() {
     selectSetting("music");
     
     for (var i = 0; i < oSettings.levels.list.length; i++) {
-      selectLevel(oSettings.levels.list[i].id, oSettings.levels.list[i].score, oSettings.levels.list[i].move, oSettings.levels.list[i].time);
+      selectLevel(oSettings.levels.list[i].id);
     }
     
     selectAllLevels();
@@ -243,7 +243,7 @@ Checks best score
 /**************************************************************************************************
 Selects a level
 **************************************************************************************************/
-function selectLevel(id, score, move, time) {
+function selectLevel(id) {
   store = db.transaction("levels", "readwrite").objectStore("levels");
   var keyRange = IDBKeyRange.only(id);
   var cursor = store.openCursor(keyRange);
@@ -252,9 +252,38 @@ function selectLevel(id, score, move, time) {
     var result = event.target.result;
     if (!!result == false) {
       console.log("Non-existent type");
-      addLevel(id, score, move, time);
+      addLevel(id, 0);
     } else {
       // TODO
+    }
+  }
+  
+  cursor.onerror = function(event) {
+    console.log("Select level failed", event);
+  };
+};
+
+/**************************************************************************************************
+Selects a level in order to append cherry
+**************************************************************************************************/
+function selectLevelAndAppendCherry(id, cherryLevel, page) {
+  store = db.transaction("levels", "readwrite").objectStore("levels");
+  var keyRange = IDBKeyRange.only(id);
+  var cursor = store.openCursor(keyRange);
+  
+  cursor.onsuccess = function(event) {
+    var result = event.target.result;
+    if (!!result == false) {
+      console.log("Non-existent type");
+    } else {
+      var eltCherry = document.createElement("img");
+      eltCherry.id = "cherry"+id;
+      eltCherry.src = "resources/images/cherries/"+result.value.score+".png";
+      if (cherryLevel == "first") {
+        document.getElementById("levels-first-level-cherry-"+page).appendChild(eltCherry);
+      } else {
+        document.getElementById("levels-second-level-cherry-"+page).appendChild(eltCherry);
+      }
     }
   }
   
@@ -318,6 +347,7 @@ function selectAllLevels() {
           eltPage.appendChild(eltFirstLevel);
           
           var eltLevel = document.createElement("img");
+          eltLevel.id = "level"+parseInt(i+1);
           eltLevel.src = "resources/images/levels/"+parseInt(i+1)+".png";
           eltLevel.setAttribute('onclick', 'handleClickLevel('+parseInt(i+1)+')');
           eltFirstLevel.appendChild(eltLevel);
@@ -325,9 +355,21 @@ function selectAllLevels() {
         
         if ((count == 2) || (count == 3)) {
           var eltLevel = document.createElement("img");
+          eltLevel.id = "level"+parseInt(i+1);
           eltLevel.src = "resources/images/levels/"+parseInt(i+1)+".png";
           eltLevel.setAttribute('onclick', 'handleClickLevel('+parseInt(i+1)+')');
           eltFirstLevel.appendChild(eltLevel);
+        }
+        
+        if (count == 3) {
+          var eltFirstLevelCherry = document.createElement("div");
+          eltFirstLevelCherry.id = "levels-first-level-cherry-"+page;
+          eltFirstLevelCherry.className = "levels-first-level-cherry";
+          eltPage.appendChild(eltFirstLevelCherry);
+          
+          selectLevelAndAppendCherry("1", "first", page);
+          selectLevelAndAppendCherry("2", "first", page);
+          selectLevelAndAppendCherry("3", "first", page);
         }
         
         if (count == 4) {
@@ -336,16 +378,26 @@ function selectAllLevels() {
           eltPage.appendChild(eltSecondLevel);
           
           var eltLevel = document.createElement("img");
+          eltLevel.id = "level"+parseInt(i+1);
           eltLevel.src = "resources/images/levels/"+parseInt(i+1)+".png";
           eltLevel.setAttribute('onclick', 'handleClickLevel('+parseInt(i+1)+')');
-          eltSecondLevel.appendChild(eltLevel);
+          eltSecondLevel.appendChild(eltLevel);      
         }
         
         if (count == 5) {
           var eltLevel = document.createElement("img");
+          eltLevel.id = "level"+parseInt(i+1);
           eltLevel.src = "resources/images/levels/"+parseInt(i+1)+".png";
           eltLevel.setAttribute('onclick', 'handleClickLevel('+parseInt(i+1)+')');
           eltSecondLevel.appendChild(eltLevel);
+          
+          var eltSecondLevelCherry = document.createElement("div");
+          eltSecondLevelCherry.id = "levels-second-level-cherry-"+page;
+          eltSecondLevelCherry.className = "levels-second-level-cherry";
+          eltPage.appendChild(eltSecondLevelCherry);
+          
+          selectLevelAndAppendCherry("4", "second", page);
+          selectLevelAndAppendCherry("5", "second", page);
           
           count = 0;
           page++;
@@ -358,9 +410,9 @@ function selectAllLevels() {
 /**************************************************************************************************
 Adds a level
 **************************************************************************************************/
-function addLevel(id, score, move, time) {
+function addLevel(id, score) {
   store = db.transaction("levels", "readwrite").objectStore("levels");
-	var data = {id: id, score: score, move: move, time: time, score:0};
+	var data = {id: id, score:score};
 
 	console.log("Attempting to write level", data);
 

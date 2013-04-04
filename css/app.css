@@ -271,21 +271,47 @@ div#levels div.page {
 
 div#levels div.levels-first-level {
   position: relative;
+  top: 51%;
+  width: 100%;
+  margin: auto;
+  text-align: center;
+}
+
+div#levels  div.levels-first-level-cherry {
+  position: relative;
+  top: 51%;
+  width: 100%;
+  margin: auto;
+  text-align: center;
+}
+
+div#levels  div.levels-first-level-cherry img {
+  margin-right: 7%;
+  margin-left: 7%;
+}
+
+div#levels div.levels-second-level {
+  position: relative;
   top: 53%;
   width: 100%;
   margin: auto;
   text-align: center;
 }
 
-div#levels div.levels-second-level {
+div#levels div.levels-second-level-cherry {
   position: relative;
-  top: 62%;
+  top: 53%;
   width: 100%;
   margin: auto;
   text-align: center;
 }
 
-div#levels div.levels-first-level img, div#levels div.levels-second-level img {
+div#levels  div.levels-second-level-cherry img {
+  margin-right: 7%;
+  margin-left: 7%;
+}
+
+div#levels div.levels-first-level img, div#levels div.levels-second-level img, div#levels div.levels-first-level-cherry img, div#levels div.levels-second-level-cherry img {
   cursor: pointer;
 }
 
