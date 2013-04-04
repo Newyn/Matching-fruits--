@@ -264,6 +264,36 @@ div#options div#btn-options-first-level img, div#options div#btn-options-second-
   cursor: pointer;
 }
 
+div#level-goal {
+  background-image: url("../resources/backgrounds/level-goal-fr.jpg");
+  -webkit-background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
+  -o-background-size: 100% 100%;
+  background-size: 100% 100%;
+  display: none;
+  position: absolute;
+}
+
+div#level-goal div {
+  font-size: 32px;
+  text-align: center;
+  position: relative;
+  font-family: Chewy;
+  font-variant: small-caps;
+  width: 55%;
+  border-radius: 20%;
+  margin: auto;
+  cursor: default;
+}
+
+div#level-goal-score, div#level-goal-time, div#level-goal-move {
+  color: #bdbbbc;
+}
+
+div#level-goal-id {
+  color: orange;
+}
+
 div#levels {
   background-image: url("../resources/backgrounds/levels-fr.jpg");
   -webkit-background-size: 100% 100%;
@@ -333,12 +363,12 @@ img.arrow-next{
   cursor: pointer;
 }
 
-img.arrow-previous, img.arrow-previous-play {
+img.arrow-previous, img.arrow-previous-play, img.arrow-previous-level {
   position: absolute;
   bottom: 2%;
   left: 0;
   cursor: pointer;
-  z-index: 1;
+  z-index: 2;
 }
 
 .overlay {

@@ -181,8 +181,18 @@ function updateTransform(e) {
 }
 
 function handleClickLevel(id) {
-  console.log(id);
-  // TO DO
+  eltLevels.style.display = "none";
+  eltLevelGoal.style.display = "block";
+  
+  eltLevelGoalId.style.top = "1%";
+  eltLevelGoalScore.style.top = "23%";
+  eltLevelGoalTime.style.top = "33%";
+  eltLevelGoalMove.style.top = "45%";
+
+  eltLevelGoalId.innerHTML = "Niveau "+id;
+  eltLevelGoalScore.innerHTML = oSettings.levels.list[parseInt(id-1)].score
+  eltLevelGoalTime.innerHTML = oSettings.levels.list[parseInt(id-1)].time;
+  eltLevelGoalMove.innerHTML = oSettings.levels.list[parseInt(id-1)].move;
 }
 
 function handleClickArrowPreviousPage(page) {

@@ -49,6 +49,12 @@ Menu.prototype = {
     for (var i = 0; i < listArrowPrevious.length; i++) {
       listArrowPrevious[i].addEventListener("click", oMenu.previous, false);
     }
+    
+    var listArrowPreviousLevel = document.getElementsByClassName("arrow-previous-level");
+    
+    for (var i = 0; i < listArrowPreviousLevel.length; i++) {
+      listArrowPreviousLevel[i].addEventListener("click", oMenu.previousLevel, false);
+    }
   },
   // Previous function
   previous: function previous() {
@@ -57,9 +63,15 @@ Menu.prototype = {
     eltOptions.style.display = "none";
     eltScores.style.display = "none";
     eltScoresList.style.display = "none";
+    eltLevels.style.display = "none";
     eltScores.style.backgroundImage = "url(resources/backgrounds/scores.jpg)";
     eltBtnLevelScores.style.display = "block";
     eltBtnTimeTrialScores.style.display = "block";
+  },
+  // Get back to the page of levels choice
+  previousLevel: function previous() {
+    eltLevels.style.display = "block";
+    eltLevelGoal.style.display = "none";
   },
   // Changes the language of the application. FR and EN only available for the moment
   setLanguage: function setLanguage() {
@@ -105,6 +117,7 @@ Menu.prototype = {
       eltGame.style.backgroundImage = "url(resources/backgrounds/game-fr.jpg)";
       eltOptions.style.backgroundImage = "url(resources/backgrounds/options-fr.jpg)";
       eltLevels.style.backgroundImage = "url(resources/backgrounds/levels-fr.jpg)";
+      eltLevelGoal.style.backgroundImage = "url(resources/backgrounds/level-goal-fr.jpg)";
       eltEndOverlay.style.backgroundImage = "url(resources/backgrounds/end-fr.jpg)";
     } else if (oMenu.language == "en") {
       document.webL10n.setLanguage("en");
@@ -112,6 +125,7 @@ Menu.prototype = {
       eltGame.style.backgroundImage = "url(resources/backgrounds/game-en.jpg)";
       eltOptions.style.backgroundImage = "url(resources/backgrounds/options-en.jpg)";
       eltLevels.style.backgroundImage = "url(resources/backgrounds/levels-en.jpg)";
+      eltLevelGoal.style.backgroundImage = "url(resources/backgrounds/level-goal-en.jpg)";
       eltEndOverlay.style.backgroundImage = "url(resources/backgrounds/end-en.jpg)";
     }
 
@@ -136,6 +150,7 @@ Menu.prototype = {
   // Handles click on the tab "Niveaux" / "Levels"
   clickTabLevel: function clickTabLevel() {
     eltMenu.style.display = "none";
+    eltGame.style.display = "none";
     eltLevels.style.display = "block";
   },
   // Handles click on the tab "Contre-la-montre" / "Time Trial"
