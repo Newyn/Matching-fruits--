@@ -1,3 +1,8 @@
+@font-face {
+	font-family: Chewy;
+	src: local('chewy'), url('../resources/fonts/chewy.woff') format('woff');
+}
+
 body {
   margin: 0;
 }
@@ -17,7 +22,11 @@ div#map {
 div#pause {
   display: none;
   color: orange;
-  background-color: #80D5FE;
+  background-image: url("../resources/backgrounds/pause.jpg");
+  -webkit-background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
+  -o-background-size: 100% 100%;
+  background-size: 100% 100%;
 }
 
 div#end {
@@ -54,6 +63,7 @@ div#end div#end-score-msg {
   cursor: default;
 }
 div#timer {
+  font-family: Chewy;
   position: absolute;
   color: orange;
   font-weight: bold;
@@ -65,6 +75,7 @@ div#timer {
 }
 
 div#score {
+  font-family: Chewy;
   position: absolute;
   color: orange;
   font-weight: bold;
@@ -112,11 +123,11 @@ div#menu {
 
 div#menu div, div#game div, div#scores div {
   font-size: 32px;
-  color: gray;
+  color: grey;
   cursor: pointer;
   text-align: center;
   position: relative;
-  font-family: Calibri;
+  font-family: Chewy;
   font-variant: small-caps;
   background-repeat:repeat-x;
   width: 55%;
@@ -327,6 +338,7 @@ img.arrow-previous, img.arrow-previous-play {
   bottom: 2%;
   left: 0;
   cursor: pointer;
+  z-index: 1;
 }
 
 .overlay {
@@ -349,14 +361,15 @@ img.arrow-previous, img.arrow-previous-play {
 }
 
 .overlay .item {
+  font-family: Chewy;
   font-size: 32px;
   font-weight: bold;
   font-variant: small-caps;
-  color: orange;
+  color: #bdbbbc;
   cursor: pointer;
   margin: 1%;
   text-align: center;
-  top: 25%;
+  top: 40%;
   position: relative;
 }
 

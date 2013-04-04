@@ -14,7 +14,7 @@ function resize() {
 
   eltTimer.style.left = "calc(92% - " + document.documentElement.clientWidth / 2 + "px)";
   eltTimer.style.top = "calc(53% - " + document.documentElement.clientHeight / 2 + "px)";
-  eltScore.style.left = "calc(89% - " + document.documentElement.clientWidth / 2 + "px)";
+  eltScore.style.left = "calc(87% - " + document.documentElement.clientWidth / 2 + "px)";
   eltScore.style.top = "calc(57% - " + document.documentElement.clientHeight / 2 + "px)";
     
   eltBtnPause.style.width = eltMap.width / 10 + "px";

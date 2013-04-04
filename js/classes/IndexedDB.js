@@ -367,9 +367,9 @@ function selectAllLevels() {
           eltFirstLevelCherry.className = "levels-first-level-cherry";
           eltPage.appendChild(eltFirstLevelCherry);
           
-          selectLevelAndAppendCherry("1", "first", page);
-          selectLevelAndAppendCherry("2", "first", page);
-          selectLevelAndAppendCherry("3", "first", page);
+          selectLevelAndAppendCherry(""+parseInt(1*page)+"", "first", page);
+          selectLevelAndAppendCherry(""+parseInt(2*page)+"", "first", page);
+          selectLevelAndAppendCherry(""+parseInt(3*page)+"", "first", page);
         }
         
         if (count == 4) {
@@ -396,8 +396,8 @@ function selectAllLevels() {
           eltSecondLevelCherry.className = "levels-second-level-cherry";
           eltPage.appendChild(eltSecondLevelCherry);
           
-          selectLevelAndAppendCherry("4", "second", page);
-          selectLevelAndAppendCherry("5", "second", page);
+          selectLevelAndAppendCherry(""+parseInt(4*page)+"", "second", page);
+          selectLevelAndAppendCherry(""+parseInt(5*page)+"", "second", page);
           
           count = 0;
           page++;

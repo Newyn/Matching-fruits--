@@ -42,7 +42,12 @@ Game.prototype = {
     eltMap.height = Math.min(document.documentElement.clientWidth, document.documentElement.clientHeight);
     eltMap.style.top = "calc(60% - " + eltMap.width / 2 + "px)";
     eltMap.style.left = "calc(56% - " + eltMap.width / 2 + "px)";
-
+   
+    eltTimer.style.left = "calc(92% - " + document.documentElement.clientWidth / 2 + "px)";
+    eltTimer.style.top = "calc(53% - " + document.documentElement.clientHeight / 2 + "px)";
+    eltScore.style.left = "calc(87% - " + document.documentElement.clientWidth / 2 + "px)";
+    eltScore.style.top = "calc(57% - " + document.documentElement.clientHeight / 2 + "px)";
+    
     eltBtnPause.style.width = eltMap.width / 10 + "px";
     eltBtnPause.style.height = eltMap.height / 9 + "px";
     eltBtnPause.addEventListener("click", this.pause, false);
@@ -475,6 +480,7 @@ Game.prototype = {
     oTimer.pause();
     eltScore.style.display = "none";
     eltTimer.style.display = "none";
+    eltBtnReload.style.display = "none";
     eltPauseOverlay.style.display = "block";
   },
   // Resumes of the game
@@ -483,6 +489,7 @@ Game.prototype = {
     eltPauseOverlay.style.display = "none";
     eltScore.style.display = "block";
     eltTimer.style.display = "block";
+    eltBtnReload.style.display = "block";
   },
   // Reloads the game
   reload: function reload() {
