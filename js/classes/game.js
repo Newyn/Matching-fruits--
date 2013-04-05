@@ -276,7 +276,7 @@ Game.prototype = {
           tmap[i - 1][j] = tmap[i][j];
           tmap[i][j] = tmp;
           if (this.checkAlignment(tmap)) {
-            this.setFruitActive(i, j);
+            //this.setFruitActive(i, j);
             return true;
           } else {
             tmp = tmap[i - 1][j];
@@ -289,7 +289,7 @@ Game.prototype = {
           tmap[i + 1][j] = tmap[i][j];
           tmap[i][j] = tmp;
           if (this.checkAlignment(tmap)) {
-            this.setFruitActive(i, j);
+            //this.setFruitActive(i, j);
             return true;
           } else {
             tmp = tmap[i + 1][j];
@@ -302,7 +302,7 @@ Game.prototype = {
           tmap[i][j - 1] = tmap[i][j];
           tmap[i][j] = tmp;
           if (this.checkAlignment(tmap)) {
-            this.setFruitActive(i, j);
+            //this.setFruitActive(i, j);
             return true;
           } else {
             tmp = tmap[i][j - 1];
@@ -315,7 +315,7 @@ Game.prototype = {
           tmap[i][j + 1] = tmap[i][j];
           tmap[i][j] = tmp;
           if (this.checkAlignment(tmap)) {
-            this.setFruitActive(i, j);
+            //this.setFruitActive(i, j);
             return true;
           } else {
             tmp = tmap[i][j + 1];
@@ -405,6 +405,11 @@ Game.prototype = {
     if (oGame.check() == true) {
       setTimeout(oGame.destroy, 800);
     }
+    
+    console.log(oGame.checkMovement());
+    if (oGame.checkMovement() == false) {
+      oGame.remixMap();
+    }
   },
   // Checks if the fruit can relapse and fall them where applicable
   checkRelapse: function checkRelapse() {
@@ -486,6 +491,7 @@ Game.prototype = {
   // Resumes of the game
   resume: function resume() {
     oTimer.start();
+    eltNoMoreMovement.style.display = "none";
     eltPauseOverlay.style.display = "none";
     eltScore.style.display = "block";
     eltTimer.style.display = "block";
@@ -517,6 +523,17 @@ Game.prototype = {
       oTimer.reset();
     }
 
+    oGame.resetMap();
+  },
+  // Remix the map if there are no more movements possibles
+  remixMap: function remixMap() {
+    oTimer.pause();
+    eltNoMoreMovement.style.display = "block";
+    setTimeout(oGame.resetMap, 1000);
+    setTimeout(oGame.resume, 1500);  
+  },
+  // Reset the map
+  resetMap: function resetMap() {
     while (eltMap.firstChild) {
       eltMap.removeChild(eltMap.firstChild);
     }

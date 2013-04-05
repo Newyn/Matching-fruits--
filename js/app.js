@@ -22,6 +22,8 @@ var oMenu = new Menu();
 var oGame = new Game();
 var oSettings = new Settings();
 
+var evtLevelGoalBtnPlay;
+
 // Load fruit images
 var listFruitImages = [];
 listFruitImages[0] = "";
@@ -49,6 +51,7 @@ var eltLevelGoalScore = document.getElementById("level-goal-score");
 var eltLevelGoalMove = document.getElementById("level-goal-move");
 var eltLevelGoalTime = document.getElementById("level-goal-time");
 var eltLevelGoalIdNum =  document.getElementById("level-goal-id-num");
+var eltLevelGoalBtnPlay = document.getElementById("level-goal-btn-play");
 var eltOptions = document.getElementById("options");
 var eltScores = document.getElementById("scores");
 var eltBtnLevelScores = document.getElementById("btn-level-scores");
@@ -65,6 +68,7 @@ var eltBtnMusic = document.getElementById("btn-music");
 var eltBtnSound = document.getElementById("btn-sound");
 var eltBtnPause = document.getElementById("btn-pause");
 var eltBtnReload = document.getElementById("btn-reload");
+var eltNoMoreMovement = document.getElementById("no-more-movement");
 var eltPauseOverlay = document.getElementById("pause");
 var eltPauseResumeButton = document.getElementById("pause-resume-button");
 var eltEndOverlay = document.getElementById("end");

@@ -7,13 +7,13 @@
     <link rel="stylesheet" type="text/css" href="css/app.css">
     <script type="text/javascript" defer src="js/lib/stats.js"></script>
     <script type="text/javascript" defer src="js/lib/l10n.js"></script>
-    <script type="text/javascript" defer src="js/classes/Events.js"></script>
-    <script type="text/javascript" defer src="js/classes/Game.js"></script>
-    <script type="text/javascript" defer src="js/classes/Utils.js"></script>
-    <script type="text/javascript" defer src="js/classes/IndexedDB.js"></script>
-    <script type="text/javascript" defer src="js/classes/Timer.js"></script>
-    <script type="text/javascript" defer src="js/classes/Menu.js"></script>
-    <script type="text/javascript" defer src="js/classes/Settings.js"></script>
+    <script type="text/javascript" defer src="js/classes/events.js"></script>
+    <script type="text/javascript" defer src="js/classes/game.js"></script>
+    <script type="text/javascript" defer src="js/classes/utils.js"></script>
+    <script type="text/javascript" defer src="js/classes/indexedDb.js"></script>
+    <script type="text/javascript" defer src="js/classes/timer.js"></script>
+    <script type="text/javascript" defer src="js/classes/menu.js"></script>
+    <script type="text/javascript" defer src="js/classes/settings.js"></script>
     <script type="text/javascript" defer src="js/app.js"></script>
     <link rel="resource" type="application/l10n" href="data/l10n/l10n.ini" />
   </head>
@@ -47,6 +47,7 @@
       <div id="level-goal-score"></div>
       <div id="level-goal-time"></div>
       <div id="level-goal-move"></div>
+      <div id="level-goal-btn-play" data-l10n-id="level-goal-btn-play-l10n">Jouer</div>
       <img class="arrow-previous-level" src="resources/images/arrow-previous.png"/>
     </div>
     
@@ -75,6 +76,11 @@
 
     <div id="score">00000000</div>
 
+    <div id="no-more-movement" class="overlay-no-more-movement">
+      <div class="item" id="no-more-movement-msg" data-l10n-id="no-more-movement-msg-l10n">Plus aucun mouvements possibles !</div>
+      <div class="item" id="no-more-movement-remix" data-l10n-id="no-more-movement-remix-l10n">Melange des fruits ...</div>
+    </div>
+    
     <div id="pause" class="overlay">
       <div class="item" id="pause-resume-button" data-l10n-id="pause-btn-resume-l10n">Reprendre</div>
       <img class="arrow-previous-play"  src="resources/images/arrow-previous.png"/>

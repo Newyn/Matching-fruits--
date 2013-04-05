@@ -4,8 +4,12 @@ Constructor of the Game class
 var Settings = function Settings() {
   this.levelsJSONFilePath = 'data/json/levels.json';
   this.settingsJSONFilePath = 'data/json/settings.json';
+  this.achievementsTimeTrialJSONFilePath = 'data/json/achievements-time-trial.json';
+  this.achievementsLevelsJSONFilePath = 'data/json/achievements-levels.json';
   this.levels = '';
   this.settings = '';
+  this.achievementsTimeTrial = '';
+  this.achievementsLevels = '';
   this.loadLevelsJSON();
   this.loadSettingsJSON();
 }
@@ -45,6 +49,40 @@ Settings.prototype = {
     };
 
     xhr.open('GET', this.settingsJSONFilePath, true);
+    xhr.responseType = 'json';
+    xhr.send();
+  },
+  // Load achievements-time-trial.json file
+  loadAchievementsTimeTrial : function loadAchievementsTimeTrial() {
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 0 || xhr.status === 200) {
+          oSettings.achievementsTimeTrial = xhr.response;
+        } else {
+          console.error('Failed to fetch achievements-time-trial.json: ', xhr.statusText);
+        }
+      }
+    };
+
+    xhr.open('GET', this.achievementsTimeTrialJSONFilePath, true);
+    xhr.responseType = 'json';
+    xhr.send();
+  },
+  // Load achievements-levels.json file
+  loadAchievementsLevels : function loadAchievementsLevels() {
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 0 || xhr.status === 200) {
+          oSettings.achievementsLevels = xhr.response;
+        } else {
+          console.error('Failed to fetch achievements-levels.json: ', xhr.statusText);
+        }
+      }
+    };
+
+    xhr.open('GET', this.achievementsLevelsJSONFilePath, true);
     xhr.responseType = 'json';
     xhr.send();
   },

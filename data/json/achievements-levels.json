@@ -1,0 +1,27 @@
+{
+  "list": [ 
+    { 
+      "id" : "1",
+      "name-en" : "Level 1",	
+      "description-en" : "Complete level 1",	
+      "name-fr" : "Niveau 1",	
+      "description-fr" : "Réaliser le niveau 1",	
+    },
+    
+    { 
+      "id" : "2",
+      "name-en" : "Level 5",	
+      "description-en" : "Complete level 5",	
+      "name-fr" : "Niveau 5",	
+      "description-fr" : "Réaliser le niveau 5",	
+    },
+    
+    { 
+      "id" : "3",
+      "name-en" : "Level 10",	
+      "description-en" : "Complete level 10",	
+      "name-fr" : "Niveau 10",	
+      "description-fr" : "Réaliser le niveau 10",	
+    }
+  ]
+}

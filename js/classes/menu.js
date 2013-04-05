@@ -72,6 +72,8 @@ Menu.prototype = {
   previousLevel: function previous() {
     eltLevels.style.display = "block";
     eltLevelGoal.style.display = "none";
+    // Remove event listener in order to avoid bug if the user choose an another level
+    eltLevelGoalBtnPlay.removeEventListener('click', evtLevelGoalBtnPlay, false);
   },
   // Changes the language of the application. FR and EN only available for the moment
   setLanguage: function setLanguage() {

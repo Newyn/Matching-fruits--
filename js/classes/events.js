@@ -7,6 +7,12 @@ function resize() {
   eltBtnAchievements.style.top = "44%";
   eltBtnOptions.style.top = "49%";
 
+  eltLevelGoalId.style.top = "1%";
+  eltLevelGoalScore.style.top = "23%";
+  eltLevelGoalTime.style.top = "33%";
+  eltLevelGoalMove.style.top = "45%";
+  eltLevelGoalBtnPlay.style.top = "53%";
+  
   eltMap.width = Math.min(document.documentElement.clientWidth, document.documentElement.clientHeight);
   eltMap.height = Math.min(document.documentElement.clientWidth, document.documentElement.clientHeight);
   eltMap.style.top = "calc(60% - "+eltMap.width / 2+"px)";
@@ -172,6 +178,7 @@ function updateTransform(e) {
       oGame.fall();
       oGame.checkRelapse();
       oGame.countTransitionEnd++;
+
     } else if (oGame.state == "fall") {
       oGame.listFruitsDestroy = [];
       oGame.fall();
@@ -188,7 +195,15 @@ function handleClickLevel(id) {
   eltLevelGoalScore.style.top = "23%";
   eltLevelGoalTime.style.top = "33%";
   eltLevelGoalMove.style.top = "45%";
-
+  eltLevelGoalBtnPlay.style.top = "53%";
+  
+  // Store the event listener to be able to delete it later
+  evtLevelGoalBtnPlay = function() { 
+    alert(id); 
+  };
+    
+  eltLevelGoalBtnPlay.addEventListener('click', evtLevelGoalBtnPlay, false);
+  
   eltLevelGoalIdNum.innerHTML = id;
   eltLevelGoalScore.innerHTML = oSettings.levels.list[parseInt(id-1)].score
   eltLevelGoalTime.innerHTML = oSettings.levels.list[parseInt(id-1)].time;

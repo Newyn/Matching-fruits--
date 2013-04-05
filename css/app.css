@@ -19,6 +19,10 @@ div#map {
   display: none;
 }
 
+div#no-more-movement {
+  display: none;
+}
+
 div#pause {
   display: none;
   color: orange;
@@ -100,7 +104,6 @@ img#btn-reload {
   right: 2%;
   display: none;
   cursor: pointer;
-  z-index: 1;
 }
 
 div#launch-screen {
@@ -221,17 +224,17 @@ div#scores div#btn-time-trial-scores {
 div#scores div#scores-list {
   position: relative;
   top: 55%;
-  width: 40%;
+  width: 60%;
   margin: auto;
   text-align: center;
   font-weight: bold;
-  color: orange;
+  color: grey;
   font-size: 20px;
   cursor: default;
 }
 
 div#scores div#scores-list span.scores-list-item {
-  color: orange;
+  color: grey;
 }
 
 div#options {
@@ -284,6 +287,12 @@ div#level-goal div {
   border-radius: 20%;
   margin: auto;
   cursor: default;
+}
+
+div#level-goal div#level-goal-btn-play {
+  background-image: url("../resources/images/bg-btn-play.png");
+  color: grey;
+  cursor: pointer;
 }
 
 div#level-goal div#level-goal-score, div#level-goal div#level-goal-time, div#level-goal div#level-goal-move {
@@ -375,11 +384,15 @@ img.arrow-previous, img.arrow-previous-play, img.arrow-previous-level {
   z-index: 2;
 }
 
-.overlay {
+.overlay, .overlay-no-more-movement {
   width: 100%;
   height: 100%;
   position: absolute;
   z-index: 1;
+}
+
+.overlay-no-more-movement {
+  background-color: rgba(0,0,0,0.8);
 }
 
 .overlay .title {
@@ -394,17 +407,26 @@ img.arrow-previous, img.arrow-previous-play, img.arrow-previous-level {
   text-decoration: underline;
 }
 
-.overlay .item {
+.overlay .item, .overlay-no-more-movement .item {
   font-family: Chewy;
-  font-size: 32px;
   font-weight: bold;
   font-variant: small-caps;
   color: #bdbbbc;
   cursor: pointer;
-  margin: 1%;
   text-align: center;
   top: 40%;
   position: relative;
+}
+
+.overlay .item {
+  font-size: 32px;
+  margin: 1%;
+}
+
+.overlay-no-more-movement .item {
+  font-size: 24px;
+  margin: 1%;
+  margin-top: 5%;
 }
 
 @keyframes spin {
