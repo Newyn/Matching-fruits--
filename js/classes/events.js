@@ -65,6 +65,7 @@ function handleClick(row, col) {
     var distance = Math.abs(col - oGame.posCol) + Math.abs(row - oGame.posRow);
 
     if (distance == 1) { // oldFruit and newFruit are adjacent
+      oGame.nbMove++;
       var oldFruit = getFruit(oGame.posRow, oGame.posCol);
       var newFruit = getFruit(row, col);
       if (row == oGame.posRow) {
@@ -196,10 +197,10 @@ function handleClickLevel(id) {
   eltLevelGoalTime.style.top = "33%";
   eltLevelGoalMove.style.top = "45%";
   eltLevelGoalBtnPlay.style.top = "53%";
-  
+
   // Store the event listener to be able to delete it later
   evtLevelGoalBtnPlay = function() { 
-    alert(id); 
+    startLevelMode(id);
   };
     
   eltLevelGoalBtnPlay.addEventListener('click', evtLevelGoalBtnPlay, false);
@@ -218,4 +219,9 @@ function handleClickArrowPreviousPage(page) {
 function handleClickArrowNextPage(page) {
   getPage(parseInt(page - 1)).style.display = "none";
   getPage(page).style.display = "block";
+}
+
+function startLevelMode(id) {
+  oGame.initialize();
+  oGame.setLevelMode(id);
 }

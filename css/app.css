@@ -45,7 +45,19 @@ div#end {
   font-family: Chewy;
 }
 
-div#end div#end-score {
+div#end-level {
+  background-image: url("../resources/backgrounds/end-level-fr.jpg");
+  -webkit-background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
+  -o-background-size: 100% 100%;
+  background-size: 100% 100%;
+  display: none;
+  color: #bdbbbc;
+  background-color: #80D5FE;
+  font-family: Chewy;
+}
+
+div#end div#end-score, div#end-level div#end-level-score {
   display: none;
   position: relative;
   top: 60%;
@@ -378,7 +390,7 @@ img.arrow-next{
   cursor: pointer;
 }
 
-img.arrow-previous, img.arrow-previous-play, img.arrow-previous-level {
+img.arrow-previous, img.arrow-previous-play, img.arrow-previous-level, img#arrow-previous-play-level {
   position: absolute;
   bottom: 2%;
   left: 0;

@@ -121,6 +121,7 @@ Menu.prototype = {
       eltLevels.style.backgroundImage = "url(resources/backgrounds/levels-fr.jpg)";
       eltLevelGoal.style.backgroundImage = "url(resources/backgrounds/level-goal-fr.jpg)";
       eltEndOverlay.style.backgroundImage = "url(resources/backgrounds/end-fr.jpg)";
+      eltEndLevel.style.backgroundImage = "url(resources/backgrounds/end-level-fr.jpg)";
     } else if (oMenu.language == "en") {
       document.webL10n.setLanguage("en");
       eltBtnLang.src ="resources/images/btn-lang-en.png";
@@ -129,6 +130,7 @@ Menu.prototype = {
       eltLevels.style.backgroundImage = "url(resources/backgrounds/levels-en.jpg)";
       eltLevelGoal.style.backgroundImage = "url(resources/backgrounds/level-goal-en.jpg)";
       eltEndOverlay.style.backgroundImage = "url(resources/backgrounds/end-en.jpg)";
+      eltEndLevel.style.backgroundImage = "url(resources/backgrounds/end-level-en.jpg)";
     }
 
     if (oMenu.soundState == "on") {

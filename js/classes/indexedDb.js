@@ -1,4 +1,4 @@
-var DB_NAME = "Matching-fruits-indexedDB3";
+var DB_NAME = "Matching-fruits-indexedDB10";
 var DB_RELEASE = 1;
 var db;
 var store;

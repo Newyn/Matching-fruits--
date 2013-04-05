@@ -30,6 +30,12 @@ var Game = function Game() {
   this.state = "";
   this.currentScore = 0;
   this.mode = "";
+  
+  this.objScore = "";
+  this.objMove = "";
+  this.objTime = "";
+  
+  this.nbMove = 0;
 };
 
 /**************************************************************************************************
@@ -69,6 +75,8 @@ Game.prototype = {
 
     this.buildMap();
 
+    eltLevels.style.display = "none";
+    eltLevelGoal.style.display = "none";
     eltGame.style.display = "none";
     eltMap.style.display = "block";
     eltBtnPause.style.display = "block";
@@ -405,9 +413,10 @@ Game.prototype = {
     if (oGame.check() == true) {
       setTimeout(oGame.destroy, 800);
     }
-    
-    console.log(oGame.checkMovement());
-    if (oGame.checkMovement() == false) {
+
+    if (parseInt(oGame.nbMove) >= oGame.objMove) {
+      setTimeout(oGame.endLevel, 1000);
+    } else if (oGame.checkMovement() == false) {
       oGame.remixMap();
     }
   },
@@ -470,6 +479,12 @@ Game.prototype = {
     oTimer.minutesElapsed = 1;
     oTimer.start();
   },
+  // Sets mode to level
+  setLevelMode: function setLevelMode(id) {
+    oGame.objScore = parseInt(oSettings.levels.list[parseInt(id - 1)].score);
+    oGame.objMove = parseInt(oSettings.levels.list[parseInt(id - 1)].move);
+    oGame.objTime = parseInt(oSettings.levels.list[parseInt(id - 1)].time);
+  },
   // Ends the game
   end: function end() {
     eltScore.style.display = "none";
@@ -478,6 +493,14 @@ Game.prototype = {
     eltEndScore.style.display = "block";
     eltEndScore.innerHTML = eltScore.innerHTML;
     checkBestScore(eltEndScore.innerHTML);
+    oGame.currentScore = 0;
+  },
+  endLevel: function endLevel() {
+    eltScore.style.display = "none";
+    eltTimer.style.display = "none";
+    eltEndLevel.style.display = "block";
+    eltEndLevelScore.style.display = "block";
+    eltEndLevelScore.innerHTML = eltScore.innerHTML;
     oGame.currentScore = 0;
   },
   // Pauses of the game
