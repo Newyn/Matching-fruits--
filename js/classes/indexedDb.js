@@ -129,7 +129,6 @@ function deleteSetting(type) {
 List all the score
 **************************************************************************************************/
 function selectAllScores() {
-
   var scores = [];
   store = db.transaction("scores", "readwrite").objectStore("scores");
 
@@ -201,44 +200,31 @@ function deleteScore(score) {
 /**************************************************************************************************
 Checks best score
 **************************************************************************************************/
-/*function checkBestScore(valScore){
+function checkBestScore(score){
+  var scores = [];
+  store = db.transaction("scores", "readwrite").objectStore("scores");
+  
+  store.openCursor().onsuccess = function (event) {
+    var cursor = event.target.result;
 
-  var request = indexedDB.open("Matching Fruits", 2);
-
-  request.onerror = function(event) {
-	  alert("The web app isn't allow to use IndexedDB.");
-	};
-
-	request.onupgradeneeded = function(event) { 
-    var db = event.target.result;
-	  var store = db.createObjectStore("save",{keyPath: "score"});
-	};
-
-  request.onsuccess = function(event) {
-    var scores = [];
-		var db = event.target.result; 
-		var store = db.transaction(["save"], "readonly").objectStore("save");
-
-		store.openCursor().onsuccess = function (event) {
-      var cursor = event.target.result;
-
-			if (cursor) {
-				var tmp = store.get(cursor.key);
-				tmp.onsuccess = function (e) {
-          scores.push(tmp.result.score);
-					cursor.continue();
-				}
-			}
-      else {
-        scores.reverse();
-        
-        if (scores[0] < valScore) {
-          eltEndScoreMsg.style.display = "block";
-        }
+    if (cursor) {
+      var tmp = store.get(cursor.key);
+      tmp.onsuccess = function (e) {
+        scores.push(tmp.result.score);
+        cursor.continue();
       }
-		}
-	}
-}*/
+    }
+    else {
+      scores.reverse();
+      
+      if (scores[0] < score) {
+        eltEndScoreMsg.style.display = "block";
+      }
+      
+      addScore(score);
+    }
+  }
+}
 
 /**************************************************************************************************
 Selects a level

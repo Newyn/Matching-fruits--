@@ -40,8 +40,9 @@ div#end {
   -o-background-size: 100% 100%;
   background-size: 100% 100%;
   display: none;
-  color: orange;
+  color: #bdbbbc;
   background-color: #80D5FE;
+  font-family: Chewy;
 }
 
 div#end div#end-score {
@@ -52,6 +53,7 @@ div#end div#end-score {
   margin: auto;
   text-align: center;
   font-weight: bold;
+  font-family: Chewy;
 }
 
 div#end div#end-score-msg {

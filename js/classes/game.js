@@ -467,7 +467,7 @@ Game.prototype = {
     oTimer.state = "neg";
     oTimer.tSecondsElapsed = 0;
     oTimer.secondsElapsed = 0;
-    oTimer.minutesElapsed = 5;
+    oTimer.minutesElapsed = 1;
     oTimer.start();
   },
   // Ends the game
@@ -478,7 +478,7 @@ Game.prototype = {
     eltEndScore.style.display = "block";
     eltEndScore.innerHTML = eltScore.innerHTML;
     checkBestScore(eltEndScore.innerHTML);
-    addScore(eltEndScore.innerHTML);
+    oGame.currentScore = 0;
   },
   // Pauses of the game
   pause: function pause() {
@@ -517,7 +517,7 @@ Game.prototype = {
     if (oGame.mode == "time-trial") {
       oTimer.tSecondsElapsed = 0;
       oTimer.secondsElapsed = 0;
-      oTimer.minutesElapsed = 5;
+      oTimer.minutesElapsed = 1;
       oTimer.start();
     } else {
       oTimer.reset();
