@@ -276,9 +276,7 @@ function selectLevelAndAppendCherry(id, cherryLevel, page) {
     if (!!result == false) {
       console.log("Non-existent type");
     } else {
-      var eltCherry = document.createElement("img");
-      eltCherry.id = "cherry"+id;
-      eltCherry.src = "resources/images/cherries/"+result.value.cherries+".png";
+      var eltCherry = createCherry(id, result.value.cherries);
       if (cherryLevel == "first") {
         document.getElementById("levels-first-level-cherry-"+page).appendChild(eltCherry);
       } else {
@@ -320,10 +318,10 @@ function selectAllLevels() {
       for (var i = 0; i < levels.length; i++) {     
         count++;
         
+        // First level item
+        // Append page element, previous and next arrow, first level group and level item
         if (count == 1) {
-          var eltPage = document.createElement("div");
-          eltPage.id = "page"+page;
-          eltPage.className = "page";
+          var eltPage = createPage(page);
           eltLevels.appendChild(eltPage);
           
           if (page == 1) {
@@ -360,33 +358,21 @@ function selectAllLevels() {
           eltFirstLevel.className = "levels-first-level";
           eltPage.appendChild(eltFirstLevel);
           
-          var eltLevel = document.createElement("img");
-          eltLevel.id = "level"+parseInt(i+1);
-          eltLevel.src = "resources/images/levels/"+parseInt(i+1)+".png";
-         
-          (function(i) {
-            eltLevel.addEventListener('click', function(event){ handleClickLevel(parseInt(i+1)); },false);
-          })(i);
-          
+          var eltLevel = createLevel(i);
           eltFirstLevel.appendChild(eltLevel);
         }
         
+        // Second and third level item
+        // Append a level item
         if ((count == 2) || (count == 3)) {
-          var eltLevel = document.createElement("img");
-          eltLevel.id = "level"+parseInt(i+1);
-          eltLevel.src = "resources/images/levels/"+parseInt(i+1)+".png";
-          
-          (function(i) {
-            eltLevel.addEventListener('click', function(event){ handleClickLevel(parseInt(i+1)); },false);
-          })(i);
-          
+          var eltLevel = createLevel(i);
           eltFirstLevel.appendChild(eltLevel);
         }
         
+        // Third item
+        // Append a cherry level group and all cherries in order to put it under the first line of the level item group
         if (count == 3) {
-          var eltFirstLevelCherry = document.createElement("div");
-          eltFirstLevelCherry.id = "levels-first-level-cherry-"+page;
-          eltFirstLevelCherry.className = "levels-first-level-cherry";
+          var eltFirstLevelCherry = createLevelCherry("first", page);
           eltPage.appendChild(eltFirstLevelCherry);
           
           selectLevelAndAppendCherry(""+parseInt(1*page)+"", "first", page);
@@ -394,36 +380,24 @@ function selectAllLevels() {
           selectLevelAndAppendCherry(""+parseInt(3*page)+"", "first", page);
         }
         
+        // Fourth item
+        // Append the second level group and a level item
         if (count == 4) {
           var eltSecondLevel = document.createElement("div");
           eltSecondLevel.className = "levels-second-level";
           eltPage.appendChild(eltSecondLevel);
           
-          var eltLevel = document.createElement("img");
-          eltLevel.id = "level"+parseInt(i+1);
-          eltLevel.src = "resources/images/levels/"+parseInt(i+1)+".png";
-          
-          (function(i) {
-            eltLevel.addEventListener('click', function(event){ handleClickLevel(parseInt(i+1)); },false);
-          })(i);
-          
+          var eltLevel = createLevel(i);
           eltSecondLevel.appendChild(eltLevel);      
         }
         
+        // Fifth item
+        // Append a level item and append a cherry level group in order to put it under the second line of the level item group
         if (count == 5) {
-          var eltLevel = document.createElement("img");
-          eltLevel.id = "level"+parseInt(i+1);
-          eltLevel.src = "resources/images/levels/"+parseInt(i+1)+".png";
-          
-          (function(i) {
-            eltLevel.addEventListener('click', function(event){ handleClickLevel(parseInt(i+1)); },false);
-          })(i);
-          
+          var eltLevel = createLevel(i);
           eltSecondLevel.appendChild(eltLevel);
           
-          var eltSecondLevelCherry = document.createElement("div");
-          eltSecondLevelCherry.id = "levels-second-level-cherry-"+page;
-          eltSecondLevelCherry.className = "levels-second-level-cherry";
+          var eltSecondLevelCherry = createLevelCherry("second", page);
           eltPage.appendChild(eltSecondLevelCherry);
           
           selectLevelAndAppendCherry(""+parseInt(4*page)+"", "second", page);

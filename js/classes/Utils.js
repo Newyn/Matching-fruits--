@@ -151,3 +151,50 @@ function getPage(page) {
   return document.getElementById('page'+page);
 };
 
+/**************************************************************************************************
+Levels page - Create a new page element
+**************************************************************************************************/
+function createPage(page) {
+  var eltPage = document.createElement("div");
+  eltPage.id = "page"+page;
+  eltPage.className = "page";
+  
+  return eltPage;
+};
+
+/**************************************************************************************************
+Levels page - Create a new level element
+**************************************************************************************************/
+function createLevel(id) {
+  var eltLevel = document.createElement("img");
+  eltLevel.id = "level"+parseInt(id+1);
+  eltLevel.src = "resources/images/levels/"+parseInt(id+1)+".png";
+         
+  (function(id) {
+    eltLevel.addEventListener('click', function(event){ handleClickLevel(parseInt(id+1)); },false);
+  })(id);
+  
+  return eltLevel;
+};
+
+/**************************************************************************************************
+Levels page - Create a new level element in order to append cherries
+**************************************************************************************************/
+function createLevelCherry(level, page) {
+  var eltLevelCherry = document.createElement("div");
+  eltLevelCherry.id = "levels-"+level+"-level-cherry-"+page;
+  eltLevelCherry.className = "levels-"+level+"-level-cherry";
+      
+  return eltLevelCherry;
+};
+
+/**************************************************************************************************
+Levels page - Create a new cherry element
+**************************************************************************************************/
+function createCherry(id, nb) {
+  var eltCherry = document.createElement("img");
+  eltCherry.id = "cherry"+id;
+  eltCherry.src = "resources/images/cherries/"+nb+".png";
+      
+  return eltCherry;
+};

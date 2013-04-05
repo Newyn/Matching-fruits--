@@ -189,7 +189,7 @@ function handleClickLevel(id) {
   eltLevelGoalTime.style.top = "33%";
   eltLevelGoalMove.style.top = "45%";
 
-  eltLevelGoalId.innerHTML = "Niveau "+id;
+  eltLevelGoalIdNum.innerHTML = id;
   eltLevelGoalScore.innerHTML = oSettings.levels.list[parseInt(id-1)].score
   eltLevelGoalTime.innerHTML = oSettings.levels.list[parseInt(id-1)].time;
   eltLevelGoalMove.innerHTML = oSettings.levels.list[parseInt(id-1)].move;

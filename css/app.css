@@ -286,12 +286,16 @@ div#level-goal div {
   cursor: default;
 }
 
-div#level-goal-score, div#level-goal-time, div#level-goal-move {
+div#level-goal div#level-goal-score, div#level-goal div#level-goal-time, div#level-goal div#level-goal-move {
   color: #bdbbbc;
 }
 
-div#level-goal-id {
+div#level-goal div#level-goal-id {
   color: orange;
+}
+
+div#level-goal div#level-goal-id span#level-goal-id-num {
+  margin-left: 5%;
 }
 
 div#levels {

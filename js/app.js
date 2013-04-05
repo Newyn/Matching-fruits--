@@ -48,6 +48,7 @@ var eltLevelGoalId = document.getElementById("level-goal-id");
 var eltLevelGoalScore = document.getElementById("level-goal-score");
 var eltLevelGoalMove = document.getElementById("level-goal-move");
 var eltLevelGoalTime = document.getElementById("level-goal-time");
+var eltLevelGoalIdNum =  document.getElementById("level-goal-id-num");
 var eltOptions = document.getElementById("options");
 var eltScores = document.getElementById("scores");
 var eltBtnLevelScores = document.getElementById("btn-level-scores");
