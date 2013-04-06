@@ -152,9 +152,8 @@ div#menu div, div#game div, div#scores div {
   margin: auto;
 }
 
-div#menu div:hover, div#game div:hover, div#scores div:hover {
+div#menu div:hover, div#game div:hover, div#scores div:hover, div#level-goal div#level-goal-btn-play:hover  {
  color: #222; 
- background: #555; 
 }
 
 div#menu div#btn-play {
