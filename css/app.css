@@ -252,13 +252,13 @@ div#scores div#scores-list {
   margin: auto;
   text-align: center;
   font-weight: bold;
-  color: grey;
+  color: #ceead5;
   font-size: 20px;
   cursor: default;
 }
 
 div#scores div#scores-list span.scores-list-item {
-  color: grey;
+  color: #ceead5;
 }
 
 div#options {
@@ -273,7 +273,7 @@ div#options {
 
 div#options div#btn-options-first-level {
   position: relative;
-  top: 53%;
+  top: 57%;
   width: 100%;
   margin: auto;
   text-align: center;
@@ -281,7 +281,7 @@ div#options div#btn-options-first-level {
 
 div#options div#btn-options-second-level {
   position: relative;
-  top: 54%;
+  top: 61%;
   width: 100%;
   margin: auto;
   text-align: center;
@@ -289,6 +289,8 @@ div#options div#btn-options-second-level {
 
 div#options div#btn-options-first-level img, div#options div#btn-options-second-level img {
   cursor: pointer;
+  margin-right: 8%;
+  margin-left: 8%;
 }
 
 div#level-goal {
@@ -349,7 +351,7 @@ div#levels div.page {
 
 div#levels div.levels-first-level {
   position: relative;
-  top: 51%;
+  top: 53%;
   width: 100%;
   margin: auto;
   text-align: center;
@@ -357,20 +359,21 @@ div#levels div.levels-first-level {
 
 div#levels  div.levels-first-level-cherry {
   position: relative;
-  top: 51%;
+  top: 53%;
   width: 100%;
   margin: auto;
   text-align: center;
 }
 
 div#levels  div.levels-first-level-cherry img {
-  margin-right: 7%;
-  margin-left: 7%;
+  cursor: pointer;
+  margin-right: 8%;
+  margin-left: 8%;
 }
 
 div#levels div.levels-second-level {
   position: relative;
-  top: 53%;
+  top: 55%;
   width: 100%;
   margin: auto;
   text-align: center;
@@ -378,19 +381,22 @@ div#levels div.levels-second-level {
 
 div#levels div.levels-second-level-cherry {
   position: relative;
-  top: 53%;
+  top: 55%;
   width: 100%;
   margin: auto;
   text-align: center;
 }
 
 div#levels  div.levels-second-level-cherry img {
-  margin-right: 7%;
-  margin-left: 7%;
+  cursor: pointer;
+  margin-right: 8%;
+  margin-left: 8%;
 }
 
-div#levels div.levels-first-level img, div#levels div.levels-second-level img, div#levels div.levels-first-level-cherry img, div#levels div.levels-second-level-cherry img {
+div#levels div.levels-first-level img, div#levels div.levels-second-level img {
   cursor: pointer;
+  margin-right: 2%;
+  margin-left: 2%;
 }
 
 img.arrow-next{
