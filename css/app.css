@@ -152,7 +152,7 @@ div#menu div, div#game div, div#scores div {
   margin: auto;
 }
 
-div#menu div:hover {
+div#menu div:hover, div#game div:hover, div#scores div:hover{
  color: #222; 
  background: #555; 
  background: -webkit-linear-gradient( #777, #333); 
