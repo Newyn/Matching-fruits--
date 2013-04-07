@@ -22,6 +22,22 @@
       "description-en" : "Achieve a score of at least 500,000 points",	
       "name-fr" : "500 000 points",	
       "description-fr" : "Realiser un score d'au moins 500 000 points"
+    },
+    
+    { 
+      "id" : "4",
+      "name-en" : "N/A",	
+      "description-en" : "Destroy four fruits at the same time",	
+      "name-fr" : "N/A",	
+      "description-fr" : "Detruire quatre fruits en meme temps"
+    },
+    
+    { 
+      "id" : "5",
+      "name-en" : "N/A",	
+      "description-en" : "Destroy five fruits at the same time",	
+      "name-fr" : "N/A",	
+      "description-fr" : "Detruire cinq fruits en meme temps"
     }
   ]
 }

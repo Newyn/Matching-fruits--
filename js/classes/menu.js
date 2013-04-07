@@ -216,6 +216,9 @@ Menu.prototype = {
   clickTabAchievements: function clickTabAchievements() {
     eltMenu.style.display = "none";
     eltAchievements.style.display = "block";
+    eltBtnLevelAchievements.style.display = "block";
+    eltBtnTimeTrialAchievements.style.display = "block";
+    eltAchievementsList.style.display = "none";
   },
   clickTabLevelAchievements: function clickTabLevelAchievements() {
     eltBtnLevelAchievements.style.display = "none";

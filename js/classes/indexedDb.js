@@ -653,9 +653,9 @@ function selectAllAchievements(elt, mode) {
             eltArrowNext.src = "resources/images/arrows/next.png";
             
             // TODO add the event listener
-            /*(function(page) {
+            (function(page) {
               eltArrowNext.addEventListener('click', function(event){ handleClickArrowNextPage(parseInt(page)); },false);
-            })(page);*/
+            })(page);
             
             getPage(parseInt(page-1)).appendChild(eltArrowNext);
             
@@ -722,7 +722,6 @@ function selectAllAchievements(elt, mode) {
           }
           eltAchievementsLevel.appendChild(eltName);
         
-        } else {
           count = 0;
           page++;
         }
