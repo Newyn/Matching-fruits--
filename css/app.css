@@ -164,13 +164,8 @@ div#menu div, div#game div, div#scores div {
   margin: auto;
 }
 
-<<<<<<< HEAD
 div#menu div:hover, div#game div:hover, div#scores div:hover, div#level-goal div#level-goal-btn-play:hover {
   color: #222;
-=======
-div#menu div:hover, div#game div:hover, div#scores div:hover, div#level-goal div#level-goal-btn-play:hover  {
- color: #222; 
->>>>>>> 3f7143dae8240f32acf3f3855042bd68451518ce
 }
 
 div#menu div#btn-play {
@@ -343,7 +338,6 @@ div#level-goal div#level-goal-btn-play {
   cursor: pointer;
   margin-top: 3%;
   margin-bottom: 1%;
-
 }
 
 div#level-goal div#level-goal-score, div#level-goal div#level-goal-time {
@@ -398,8 +392,8 @@ div#levels  div.levels-first-level-cherry {
 
 div#levels  div.levels-first-level-cherry img {
   cursor: pointer;
-  margin-right: 7%;
-  margin-left: 7%;
+  margin-right: 8%;
+  margin-left: 8%;
 }
 
 div#levels div.levels-second-level {
@@ -420,14 +414,14 @@ div#levels div.levels-second-level-cherry {
 
 div#levels  div.levels-second-level-cherry img {
   cursor: pointer;
-  margin-right: 7%;
-  margin-left: 7%;
+  margin-right: 8%;
+  margin-left: 8%;
 }
 
 div#levels div.levels-first-level img, div#levels div.levels-second-level img {
   cursor: pointer;
-  margin-right: 1.2%;
-  margin-left: 1.2%;
+  margin-right: 2%;
+  margin-left: 2%;
 }
 
 img.arrow-next{
@@ -512,4 +506,3 @@ img.arrow-previous, img.arrow-previous-play, img.arrow-previous-level, img#arrow
   -webkit-animation: spin .8s linear infinite;
   animation: spin .8s infinite linear;
 }
-
