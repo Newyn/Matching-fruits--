@@ -115,7 +115,9 @@ Game.prototype = {
         eltFruit.addEventListener( 'webkitTransitionEnd', updateTransform, false );
         eltFruit.addEventListener( 'oTransitionEnd', updateTransform, false );
         eltFruit.addEventListener( 'transitionend', updateTransform, false );
-        eltMap.appendChild(eltFruit);
+		addSwipeEvent(eltFruit,i,j);
+		eltMap.appendChild(eltFruit);
+		
       }
     }
   },

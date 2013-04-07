@@ -244,3 +244,40 @@ function startLevelMode(id) {
   oGame.initialize();
   oGame.setLevelMode(id);
 }
+
+/**************************************************************************************************
+Call when Swipe
+**************************************************************************************************/
+ function addSwipeEvent(elem, i, j)
+{
+  var hamm = new Hammer(elem).on("swipe", function(event) {
+    alert('swipe :'+event.gesture.direction+'/'+event.type);
+	event.gesture.preventDefault();
+    console.log(i+':'+j);
+	
+	var newI = i;
+	var newJ = j;
+	switch(ev.type) {
+      case 'swipeleft':
+		newI -=1; 
+        break;
+      case 'swiperight':
+		newI +=1;
+        break;
+	  case 'swipeup':
+		newJ -=1; 
+        break;
+      case 'swipedown':
+	    newJ +=1;
+        break;
+    }
+	
+	if (newI <0 || newI > 7 || newJ < 0 || newJ > 7){
+	  return;
+	}
+	else{
+	  handleClick(i,j);
+	  handleClick(newI,newJ);
+	}
+  }); 
+}
