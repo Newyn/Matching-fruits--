@@ -2,7 +2,7 @@
 Constructor of the Menu class
 **************************************************************************************************/
 var Menu = function Menu() {
-  this.music = new Audio("resources/music/menu.ogg");
+  this.music = new Audio("resources/audio/menu.ogg");
   this.music.loop = true;
   this.music.volume = 0.5;
   this.music.load();
@@ -120,7 +120,7 @@ Menu.prototype = {
   updateUI: function updateUI() {
     if (oMenu.language == "fr") {
       document.webL10n.setLanguage("fr");
-      eltBtnLang.src = "resources/images/btn-lang-fr.png";
+      eltBtnLang.src = "resources/images/buttons/btn-lang-fr.png";
       eltGame.style.backgroundImage = "url(resources/backgrounds/game-fr.jpg)";
       eltAchievements.style.backgroundImage = "url(resources/backgrounds/achievements-fr.jpg)";
       eltOptions.style.backgroundImage = "url(resources/backgrounds/options-fr.jpg)";
@@ -131,7 +131,7 @@ Menu.prototype = {
       eltEndLevel.style.backgroundImage = "url(resources/backgrounds/end-level-fr.jpg)";
     } else if (oMenu.language == "en") {
       document.webL10n.setLanguage("en");
-      eltBtnLang.src ="resources/images/btn-lang-en.png";
+      eltBtnLang.src ="resources/images/buttons/btn-lang-en.png";
       eltGame.style.backgroundImage = "url(resources/backgrounds/game-en.jpg)";
       eltAchievements.style.backgroundImage = "url(resources/backgrounds/achievements-en.jpg)";
       eltOptions.style.backgroundImage = "url(resources/backgrounds/options-en.jpg)";
@@ -143,15 +143,15 @@ Menu.prototype = {
     }
 
     if (oMenu.soundState == "on") {
-      eltBtnSound.src = "resources/images/btn-sound-on.png";
+      eltBtnSound.src = "resources/images/buttons/btn-sound-on.png";
     } else {
-      eltBtnSound.src = "resources/images/btn-sound-off.png";
+      eltBtnSound.src = "resources/images/buttons/btn-sound-off.png";
     }
     
     if (oMenu.musicState == "on") {
-      eltBtnMusic.src = "resources/images/btn-music-on.png";
+      eltBtnMusic.src = "resources/images/buttons/btn-music-on.png";
     } else {
-      eltBtnMusic.src = "resources/images/btn-music-off.png";
+      eltBtnMusic.src = "resources/images/buttons/btn-music-off.png";
     }
   },
   // Handles click on the tab "Jouer" / "Play"

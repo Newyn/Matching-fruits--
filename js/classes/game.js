@@ -3,7 +3,7 @@ Constructor of the Game class
 **************************************************************************************************/
 var Game = function Game() {
   // Game music
-  this.music = new Audio("resources/music/game.ogg");
+  this.music = new Audio("resources/audio/game.ogg");
   this.music.loop = true;
   this.music.volume = 0.5;
   this.music.load();

@@ -5,6 +5,7 @@
 
 body {
   margin: 0;
+  background-color: #62c7ff;
 }
 
 img.fruit {
@@ -169,19 +170,19 @@ div#menu div:hover, div#game div:hover, div#scores div:hover, div#level-goal div
 }
 
 div#menu div#btn-play {
-  background-image: url("../resources/images/bg-btn-play.png");
+  background-image: url("../resources/images/buttons/bg-btn-play.png");
 }
 
 div#menu div#btn-scores {
-  background-image: url("../resources/images/bg-btn-scores.png");
+  background-image: url("../resources/images/buttons/bg-btn-scores.png");
 }
 
 div#menu div#btn-achievements {
-  background-image: url("../resources/images/bg-btn-achievements.png");
+  background-image: url("../resources/images/buttons/bg-btn-achievements.png");
 }
 
 div#menu div#btn-options {
-  background-image: url("../resources/images/bg-btn-options.png");
+  background-image: url("../resources/images/buttons/bg-btn-options.png");
 }
 
 div#bg-game {
@@ -206,7 +207,7 @@ div#game {
 }
 
 div#game div#btn-level, div#game div#btn-time-trial {
-  background-image: url("../resources/images/bg-btn-play.png");
+  background-image: url("../resources/images/buttons/bg-btn-play.png");
   background-repeat:repeat-x;
   width: 60%;
   border-radius: 16px 16px 16px 16px;
@@ -224,17 +225,8 @@ div#scores {
   position: absolute;
 }
 
-div#scores div#btn-level-scores {
-  background-image: url("../resources/images/bg-btn-scores.png");
-  background-repeat:repeat-x;
-  width: 60%;
-  border-radius: 16px 16px 16px 16px;
-  font-size: 25px;
-  margin: auto;
-}
-
-div#scores div#btn-time-trial-scores {
-  background-image: url("../resources/images/bg-btn-scores.png");
+div#scores div#btn-level-scores, div#scores div#btn-time-trial-scores {
+  background-image: url("../resources/images/buttons/bg-btn-scores.png");
   background-repeat:repeat-x;
   width: 60%;
   border-radius: 16px 16px 16px 16px;
@@ -266,10 +258,11 @@ div#achievements {
   background-size: 100% 100%;
   display: none;
   position: absolute;
+  background-color: blue;
 }
 
 div#achievements div#btn-level-achievements, div#achievements div#btn-time-trial-achievements {
-  background-image: url("../resources/images/bg-btn-achievements.png");
+  background-image: url("../resources/images/buttons/bg-btn-achievements.png");
   background-repeat:repeat-x;
   width: 60%;
   border-radius: 16px 16px 16px 16px;
@@ -343,7 +336,7 @@ div#level-goal div, div#level-score div {
 }
 
 div#level-goal div#level-goal-btn-play {
-  background-image: url("../resources/images/bg-btn-play.png");
+  background-image: url("../resources/images/buttons/bg-btn-play.png");
   color: grey;
   cursor: pointer;
   margin-top: 3%;
