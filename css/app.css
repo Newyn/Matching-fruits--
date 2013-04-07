@@ -165,7 +165,7 @@ div#menu div, div#game div, div#scores div, div#achievements div {
   margin: auto;
 }
 
-div#menu div:hover, div#game div:hover, div#scores div:hover, div#level-goal div#level-goal-btn-play:hover {
+div#menu div:hover, div#game div:hover, div#scores div:hover, div#level-goal div#level-goal-btn-play:hover, div#achievements div#btn-level-achievements:hover, div#achievements div#btn-time-trial-achievements:hover {
   color: #222;
 }
 
@@ -343,13 +343,19 @@ div#level-goal div#level-goal-btn-play {
   margin-bottom: 1%;
 }
 
-div#level-goal div#level-goal-score, div#level-goal div#level-goal-time {
+div#level-goal div#level-goal-score, div#level-goal div#level-goal-time, div#level-score div#level-score-score  {
   color: #bdbbbc;
-  margin-top: -2%;
+  margin-top: -1%;
   margin-bottom: 2.3%;
 }
 
-div#level-goal div#level-goal-move  {
+ div#level-score div#level-score-time {
+ color: #bdbbbc;
+ margin-top: 5%;
+ margin-bottom: -4%;
+ }
+
+div#level-goal div#level-goal-move, div#level-score div#level-score-move {
   color: #bdbbbc;
 }
 
@@ -379,7 +385,7 @@ div#levels div.page {
 
 div#levels div.levels-first-level {
   position: relative;
-  top: 51%;
+  top: 53%;
   width: 100%;
   margin: auto;
   text-align: center;
@@ -387,7 +393,7 @@ div#levels div.levels-first-level {
 
 div#levels  div.levels-first-level-cherry {
   position: relative;
-  top: 51%;
+  top: 53%;
   width: 100%;
   margin: auto;
   text-align: center;
@@ -401,7 +407,7 @@ div#levels  div.levels-first-level-cherry img {
 
 div#levels div.levels-second-level {
   position: relative;
-  top: 53%;
+  top: 55%;
   width: 100%;
   margin: auto;
   text-align: center;
@@ -409,7 +415,7 @@ div#levels div.levels-second-level {
 
 div#levels div.levels-second-level-cherry {
   position: relative;
-  top: 53%;
+  top: 55%;
   width: 100%;
   margin: auto;
   text-align: center;

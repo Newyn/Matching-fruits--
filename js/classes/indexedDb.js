@@ -342,7 +342,7 @@ function selectAllLevels(elt, mode) {
           if (page == 1) {
             var eltArrowPrevious = document.createElement("img");
             eltArrowPrevious.className = "arrow-previous";
-            eltArrowPrevious.src = "resources/images/arrow/previous.png";
+            eltArrowPrevious.src = "resources/images/arrows/previous.png";
             if (mode == "levels") {
               eltArrowPrevious.addEventListener('click', oMenu.previous, false);
             } else if (mode == "scores") {
@@ -354,7 +354,7 @@ function selectAllLevels(elt, mode) {
             
             var eltArrowNext = document.createElement("img");
             eltArrowNext.className = "arrow-next";
-            eltArrowNext.src = "resources/images/arrow/next.png";
+            eltArrowNext.src = "resources/images/arrows/next.png";
             
             (function(page) {
               eltArrowNext.addEventListener('click', function(event){ handleClickArrowNextPage(parseInt(page)); },false);
@@ -364,7 +364,7 @@ function selectAllLevels(elt, mode) {
             
             var eltArrowPrevious = document.createElement("img");
             eltArrowPrevious.className = "arrow-previous";
-            eltArrowPrevious.src = "resources/images/arrow/previous.png";
+            eltArrowPrevious.src = "resources/images/arrows/previous.png";
             
             (function(page) {
               eltArrowPrevious.addEventListener('click', function(event){ handleClickArrowPreviousPage(parseInt(page - 1)); },false);
