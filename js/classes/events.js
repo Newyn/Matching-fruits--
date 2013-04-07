@@ -6,6 +6,12 @@ function resize() {
   eltBtnScores.style.top = "39%";
   eltBtnAchievements.style.top = "44%";
   eltBtnOptions.style.top = "49%";
+  eltBtnLevel.style.top = "55%";
+  eltBtnTimeTrial.style.top = "60%";
+  eltBtnLevelScores.style.top = "55%";
+  eltBtnTimeTrialScores.style.top = "60%"; 
+  eltBtnLevelAchievements.style.top = "55%";
+  eltBtnTimeTrialAchievements.style.top = "60%";
 
   eltLevelGoalId.style.top = "1%";
   eltLevelGoalScore.style.top = "23%";

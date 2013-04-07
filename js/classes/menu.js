@@ -32,10 +32,13 @@ Menu.prototype = {
     eltBtnTimeTrial.style.top = "60%";
     eltBtnLevelScores.style.top = "55%";
     eltBtnTimeTrialScores.style.top = "60%"; 
+    eltBtnLevelAchievements.style.top = "55%";
+    eltBtnTimeTrialAchievements.style.top = "60%";
     
     // Set event listener
     eltBtnPlay.addEventListener("click", oMenu.clickTabPlay, false);
     eltBtnScores.addEventListener("click", oMenu.clickTabScores, false);
+    eltBtnAchievements.addEventListener("click", oMenu.clickTabAchievements, false);
     eltBtnOptions.addEventListener("click", oMenu.clickTabOptions, false);
     eltBtnLang.addEventListener("click", oMenu.setLanguage, false);
     eltBtnMusic.addEventListener("click", oMenu.switchMusicState, false);
@@ -61,6 +64,7 @@ Menu.prototype = {
   previous: function previous() {
     eltMenu.style.display = "block";
     eltGame.style.display = "none";
+    eltAchievements.style.display = "none";
     eltOptions.style.display = "none";
     eltScores.style.display = "none";
     eltScoresList.style.display = "none";
@@ -118,6 +122,7 @@ Menu.prototype = {
       document.webL10n.setLanguage("fr");
       eltBtnLang.src = "resources/images/btn-lang-fr.png";
       eltGame.style.backgroundImage = "url(resources/backgrounds/game-fr.jpg)";
+      eltAchievements.style.backgroundImage = "url(resources/backgrounds/achievements-fr.jpg)";
       eltOptions.style.backgroundImage = "url(resources/backgrounds/options-fr.jpg)";
       eltLevels.style.backgroundImage = "url(resources/backgrounds/levels-fr.jpg)";
       eltLevelGoal.style.backgroundImage = "url(resources/backgrounds/level-goal-fr.jpg)";
@@ -128,6 +133,7 @@ Menu.prototype = {
       document.webL10n.setLanguage("en");
       eltBtnLang.src ="resources/images/btn-lang-en.png";
       eltGame.style.backgroundImage = "url(resources/backgrounds/game-en.jpg)";
+      eltAchievements.style.backgroundImage = "url(resources/backgrounds/achievements-en.jpg)";
       eltOptions.style.backgroundImage = "url(resources/backgrounds/options-en.jpg)";
       eltLevels.style.backgroundImage = "url(resources/backgrounds/levels-en.jpg)";
       eltLevelGoal.style.backgroundImage = "url(resources/backgrounds/level-goal-en.jpg)";
@@ -194,5 +200,10 @@ Menu.prototype = {
   clickTabOptions: function clickTabOptions() {
     eltMenu.style.display = "none";
     eltOptions.style.display = "block";
+  },
+  // Handles click on the tab "Options"
+  clickTabAchievements: function clickTabAchievements() {
+    eltMenu.style.display = "none";
+    eltAchievements.style.display = "block";
   }
 };
