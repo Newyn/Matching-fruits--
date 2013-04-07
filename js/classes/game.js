@@ -486,6 +486,7 @@ Game.prototype = {
   },
   // Sets mode to level
   setLevelMode: function setLevelMode(id) {
+    oTimer.state = "pos";
     this.mode = "level";
     this.idLevel = id;
     this.objScore = parseInt(oSettings.levels.list[parseInt(id - 1)].score);
