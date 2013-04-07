@@ -1,4 +1,4 @@
-var DB_NAME = "Matching-fruits-indexedDB20";
+var DB_NAME = "Matching-fruits-indexedDB30";
 var DB_RELEASE = 1;
 var db;
 var store;
@@ -142,15 +142,23 @@ function selectAllScores() {
       }
     }
     else {
-      scores.sort();
-      scores.reverse();
-      
-      for (var i = 0; i < scores.length; i++) {
-        if (i < 5) {
-          eltScoresList.innerHTML += i + 1 +" - <span class=\"scores-list-item\">"+ scores[i] + "</span><br />";
-          console.log(scores[i]);
+      if (scores.length == 0) {
+        if (oMenu.language == "fr") {
+          eltScoresList.innerHTML = "<span class=\"scores-list-item\">Aucun score realise !</span><br />";
         } else {
-          deleteScore(scores[i]);
+          eltScoresList.innerHTML = "<span class=\"scores-list-item\">No score achieved !</span><br />";
+        }
+      } else {
+        scores.sort();
+        scores.reverse();
+        
+        for (var i = 0; i < scores.length; i++) {
+          if (i < 5) {
+            eltScoresList.innerHTML += i + 1 +" - <span class=\"scores-list-item\">"+ scores[i] + "</span><br />";
+            console.log(scores[i]);
+          } else {
+            deleteScore(scores[i]);
+          }
         }
       }
     }
