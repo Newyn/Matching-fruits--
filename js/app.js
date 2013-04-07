@@ -93,6 +93,7 @@ var eltTimerMinutes = document.getElementById("timer-minutes");
 var eltTimerSeconds = document.getElementById("timer-seconds");
 var eltScore = document.getElementById("score");
 var eltArrowPreviousPlayLevel = document.getElementById("arrow-previous-play-level");
+var eltArrowPreviousScores = document.getElementById("arrow-previous-scores");
 
 window.addEventListener("resize", resize, false);
 

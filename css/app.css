@@ -470,12 +470,16 @@ img.arrow-next{
   cursor: pointer;
 }
 
-img.arrow-previous, img.arrow-previous-play, img.arrow-previous-level, img#arrow-previous-play-level {
+img.arrow-previous, img.arrow-previous-play, img.arrow-previous-level, img#arrow-previous-play-level, img#arrow-previous-scores {
   position: absolute;
   bottom: 2%;
   left: 0;
   cursor: pointer;
   z-index: 2;
+}
+
+img#arrow-previous-scores {
+  display: none;
 }
 
 .overlay, .overlay-no-more-movement {

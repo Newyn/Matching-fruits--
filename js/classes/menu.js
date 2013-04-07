@@ -49,6 +49,7 @@ Menu.prototype = {
     eltBtnLevelScores.addEventListener("click", oMenu.clickTabLevelScore, false);
     eltBtnLevelAchievements.addEventListener("click", oMenu.clickTabLevelAchievements, false);
     eltBtnTimeTrialAchievements.addEventListener("click", oMenu.clickTabTimeTrialAchievements, false);
+    eltArrowPreviousScores.addEventListener("click", oMenu.previousScores, false);
     
     var listArrowPrevious = document.getElementsByClassName("arrow-previous");
     
@@ -76,11 +77,18 @@ Menu.prototype = {
     eltBtnTimeTrialScores.style.display = "block";
   },
   // Get back to the page of levels choice
-  previousLevel: function previous() {
+  previousLevel: function previousLevel() {
     eltLevels.style.display = "block";
     eltLevelGoal.style.display = "none";
     // Remove event listener in order to avoid bug if the user choose an another level
     eltLevelGoalBtnPlay.removeEventListener('click', evtLevelGoalBtnPlay, false);
+  },
+  previousScores: function previousScores() {
+    eltArrowPreviousScores.style.display = "none";
+    eltScoresList.style.display = "none";
+    eltScores.style.display = "block";
+    eltBtnLevelScores.style.display = "block";
+    eltBtnTimeTrialScores.style.display = "block";
   },
   // Changes the language of the application. FR and EN only available for the moment
   setLanguage: function setLanguage() {
@@ -189,6 +197,7 @@ Menu.prototype = {
     eltBtnLevelScores.style.display = "none";
     eltBtnTimeTrialScores.style.display = "none";
     eltScoresList.style.display = "block";
+    eltArrowPreviousScores.style.display = "block";
     selectAllScores();
   },
   // Handles click on the tab "Scores"
