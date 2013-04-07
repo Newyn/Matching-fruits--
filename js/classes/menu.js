@@ -43,6 +43,7 @@ Menu.prototype = {
     eltBtnLevel.addEventListener("click", oMenu.clickTabLevel, false);
     eltBtnTimeTrial.addEventListener("click", oMenu.clickTabTimeTrial, false);
     eltBtnTimeTrialScores.addEventListener("click", oMenu.clickTabTimeTrialScores, false);
+    eltBtnLevelScores.addEventListener("click", oMenu.clickTabLevelScore, false);
     
     var listArrowPrevious = document.getElementsByClassName("arrow-previous");
     
@@ -120,6 +121,7 @@ Menu.prototype = {
       eltOptions.style.backgroundImage = "url(resources/backgrounds/options-fr.jpg)";
       eltLevels.style.backgroundImage = "url(resources/backgrounds/levels-fr.jpg)";
       eltLevelGoal.style.backgroundImage = "url(resources/backgrounds/level-goal-fr.jpg)";
+      eltLevelScore.style.backgroundImage = "url(resources/backgrounds/level-score-fr.jpg)";
       eltEndOverlay.style.backgroundImage = "url(resources/backgrounds/end-fr.jpg)";
       eltEndLevel.style.backgroundImage = "url(resources/backgrounds/end-level-fr.jpg)";
     } else if (oMenu.language == "en") {
@@ -129,6 +131,7 @@ Menu.prototype = {
       eltOptions.style.backgroundImage = "url(resources/backgrounds/options-en.jpg)";
       eltLevels.style.backgroundImage = "url(resources/backgrounds/levels-en.jpg)";
       eltLevelGoal.style.backgroundImage = "url(resources/backgrounds/level-goal-en.jpg)";
+      eltLevelScore.style.backgroundImage = "url(resources/backgrounds/level-score-en.jpg)";
       eltEndOverlay.style.backgroundImage = "url(resources/backgrounds/end-en.jpg)";
       eltEndLevel.style.backgroundImage = "url(resources/backgrounds/end-level-en.jpg)";
     }
@@ -150,6 +153,7 @@ Menu.prototype = {
     //oGame.initialize();
     eltMenu.style.display = "none";
     eltGame.style.display = "block";
+    selectAllLevels(eltLevels, "levels");
   },
   // Handles click on the tab "Niveaux" / "Levels"
   clickTabLevel: function clickTabLevel() {
@@ -157,11 +161,17 @@ Menu.prototype = {
     eltGame.style.display = "none";
     eltLevels.style.display = "block";
   },
+  // Handles click on the tab "Scores" => "Niveaux" / "Levels"
+  clickTabLevelScore: function clickTabLevelScore() {
+    eltScores.style.display = "none";
+    eltLevels.style.display = "block";
+  },
   // Handles click on the tab "Contre-la-montre" / "Time Trial"
   clickTabTimeTrial: function clickTabTimeTrial() {
     oGame.initialize();
     oGame.setTimeTrial();
   },
+  // Handles click on the tab "Scores" => "Contre-la-montre" / "Time Trial"
   clickTabTimeTrialScores: function clickTabTimeTrialScores() {
     if (eltBtnLang.src.indexOf("btn-lang-fr") !== -1) {
       eltScores.style.backgroundImage = "url(resources/backgrounds/scores-time-trial-fr.jpg)";
@@ -176,7 +186,9 @@ Menu.prototype = {
   // Handles click on the tab "Scores"
   clickTabScores: function clickTabScores() {
     eltMenu.style.display = "none";
+    eltLevels.style.display = "none";
     eltScores.style.display = "block";
+    selectAllLevels(eltLevels, "scores");
   },
   // Handles click on the tab "Options"
   clickTabOptions: function clickTabOptions() {

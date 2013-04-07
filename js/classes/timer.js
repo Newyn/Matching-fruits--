@@ -14,6 +14,9 @@ var Timer = function Timer() {
 Prototype of the Timer class
 **************************************************************************************************/
 Timer.prototype = {
+  convertTimerToSeconds: function convertTimerToSeconds() {
+    return (parseInt(this.secondsElapsed + (this.minutesElapsed * 60)));
+  },
   // Starts the timer
   start: function start() {
     this.interval = setInterval(function() {
@@ -67,6 +70,10 @@ Timer.prototype = {
         eltTimerSeconds.innerHTML = "0" + this.secondsElapsed;
       } else {
         eltTimerSeconds.innerHTML = this.secondsElapsed;
+      }
+      
+      if (this.convertTimerToSeconds() > parseInt(oGame.objTime)) {
+        oGame.endLevel();
       }
     } else if (this.state == "neg") {
       this.tSecondsElapsed = this.tSecondsElapsed - 1;

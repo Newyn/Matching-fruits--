@@ -60,12 +60,24 @@ div#end-level {
 div#end div#end-score, div#end-level div#end-level-score {
   display: none;
   position: relative;
-  top: 60%;
-  width: 40%;
+  top: 45%;
+  width: 65%;
   margin: auto;
   text-align: center;
   font-weight: bold;
   font-family: Chewy;
+}
+
+div#end-level div#end-level-score div {
+  display: none;
+  position: relative;
+  width: 100%;
+  margin: auto;
+  text-align: center;
+  font-weight: bold;
+  text-decoration: underline;
+  font-variant: small-caps;
+  cursor: default;
 }
 
 div#end div#end-score-msg {
@@ -152,14 +164,8 @@ div#menu div, div#game div, div#scores div {
   margin: auto;
 }
 
-div#menu div:hover, div#game div:hover, div#scores div:hover{
- color: #222; 
- background: #555; 
- background: -webkit-linear-gradient( #777, #333); 
- background: -moz-linear-gradient( #777, #333); 
- background: -ms-linear-gradient( #777, #333); 
- background: -o-linear-gradient( #777, #333); 
- background: linear-gradient( #777, #333); 
+div#menu div:hover, div#game div:hover, div#scores div:hover, div#level-goal div#level-goal-btn-play:hover {
+  color: #222;
 }
 
 div#menu div#btn-play {
@@ -230,7 +236,7 @@ div#scores {
 div#scores div#btn-level-scores {
   background-image: url("../resources/images/bg-btn-scores.png");
   background-repeat:repeat-x;
-  width: 40%;
+  width: 60%;
   border-radius: 16px 16px 16px 16px;
   font-size: 25px;
   margin: auto;
@@ -303,7 +309,18 @@ div#level-goal {
   position: absolute;
 }
 
-div#level-goal div {
+div#level-score {
+  background-image: url("../resources/backgrounds/level-score-fr.jpg");
+  -webkit-background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
+  -o-background-size: 100% 100%;
+  background-size: 100% 100%;
+  display: none;
+  position: absolute;
+}
+
+div#level-goal div, div#level-score div {
+  color: #bdbbbc;
   font-size: 32px;
   text-align: center;
   position: relative;
@@ -333,11 +350,11 @@ div#level-goal div#level-goal-move  {
   color: #bdbbbc;
 }
 
-div#level-goal div#level-goal-id {
+div#level-goal div#level-goal-id, div#level-score div#level-score-id {
   color: orange;
 }
 
-div#level-goal div#level-goal-id span#level-goal-id-num {
+div#level-goal div#level-goal-id span#level-goal-id-num, div#level-score div#level-score-id span#level-score-id-num  {
   margin-left: 5%;
 }
 
@@ -359,7 +376,7 @@ div#levels div.page {
 
 div#levels div.levels-first-level {
   position: relative;
-  top: 53%;
+  top: 51%;
   width: 100%;
   margin: auto;
   text-align: center;
@@ -367,7 +384,7 @@ div#levels div.levels-first-level {
 
 div#levels  div.levels-first-level-cherry {
   position: relative;
-  top: 53%;
+  top: 51%;
   width: 100%;
   margin: auto;
   text-align: center;
@@ -381,7 +398,7 @@ div#levels  div.levels-first-level-cherry img {
 
 div#levels div.levels-second-level {
   position: relative;
-  top: 55%;
+  top: 53%;
   width: 100%;
   margin: auto;
   text-align: center;
@@ -389,7 +406,7 @@ div#levels div.levels-second-level {
 
 div#levels div.levels-second-level-cherry {
   position: relative;
-  top: 55%;
+  top: 53%;
   width: 100%;
   margin: auto;
   text-align: center;

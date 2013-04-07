@@ -11,7 +11,7 @@ function resize() {
   eltLevelGoalScore.style.top = "23%";
   eltLevelGoalTime.style.top = "33%";
   eltLevelGoalMove.style.top = "45%";
-  eltLevelGoalBtnPlay.style.top = "53%";
+  eltLevelGoalBtnPlay.style.top = "51%";
   
   eltMap.width = Math.min(document.documentElement.clientWidth, document.documentElement.clientHeight);
   eltMap.height = Math.min(document.documentElement.clientWidth, document.documentElement.clientHeight);
@@ -196,7 +196,7 @@ function handleClickLevel(id) {
   eltLevelGoalScore.style.top = "23%";
   eltLevelGoalTime.style.top = "33%";
   eltLevelGoalMove.style.top = "45%";
-  eltLevelGoalBtnPlay.style.top = "53%";
+  eltLevelGoalBtnPlay.style.top = "51%";
 
   // Store the event listener to be able to delete it later
   evtLevelGoalBtnPlay = function() { 
@@ -209,6 +209,19 @@ function handleClickLevel(id) {
   eltLevelGoalScore.innerHTML = oSettings.levels.list[parseInt(id-1)].score
   eltLevelGoalTime.innerHTML = oSettings.levels.list[parseInt(id-1)].time;
   eltLevelGoalMove.innerHTML = oSettings.levels.list[parseInt(id-1)].move;
+}
+
+function handleClickLevelScore(id) {
+  eltLevels.style.display = "none";
+  eltLevelScore.style.display = "block";
+  
+  eltLevelScoreId.style.top = "1%";
+  eltLevelScoreScore.style.top = "20%";
+  eltLevelScoreTime.style.top = "26%";
+  eltLevelScoreMove.style.top = "43%";
+  
+  eltLevelScoreIdNum.innerHTML = id;
+  selectLevelScore(""+id+""); // Add quotes because of the format of the JSON file
 }
 
 function handleClickArrowPreviousPage(page) {

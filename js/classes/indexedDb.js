@@ -1,4 +1,4 @@
-var DB_NAME = "Matching-fruits-indexedDB10";
+var DB_NAME = "Matching-fruits-indexedDB20";
 var DB_RELEASE = 1;
 var db;
 var store;
@@ -40,8 +40,6 @@ window.onload = function() {
     for (var i = 0; i < oSettings.levels.list.length; i++) {
       selectLevel(oSettings.levels.list[i].id);
     }
-    
-    selectAllLevels();
   }
 }
 
@@ -238,7 +236,11 @@ function selectLevel(id) {
     var result = event.target.result;
     if (!!result == false) {
       console.log("Non-existent type");
-      addLevel(id, "", "", "", 0);
+      if (id == "1") {
+        addLevel(id, "", "", "", 0, true);
+      } else {
+        addLevel(id, "", "", "", 0, false);
+      }
     } else {
       // TODO
     }
@@ -248,6 +250,27 @@ function selectLevel(id) {
     console.log("Select level failed", event);
   };
 };
+
+function selectLevelScore(id) {
+  store = db.transaction("levels", "readwrite").objectStore("levels");
+  var keyRange = IDBKeyRange.only(id);
+  var cursor = store.openCursor(keyRange);
+  
+  cursor.onsuccess = function(event) {
+    var result = event.target.result;
+    if (!!result == false) {
+      console.log("Non-existent type");
+    } else {
+      eltLevelScoreScore.innerHTML = result.value.score;
+      eltLevelScoreTime.innerHTML = result.value.time;
+      eltLevelScoreMove.innerHTML = result.value.move;
+    }
+  }
+  
+  cursor.onerror = function(event) {
+    console.log("Select level failed", event);
+  };
+}
 
 /**************************************************************************************************
 Selects a level in order to append cherry
@@ -265,8 +288,14 @@ function selectLevelAndAppendCherry(id, cherryLevel, page) {
       var eltCherry = createCherry(id, result.value.cherries);
       if (cherryLevel == "first") {
         document.getElementById("levels-first-level-cherry-"+page).appendChild(eltCherry);
+        if (getLevel(id).style.opacity != 1) {
+          eltCherry.style.visibility = "hidden";
+        }
       } else {
         document.getElementById("levels-second-level-cherry-"+page).appendChild(eltCherry);
+        if (getLevel(id).style.opacity != 1) {
+          eltCherry.style.visibility = "hidden";
+        }
       }
     }
   }
@@ -279,12 +308,12 @@ function selectLevelAndAppendCherry(id, cherryLevel, page) {
 /**************************************************************************************************
 List all the levels
 **************************************************************************************************/
-function selectAllLevels() {
+function selectAllLevels(elt, mode) {
 
   var levels = [];
   store = db.transaction("levels", "readwrite").objectStore("levels");
 
-  eltLevels.innerHTML = "";
+  elt.innerHTML = "";
   
   store.openCursor().onsuccess = function (event) {
     var cursor = event.target.result; 
@@ -308,13 +337,17 @@ function selectAllLevels() {
         // Append page element, previous and next arrow, first level group and level item
         if (count == 1) {
           var eltPage = createPage(page);
-          eltLevels.appendChild(eltPage);
+          elt.appendChild(eltPage);
           
           if (page == 1) {
             var eltArrowPrevious = document.createElement("img");
             eltArrowPrevious.className = "arrow-previous";
             eltArrowPrevious.src = "resources/images/arrow-previous.png";
-            eltArrowPrevious.addEventListener('click', oMenu.previous, false);
+            if (mode == "levels") {
+              eltArrowPrevious.addEventListener('click', oMenu.previous, false);
+            } else if (mode == "scores") {
+              eltArrowPrevious.addEventListener('click', oMenu.clickTabScores, false);
+            }
             getPage(page).appendChild(eltArrowPrevious);
           } else {
             eltPage.style.display = "none";
@@ -346,6 +379,7 @@ function selectAllLevels() {
           
           var eltLevel = createLevel(i);
           eltFirstLevel.appendChild(eltLevel);
+          checkLockLevel(parseInt(i+1), mode);
         }
         
         // Second and third level item
@@ -353,6 +387,7 @@ function selectAllLevels() {
         if ((count == 2) || (count == 3)) {
           var eltLevel = createLevel(i);
           eltFirstLevel.appendChild(eltLevel);
+          checkLockLevel(parseInt(i+1), mode);
         }
         
         // Third item
@@ -361,9 +396,15 @@ function selectAllLevels() {
           var eltFirstLevelCherry = createLevelCherry("first", page);
           eltPage.appendChild(eltFirstLevelCherry);
           
-          selectLevelAndAppendCherry(""+parseInt(1*page)+"", "first", page);
-          selectLevelAndAppendCherry(""+parseInt(2*page)+"", "first", page);
-          selectLevelAndAppendCherry(""+parseInt(3*page)+"", "first", page);
+          if (page == 1) {
+            selectLevelAndAppendCherry(""+1+"", "first", page);
+            selectLevelAndAppendCherry(""+2+"", "first", page);
+            selectLevelAndAppendCherry(""+3+"", "first", page);
+          } else {
+            selectLevelAndAppendCherry(""+parseInt(1+(parseInt(parseInt(page - 1)*5)))+"", "first", page);
+            selectLevelAndAppendCherry(""+parseInt(2+(parseInt(parseInt(page - 1)*5)))+"", "first", page);
+            selectLevelAndAppendCherry(""+parseInt(3+(parseInt(parseInt(page - 1)*5)))+"", "first", page);
+          }
         }
         
         // Fourth item
@@ -373,8 +414,9 @@ function selectAllLevels() {
           eltSecondLevel.className = "levels-second-level";
           eltPage.appendChild(eltSecondLevel);
           
-          var eltLevel = createLevel(i);
-          eltSecondLevel.appendChild(eltLevel);      
+          var eltLevel = createLevel(i, mode);
+          eltSecondLevel.appendChild(eltLevel);   
+          checkLockLevel(parseInt(i+1), mode);          
         }
         
         // Fifth item
@@ -382,12 +424,18 @@ function selectAllLevels() {
         if (count == 5) {
           var eltLevel = createLevel(i);
           eltSecondLevel.appendChild(eltLevel);
+          checkLockLevel(parseInt(i+1), mode);
           
           var eltSecondLevelCherry = createLevelCherry("second", page);
           eltPage.appendChild(eltSecondLevelCherry);
           
-          selectLevelAndAppendCherry(""+parseInt(4*page)+"", "second", page);
-          selectLevelAndAppendCherry(""+parseInt(5*page)+"", "second", page);
+          if (page == 1) {
+            selectLevelAndAppendCherry(""+4+"", "second", page);
+            selectLevelAndAppendCherry(""+5+"", "second", page);
+          } else {
+            selectLevelAndAppendCherry(""+parseInt(4+(parseInt(parseInt(page - 1)*5)))+"", "second", page);
+            selectLevelAndAppendCherry(""+parseInt(5+(parseInt(parseInt(page - 1)*5)))+"", "second", page);
+          }
           
           count = 0;
           page++;
@@ -398,11 +446,48 @@ function selectAllLevels() {
 }
 
 /**************************************************************************************************
+Unlock / Lock level
+**************************************************************************************************/
+function checkLockLevel(id, mode) {
+  store = db.transaction("levels", "readwrite").objectStore("levels");
+  var keyRange = IDBKeyRange.only(""+id+"");
+  var cursor = store.openCursor(keyRange);
+  
+  cursor.onsuccess = function(event) {
+    var result = event.target.result;
+    if (!!result == false) {
+      console.log("Non-existent type");
+    } else {
+      if (result.value.unlock == false) {
+        getLevel(id).style.opacity = 0.5;
+        getLevel(id).style.cursor = "default";
+      } else {
+        getLevel(id).style.opacity = 1;
+        
+        if (mode == "levels") {
+          (function(id) {
+            document.getElementById("level"+id).addEventListener('click', function(event){ handleClickLevel(id); },false);
+          })(id);
+        } else {
+          (function(id) {
+            document.getElementById("level"+id).addEventListener('click', function(event){ handleClickLevelScore(id); },false);
+          })(id);
+        }
+      }
+    }
+  }
+  
+  cursor.onerror = function(event) {
+    console.log("Select level failed", event);
+  };
+};
+
+/**************************************************************************************************
 Adds a level
 **************************************************************************************************/
-function addLevel(id, score, move, time, cherries) {
+function addLevel(id, score, move, time, cherries, unlock) {
   store = db.transaction("levels", "readwrite").objectStore("levels");
-	var data = {id: id, score:score, move:move, time:time, cherries:cherries};
+	var data = {id: id, score:score, move:move, time:time, cherries:cherries, unlock:unlock};
 
 	console.log("Attempting to write level", data);
 

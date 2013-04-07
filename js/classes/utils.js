@@ -152,6 +152,13 @@ function getPage(page) {
 };
 
 /**************************************************************************************************
+Getter for levels elements (levels menu)
+**************************************************************************************************/
+function getLevel(level) {
+  return document.getElementById('level'+level);
+};
+
+/**************************************************************************************************
 Levels page - Create a new page element
 **************************************************************************************************/
 function createPage(page) {
@@ -169,10 +176,6 @@ function createLevel(id) {
   var eltLevel = document.createElement("img");
   eltLevel.id = "level"+parseInt(id+1);
   eltLevel.src = "resources/images/levels/"+parseInt(id+1)+".png";
-         
-  (function(id) {
-    eltLevel.addEventListener('click', function(event){ handleClickLevel(parseInt(id+1)); },false);
-  })(id);
   
   return eltLevel;
 };
@@ -198,3 +201,19 @@ function createCherry(id, nb) {
       
   return eltCherry;
 };
+
+function setBgEltEndLevel() { 
+  if (oMenu.language == "fr") {
+    eltEndLevel.style.backgroundImage = "url(resources/backgrounds/end-level-fr.jpg)";
+  } else {
+    eltEndLevel.style.backgroundImage = "url(resources/backgrounds/end-level-en.jpg)";
+  }
+}
+
+function setBgEltEndLevelFail() {
+  if (oMenu.language == "fr") {
+    eltEndLevel.style.backgroundImage = "url(resources/backgrounds/end-level-failed-fr.jpg)";
+  } else {
+    eltEndLevel.style.backgroundImage = "url(resources/backgrounds/end-level-failed-en.jpg)";
+  }
+}

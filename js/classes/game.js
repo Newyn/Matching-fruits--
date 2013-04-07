@@ -31,6 +31,7 @@ var Game = function Game() {
   this.currentScore = 0;
   this.mode = "";
   
+  this.idLevel = "";
   this.objScore = "";
   this.objMove = "";
   this.objTime = "";
@@ -414,10 +415,12 @@ Game.prototype = {
       setTimeout(oGame.destroy, 800);
     }
 
-    if (parseInt(oGame.nbMove) >= oGame.objMove) {
-      setTimeout(oGame.endLevel, 1000);
-    } else if (oGame.checkMovement() == false) {
-      oGame.remixMap();
+    if (oGame.mode == "level") {
+      if (parseInt(oGame.nbMove) >= oGame.objMove) {
+        setTimeout(oGame.endLevel, 1000);
+      } else if (oGame.checkMovement() == false) {
+        oGame.remixMap();
+      }
     }
   },
   // Checks if the fruit can relapse and fall them where applicable
@@ -481,9 +484,11 @@ Game.prototype = {
   },
   // Sets mode to level
   setLevelMode: function setLevelMode(id) {
-    oGame.objScore = parseInt(oSettings.levels.list[parseInt(id - 1)].score);
-    oGame.objMove = parseInt(oSettings.levels.list[parseInt(id - 1)].move);
-    oGame.objTime = parseInt(oSettings.levels.list[parseInt(id - 1)].time);
+    this.mode = "level";
+    this.idLevel = id;
+    this.objScore = parseInt(oSettings.levels.list[parseInt(id - 1)].score);
+    this.objMove = parseInt(oSettings.levels.list[parseInt(id - 1)].move);
+    this.objTime = parseInt(oSettings.levels.list[parseInt(id - 1)].time);
   },
   // Ends the game
   end: function end() {
@@ -496,12 +501,33 @@ Game.prototype = {
     oGame.currentScore = 0;
   },
   endLevel: function endLevel() {
+    oTimer.pause();
+    oGame.checkObjectives();
+    oTimer.reset();
+    this.currentScore = 0;
     eltScore.style.display = "none";
     eltTimer.style.display = "none";
     eltEndLevel.style.display = "block";
     eltEndLevelScore.style.display = "block";
-    eltEndLevelScore.innerHTML = eltScore.innerHTML;
-    oGame.currentScore = 0;
+  },
+  checkObjectives: function checkObjectives() {
+    if ((this.nbMove > this.objMove) && (this.currentScore < this.objScore)) {
+      setBgEltEndLevelFail();
+      eltEndLevelFailScore.style.display = "block";
+      eltEndLevelFailMove.style.display = "block";
+    } 
+    else if ((this.nbMove > this.objMove) && (this.currentScore > this.objScore)) {
+      setBgEltEndLevelFail();
+      eltEndLevelFailMove.style.display = "block";
+    }
+    else if (this.currentScore < this.objScore) {
+      setBgEltEndLevelFail();
+      eltEndLevelFailScore.style.display = "block";
+    }
+    else {
+      setBgEltEndLevel();
+      addLevel(""+oGame.idLevel+"", oGame.currentScore, oGame.nbMove, oTimer.convertTimerToSeconds(), 1);
+    }
   },
   // Pauses of the game
   pause: function pause() {
@@ -538,6 +564,7 @@ Game.prototype = {
     oGame.updateScore(0);
 
     if (oGame.mode == "time-trial") {
+      oTimer.pause();
       oTimer.tSecondsElapsed = 0;
       oTimer.secondsElapsed = 0;
       oTimer.minutesElapsed = 1;
