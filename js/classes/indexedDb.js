@@ -1,4 +1,4 @@
-var DB_NAME = "Matching-fruits-indexedDB30";
+var DB_NAME = "Matching-fruits-indexedDB20";
 var DB_RELEASE = 1;
 var db;
 var store;
@@ -322,7 +322,7 @@ function selectAllLevels(elt, mode) {
   store = db.transaction("levels", "readwrite").objectStore("levels");
 
   elt.innerHTML = "";
-  
+
   store.openCursor().onsuccess = function (event) {
     var cursor = event.target.result; 
     if (cursor) {

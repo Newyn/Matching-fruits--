@@ -19,18 +19,21 @@ Timer.prototype = {
   },
   // Starts the timer
   start: function start() {
+    console.log("Start timer");
     this.interval = setInterval(function() {
       oTimer.update();
     }, 100);
   },
   // Pauses the timer
   pause: function pause() {
+    console.log("Pause timer");
     // Stop the execution of the interval
     clearInterval(this.interval);
     this.interval = null;
   },
   // Resets the timer
   reset: function reset() {
+    console.log("Reset timer");
     this.tSecondsElapsed = 0;
     this.secondsElapsed = 0;
     this.minutesElapsed = 0;

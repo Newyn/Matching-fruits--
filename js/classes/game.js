@@ -62,9 +62,11 @@ Game.prototype = {
     eltBtnReload.style.width = eltMap.width / 10 + "px";
     eltBtnReload.style.height = eltMap.height / 9 + "px";
     eltBtnReload.addEventListener("click", this.reload, false);
-
+    
     eltPauseResumeButton.addEventListener("click", oGame.resume, false);
 
+    eltArrowPreviousPlayLevel.addEventListener("click", oGame.previousLevel, false);
+    
     var listArrowPreviousPlay = document.getElementsByClassName("arrow-previous-play");
 
     for (var i = 0; i < listArrowPreviousPlay.length; i++) {
@@ -465,8 +467,8 @@ Game.prototype = {
     eltEndOverlay.style.display = "none";
     eltEndScoreMsg.style.display = "none";
     eltScore.innerHTML = "00000000";
-    oTimer.reset();
     oTimer.pause();
+    oTimer.reset();
     while (eltMap.firstChild) {
       eltMap.removeChild(eltMap.firstChild);
     }
@@ -492,6 +494,8 @@ Game.prototype = {
     this.objScore = parseInt(oSettings.levels.list[parseInt(id - 1)].score);
     this.objMove = parseInt(oSettings.levels.list[parseInt(id - 1)].move);
     this.objTime = parseInt(oSettings.levels.list[parseInt(id - 1)].time);
+    this.nbMove = 0;
+    this.currentScore = 0;
   },
   // Ends the game
   end: function end() {
@@ -597,6 +601,11 @@ Game.prototype = {
   previous: function previous() {
     oGame.leave();
     eltGame.style.display = "block";
+  },
+  previousLevel: function previousLevel() {
+    oGame.leave();
+    eltEndLevel.style.display = "none";
+    eltLevels.style.display = "block";
   },
   // Sets a fruit active ie. as the selected case
   setFruitActive: function(row, col) {

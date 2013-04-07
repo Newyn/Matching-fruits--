@@ -195,6 +195,8 @@ function updateTransform(e) {
 }
 
 function handleClickLevel(id) {
+  eltLevelGoalBtnPlay.removeEventListener('click', evtLevelGoalBtnPlay, false);
+  
   eltLevels.style.display = "none";
   eltLevelGoal.style.display = "block";
   
