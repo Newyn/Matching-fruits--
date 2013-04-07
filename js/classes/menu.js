@@ -47,6 +47,8 @@ Menu.prototype = {
     eltBtnTimeTrial.addEventListener("click", oMenu.clickTabTimeTrial, false);
     eltBtnTimeTrialScores.addEventListener("click", oMenu.clickTabTimeTrialScores, false);
     eltBtnLevelScores.addEventListener("click", oMenu.clickTabLevelScore, false);
+    eltBtnLevelAchievements.addEventListener("click", oMenu.clickTabLevelAchievements, false);
+    eltBtnTimeTrialAchievements.addEventListener("click", oMenu.clickTabTimeTrialAchievements, false);
     
     var listArrowPrevious = document.getElementsByClassName("arrow-previous");
     
@@ -205,5 +207,17 @@ Menu.prototype = {
   clickTabAchievements: function clickTabAchievements() {
     eltMenu.style.display = "none";
     eltAchievements.style.display = "block";
+  },
+  clickTabLevelAchievements: function clickTabLevelAchievements() {
+    eltBtnLevelAchievements.style.display = "none";
+    eltBtnTimeTrialAchievements.style.display = "none";
+    eltAchievementsList.style.display = "block";
+    selectAllAchievements(eltAchievementsList, "Levels"); 
+  },
+  clickTabTimeTrialAchievements : function clickTabTimeTrialAchievements() {
+    eltBtnLevelAchievements.style.display = "none";
+    eltBtnTimeTrialAchievements.style.display = "none";
+    eltAchievementsList.style.display = "block";
+    selectAllAchievements(eltAchievementsList, "TimeTrial"); 
   }
 };

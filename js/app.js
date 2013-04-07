@@ -71,6 +71,7 @@ var eltBtnScores = document.getElementById("btn-scores");
 var eltBtnAchievements = document.getElementById("btn-achievements");
 var eltBtnLevelAchievements = document.getElementById("btn-level-achievements");
 var eltBtnTimeTrialAchievements = document.getElementById("btn-time-trial-achievements");
+var eltAchievementsList = document.getElementById("achievements-list");
 var eltBtnOptions = document.getElementById("btn-options");
 var eltBtnLang = document.getElementById("btn-lang");
 var eltBtnMusic = document.getElementById("btn-music");

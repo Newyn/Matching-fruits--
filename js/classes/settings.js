@@ -12,6 +12,8 @@ var Settings = function Settings() {
   this.achievementsLevels = '';
   this.loadLevelsJSON();
   this.loadSettingsJSON();
+  this.loadAchievementsTimeTrialJSON();
+  this.loadAchievementsLevelsJSON();
 }
 
 /**************************************************************************************************
@@ -53,7 +55,7 @@ Settings.prototype = {
     xhr.send();
   },
   // Load achievements-time-trial.json file
-  loadAchievementsTimeTrial : function loadAchievementsTimeTrial() {
+  loadAchievementsTimeTrialJSON : function loadAchievementsTimeTrialJSON() {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
       if (xhr.readyState === 4) {
@@ -70,7 +72,7 @@ Settings.prototype = {
     xhr.send();
   },
   // Load achievements-levels.json file
-  loadAchievementsLevels : function loadAchievementsLevels() {
+  loadAchievementsLevelsJSON : function loadAchievementsLevelsJSON() {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
       if (xhr.readyState === 4) {

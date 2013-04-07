@@ -5,15 +5,15 @@
       "name-en" : "100,000 points",	
       "description-en" : "Achieve a score of at least 100,000 points",	
       "name-fr" : "100 000 points",	
-      "description-fr" : "Réaliser un score d'au moins 100 000 points",	
+      "description-fr" : "Realiser un score d'au moins 100 000 points"	
     },
     
     { 
       "id" : "2",
       "name-en" : "250,000 points",	
-      "description-en" : "Achieve a score of at least 250,000 pointse",	
+      "description-en" : "Achieve a score of at least 250,000 points",	
       "name-fr" : "250 000 points",	
-      "description-fr" : "Réaliser un score d'au moins 250 000 points",	
+      "description-fr" : "Realiser un score d'au moins 250 000 points"
     },
     
     { 
@@ -21,7 +21,7 @@
       "name-en" : "500,000 points",	
       "description-en" : "Achieve a score of at least 500,000 points",	
       "name-fr" : "500 000 points",	
-      "description-fr" : "Réaliser un score d'au moins 500 000 points",	
+      "description-fr" : "Realiser un score d'au moins 500 000 points"
     }
   ]
 }

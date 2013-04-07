@@ -151,7 +151,7 @@ div#menu {
   position: absolute;
 }
 
-div#menu div, div#game div, div#scores div, div#achievements div {
+div#menu div, div#game div, div#scores div, div#achievements div#btn-level-achievements, div#achievements div#btn-time-trial-achievements {
   font-size: 32px;
   color: grey;
   cursor: pointer;
@@ -377,13 +377,22 @@ div#levels {
   position: absolute;
 }
 
-div#levels div.page {
+div#achievements-list {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  font-family: Chewy;
+  font-size: 14px;
+}
+
+div#levels div.page, div#achievements-list div.page {
   position: absolute;
   width: 100%;
   height: 100%;
 }
 
-div#levels div.levels-first-level {
+div#levels div.levels-first-level, div#achievements-list div.achievements-list-first {
   position: relative;
   top: 53%;
   width: 100%;
@@ -403,6 +412,27 @@ div#levels  div.levels-first-level-cherry img {
   cursor: pointer;
   margin-right: 8%;
   margin-left: 8%;
+}
+
+div#achievements-list div.achievements-list-second {
+  position: relative;
+  top: 56%;
+  width: 100%;
+  margin: auto;
+  text-align: center;
+}
+
+div#achievements-list div.achievements-list-third {
+  position: relative;
+  top: 59%;
+  width: 100%;
+  margin: auto;
+  text-align: center;
+}
+
+span.achievements-list-name {
+  margin-left: 5%;
+  vertical-align: 55%;
 }
 
 div#levels div.levels-second-level {

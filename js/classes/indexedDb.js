@@ -1,10 +1,12 @@
-var DB_NAME = "Matching-fruits-indexedDB20";
+var DB_NAME = "Matching-fruits-indexedDB60";
 var DB_RELEASE = 1;
 var db;
 var store;
 var storeSettings;
 var storeScores;
 var storeLevels;
+var storeAchievementsLevels;
+var storeAchievementsTimeTrial;
 // window.indexedDB
 var indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
 // window.IDB* objects
@@ -28,6 +30,8 @@ window.onload = function() {
     storeSettings = db.createObjectStore("settings", {keyPath: "type"});
     storeScores = db.createObjectStore("scores", {keyPath: "score"});
     storeLevels = db.createObjectStore("levels", {keyPath: "id"});
+    storeAchievementsLevels = db.createObjectStore("achievementsLevels", {keyPath: "id"});
+    storeAchievementsTimeTrial = db.createObjectStore("achievementsTimeTrial", {keyPath: "id"});
   };
 
   request.onsuccess = function(event) {
@@ -39,6 +43,14 @@ window.onload = function() {
     
     for (var i = 0; i < oSettings.levels.list.length; i++) {
       selectLevel(oSettings.levels.list[i].id);
+    }
+    
+    for (var i = 0; i < oSettings.achievementsTimeTrial.list.length; i++) {
+      selectAchievement(oSettings.achievementsTimeTrial.list[i].id, "TimeTrial");
+    }
+    
+    for (var i = 0; i < oSettings.achievementsLevels.list.length; i++) {
+      selectAchievement(oSettings.achievementsLevels.list[i].id, "Levels");
     }
   }
 }
@@ -526,4 +538,195 @@ function deleteLevel(id) {
   request.onerror = function(event) {
     console.log("Delete level failed", event);
   };
+}
+
+/**************************************************************************************************
+Selects an achievement
+**************************************************************************************************/
+function selectAchievement(id, mode) {
+  store = db.transaction("achievements"+mode, "readwrite").objectStore("achievements"+mode);
+  var keyRange = IDBKeyRange.only(id);
+  var cursor = store.openCursor(keyRange);
+  
+  cursor.onsuccess = function(event) {
+    var result = event.target.result;
+    if (!!result == false) {
+      console.log("Non-existent achievement");
+      addAchievement(id, false, mode);
+    } else {
+      // TODO
+    }
+  }
+  
+  cursor.onerror = function(event) {
+    console.log("Select achievement failed", event);
+  };
+};
+
+/**************************************************************************************************
+Adds an achievement
+**************************************************************************************************/
+function addAchievement(id, done, mode) {
+  store = db.transaction("achievements"+mode, "readwrite").objectStore("achievements"+mode);
+	var data = {id: id, done: done};
+
+	console.log("Attempting to write achievements", data);
+
+	var request = store.put(data);
+
+  request.onsuccess = function onsuccess() {
+    console.log("Write achievements succeeded");
+  };
+  
+  request.onerror = function onerror(event) {
+    console.log("Write achievements failed", event);
+  };
+};
+
+/**************************************************************************************************
+Deletes an achievement
+**************************************************************************************************/
+function deleteAchievement(id, mode) {
+  store = db.transaction("achievements"+mode, "readwrite").objectStore("achievements"+mode);
+  
+  console.log("Attempting to delete achievement");
+  
+  var request = store.delete(id);
+  
+  request.onsuccess = function(event) {
+    console.log("Delete achievement succeeded");
+  }
+  request.onerror = function(event) {
+    console.log("Delete achievement failed", event);
+  };
+}
+
+/**************************************************************************************************
+Selects all achievements
+**************************************************************************************************/
+function selectAllAchievements(elt, mode) {
+
+  var achievements = [];
+  store = db.transaction("achievements"+mode, "readwrite").objectStore("achievements"+mode);
+
+  elt.innerHTML = "";
+
+  store.openCursor().onsuccess = function (event) {
+    var cursor = event.target.result; 
+    if (cursor) {
+      var tmp = store.get(cursor.key);
+      tmp.onsuccess = function (e) {
+        achievements.push(tmp.result.id);
+        cursor.continue();
+      }
+    }
+    else {
+      achievements.sort();
+      
+      var count = 0;
+      var page = 1;
+      
+      for (var i = 0; i < achievements.length; i++) {
+        console.log(achievements[i]);
+        count++;
+        
+        if (count == 1) {
+          var eltPage = createPage(page);
+          elt.appendChild(eltPage);
+          
+          if (page == 1) {
+            var eltArrowPrevious = document.createElement("img");
+            eltArrowPrevious.className = "arrow-previous";
+            eltArrowPrevious.src = "resources/images/arrows/previous.png";
+            // TODO add the event listener
+            /*if (mode == "levels") {
+              eltArrowPrevious.addEventListener('click', oMenu.previous, false);
+            } else if (mode == "scores") {
+              eltArrowPrevious.addEventListener('click', oMenu.clickTabScores, false);
+            }*/
+            getPage(page).appendChild(eltArrowPrevious);
+          } else {
+            eltPage.style.display = "none";
+            
+            var eltArrowNext = document.createElement("img");
+            eltArrowNext.className = "arrow-next";
+            eltArrowNext.src = "resources/images/arrows/next.png";
+            
+            // TODO add the event listener
+            /*(function(page) {
+              eltArrowNext.addEventListener('click', function(event){ handleClickArrowNextPage(parseInt(page)); },false);
+            })(page);*/
+            
+            getPage(parseInt(page-1)).appendChild(eltArrowNext);
+            
+            var eltArrowPrevious = document.createElement("img");
+            eltArrowPrevious.className = "arrow-previous";
+            eltArrowPrevious.src = "resources/images/arrows/previous.png";
+            
+            // TODO add the event listener
+            /*(function(page) {
+              eltArrowPrevious.addEventListener('click', function(event){ handleClickArrowPreviousPage(parseInt(page - 1)); },false);
+            })(page);*/
+          
+            getPage(page).appendChild(eltArrowPrevious);
+          }
+          
+          var eltAchievementsLevel = document.createElement("div");
+          eltAchievementsLevel.className = "achievements-list-first";
+          eltPage.appendChild(eltAchievementsLevel);
+          
+          var eltImg = document.createElement("img");
+          eltImg.src = "resources/images/achievements/star.png";
+          eltAchievementsLevel.appendChild(eltImg);
+          
+          var eltName = document.createElement("span");
+          eltName.className = "achievements-list-name";
+          if (mode == "TimeTrial") {
+            eltName.innerHTML = oSettings.achievementsTimeTrial.list[i]["description-"+oMenu.language];
+          } else {
+            eltName.innerHTML = oSettings.achievementsLevels.list[i]["description-"+oMenu.language];
+          }
+          eltAchievementsLevel.appendChild(eltName);
+        } else if (count == 2) {
+          var eltAchievementsLevel = document.createElement("div");
+          eltAchievementsLevel.className = "achievements-list-second";
+          eltPage.appendChild(eltAchievementsLevel);
+          
+          var eltImg = document.createElement("img");
+          eltImg.src = "resources/images/achievements/star.png";
+          eltAchievementsLevel.appendChild(eltImg);
+          
+          var eltName = document.createElement("span");
+          eltName.className = "achievements-list-name";
+          if (mode == "TimeTrial") {
+            eltName.innerHTML = oSettings.achievementsTimeTrial.list[i]["description-"+oMenu.language];
+          } else {
+            eltName.innerHTML = oSettings.achievementsLevels.list[i]["description-"+oMenu.language];
+          }
+          eltAchievementsLevel.appendChild(eltName);
+        } else if (count == 3) {
+          var eltAchievementsLevel = document.createElement("div");
+          eltAchievementsLevel.className = "achievements-list-third";
+          eltPage.appendChild(eltAchievementsLevel);
+          
+          var eltImg = document.createElement("img");
+          eltImg.src = "resources/images/achievements/star.png";
+          eltAchievementsLevel.appendChild(eltImg);
+          
+          var eltName = document.createElement("span");
+          eltName.className = "achievements-list-name";
+          if (mode == "TimeTrial") {
+            eltName.innerHTML = oSettings.achievementsTimeTrial.list[i]["description-"+oMenu.language];
+          } else {
+            eltName.innerHTML = oSettings.achievementsLevels.list[i]["description-"+oMenu.language];
+          }
+          eltAchievementsLevel.appendChild(eltName);
+        
+        } else {
+          count = 0;
+          page++;
+        }
+      }
+    }
+  }
 }
