@@ -281,8 +281,18 @@ function selectLevelScore(id) {
     if (!!result == false) {
       console.log("Non-existent type");
     } else {
+      if (result.value.time != "") {
+        var tSeconds = result.value.time;
+        minutes = parseInt( tSeconds / 60 ) % 60;
+        seconds = tSeconds % 60;
+
+        res = (minutes < 10 ? "0" + minutes : minutes) + " : " + (seconds  < 10 ? "0" + seconds : seconds);
+      } else {
+        res = "";
+      }
+      
       eltLevelScoreScore.innerHTML = result.value.score;
-      eltLevelScoreTime.innerHTML = result.value.time;
+      eltLevelScoreTime.innerHTML = res;
       eltLevelScoreMove.innerHTML = result.value.move;
     }
   }
@@ -521,6 +531,27 @@ function addLevel(id, score, move, time, cherries, unlock) {
     console.log("Write level failed", event);
   };
 };
+
+function unlockNextLevel(id) {
+  store = db.transaction("levels", "readwrite").objectStore("levels");
+  
+  var keyRange = IDBKeyRange.only(id);
+  var cursor = store.openCursor(keyRange);
+  
+  cursor.onsuccess = function(event) {
+    var result = event.target.result;
+    
+    if (!!result == false) {
+      console.log("Non-existent level");
+    } else {
+      if ((result.value.cherries == 0) && (result.value.unlock == false)) {
+        addLevel(id, "", "", "", 0, true);
+      }
+    }   
+  }
+}
+
+
 
 /**************************************************************************************************
 Check best score for level mode and update level if it's better

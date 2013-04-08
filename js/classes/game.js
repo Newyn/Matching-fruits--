@@ -572,7 +572,7 @@ Game.prototype = {
       setBgEltEndLevel();
       checkAchievements(oGame.mode);
       checkBestLevel(""+oGame.idLevel+"", eltEndLevelScoreLbl.innerHTML, oGame.nbMove, oTimer.convertTimerToSeconds());
-      addLevel(""+parseInt(oGame.idLevel+1)+"", "", "", "", 0, true);
+      unlockNextLevel(""+parseInt(oGame.idLevel+1)+"");
       selectAllLevels(eltLevels, "levels");
     }
   },

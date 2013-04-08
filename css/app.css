@@ -338,20 +338,14 @@ div#level-goal div#level-goal-btn-play {
   background-image: url("../resources/images/buttons/bg-btn-play.png");
   color: grey;
   cursor: pointer;
-  margin-top: 3%;
-  margin-bottom: 1%;
 }
 
 div#level-goal div#level-goal-score, div#level-goal div#level-goal-time, div#level-score div#level-score-score  {
   color: #bdbbbc;
-  margin-top: -1%;
-  margin-bottom: 2.3%;
 }
 
  div#level-score div#level-score-time {
- color: #bdbbbc;
- margin-top: 5%;
- margin-bottom: -4%;
+  color: #bdbbbc;
  }
 
 div#level-goal div#level-goal-move, div#level-score div#level-score-move {

@@ -12,82 +12,82 @@
     { 
       "id" : "2",
       "score" : "00010000",
-      "twoCherries" : "00010000",
-      "threeCherries" : "00015000",
+      "twoCherries" : "00015000",
+      "threeCherries" : "00020000",
       "move" : "5",	
-      "time" : "30"	
+      "time" : "45"
     },
     
     { 
       "id" : "3",
-      "score" : "00050000",
-      "twoCherries" : "00010000",
-      "threeCherries" : "00015000",
-      "move" : "20",	
-      "time" : "120"
+      "score" : "00025000",
+      "twoCherries" : "00035000",
+      "threeCherries" : "00040000",
+      "move" : "15",	
+      "time" : "60"
     },
     
     { 
       "id" : "4",
-      "score" : "00100000",
-      "twoCherries" : "00010000",
-      "threeCherries" : "00015000",
-      "move" : "35",	
-      "time" : "180"
-    },
-    
-    { 
-      "id" : "5",
-      "score" : "00250000",
-      "twoCherries" : "00010000",
-      "threeCherries" : "00015000",
-      "move" : "60",	
-      "time" : "300"
-    },
-    
-    { 
-      "id" : "6",
-      "score" : "00008000",
-      "twoCherries" : "00010000",
-      "threeCherries" : "00015000",
-      "move" : "2",	
-      "time" : "30"
-    },
-    
-    { 
-      "id" : "7",
-      "score" : "00020000",
-      "twoCherries" : "00010000",
-      "threeCherries" : "00015000",
-      "move" : "10",	
-      "time" : "30"
-    },
-    
-    { 
-      "id" : "8",
-      "score" : "00040000",
-      "twoCherries" : "00010000",
-      "threeCherries" : "00015000",
-      "move" : "20",	
-      "time" : "60"	
-    },
-    
-    { 
-      "id" : "9",
-      "score" : "00250000",
-      "twoCherries" : "00010000",
-      "threeCherries" : "00015000",
-      "move" : "40",	
+      "score" : "00050000",
+      "twoCherries" : "00060000",
+      "threeCherries" : "00075000",
+      "move" : "25",	
       "time" : "80"
     },
     
     { 
-      "id" : "10",
-      "score" : "01000000",
-      "twoCherries" : "00010000",
-      "threeCherries" : "00015000",
-      "move" : "50",	
+      "id" : "5",
+      "score" : "00075000",
+      "twoCherries" : "00090000",
+      "threeCherries" : "00100000",
+      "move" : "40",	
       "time" : "100"
+    },
+    
+    { 
+      "id" : "6",
+      "score" : "000200000",
+      "twoCherries" : "00225000",
+      "threeCherries" : "00250000",
+      "move" : "80",	
+      "time" : "150"
+    },
+    
+    { 
+      "id" : "7",
+      "score" : "000300000",
+      "twoCherries" : "00325000",
+      "threeCherries" : "00350000",
+      "move" : "100",	
+      "time" : "180"
+    },
+    
+    { 
+      "id" : "8",
+      "score" : "000400000",
+      "twoCherries" : "00425000",
+      "threeCherries" : "00450000",
+      "move" : "110",	
+      "time" : "200"
+    },
+    
+    { 
+      "id" : "9",
+      "score" : "000500000",
+      "twoCherries" : "00525000",
+      "threeCherries" : "00550000",
+      "move" : "120",	
+      "time" : "220"
+    },
+    
+    { 
+      "id" : "10",
+      "score" : "000600000",
+      "twoCherries" : "00625000",
+      "threeCherries" : "00650000",
+      "move" : "140",	
+      "time" : "240"
     }
   ]
 }
