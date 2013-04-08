@@ -35,7 +35,7 @@
       "name-en" : "750,000 points",	
       "description-en" : "Achieve a score of at least 750,000 points",	
       "name-fr" : "750 000 points",	
-      "description-fr" : "Achieve a score of at least 750 000 points",
+      "description-fr" : "Realiser un score d'au moins 750 000 points",
       "type" : "score",
       "val" : "00750000"
     }
