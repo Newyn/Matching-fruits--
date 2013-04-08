@@ -6,7 +6,6 @@ var Menu = function Menu() {
   this.music.loop = true;
   this.music.volume = 0.5;
   this.music.load();
-  this.music.play();
   this.musicState = "on"; // Music activate
   this.soundState = "on"; // Sounds activate
   this.language = "fr"; // Language FR
@@ -160,8 +159,10 @@ Menu.prototype = {
     
     if (oMenu.musicState == "on") {
       eltBtnMusic.src = "resources/images/buttons/btn-music-on.png";
+      oMenu.music.play();
     } else {
       eltBtnMusic.src = "resources/images/buttons/btn-music-off.png";
+      oMenu.music.pause();
     }
   },
   // Handles click on the tab "Jouer" / "Play"

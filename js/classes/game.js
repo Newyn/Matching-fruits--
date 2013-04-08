@@ -89,7 +89,11 @@ Game.prototype = {
     eltBgGame.style.display = "block";
     
     oMenu.music.pause();
-    this.music.play();
+
+    if (oMenu.musicState == 'on')
+    {
+      this.music.play();
+    }
     oTimer.start();
   },
   // Builds the map
@@ -477,7 +481,11 @@ Game.prototype = {
     while (eltMap.firstChild) {
       eltMap.removeChild(eltMap.firstChild);
     }
-    oMenu.music.play();
+
+    if (oMenu.musicState == 'on')
+    {
+      oMenu.music.play();
+    }
     this.music.pause();
   },
   // Sets mode to time trial

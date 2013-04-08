@@ -268,7 +268,7 @@ function addSwipeEvent(elem, i, j) {
 	      newI +=1;
         break;
     }
-	
+	  alert('swipe :'+event.gesture.direction+'/'+event.type);
 	  if (newI <0 || newI > 7 || newJ < 0 || newJ > 7){
 	    return;
 	  }
