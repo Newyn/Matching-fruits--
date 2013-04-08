@@ -104,10 +104,19 @@ function handleClick(row, col) {
 
       if (oGame.listFruitsDestroy.length > 0) {
         for (var i=0;i<oGame.listFruitsDestroy.length;i++) {
+          if (oMenu.soundState == 'on')
+          {
+            oGame.effectSound.play();
+          }
           fadeOut(document.getElementById(oGame.listFruitsDestroy[i].id), 50);
           oGame.updateScore(1000);
         }
       } else {
+
+        if (oMenu.soundState == 'on')
+        {
+          oGame.errorSound.play();
+        }
         console.log("Fruits destroy == 0");
         oldFruit.id = oldId;
         newFruit.id = newId;

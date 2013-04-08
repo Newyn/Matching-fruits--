@@ -8,6 +8,17 @@ var Game = function Game() {
   this.music.volume = 0.5;
   this.music.load();
 
+  this.errorSound = new Audio("resources/audio/Error2.ogg");
+  this.errorSound.loop = false;
+  this.errorSound.volume = 1.0;
+  this.errorSound.load();
+
+  this.effectSound = new Audio("resources/audio/FruitExplosion!.ogg");
+  this.effectSound.loop = false;
+  this.effectSound.volume = 1.0;
+  this.effectSound.load();
+
+
   // Map set to 8 rows and 8 columns
   this.fruits = [
     [0, 0, 0, 0, 0, 0, 0, 0],
@@ -347,6 +358,10 @@ Game.prototype = {
   // Destroys all the fruits contains by listFruitsDestroy and reset it
   destroy: function destroy() {
     for (var i = 0; i < oGame.listFruitsDestroy.length; i++) {
+      if (oMenu.soundState == 'on')
+      {
+        oGame.effectSound.play();
+      }
       fadeOut(document.getElementById(oGame.listFruitsDestroy[i].id), 50);
       oGame.updateScore(1000);
     }
