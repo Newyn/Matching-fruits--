@@ -400,6 +400,7 @@ div#achievements-list div.achievements-list-first  {
   width: 100%;
   margin: auto;
   text-align: center;
+  float: left;
 }
 
 div#levels  div.levels-first-level-cherry {
@@ -422,6 +423,7 @@ div#achievements-list div.achievements-list-second {
   width: 100%;
   margin: auto;
   text-align: center;
+  float: left;
 }
 
 div#achievements-list div.achievements-list-third {
@@ -430,11 +432,13 @@ div#achievements-list div.achievements-list-third {
   width: 100%;
   margin: auto;
   text-align: center;
+  float: left;
 }
 
 span.achievements-list-name {
+  float: left;
   margin-left: 5%;
-  vertical-align: 55%;
+  margin-top: 5%;
 }
 
 div#levels div.levels-second-level {
@@ -527,6 +531,11 @@ img#arrow-previous-scores {
   font-size: 24px;
   margin: 1%;
   margin-top: 5%;
+}
+
+.star {
+  float: left;
+  margin-left: 3%;
 }
 
 @keyframes spin {

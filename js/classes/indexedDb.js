@@ -764,6 +764,7 @@ function selectAllAchievements(elt, mode) {
           
           var eltImg = document.createElement("img");
           eltImg.id = "star"+parseInt(i+1);
+          eltImg.className = "star";
           eltImg.src = "resources/images/achievements/star.png";
           eltAchievementsLevel.appendChild(eltImg);
           checkLockAchievement(parseInt(i+1), mode);
@@ -783,6 +784,7 @@ function selectAllAchievements(elt, mode) {
           
           var eltImg = document.createElement("img");
           eltImg.id = "star"+parseInt(i+1);
+          eltImg.className = "star";
           eltImg.src = "resources/images/achievements/star.png";
           eltAchievementsLevel.appendChild(eltImg);
           checkLockAchievement(parseInt(i+1), mode);
@@ -802,6 +804,7 @@ function selectAllAchievements(elt, mode) {
           
           var eltImg = document.createElement("img");
           eltImg.id = "star"+parseInt(i+1);
+          eltImg.className = "star";
           eltImg.src = "resources/images/achievements/star.png";
           eltAchievementsLevel.appendChild(eltImg);
           checkLockAchievement(parseInt(i+1), mode);

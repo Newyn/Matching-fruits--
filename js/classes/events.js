@@ -71,7 +71,6 @@ function handleClick(row, col) {
     var distance = Math.abs(col - oGame.posCol) + Math.abs(row - oGame.posRow);
 
     if (distance == 1) { // oldFruit and newFruit are adjacent
-      oGame.nbMove++;
       var oldFruit = getFruit(oGame.posRow, oGame.posCol);
       var newFruit = getFruit(row, col);
       if (row == oGame.posRow) {
@@ -103,6 +102,7 @@ function handleClick(row, col) {
       oGame.check();
 
       if (oGame.listFruitsDestroy.length > 0) {
+        oGame.nbMove++;
         for (var i=0;i<oGame.listFruitsDestroy.length;i++) {
           if (oMenu.soundState == 'on')
           {
