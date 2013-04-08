@@ -87,6 +87,7 @@ var eltEndLevel = document.getElementById("end-level");
 var eltEndLevelScore = document.getElementById("end-level-score");
 var eltEndLevelFailScore = document.getElementById("end-level-fail-score");
 var eltEndLevelFailMove = document.getElementById("end-level-fail-move");
+var eltEndLevelScoreLbl = document.getElementById("end-level-score-lbl");
 var eltEndScoreMsg = document.getElementById("end-score-msg");
 var eltTimer = document.getElementById("timer");
 var eltTimerMinutes = document.getElementById("timer-minutes");

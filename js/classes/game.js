@@ -518,22 +518,30 @@ Game.prototype = {
     eltEndLevelScore.style.display = "block";
   },
   checkObjectives: function checkObjectives() {
-    if ((this.nbMove > this.objMove) && (this.currentScore < this.objScore)) {
+    eltEndLevelScoreLbl.innerHTML = eltScore.innerHTML;
+    
+    if ((this.nbMove > this.objMove) && (eltEndScore.innerHTML < this.objScore)) {
       setBgEltEndLevelFail();
       eltEndLevelFailScore.style.display = "block";
       eltEndLevelFailMove.style.display = "block";
+      eltEndLevelScoreLbl.style.display = "none";
     } 
     else if ((this.nbMove > this.objMove) && (this.currentScore > this.objScore)) {
       setBgEltEndLevelFail();
       eltEndLevelFailMove.style.display = "block";
+      eltEndLevelScoreLbl.style.display = "none";
     }
     else if (this.currentScore < this.objScore) {
       setBgEltEndLevelFail();
       eltEndLevelFailScore.style.display = "block";
+      eltEndLevelScoreLbl.style.display = "none";
     }
     else {
+      eltEndLevelFailScore.style.display = "none";
+      eltEndLevelFailMove.style.display = "none";
+      eltEndLevelScoreLbl.style.display = "block";
       setBgEltEndLevel();
-      checkBestLevel(""+oGame.idLevel+"", oGame.currentScore, oGame.nbMove, oTimer.convertTimerToSeconds(), 1);
+      checkBestLevel(""+oGame.idLevel+"", eltEndLevelScoreLbl.innerHTML, oGame.nbMove, oTimer.convertTimerToSeconds(), 1);
     }
   },
   // Pauses of the game
