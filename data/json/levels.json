@@ -47,7 +47,7 @@
     
     { 
       "id" : "6",
-      "score" : "000200000",
+      "score" : "00020000",
       "twoCherries" : "00225000",
       "threeCherries" : "00250000",
       "move" : "80",	
@@ -56,7 +56,7 @@
     
     { 
       "id" : "7",
-      "score" : "000300000",
+      "score" : "00030000",
       "twoCherries" : "00325000",
       "threeCherries" : "00350000",
       "move" : "100",	
@@ -65,7 +65,7 @@
     
     { 
       "id" : "8",
-      "score" : "000400000",
+      "score" : "00040000",
       "twoCherries" : "00425000",
       "threeCherries" : "00450000",
       "move" : "110",	
@@ -74,7 +74,7 @@
     
     { 
       "id" : "9",
-      "score" : "000500000",
+      "score" : "00050000",
       "twoCherries" : "00525000",
       "threeCherries" : "00550000",
       "move" : "120",	
@@ -83,7 +83,7 @@
     
     { 
       "id" : "10",
-      "score" : "000600000",
+      "score" : "00060000",
       "twoCherries" : "00625000",
       "threeCherries" : "00650000",
       "move" : "140",	
