@@ -17,7 +17,7 @@ function resize() {
   eltLevelGoalScore.style.top = "23%";
   eltLevelGoalTime.style.top = "33%";
   eltLevelGoalMove.style.top = "45%";
-  eltLevelGoalBtnPlay.style.top = "49%";
+  eltLevelGoalBtnPlay.style.top = "53%";
   
   eltMap.width = Math.min(document.documentElement.clientWidth, document.documentElement.clientHeight);
   eltMap.height = Math.min(document.documentElement.clientWidth, document.documentElement.clientHeight);
@@ -209,7 +209,7 @@ function handleClickLevel(id) {
   eltLevelGoalScore.style.top = "23%";
   eltLevelGoalTime.style.top = "33%";
   eltLevelGoalMove.style.top = "45%";
-  eltLevelGoalBtnPlay.style.top = "49%";
+  eltLevelGoalBtnPlay.style.top = "53%";
 
   // Store the event listener to be able to delete it later
   evtLevelGoalBtnPlay = function() { 
@@ -220,7 +220,14 @@ function handleClickLevel(id) {
   
   eltLevelGoalIdNum.innerHTML = id;
   eltLevelGoalScore.innerHTML = oSettings.levels.list[parseInt(id-1)].score
-  eltLevelGoalTime.innerHTML = oSettings.levels.list[parseInt(id-1)].time;
+  
+  var tSeconds = parseInt(oSettings.levels.list[parseInt(id-1)].time);
+  minutes = parseInt( tSeconds / 60 ) % 60;
+  seconds = tSeconds % 60;
+
+  res = (minutes < 10 ? "0" + minutes : minutes) + " : " + (seconds  < 10 ? "0" + seconds : seconds);
+  
+  eltLevelGoalTime.innerHTML = res;
   eltLevelGoalMove.innerHTML = oSettings.levels.list[parseInt(id-1)].move;
 }
 
