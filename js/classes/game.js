@@ -117,8 +117,8 @@ Game.prototype = {
         eltFruit.addEventListener( 'webkitTransitionEnd', updateTransform, false );
         eltFruit.addEventListener( 'oTransitionEnd', updateTransform, false );
         eltFruit.addEventListener( 'transitionend', updateTransform, false );
-		addSwipeEvent(eltFruit,i,j);
-		eltMap.appendChild(eltFruit);
+        addSwipeEvent(eltFruit,i,j);
+        eltMap.appendChild(eltFruit);
 		
       }
     }
@@ -353,6 +353,7 @@ Game.prototype = {
   },
   // Sends down the fruit if there are empty once there was destruction
   fall: function fall() {
+    oGame.state = "fall";
     // return;
     var i = 7;
 
@@ -417,13 +418,17 @@ Game.prototype = {
     // Checks if there are possible destructions after falling
     if (oGame.check() == true) {
       setTimeout(oGame.destroy, 800);
+    } else {
+      oGame.state = "";
     }
-
-    if (oGame.mode == "level") {
-      if (parseInt(oGame.nbMove) >= oGame.objMove) {
-        setTimeout(oGame.endLevel, 1000);
-      } else if (oGame.checkMovement() == false) {
-        oGame.remixMap();
+    
+    if (oGame.state == "") {
+      if (oGame.mode == "level") {
+        if (parseInt(oGame.nbMove) >= oGame.objMove) {
+          setTimeout(oGame.endLevel, 1000);
+        } else if (oGame.checkMovement() == false) {
+          oGame.remixMap();
+        }
       }
     }
   },
@@ -517,6 +522,9 @@ Game.prototype = {
     eltEndLevel.style.display = "block";
     eltEndLevelScore.style.display = "block";
   },
+  checkAchievements: function checkAchievements(mode) {
+  
+  },
   checkObjectives: function checkObjectives() {
     eltEndLevelScoreLbl.innerHTML = eltScore.innerHTML;
     
@@ -542,6 +550,8 @@ Game.prototype = {
       eltEndLevelScoreLbl.style.display = "block";
       setBgEltEndLevel();
       checkBestLevel(""+oGame.idLevel+"", eltEndLevelScoreLbl.innerHTML, oGame.nbMove, oTimer.convertTimerToSeconds());
+      addLevel(""+parseInt(oGame.idLevel+1)+"", "", "", "", 0, true);
+      selectAllLevels(eltLevels, "levels");
     }
   },
   // Pauses of the game
@@ -614,6 +624,7 @@ Game.prototype = {
     oGame.leave();
     eltEndLevel.style.display = "none";
     eltLevels.style.display = "block";
+    selectAllLevels(eltLevels, "levels");
   },
   // Sets a fruit active ie. as the selected case
   setFruitActive: function(row, col) {

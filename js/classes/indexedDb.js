@@ -1,4 +1,4 @@
-var DB_NAME = "Matching-fruits-indexedDB60";
+var DB_NAME = "Matching-fruits-indexedDB07";
 var DB_RELEASE = 1;
 var db;
 var store;
@@ -572,6 +572,21 @@ function deleteLevel(id) {
 }
 
 /**************************************************************************************************
+Checks all the achievements
+**************************************************************************************************/
+function checkAchievement(mode) {
+  if (mode == "TimeTrial") {
+    for (var i = 0; i < oSettings.achievementsTimeTrial.list.length; i++) {
+      //TODO
+    }
+  } else if (mode == "Levels") {
+    for (var i = 0; i < oSettings.achievementsLevels.list.length; i++) {
+      //TODO
+    }
+  }
+}
+
+/**************************************************************************************************
 Selects an achievement
 **************************************************************************************************/
 function selectAchievement(id, mode) {
@@ -706,8 +721,10 @@ function selectAllAchievements(elt, mode) {
           eltPage.appendChild(eltAchievementsLevel);
           
           var eltImg = document.createElement("img");
+          eltImg.id = "star"+parseInt(i+1);
           eltImg.src = "resources/images/achievements/star.png";
           eltAchievementsLevel.appendChild(eltImg);
+          checkLockAchievement(parseInt(i+1), mode);
           
           var eltName = document.createElement("span");
           eltName.className = "achievements-list-name";
@@ -723,8 +740,10 @@ function selectAllAchievements(elt, mode) {
           eltPage.appendChild(eltAchievementsLevel);
           
           var eltImg = document.createElement("img");
+          eltImg.id = "star"+parseInt(i+1);
           eltImg.src = "resources/images/achievements/star.png";
           eltAchievementsLevel.appendChild(eltImg);
+          checkLockAchievement(parseInt(i+1), mode);
           
           var eltName = document.createElement("span");
           eltName.className = "achievements-list-name";
@@ -740,8 +759,10 @@ function selectAllAchievements(elt, mode) {
           eltPage.appendChild(eltAchievementsLevel);
           
           var eltImg = document.createElement("img");
+          eltImg.id = "star"+parseInt(i+1);
           eltImg.src = "resources/images/achievements/star.png";
           eltAchievementsLevel.appendChild(eltImg);
+          checkLockAchievement(parseInt(i+1), mode);
           
           var eltName = document.createElement("span");
           eltName.className = "achievements-list-name";
@@ -759,3 +780,30 @@ function selectAllAchievements(elt, mode) {
     }
   }
 }
+
+/**************************************************************************************************
+Unlock / Lock level
+**************************************************************************************************/
+function checkLockAchievement(id, mode) {
+  store = db.transaction("achievements"+mode, "readwrite").objectStore("achievements"+mode);
+  var keyRange = IDBKeyRange.only(""+id+"");
+  var cursor = store.openCursor(keyRange);
+  
+  cursor.onsuccess = function(event) {
+    var result = event.target.result;
+    if (!!result == false) {
+      console.log("Non-existent type");
+    } else {
+      if (result.value.done == false) {
+        document.getElementById("star"+id).style.opacity = 0.5;
+        document.getElementById("star"+id).style.cursor = "default";
+      } else {
+        document.getElementById("star"+id).style.opacity = 1;
+      }
+    }
+  }
+  
+  cursor.onerror = function(event) {
+    console.log("Select achievement failed", event);
+  };
+};

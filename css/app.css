@@ -383,6 +383,7 @@ div#achievements-list {
   height: 100%;
   font-family: Chewy;
   font-size: 14px;
+  color: #CEEAD5;
 }
 
 div#levels div.page, div#achievements-list div.page {
@@ -391,7 +392,15 @@ div#levels div.page, div#achievements-list div.page {
   height: 100%;
 }
 
-div#levels div.levels-first-level, div#achievements-list div.achievements-list-first {
+div#levels div.levels-first-level {
+  position: relative;
+  top: 51%;
+  width: 100%;
+  margin: auto;
+  text-align: center;
+}
+
+div#achievements-list div.achievements-list-first  {
   position: relative;
   top: 53%;
   width: 100%;
@@ -401,7 +410,7 @@ div#levels div.levels-first-level, div#achievements-list div.achievements-list-f
 
 div#levels  div.levels-first-level-cherry {
   position: relative;
-  top: 53%;
+  top: 51%;
   width: 100%;
   margin: auto;
   text-align: center;
@@ -436,7 +445,7 @@ span.achievements-list-name {
 
 div#levels div.levels-second-level {
   position: relative;
-  top: 55%;
+  top: 53%;
   width: 100%;
   margin: auto;
   text-align: center;
@@ -444,7 +453,7 @@ div#levels div.levels-second-level {
 
 div#levels div.levels-second-level-cherry {
   position: relative;
-  top: 55%;
+  top: 53%;
   width: 100%;
   margin: auto;
   text-align: center;

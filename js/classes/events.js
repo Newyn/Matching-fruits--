@@ -17,7 +17,7 @@ function resize() {
   eltLevelGoalScore.style.top = "23%";
   eltLevelGoalTime.style.top = "33%";
   eltLevelGoalMove.style.top = "45%";
-  eltLevelGoalBtnPlay.style.top = "51%";
+  eltLevelGoalBtnPlay.style.top = "49%";
   
   eltMap.width = Math.min(document.documentElement.clientWidth, document.documentElement.clientHeight);
   eltMap.height = Math.min(document.documentElement.clientWidth, document.documentElement.clientHeight);
@@ -186,10 +186,6 @@ function updateTransform(e) {
       oGame.checkRelapse();
       oGame.countTransitionEnd++;
 
-    } else if (oGame.state == "fall") {
-      oGame.listFruitsDestroy = [];
-      oGame.fall();
-      oGame.checkRelapse();
     }
   }
 }
@@ -204,7 +200,7 @@ function handleClickLevel(id) {
   eltLevelGoalScore.style.top = "23%";
   eltLevelGoalTime.style.top = "33%";
   eltLevelGoalMove.style.top = "45%";
-  eltLevelGoalBtnPlay.style.top = "51%";
+  eltLevelGoalBtnPlay.style.top = "49%";
 
   // Store the event listener to be able to delete it later
   evtLevelGoalBtnPlay = function() { 
