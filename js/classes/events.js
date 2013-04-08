@@ -256,16 +256,16 @@ function addSwipeEvent(elem, i, j) {
 	  var newJ = j;
 	  switch(event.gesture.direction) {
       case Hammer.DIRECTION_LEFT:
-		    newI -=1; 
+		    newJ -=1; 
         break;
       case Hammer.DIRECTION_RIGHT:
-		    newI +=1;
+		    newJ +=1;
         break;
 	    case Hammer.DIRECTION_UP:
-		  newJ -=1; 
+		    newI -=1; 
         break;
       case Hammer.DIRECTION_DOWN:
-	      newJ +=1;
+	      newI +=1;
         break;
     }
 	
