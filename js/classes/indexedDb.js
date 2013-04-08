@@ -523,6 +523,31 @@ function addLevel(id, score, move, time, cherries, unlock) {
 };
 
 /**************************************************************************************************
+Check best score for level mode and update level if it's better
+**************************************************************************************************/
+function checkBestLevel(id, score, move, time, cherries){
+  store = db.transaction("levels", "readwrite").objectStore("levels");
+  
+  var keyRange = IDBKeyRange.only(id);
+  var cursor = store.openCursor(keyRange);
+  
+  cursor.onsuccess = function(event) {
+    var result = event.target.result;
+    if (!!result == false) {
+      console.log("Non-existent level");
+    } else {
+      if (result.value.score < score) { // Better score
+        addLevel(id, score, move, time, cherries, true);
+      } else if ((result.value.score == score) && (result.value.move > move)) { // Same score but less move
+        addLevel(id, score, move, time, cherries, true);
+      } else if ((result.value.score == score) && (result.value.time > time)) { // Same score but less time
+        addLevel(id, score, move, time, cherries, true);
+      }
+    }
+  }
+}
+
+/**************************************************************************************************
 Deletes a level
 **************************************************************************************************/
 function deleteLevel(id) {

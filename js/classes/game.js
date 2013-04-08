@@ -533,7 +533,7 @@ Game.prototype = {
     }
     else {
       setBgEltEndLevel();
-      addLevel(""+oGame.idLevel+"", oGame.currentScore, oGame.nbMove, oTimer.convertTimerToSeconds(), 1);
+      checkBestLevel(""+oGame.idLevel+"", oGame.currentScore, oGame.nbMove, oTimer.convertTimerToSeconds(), 1);
     }
   },
   // Pauses of the game
