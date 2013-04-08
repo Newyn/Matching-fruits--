@@ -66,7 +66,7 @@ Game.prototype = {
     eltPauseResumeButton.addEventListener("click", oGame.resume, false);
 
     eltArrowPreviousPlayLevel.addEventListener("click", oGame.previousLevel, false);
-    
+
     var listArrowPreviousPlay = document.getElementsByClassName("arrow-previous-play");
 
     for (var i = 0; i < listArrowPreviousPlay.length; i++) {
@@ -512,6 +512,7 @@ Game.prototype = {
   },
   // Ends the game
   end: function end() {
+    checkAchievements(mode);
     eltScore.style.display = "none";
     eltTimer.style.display = "none";
     eltEndOverlay.style.display = "block";
@@ -529,9 +530,6 @@ Game.prototype = {
     eltTimer.style.display = "none";
     eltEndLevel.style.display = "block";
     eltEndLevelScore.style.display = "block";
-  },
-  checkAchievements: function checkAchievements(mode) {
-  
   },
   checkObjectives: function checkObjectives() {
     eltEndLevelScoreLbl.innerHTML = eltScore.innerHTML;
@@ -557,6 +555,7 @@ Game.prototype = {
       eltEndLevelFailMove.style.display = "none";
       eltEndLevelScoreLbl.style.display = "block";
       setBgEltEndLevel();
+      checkAchievements(oGame.mode);
       checkBestLevel(""+oGame.idLevel+"", eltEndLevelScoreLbl.innerHTML, oGame.nbMove, oTimer.convertTimerToSeconds());
       addLevel(""+parseInt(oGame.idLevel+1)+"", "", "", "", 0, true);
       selectAllLevels(eltLevels, "levels");

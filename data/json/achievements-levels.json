@@ -5,7 +5,9 @@
       "name-en" : "Level 1",	
       "description-en" : "Complete level 1",	
       "name-fr" : "Niveau 1",	
-      "description-fr" : "Realiser le niveau 1"
+      "description-fr" : "Realiser le niveau 1",
+      "type" : "level",
+      "val" : "1"
     },
     
     { 
@@ -13,7 +15,9 @@
       "name-en" : "Level 5",	
       "description-en" : "Complete level 5",	
       "name-fr" : "Niveau 5",	
-      "description-fr" : "Realiser le niveau 5"	
+      "description-fr" : "Realiser le niveau 5",
+      "type" : "level",
+      "val" : "5"      
     },
     
     { 
@@ -21,7 +25,9 @@
       "name-en" : "Level 10",	
       "description-en" : "Complete level 10",	
       "name-fr" : "Niveau 10",	
-      "description-fr" : "Realiser le niveau 10"
+      "description-fr" : "Realiser le niveau 10",
+      "type" : "level",
+      "val" : "10"
     }
   ]
 }
