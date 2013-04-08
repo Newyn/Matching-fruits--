@@ -541,7 +541,7 @@ Game.prototype = {
       eltEndLevelFailMove.style.display = "none";
       eltEndLevelScoreLbl.style.display = "block";
       setBgEltEndLevel();
-      checkBestLevel(""+oGame.idLevel+"", eltEndLevelScoreLbl.innerHTML, oGame.nbMove, oTimer.convertTimerToSeconds(), 1);
+      checkBestLevel(""+oGame.idLevel+"", eltEndLevelScoreLbl.innerHTML, oGame.nbMove, oTimer.convertTimerToSeconds());
     }
   },
   // Pauses of the game

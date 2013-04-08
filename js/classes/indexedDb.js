@@ -525,7 +525,7 @@ function addLevel(id, score, move, time, cherries, unlock) {
 /**************************************************************************************************
 Check best score for level mode and update level if it's better
 **************************************************************************************************/
-function checkBestLevel(id, score, move, time, cherries){
+function checkBestLevel(id, score, move, time){
   store = db.transaction("levels", "readwrite").objectStore("levels");
   
   var keyRange = IDBKeyRange.only(id);
@@ -536,6 +536,12 @@ function checkBestLevel(id, score, move, time, cherries){
     if (!!result == false) {
       console.log("Non-existent level");
     } else {
+      var cherries = 1;
+      if (score >= oSettings.levels.list[parseInt(id - 1)].threeCherries) {
+        cherries = 3;
+      } else if (score >= oSettings.levels.list[parseInt(id - 1)].twoCherries) {
+        cherries = 2;
+      }
       if (result.value.score < score) { // Better score
         addLevel(id, score, move, time, cherries, true);
       } else if ((result.value.score == score) && (result.value.move > move)) { // Same score but less move
@@ -652,7 +658,6 @@ function selectAllAchievements(elt, mode) {
       var page = 1;
       
       for (var i = 0; i < achievements.length; i++) {
-        console.log(achievements[i]);
         count++;
         
         if (count == 1) {
