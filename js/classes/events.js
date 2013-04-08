@@ -254,17 +254,17 @@ function addSwipeEvent(elem, i, j) {
 	
 	  var newI = i;
 	  var newJ = j;
-	  switch(ev.type) {
-      case 'swipeleft':
+	  switch(event.gesture.direction) {
+      case Hammer.DIRECTION_LEFT:
 		    newI -=1; 
         break;
-      case 'swiperight':
+      case Hammer.DIRECTION_RIGHT:
 		    newI +=1;
         break;
-	    case 'swipeup':
+	    case Hammer.DIRECTION_UP:
 		  newJ -=1; 
         break;
-      case 'swipedown':
+      case Hammer.DIRECTION_DOWN:
 	      newJ +=1;
         break;
     }
