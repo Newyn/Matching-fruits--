@@ -527,7 +527,7 @@ Game.prototype = {
   },
   // Ends the game
   end: function end() {
-    checkAchievements(mode);
+    checkAchievements(oGame.mode);
     eltScore.style.display = "none";
     eltTimer.style.display = "none";
     eltEndOverlay.style.display = "block";
