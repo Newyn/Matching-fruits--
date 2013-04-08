@@ -599,6 +599,7 @@ Game.prototype = {
     eltEndOverlay.style.display = "none";
     eltScore.style.display = "block";
     eltTimer.style.display = "block";
+    oGame.nbMove = 0;
     oGame.posRow = "";
     oGame.posCol = "";
     oGame.selectedCase = false;
