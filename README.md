@@ -130,12 +130,12 @@ L'objectif de ce projet est de :
   <li>Adding an installer.</li>
 </ul>
 
-##Suivi du projet
+##Project
 You can view the progress of the project by going to the wiki via the following URL <a href="https://github.com/vtriquet/Matching-fruits--/wiki/Wiki-(EN)">https://github.com/vtriquet/Matching-fruits--/wiki/Wiki-(EN)</a>
 
 ##Documentation
 We chose to make the documentation by adding a file README.md file detailing the usefulness of each of the files it contains (example: for the folder "classes" <a href="https://github.com/vtriquet/Matching-fruits--/blob/master/js/classes/README.md">README.md</a>).
 
-##Jeu
+##Game
 To test the game from the Mozilla Firefox browser, you can go to the page <a href="http://vtriquet.github.com/Matching-fruits--/">http://vtriquet.github.com/Matching-fruits--/</a>.<br />
 You can also install it on your mobile FirefoxOS by accessing the application from installing <a href="http://vtriquet.github.com/Matching-fruits--/install.html">http://vtriquet.github.com/Matching-fruits--/install.html</a>
