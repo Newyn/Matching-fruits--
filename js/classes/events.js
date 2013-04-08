@@ -257,7 +257,7 @@ Call when Swipe
 **************************************************************************************************/
 function addSwipeEvent(elem, i, j) {
   var hamm = new Hammer(elem).on("swipe", function(event) {
-    alert('swipe :'+event.gesture.direction+'/'+event.type);
+    //alert('swipe :'+event.gesture.direction+'/'+event.type);
 	  event.gesture.preventDefault();
     console.log(i+':'+j);
 	
@@ -277,7 +277,7 @@ function addSwipeEvent(elem, i, j) {
 	      newI +=1;
         break;
     }
-	  alert('swipe :'+event.gesture.direction+'/'+event.type);
+	  //alert('swipe :'+event.gesture.direction+'/'+event.type);
 	  if (newI <0 || newI > 7 || newJ < 0 || newJ > 7){
 	    return;
 	  }
