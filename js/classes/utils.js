@@ -49,7 +49,8 @@ function fadeOut(elem, speed) {
         elem.style.display = "none";
         oMenu.initialize();
       } else {
-        elem.src = listFruitImages[8];
+        //elem.src = listFruitImages[8];
+		elem.style.backgroundImage = none;
       }
     }
   }, speed / 50);
@@ -119,7 +120,8 @@ function getFruit(row, col) {
 Checks if a fruit is destroyed
 **************************************************************************************************/
 function isDestroyed(fruit) {
-  return (fruit && fruit.src.indexOf('destroy.png') != -1);
+  //return (fruit && fruit.src.indexOf('destroy.png') != -1);
+  return (fruit && fruit.style.backgroundImage == 'none');
 };
 
 /**************************************************************************************************
@@ -129,17 +131,19 @@ function createFruit(id, sTop, sLeft, src) {
   var eltFruit = document.createElement('img');
   eltFruit.className = 'fruit';
   eltFruit.id = id;
-  eltFruit.src = src;
+  //eltFruit.src = src;
   eltFruit.style.top = sTop;
   eltFruit.style.left = sLeft;
   eltFruit.style.width = eltMap.width / 9 + 'px';
   eltFruit.style.height = eltMap.height / 9 + 'px';
   eltFruit.style.opacity = 1;
-
+  eltFruit.style.backgroundSize = (eltMap.width / 9)+"px"+" "+(eltMap.width / 9)*7 +"px";
+  eltFruit.style.backgroundPosition = "0px"+" "+parseInt((eltMap.width / 9)*(src-1)*(-1)) +"px";
+  eltFruit.alt=src;
   eltFruit.addEventListener('webkitTransitionEnd', updateTransform, false);
   eltFruit.addEventListener(     'oTransitionEnd', updateTransform, false);
   eltFruit.addEventListener(      'transitionend', updateTransform, false);
-
+  eltFruit.style.backgroundImage = 'url(resources/fruits/sprites2.png)';
   attachClickEvent(eltFruit);
   return eltFruit;
 };

@@ -13,6 +13,7 @@ img.fruit {
   cursor: pointer;
   -webkit-transition: -webkit-transform 0.4s ease-in-out;
   transition: transform 0.4s ease-in-out;
+   background-repeat: no-repeat;
 }
 
 div#map {

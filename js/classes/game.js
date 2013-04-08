@@ -109,8 +109,14 @@ Game.prototype = {
         eltFruit.style.top = i * (eltMap.height / 9) +"px";
         eltFruit.style.left = j * (eltMap.width / 9) +"px";
         eltFruit.style.opacity = 1;
-        eltFruit.src = listFruitImages[this.fruits[i][j]];
-        eltFruit.setAttribute('onclick', 'handleClick('+i+','+j+')');
+        //eltFruit.src = listFruitImages[this.fruits[i][j]];
+		eltFruit.rel = this.fruits[i][j];// Save Fruit ID 
+		//Sprites 
+		eltFruit.style.backgroundImage = 'url(resources/fruits/sprites2.png)';
+		eltFruit.style.backgroundSize = (eltMap.width / 9)+"px"+" "+(eltMap.width / 9)*7 +"px";
+		eltFruit.style.backgroundPosition = "0px"+" "+parseInt((eltMap.width / 9)*(this.fruits[i][j]-1)*(-1)) +"px";
+        eltFruit.alt=this.fruits[i][j];
+		eltFruit.setAttribute('onclick', 'handleClick('+i+','+j+')');
         eltFruit.setAttribute('mousedown', 'handleClick('+i+','+j+')');
         eltFruit.addEventListener( 'webkitTransitionEnd', updateTransform, false );
         eltFruit.addEventListener( 'oTransitionEnd', updateTransform, false );
@@ -188,7 +194,7 @@ Game.prototype = {
       for (var j=0; j<7; j++) {
 
         fruit = getFruit(i, j);
-        if ((fruit.src == getFruit(i, j+1).src) && !isDestroyed(fruit)) {
+        if ((fruit.rel == getFruit(i, j+1).rel) && !isDestroyed(fruit)) {
           nbAdjacentHorizontal = nbAdjacentHorizontal + 1;
         } else {
           if (nbAdjacentHorizontal >= 2) {
@@ -200,7 +206,7 @@ Game.prototype = {
         }
 
         fruit = getFruit(j, i);
-        if ((fruit.src == getFruit(j+1, i).src) && !isDestroyed(fruit)) {
+        if ((fruit.rel == getFruit(j+1, i).rel) && !isDestroyed(fruit)) {
           nbAdjacentVertical = nbAdjacentVertical + 1;
         } else {
           if (nbAdjacentVertical >= 2) {
@@ -276,7 +282,7 @@ Game.prototype = {
     for (var i = 0; i < 8; i++) {
       tmap[i] = [];
       for (var j = 0; j < 8; j++) {
-         tmap[i][j] = getFruit(i, j).src;
+         tmap[i][j] = getFruit(i, j).rel;
       }
     }
 
@@ -407,7 +413,11 @@ Game.prototype = {
           rand = Math.floor(Math.random()*8);
         }
 
-        fruit.src = listFruitImages[rand];
+        //fruit.src = listFruitImages[rand];
+		fruit.rel = rand;
+		fruit.style.backgroundImage = 'url(resources/fruits/sprites2.png)';
+		fruit.style.backgroundPosition = "0px"+" "+parseInt((fruit.width / 9)*rand*(-1)) +"px";
+		fruit.alt=rand;
         translate(fruit, 10, 400);
       }
     }

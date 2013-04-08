@@ -50,7 +50,8 @@ function resize() {
     tmp[i].style.height = eltMap.height / 9 + "px";
     tmp[i].style.top = nbRow * (eltMap.height / 9) +"px";
     tmp[i].style.left = nbCol * (eltMap.width / 9) +"px";
-
+	tmp[i].style.backgroundSize = (eltMap.width / 9)+"px"+" "+(eltMap.width / 9)*7 +"px";
+	tmp[i].style.backgroundPosition = "0px"+" "+parseInt((eltMap.width / 9)*((tmp[i].rel)-1)*(-1)) +"px";
     nbCol++;
   }
 }
@@ -160,11 +161,11 @@ function updateTransform(e) {
 
       var oldTop  = oldFruit.style.top;
       var oldLeft = oldFruit.style.left;
-      var oldSrc  = oldFruit.src;
+      var oldSrc  = oldFruit.rel;
 
       var newTop  = newFruit.style.top;
       var newLeft = newFruit.style.left;
-      var newSrc  = newFruit.src;
+      var newSrc  = newFruit.rel;
 
       eltMap.removeChild(oldFruit);
       eltMap.removeChild(newFruit);
@@ -172,9 +173,12 @@ function updateTransform(e) {
       var fruit1, fruit2;
       if (!isDestroyed(e.target)) {
         fruit1 = createFruit(oGame.oldId, newTop, newLeft, oldSrc);
-        fruit2 = createFruit(oGame.newId, oldTop, oldLeft, listFruitImages[8]);
+//		        fruit2 = createFruit(oGame.newId, oldTop, oldLeft, listFruitImages[8]);
+
+        fruit2 = createFruit(oGame.newId, oldTop, oldLeft, '');
       } else {
-        fruit1 = createFruit(oGame.oldId, newTop, newLeft, listFruitImages[8]);
+       // fruit1 = createFruit(oGame.oldId, newTop, newLeft, listFruitImages[8]);
+		fruit1 = createFruit(oGame.oldId, newTop, newLeft, '');
         fruit2 = createFruit(oGame.newId, oldTop, oldLeft, newSrc);
       }
 
