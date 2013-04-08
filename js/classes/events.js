@@ -221,7 +221,7 @@ function handleClickLevelScore(id) {
   
   eltLevelScoreId.style.top = "1%";
   eltLevelScoreScore.style.top = "20%";
-  eltLevelScoreTime.style.top = "26%";
+  eltLevelScoreTime.style.top = "24%";
   eltLevelScoreMove.style.top = "43%";
   
   eltLevelScoreIdNum.innerHTML = id;

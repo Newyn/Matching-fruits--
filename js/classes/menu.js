@@ -50,6 +50,7 @@ Menu.prototype = {
     eltBtnLevelAchievements.addEventListener("click", oMenu.clickTabLevelAchievements, false);
     eltBtnTimeTrialAchievements.addEventListener("click", oMenu.clickTabTimeTrialAchievements, false);
     eltArrowPreviousScores.addEventListener("click", oMenu.previousScores, false);
+    eltArrowPreviousLevelScores.addEventListener("click", oMenu.previousLevelScores, false);
     
     var listArrowPrevious = document.getElementsByClassName("arrow-previous");
     
@@ -89,6 +90,11 @@ Menu.prototype = {
     eltScores.style.display = "block";
     eltBtnLevelScores.style.display = "block";
     eltBtnTimeTrialScores.style.display = "block";
+  },
+  previousLevelScores: function previousLevelScores() {
+    eltScores.style.display = "none";
+    eltLevelScore.style.display = "none";
+    eltLevels.style.display = "block";
   },
   // Changes the language of the application. FR and EN only available for the moment
   setLanguage: function setLanguage() {

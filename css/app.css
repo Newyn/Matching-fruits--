@@ -478,7 +478,7 @@ img.arrow-next{
   cursor: pointer;
 }
 
-img.arrow-previous, img.arrow-previous-play, img.arrow-previous-level, img#arrow-previous-play-level, img#arrow-previous-scores {
+img.arrow-previous, img.arrow-previous-play, img.arrow-previous-level, img#arrow-previous-play-level, img#arrow-previous-scores, img#arrow-previous-level-scores {
   position: absolute;
   bottom: 2%;
   left: 0;

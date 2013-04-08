@@ -66,7 +66,7 @@ Game.prototype = {
     eltPauseResumeButton.addEventListener("click", oGame.resume, false);
 
     eltArrowPreviousPlayLevel.addEventListener("click", oGame.previousLevel, false);
-    
+
     var listArrowPreviousPlay = document.getElementsByClassName("arrow-previous-play");
 
     for (var i = 0; i < listArrowPreviousPlay.length; i++) {
