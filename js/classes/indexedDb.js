@@ -107,7 +107,7 @@ function addSetting(type, val) {
 	console.log("Attempting to write setting ", data);
 
 	var request = store.put(data);
-
+  
   request.onsuccess = function onsuccess() {
     console.log("Write setting succeeded");
   };
@@ -574,14 +574,25 @@ function deleteLevel(id) {
 /**************************************************************************************************
 Checks all the achievements
 **************************************************************************************************/
-function checkAchievement(mode) {
-  if (mode == "TimeTrial") {
+function checkAchievements(mode) {
+  console.log("achievement");
+  if (mode == "time-trial") {
     for (var i = 0; i < oSettings.achievementsTimeTrial.list.length; i++) {
-      //TODO
+      if (oSettings.achievementsTimeTrial.list[i].type == "score") {
+        if (eltScore.innerHTML > oSettings.achievementsTimeTrial.list[i].val) {
+          console.log("Achievements unlocked"+oSettings.achievementsTimeTrial.list[i]["description-en"]);
+          addAchievement(oSettings.achievementsTimeTrial.list[i]["id"], true, "TimeTrial");
+        }
+      }
     }
-  } else if (mode == "Levels") {
+  } else if (mode == "level") {
     for (var i = 0; i < oSettings.achievementsLevels.list.length; i++) {
-      //TODO
+      if (oSettings.achievementsLevels.list[i].type == "level") {
+        if (""+oGame.idLevel+"" == oSettings.achievementsLevels.list[i].val) {
+          console.log("Achievements unlocked"+oSettings.achievementsLevels.list[i]["description-en"]);
+          addAchievement(oSettings.achievementsLevels.list[i]["id"], true, "Levels");
+        }
+      }
     }
   }
 }
